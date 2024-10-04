@@ -1,0 +1,43 @@
+html, body{
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#container {
+    /* background-color: aqua; */
+    height: 100%;
+}
+.logo{
+    /* background-color: green; */
+    height: 20%;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+.logobox{
+    background-color: aqua;
+    width: 70px;
+    height: 70px;
+    background-image: url('..\..\public\images\logos\youtube.png');
+    background-size: cover;
+    background-position: center;
+}
+.content{
+    background-color: yellow;
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items:center ;
+}
+.box{
+    background-color: black;
+    height: 80%;
+    width: 400px;
+    margin-left: auto ;
+    margin-right: auto;
+}
+
+.footer{
+    background-color: brown;
+    height: 20%;
+}
