@@ -18,23 +18,42 @@ html, body{
     background-color: aqua;
     width: 70px;
     height: 70px;
-    background-image: url('..\..\public\images\logos\youtube.png');
+    background-image: url('..\..\public\images\logos\logo.png');
     background-size: cover;
     background-position: center;
 }
 .content{
-    background-color: yellow;
     height: 60%;
     display: flex;
     justify-content: center;
     align-items:center ;
 }
 .box{
-    background-color: black;
-    height: 80%;
+    height: 60%;
     width: 400px;
     margin-left: auto ;
     margin-right: auto;
+    padding: 30px;
+    border: solid 1px black;
+    border-radius: 20px;
+    position: relative;
+}
+.styled-input{
+    width: 392px;
+    height: 10%;
+    border-radius: 5px;
+    font-size: 14px;
+}
+.loginButton{
+    position: absolute;
+    background-color: rgb(29, 168, 17);
+    color: white;
+    width: 60px;
+    height: 20px;
+    text-align: center;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 5px;
 }
 
 .footer{
