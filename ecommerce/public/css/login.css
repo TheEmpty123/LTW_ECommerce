@@ -2,10 +2,17 @@ html, body{
     height: 100%;
     margin: 0;
     padding: 0;
-}
+}   
 #container {
-    /* background-color: aqua; */
+    background-image: linear-gradient(
+        to right, 
+        rgba(23, 248, 42, 0.5), 
+        rgba(121, 0, 187, 0.5)),
+        url('..\images\logos\backgroundlogin.png');
+    background-size: cover;
+    background-position: center;
     height: 100%;
+
 }
 .logo{
     /* background-color: green; */
@@ -16,33 +23,44 @@ html, body{
 }
 .logobox{
     background-color: aqua;
+    margin-top: 40px;
     width: 70px;
     height: 70px;
     background-image: url('..\..\public\images\logos\logo.png');
     background-size: cover;
     background-position: center;
 }
-.content{
+.content{   
     height: 60%;
     display: flex;
     justify-content: center;
     align-items:center ;
 }
 .box{
+    /* background: linear-gradient(
+        to top, 
+        rgba(235, 13, 13, 0.5), 
+        rgba(86, 247, 17, 0.5)); */
+    background-color: white;
     height: 60%;
     width: 400px;
-    margin-left: auto ;
-    margin-right: auto;
+    margin-top: 50px;
+    /* margin-left: auto ; */
+    /* margin-right: auto; */
     padding: 30px;
     border: solid 1px black;
     border-radius: 20px;
     position: relative;
 }
+
 .styled-input{
     width: 392px;
     height: 10%;
     border-radius: 5px;
     font-size: 14px;
+}
+.rememberBox{
+    margin-top: 20px;
 }
 .loginButton{
     position: absolute;
@@ -57,6 +75,33 @@ html, body{
 }
 
 .footer{
-    background-color: brown;
-    height: 20%;
+    height:15%;
+}
+.footer a{
+    text-decoration: none;
+    padding: 5px;
+    color: black;
+}
+.footer .subfooter{
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.register{
+    height: 290px;
+}
+.register-button{
+    position: absolute;
+    background-color: rgb(29, 168, 17);
+    color: white;
+    width: 70px;
+    height: 20px;
+    padding: 4px;
+    bottom: 20px;
+    left: 40%;
+    text-align: center;
+    border-radius: 5px;
 }
