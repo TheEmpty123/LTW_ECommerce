@@ -19,6 +19,10 @@ a{
     padding: 5px;
     color: black;
 }
+.box p{
+    margin-bottom: 5px;
+    margin-top: 10px;
+}
 .green{
     color: green;
 }
@@ -50,7 +54,7 @@ a{
         rgba(235, 13, 13, 0.5), 
         rgba(86, 247, 17, 0.5)); */
     background-color: white;
-    height: 60%;
+    height: 80%;
     width: 400px;
     /* margin-top: 50px; */
     /* margin-left: auto ; */
@@ -62,20 +66,22 @@ a{
 }
 
 .styled-input{
-    width: 392px;
+    width: 100%;
     height: 10%;
     border-radius: 5px;
     font-size: 14px;
+    padding: 13px;
 }
 .rememberBox{
     margin-top: 20px;
 }
+
 .loginButton{
     position: absolute;
     background-color: rgb(29, 168, 17);
     color: white;
     width: 60px;
-    height: 20px;
+    height: 30px;
     text-align: center;
     bottom: 30px;
     right: 30px;
@@ -87,28 +93,28 @@ a{
 }
 
 .footer .subfooter{
-    width: 450px;
+    width: 400px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
     flex-direction: column;
 }
 .content-register{ 
-    margin-top: 30px;  
+    /* margin-top: 30px;   */
     height: 60%;
     display: flex;
     justify-content: center;
     align-items:center ;
 }
 .register{
-    height: 290px;
+    height: 310px;
 }
 .register-button{
     position: absolute;
     background-color: rgb(29, 168, 17);
     color: white;
     width: 70px;
-    height: 20px;
+    height: 30px;
     padding: 4px;
     bottom: 20px;
     left: 40%;
@@ -116,17 +122,17 @@ a{
     border-radius: 5px;
 }
 .footer-register{
-    width: 450px;
+    width: 430px;
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
 }
 .footer-left{
     float: left;
-    width: 40%;
+    width: 25%;
 }
 .footer-right{
     float: right;
     text-align: right;
-    width: 60%;
+    width: 75%;
 }
