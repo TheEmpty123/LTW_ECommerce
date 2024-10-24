@@ -31,11 +31,12 @@ a {
     align-items:center ;
 }
 .logobox{
-    background-color: aqua;
+    /* background-color: aqua; */
     margin-top: 40px;
-    width: 70px;
-    height: 70px;
-    background-image: url('..\..\public\images\logos\logo.png');
+    width: 200px;
+    height:100px;
+    background-image: url('https://media.discordapp.net/attachments/1284859855206744178/1298558579468668958/kanes-furniture-logo-vector.png?ex=671a006b&is=6718aeeb&hm=ae5d79d98d523d160061121ba49169b581aecc10e0ae2351886c66de9bc72960&=&format=webp&quality=lossless&width=737&height=409');
+    /* background-image: url('https://cdn-icons-png.flaticon.com/512/3515/3515175.png'); */
     background-size: cover;
     background-position: center;
 }
