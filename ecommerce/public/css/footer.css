@@ -65,6 +65,7 @@ body {
     padding: 10px 20px;
     margin-top: 20px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .footer-button:hover {
@@ -81,11 +82,13 @@ body {
 }
 
 .newsletter button {
+    margin-top: 10px;
     padding: 10px 20px;
     border: none;
     background-color: #fff;
     color: #2a2a2a;
     cursor: pointer;
+    border-radius: 5px;
 }
 
 .newsletter button:hover {
@@ -99,10 +102,6 @@ body {
     margin-top: 40px;
 }
 
-.footer-logos img {
-    width: 100px;
-    margin: 0 15px;
-}
 
 .footer-bottom p {
     font-size: 12px;
