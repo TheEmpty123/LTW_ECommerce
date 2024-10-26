@@ -130,7 +130,7 @@ header {
     width: 38px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../../../ecommerce/public/images/admin/1.jpg);
+    background-image: url(img/1.jpg);
     border-radius: 50%;
 }
 
@@ -272,15 +272,15 @@ tbody tr:nth-child(even) {
 }
 
 .img-1 {
-    background-image: url(../../../../ecommerce/public/images/admin/1.jpg);
+    background-image: url(img/1.jpg);
 }
 
 .img-2 {
-    background-image: url(../../../../ecommerce/public/images/admin/2.jpg);
+    background-image: url(img/2.jpg);
 }
 
 .img-3 {
-    background-image: url(../../../../ecommerce/public/images/admin/3.jpeg);
+    background-image: url(img/3.jpeg);
 }
 
 .summary-card {
@@ -329,7 +329,7 @@ tbody tr:nth-child(even) {
     border: 3px solid #efefef;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../../../ecommerce/public/images/admin/3.jpeg);
+    background-image: url(img/3.jpeg);
     margin-right: .7rem;
 }
 
