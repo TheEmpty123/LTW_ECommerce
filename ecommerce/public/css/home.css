@@ -1,0 +1,179 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container-header {
+    height: 160px;
+    width: auto;
+    margin: 0 100px;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    /* position: absolute;
+    left: 0;
+    top: 0; */
+}
+
+.header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #f8f8f8;
+    font-size: 14px;
+}
+
+.language-switcher,
+.contact-info,
+.header-icons {
+    display: flex;
+    align-items: center;
+}
+
+.contact-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.header-top a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 5px;
+}
+
+.phone {
+    padding: 5px;
+}
+
+.about {
+    font-weight: lighter;
+}
+
+span.login {
+    font-weight: 600;
+    margin-left: -15px;
+}
+
+.header-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px 20px;
+}
+
+.menu-icon img {
+    width: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logo img {
+    width: 70px;
+}
+
+.main-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-icons a {
+    text-decoration: none;
+    color: #000;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.search-bar input {
+    border: none;
+    outline: none;
+    width: 200px;
+    padding: 5px;
+}
+
+.search-bar button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.homepage-pic {
+    width: 100%;
+    height: auto;
+    cursor: pointer;
+}
+
+.text-home {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+}
+
+button {
+    width: 200px;
+    height: 50px;
+    background-color: #7a9c59;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.img-banner {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    padding: 20px;
+}
+
+.left-img img {
+    width: 100%;
+    height: auto;
+    padding-top: 10px;
+    text-align: center;
+}
+
+.right-img img {
+    width: 100%;
+    margin-top: 10px;
+    height: auto;
+    width: 350px;
+    height: 350px;
+}
+h3{
+    text-align: center;
+    text-justify: inter-cluster;
+    top: 50%;
+    margin: -20px;
+}
