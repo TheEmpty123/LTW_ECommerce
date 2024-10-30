@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container-hd{
+    height: 130px;
+    width: 100%;
+    display: flex;
+    z-index: 1;
+    /* align-items: center;
+    justify-content: space-between; */
+    /* margin-top: ; */
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    background-color: #f8f8f8;
+
+}
+
+.header-top-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.language-switcher-hd,
+.contact-info-hd,
+.header-icons-hd {
+    display: flex;
+    align-items: center;
+}
+.contact-info-hd{
+    /* background-color: red; */
+    display: flex;
+    margin-left: -15%;
+    width: 30%;
+}
+.header-top-hd a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 5px 0 ;
+}
+.phone-hd{
+    display: flex;
+    padding: 5px;
+}
+.about-hd{
+    display: flex;
+    font-weight: lighter;
+}
+.header-bottom-hd {
+        /* position: absolute;
+        left: 50%; */
+    /* transform: translateX(-50%); */
+    /* margin-left: 5%; */
+    /* margin-right: 5%;
+    margin-left: 5%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    background-color: #f8f8f8;
+    z-index: 1000; */
+    width: 100%;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #f8f8f8;
+    z-index: 1000;
+    box-sizing: border-box;
+}
+
+.menu-icon-hd img {
+    width: 25px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.logo-hd img {
+    width: 70px;
+}
+
+.main-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.header-icons-hd {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-icons-hd img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.search-bar-hd {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.search-bar-hd input {
+    border: none;
+    outline: none;
+    width: 200px;
+    padding: 5px;
+}
+
+.search-bar-hd button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-bar-hd img {
+    width: 16px;
+}

@@ -14,17 +14,14 @@ html, body{
     height: 100%;
 
 }
-a{
-    text-decoration: none;
-    padding: 5px;
-    color: black;
+a {
+    text-decoration: none !important;
+    padding: 5px  !important;
+    color: black  !important;
 }
 .box p{
     margin-bottom: 5px;
     margin-top: 10px;
-}
-.green{
-    color: green;
 }
 .logo{
     /* background-color: green; */
