@@ -62,6 +62,69 @@
                 </div>
             </div>
         </header>
+
+        <!-- FILTER -->
+        <div id="filter">
+            <div class="row">
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Giá</h6>
+                        <div class="dropdown-price">
+                            <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến</div>
+                            <div class="dropdown-menu-price">
+                                <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ biến</div>
+                                <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
+                                <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
+                                <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                <div class="col-md-2">
+                    <div class="row">
+                        <h6>Chât liệu</h6>
+                        <div class="dropdown-material">
+                            <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                            <div class="dropdown-menu-material">
+                                <div class="dropdown-item-material">
+                                    <input type="checkbox" id="ceramic" onchange="updateSelection()">
+                                    <label for="ceramic">Ceramic (42)</label>
+                                </div>
+                                <div class="dropdown-item-material">
+                                    <input type="checkbox" id="da2" onchange="updateSelection()">
+                                    <label for="da2">Đá (2)</label>
+                                </div>
+                                <div class="dropdown-item-material">
+                                    <input type="checkbox" id="da181" onchange="updateSelection()">
+                                    <label for="da181">Đá (181)</label>
+                                </div>
+                                <div class="dropdown-item-material">
+                                    <input type="checkbox" id="da_vai" onchange="updateSelection()">
+                                    <label for="da_vai">Da và vải (6)</label>
+                                </div>
+                                <div class="dropdown-item-material">
+                                    <input type="checkbox" id="go" onchange="updateSelection()">
+                                    <label for="go">Gỗ (383)</label>
+                                </div>
+                                <div class="dropdown-item-material hidden">
+                                    <input type="checkbox" id="gom" onchange="updateSelection()">
+                                    <label for="gom">Gốm (113)</label>
+                                </div>
+                                <div class="dropdown-item-material hidden">
+                                    <input type="checkbox" id="kimloai" onchange="updateSelection()">
+                                    <label for="kimloai">Kim loại (387)</label>
+                                </div>
+                                <div class="dropdown-footer" onclick="showMore()">Show more</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-2">
+                    <button>Áp dụng</button>
+                </div>
+            </div>
         </div>
         <!-- PRODUCTS -->
         <div id="p-product">
@@ -141,73 +204,109 @@
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/06/armchair-doulton-vintage-300x200.jpg" alt="Bàn ăn mở rộng Apian ceramic trắng P2C">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/03/ban-an-8-cho-rudo.jpg" alt="Bàn ăn 8 chỗ Moretti">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Doulton vintage</h6>
-                                <p class="product-price">28,500,000₫</p>
+                                <h6 class="product-name">Bàn ăn 8 chỗ Moretti</h6>
+                                <p class="product-price">59,000,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/03/armchair-hung-king-300x200.jpg" alt="Bàn ăn Peak hiện đại mặt Ceramic vân mây">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/08/ban-an-8-cho-orientale-walnut.jpg" alt="Bàn ăn 8 chỗ Orientale Walnut">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Hùng King + Gối VACT3231</h6>
-                                <p class="product-price">13,900,000₫</p>
+                                <h6 class="product-name">Bàn ăn 8 chỗ Orientale Walnut</h6>
+                                <p class="product-price">72,500,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/07/armchair-may-moi-mau-xanh-300x200.jpg" alt="Bàn ăn tròn Vortex 1m2 ceramic P14C">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/03/ban-an-breeze-mat-kinh-bronze-gm2-2.jpg" alt="Bàn ăn Breeze mặt kính bronze/GM2">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Mây mới</h6>
-                                <p class="product-price">13,900,000₫</p>
+                                <h6 class="product-name">Bàn ăn Breeze mặt kính bronze/GM2</h6>
+                                <p class="product-price">207,900,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/04/armchair-tet-vai-vact10499-300x200.jpg" alt="Bàn ăn tròn Vortex 1m2 ceramic P9C">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/06/Ban-an-Peak-hien-dai-mat-Ceramic-van-may.jpg" alt="Bàn ăn Peak hiện đại mặt Ceramic vân mây">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Ogami vải vact10499</h6>
-                                <p class="product-price">8,900,000₫</p>
+                                <h6 class="product-name">Bàn ăn Peak hiện đại mặt Ceramic vân mây</h6>
+                                <p class="product-price">44,970,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/04/armchair-tet-vai-vact10504-300x200.jpg" alt="Bàn ăn Valente 8 chỗ">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/06/ban-ben-bottiglia-mau-xanh-50cm.jpg" alt="Bàn bên Bottiglia màu xanh 50cm">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Ogami vải vact10504</h6>
-                                <p class="product-price">8,900,000đ</p>
+                                <h6 class="product-name">Bàn bên Bottiglia màu xanh 50cm</h6>
+                                <p class="product-price">15,400,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/05/easy-chair-oriental-vact10389-4-300x200.jpg" alt="Bàn bên 3C-02">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/06/ban-ben-3c-02.jpg" alt="Bàn bên 3C-02">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Oriental vact10389</h6>
-                                <p class="product-price">15,900,000đ</p>
+                                <h6 class="product-name">Bàn bên 3C-02</h6>
+                                <p class="product-price">7,990,000đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/08/armchair-saka-p100-vai-vact10498-300x200.jpg" alt="Bàn bên Bottiglia màu xanh 50cm">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2024/04/ban-ben-butterfly-ginkgo-411510-mca.jpg" alt="Bàn bên butterfly ginkgo 411510 MCA">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair Saka P100 vải vact10498</h6>
-                                <p class="product-price">14,630,000đ</p>
+                                <h6 class="product-name">Bàn bên butterfly ginkgo 411510 MCA</h6>
+                                <p class="product-price">95,600,185đ</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <img src="https://nhaxinh.com/wp-content/uploads/2024/03/armchair-vai-dark-sf044vf.i-300x200.jpg" alt="Bàn bên butterfly ginkgo 411510 MCA">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2023/11/ban-ben-endless-vegas-mau-cam.jpg" alt="Bàn bên Endless Vegas màu cam">
                             <div class="card-body">
-                                <h6 class="product-name">Armchair vải Dark SF044VF.I</h6>
-                                <p class="product-price">32,900,000đ</p>
+                                <h6 class="product-name">Bàn bên Endless Vegas màu cam</h6>
+                                <p class="product-price">14,900,000đ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2023/04/BINH-AILA-TURQUOISE-116170E.jpg" alt="Bình Aila Turquoise">
+                            <div class="card-body">
+                                <h6 class="product-name">Bình Aila Turquoise</h6>
+                                <p class="product-price">12,420,000đ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2022/10/BINH-ALINE-CERAMIC-RED-XS16X16X16-23102J.jpg" alt="Bình Aline đỏ XS 16x16x16 23102J">
+                            <div class="card-body">
+                                <h6 class="product-name">Bình Aline đỏ XS 16x16x16 23102J</h6>
+                                <p class="product-price">660,000đ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2023/01/BINH-ANEMONE-MEDIUM-175082-MCA.jpg" alt="Bình Anemone cỡ trung 175082MCA">
+                            <div class="card-body">
+                                <h6 class="product-name">Bình Anemone cỡ trung 175082MCA</h6>
+                                <p class="product-price">5,190,000đ</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <img src="https://nhaxinh.com/wp-content/uploads/2022/06/Binh-Bloom-Green-820053Z.jpg" alt="Bình Bloom Green 820053Z">
+                            <div class="card-body">
+                                <h6 class="product-name">Bình Bloom Green 820053Z</h6>
+                                <p class="product-price">1,750,000đ</p>
                             </div>
                         </div>
                     </div>
@@ -304,6 +403,78 @@
             </div>
         </footer>
     </div>
+    
+    <script>
+        function toggleDropdownPrice() {
+            document.querySelector('.dropdown-menu-price').classList.toggle('active');
+        }
+    
+        function selectItem(item) {
+            // Cập nhật tiêu đề
+            document.querySelector('.dropdown-toggle-price').textContent = item.textContent;
+            
+            // Đánh dấu mục được chọn và bỏ đánh dấu mục cũ
+            document.querySelectorAll('.dropdown-item-price').forEach(el => el.classList.remove('selected'));
+            item.classList.add('selected');
+            
+            // Ẩn menu
+            document.querySelector('.dropdown-menu-price').classList.remove('active');
+        }
+    
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown-price');
+            if (!dropdown.contains(event.target)) {
+                document.querySelector('.dropdown-menu-price').classList.remove('active');
+            }
+        });
+
+        function toggleDropdownmaterial() {
+            document.querySelector('.dropdown-menu-material').classList.toggle('active');
+        }
+    
+        function updateSelection() {
+            const selectedItems = [];
+            document.querySelectorAll('.dropdown-item-material input[type="checkbox"]:checked').forEach((checkbox) => {
+                const label = checkbox.nextElementSibling;
+                selectedItems.push(label.textContent.trim());
+            });
+            
+            
+            document.querySelector('.dropdown-toggle-material').textContent = selectedItems.join(', ') || "Tất cả";
+
+        }
+    
+        function showMore() {
+            const textFooter = document.querySelector('.dropdown-footer').textContent
+            if (textFooter === "Show more"){
+                document.querySelectorAll('.dropdown-item-material').forEach(e =>{
+                if (e.classList.contains('hidden')){
+                    e.classList.remove('hidden')
+                    e.classList.add('show')
+                }
+                 })
+                document.querySelector('.dropdown-footer').textContent = "Hide less"
+            }else if (textFooter === "Hide less"){
+                document.querySelectorAll('.dropdown-item-material').forEach(e =>{
+                if (e.classList.contains('show')){
+                    e.classList.remove('show')
+                    e.classList.add('hidden')
+                }
+                 })
+                document.querySelector('.dropdown-footer').textContent = "Show more"
+            }
+            
+        }
+    
+        document.addEventListener('click', function(event) {
+            const dropdown = document.querySelector('.dropdown-material');
+            if (!dropdown.contains(event.target)) {
+                document.querySelector('.dropdown-menu-material').classList.remove('active');
+            }
+        });
+
+       
+    </script>
 </body>
 </html>
 <!-- 
