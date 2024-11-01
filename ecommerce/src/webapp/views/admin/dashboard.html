@@ -1,12 +1,355 @@
-
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/style.css">
 </head>
+
 <body>
-    
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-panel"></span>
+                <span>Dashboard</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <!-- For management -->
+                 <li>
+                    <a class="separator">
+                        General
+                    </a>
+                 </li>
+                <li>
+                    <a href="#">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-management.html">
+                        <span class="ti-wheelchair"></span>
+                        <span>Admins (admin only)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <span class="ti-user"></span>
+                        <span>User (admin only)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="role-permissions-management.html">
+                        <span class="ti-agenda"></span>
+                        <span>Role & Permissions (admin only)</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="applications.html">
+                        <span class="ti-package"></span>
+                        <span>Applications</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <span class="ti-truck"></span>
+                        <span>Product Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="category-management.html">
+                        <span class="ti-menu"></span>
+                        <span>Category Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html">
+                        <span class="ti-server"></span>
+                        <span>Inventory Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <span class="ti-receipt"></span>
+                        <span>Order Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="promotions-discounts.html">
+                        <span class="ti-ticket"></span>
+                        <span>Promotions & Discounts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchases-management.html">
+                        <span class="ti-money"></span>
+                        <span>Purchases</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sales-reports.html">
+                        <span class="ti-bar-chart"></span>
+                        <span>Sales Report</span>
+                    </a>
+                </li>
+                
+                <!-- For user self -->
+
+                <li>
+                    <a class="separator">Users</a>
+                </li>
+                
+                <li>
+                    <a href="profile-management/html">
+                        <span class="ti-user"></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                
+                <!-- For support -->
+
+                <li>
+                    <a class="separator">
+                        Support
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        <span class="ti-settings"></span>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="privacy-policy.html">
+                        <span class="ti-info-alt"></span>
+                        <span>Privacy policy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="FAQs.html">
+                        <span class="ti-help-alt"></span>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help-center.html">
+                        <span class="ti-headphone-alt"></span>
+                        <span>Help center</span>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                <div></div>
+            </div>
+        </header>
+
+        <main>
+
+            <h2 class="dash-title">Overview</h2>
+
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-briefcase"></span>
+                        <div>
+                            <h5>Account Balance</h5>
+                            <h4>лв 30,659.45</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-reload"></span>
+                        <div>
+                            <h5>Pending</h5>
+                            <h4>лв 19,500.45</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-check-box"></span>
+                        <div>
+                            <h5>Processed</h5>
+                            <h4>лв 20,659</h4>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a href="">View all</a>
+                    </div>
+                </div>
+            </div>
+
+
+            <section class="recent">
+                <div class="activity-grid">
+                    <div class="activity-card">
+                        <h3>Recent Orders</h3>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>Order Date</th>
+                                        <th>Delivery Date</th>
+                                        <th>Staff In Charge</th>
+                                        <th>Total</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>FUR-5491-LMN7</td>
+                                        <td>15 Aug, 2020</td>
+                                        <td>22 Aug, 2020</td>
+                                        <td class="td-staff">
+                                            <div class="img-1"></div>
+
+                                        </td>
+                                        <td>15.30 лв</td>
+                                        <td>
+                                            <span class="badge success">Success</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FUR-8734-AXQ2</td>
+                                        <td>15 Aug, 2020</td>
+                                        <td>Delivering...</td>
+                                        <td class="td-staff">
+                                            <div class="img-3"></div>
+                                        </td>
+                                        <td>13.52 лв</td>
+                                        <td>
+                                            <span class="badge warning">Delivering</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FUR-3287-QZX4</td>
+                                        <td>15 Aug, 2020</td>
+                                        <td>22 Aug, 2020</td>
+                                        <td class="td-staff">
+                                            <div class="img-1"></div>
+                                            <div class="img-2"></div>
+                                        </td>
+                                        <td>150.00 лв</td>
+                                        <td>
+                                            <span class="badge success">Success</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FUR-7625-BTY9</td>
+                                        <td>15 Aug, 2020</td>
+                                        <td>Delivering...</td>
+                                        <td class="td-staff">
+                                            <div class="img-2"></div>
+                                            <div class="img-3"></div>
+                                        </td>
+                                        <td>99.90 лв</td>
+                                        <td>
+                                            <span class="badge warning">Delivering</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>FUR-4159-PKD3</td>
+                                        <td>15 Aug, 2020</td>
+                                        <td>22 Aug, 2020</td>
+                                        <td class="td-staff">
+                                            <div class="img-2"></div>
+                                        </td>
+                                        <td>72.21 лв</td>
+                                        <td>
+                                            <span class="badge success">Success</span>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="summary">
+                        <div class="summary-card">
+                            <div class="summary-single">
+                                <span class="ti-id-badge"></span>
+                                <div>
+                                    <h5>196</h5>
+                                    <small>Number of staff</small>
+                                </div>
+                            </div>
+                            <div class="summary-single">
+                                <span class="ti-calendar"></span>
+                                <div>
+                                    <h5>16</h5>
+                                    <small>Number of leave</small>
+                                </div>
+                            </div>
+                            <div class="summary-single">
+                                <span class="ti-face-smile"></span>
+                                <div>
+                                    <h5>12</h5>
+                                    <small>Profile update request</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bday-card">
+                            <div class="bday-flex">
+                                <div class="bday-img"></div>
+                                <div class="bday-info">
+                                    <h5>The Empty</h5>
+                                    <small>Birthday Today</small>
+                                </div>
+                            </div>
+
+                            <div class="text-center">
+                                <button>
+                                    <span class="ti-gift"></span>
+                                    Wish meh!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
 </body>
+
 </html>
