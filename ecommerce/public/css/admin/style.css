@@ -233,6 +233,12 @@ main {
     grid-column-gap: 1.5rem;
 }
 
+.activity-grid-alt2 {
+    display: grid;
+    grid-template-columns: 100% 10%;
+    grid-column-gap: 1.5rem;
+}
+
 .activity-card,
 .summary-card,
 .bday-card {
@@ -292,9 +298,35 @@ tbody tr:nth-child(even) {
     color: rgb(95, 51, 0);
 }
 
+.badge.dev {
+    background: rgb(194, 194, 194);
+    color: rgb(0, 0, 0);
+}
+
+.badge.rating {
+    background: rgb(216, 216, 216);
+    color: rgb(0, 0, 0);
+}
+
 .td-staff {
     display: flex;
     align-items: center;
+}
+
+.td-product {
+    display: flex;
+    align-items: center;
+    align-items: center;
+}
+
+.td-product img{
+    display: block;
+    width: 100px;  /* Set container dimensions */
+    height: 100px; /* Adjust as needed */
+    object-fit: cover;
+    object-position: center;    
+    border: 3px solid #efefef;    
+    border-radius: 50%;
 }
 
 .img-1,
@@ -422,6 +454,12 @@ h6.show-entries{
     background-color: #0073e6;
     color: white;
     border: 1px solid #0073e6;
+}
+
+.pagination a.add-product-btn {
+    background-color: #ff6c2f;
+    color: white;
+    border: 1px solid #ff6c2f;
 }
 
 .pagination a:first-child,
