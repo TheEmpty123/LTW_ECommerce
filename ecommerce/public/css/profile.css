@@ -3,25 +3,28 @@ html, body{
     padding: 0;
     font-size: 16px;
     font-family: sans-serif, Tahoma;
-    min-height: 700px;
-    height: auto;
+    /* min-height: 700px;
+    height: auto; */
+    height: 100%;
 }
 #container{
     width: 1262px;
     margin-left: auto;
     margin-right: auto;
-    /* min-height: 700px;
-    height: auto; */
-    height: 700px;
+    min-height: 1000px;
+    height: auto;
+    /* height: 1000px; */
 }
 #content{
     height: 100%;
     display: flex;
     margin-top: 20px;
+    padding-bottom: 20px;
 }
 #menu{
     background-color: #f6f7f8;
     width: 15%;
+    /* height: 100%; */
 }
 #menu .title{
     padding: 5px;
@@ -31,11 +34,43 @@ html, body{
     padding: 10px;
     color: #4B4E51;
 }
+h6{
+    margin: 20px 0 !important;
+}
 
 
 #information{
     background-color: white;
+    margin: 0 20px;
     width: 60%;
+    font-size: 16px;
+}
+.row{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.border-1-black{
+    border: solid 1px black;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.pb-10{
+    padding-bottom: 10px;
+}
+.p-2-1{
+    padding: 10px 5px;
+}
+.input-text{
+    padding: 7px 2px;
+}
+.b-w-b{
+    background-color: black;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
 }
 #reminds-products{
     width: 25%;
@@ -50,6 +85,9 @@ html, body{
     height: auto;
     border: solid 1px #dddddd;
     margin-top: 50px;
+}
+#reminds-products h5{
+    margin-top: 15px !important;
 }
 .margin-lr-20{
     margin: 0 20px;
