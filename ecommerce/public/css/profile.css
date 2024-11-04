@@ -66,11 +66,17 @@ h6{
 .input-text{
     padding: 7px 2px;
 }
+.sub-menu .black{
+    color: black !important;
+}
 .b-w-b{
     background-color: black;
     color: white;
     font-weight: bold;
     border-radius: 5px;
+}
+.p-red{
+    color: red;
 }
 #reminds-products{
     width: 25%;
