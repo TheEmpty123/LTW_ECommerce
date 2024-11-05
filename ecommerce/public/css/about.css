@@ -177,6 +177,8 @@ header {
 }
 .part1 {
     flex: 1;
+    display: flex;
+    flex-wrap: wrap;
     overflow: hidden; 
 }
 .des{
@@ -187,21 +189,25 @@ header {
 
 .img-p1{
     width: 45%;
-    float: left;
+    /* float: left; */
 }
 
 .des-p1, .des-p2, .des-p3, .des-p4, h2 {
     flex: 1;
-    width: 45%;
-    float: right;
+    /* width: 45%; */
+    /* float: right; */
     padding: 10px;
-    margin-left: 30px;
+    margin-left: 15%;
 }
 .img-p2, .img-p3, .img-p4{
-    /* display: flex; */
+    display: flex;
     float: left;
-    width: 45%;
+    /* width: 45%; */
     clear: both;
+}
+.part2{
+    /* display: flex;
+    flex-wrap: wrap; */
 }
 .part3{
     float: left;
