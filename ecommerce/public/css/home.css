@@ -19,13 +19,9 @@
     position: absolute;
     display: block;
     max-height: 100%;
-    width: 792px;
-    left: 30%;
+    /* width: 792px; */
+    left: 33%;
     top: 35%;
-    /* top: 50%;
-    
-    left: 50%;
-    transform: translate(-50%, -50%); */
     text-align: center;
     color: #7a9c59;
     z-index: 10;
@@ -92,9 +88,7 @@
 }
 .part1 {
     display: flex;
-    /* width: auto; */
     padding: 50px 0;
-    /* margin-right: auto; */
     background-color: #ebebeb;
 }
 
@@ -117,7 +111,6 @@
 .left-text {
     text-align: left;
     padding: 10px;
-    /* Các kiểu tùy chỉnh cho phần text ở giữa nếu cần */
 }
 .top-text{
     margin-left: auto;
@@ -182,8 +175,9 @@ color: white;
 }
 .new-product-header {
     display: flex;
-    padding: 20px;
+    /* padding: 2px; */
     margin-left: 5%;
+    margin-right: 5%;
     justify-content: space-between;
     box-sizing: border-box;
     border: none;
@@ -204,7 +198,6 @@ color: white;
 .text-muted button{
     width: 100px;
     height: 30px;
-    /* background-color: red; */
 }
 .text-muted .add-to-cart{
     float: left;
@@ -225,17 +218,15 @@ color: white;
     background-color: white;
 }
 
-/* General container */
 .content-wrapper {
     display: flex;
     align-items: flex-start;
-    gap: 20px; /* khoảng cách giữa form và hình ảnh */
+    gap: 20px;
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
 }
 
-/* Support Form */
 .support-form {
     width: 50%;
     padding: 20px;
@@ -341,14 +332,49 @@ textarea {
     text-align: center;
     justify-content: center;
     margin-left: 45%;
-    /* margin-right: auto; */
     width: 150px;
     height: 40px;
-    /* border-color: white; */
-    /* color: white; */
-    
 }
 .part4 button:hover{
     background-color: white;
     color: #555;
 }
+
+.card-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.card {
+    position: relative;
+    box-shadow: 22px 19px 10px rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+}
+
+.card img {
+    position: absolute;
+    width: 100%;
+    height: auto;
+    transition: opacity 1s ease-in-out;
+}
+
+.card img.card-img-top {
+    opacity: 1;
+    z-index: 1;
+}
+
+.card img.back {
+    opacity: 0;
+    z-index: 0;
+}
+
+.card:hover .card-img-top {
+    opacity: 0;
+}
+
+.card:hover .back {
+    opacity: 1;
+    cursor: pointer;
+}
+
