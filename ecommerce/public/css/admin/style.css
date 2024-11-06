@@ -178,6 +178,12 @@ main {
     grid-column-gap: 3rem;
 }
 
+.dash-cards-alt {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 3rem;
+}
+
 .card-single {
     background: #fff;
     border-radius: 7px;
