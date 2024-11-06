@@ -190,6 +190,13 @@ main {
     align-items: center;
 }
 
+.card-body img{
+    width: 10rem;
+    height: 5rem;
+    border-radius: 5%;
+    padding-right: 1rem;
+}
+
 .card-body span {
     font-size: 1.5rem;
     color: #777;
