@@ -270,13 +270,13 @@ main {
 
 th,
 td {
-    font-size: 1.3rem;
+    font-size: 1.1rem;
     padding: 1rem 1rem;
     color: var(--color-dark);
 }
 
 td {
-    font-size: 1.2rem;
+    font-size: 1rem;
 }
 
 tbody tr:nth-child(even) {
