@@ -344,19 +344,28 @@ textarea {
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-}
 
+}
+.card-body{
+    margin-top: 65%;
+}
 .card {
     position: relative;
     box-shadow: 22px 19px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;
+    overflow: hidden;  
+    height: 250px;
+
+}
+.card-d{
+    background-color: red;
 }
 
 .card img {
     position: absolute;
+    padding:10px;
+    border-radius: 5px;
     width: 100%;
-    height: auto;
-    transition: opacity 1s ease-in-out;
+    transition: opacity 0.5s ease-in-out;
 }
 
 .card img.card-img-top {
@@ -378,3 +387,7 @@ textarea {
     cursor: pointer;
 }
 
+.card-body, .card-footer {
+    position: relative;
+    z-index: 2; 
+}
