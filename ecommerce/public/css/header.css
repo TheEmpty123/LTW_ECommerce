@@ -80,6 +80,7 @@ header {
 }
 .logo-hd img {
     width: 70px;
+    margin-top: 5px;
 }
 
 .main-nav {
