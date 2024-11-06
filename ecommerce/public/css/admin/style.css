@@ -263,13 +263,13 @@ main {
 
 th,
 td {
-    font-size: .9rem;
+    font-size: 1.3rem;
     padding: 1rem 1rem;
     color: var(--color-dark);
 }
 
 td {
-    font-size: .8rem;
+    font-size: 1.2rem;
 }
 
 tbody tr:nth-child(even) {
