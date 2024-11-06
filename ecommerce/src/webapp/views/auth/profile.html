@@ -1,1 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../../../public/css/profile.css">
+    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <title>Tài khoản của tôi</title>
+</head>
+<body>
+    <div id="container">
+        <div id="content">
+            <!-- Thanh menu -->
+            <div id="menu">
+                <div class="title">
+                    <h5 style="margin: 5px 0;">Tài khoản cá nhân</h5>
+                </div>
+                <div class="sub-menu">
+        
+                    <h6 id="sub-menu-info" class="text-menu black">Thông tin của tôi</h6>
+                    <h6 id="sub-menu-order" class="text-menu">Đơn hàng</h6>
+                    <h6 id="sub-menu-product-viewed" class="text-menu">Sản phẩm vừa xem</h6>
+                    <h6 id="sub-menu-wish-list" class="text-menu">Danh sách ưa thích</h6>
+                    <h6 id="sub-menu-logout" class="text-menu">Đăng xuất</h6>
+                    
+                </div>
+            </div>
+            <!-- Chứa các thông tin của người dùng -->
+            <div id="information">
+                <div class="row" style="height: 170px;">
+                    <div class="col-md-6 flex-column">
+                        <label for="" class="pb-10">Họ:  <abbr class="p-red">*</abbr></label>
+                        <input type="text" class="input-text">
+                    </div>
+                    <div class="col-md-6 flex-column">
+                        <label for="" class="pb-10">Tên:  <abbr class="p-red">*</abbr></label>
+                        <input type="text" class="input-text">
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Tên hiển thị: </label>
+                        <input type="text" class="input-text" value="Khanhduy270704">
+                    </div>
+                </div>
+                <div class="row" style="height: 140px;">
+                    <div class="col-md-12 flex-column">
+                        <label class="pt-10">Tên này sẽ được hiển thị ở phần tài khoản và bình luận</label>
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Địa chỉ email:  <abbr class="p-red">*</abbr> </label>
+                        <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
+                    </div>
+                </div>
+                <div class="row" style="height: 360px;">
+                    <div class="col-md-12">
+                        <h5>Thay đổi mật khẩu</h5>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
+                            <input type="text" class="input-text">
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Mật khẩu mới (để trống nếu không có thay đổi) </label>
+                            <input type="text" class="input-text">
+                        </div>
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Xác nhận mật khẩu mới </label>
+                        <input type="text" class="input-text">
+                    </div>
+                    <div class="col-sm-3 col-md-3 flex-column">
+                        <button class="b-w-b p-2-1">Lưu thay đổi</button>
+                    </div>
+                </div>
 
+                <div class="row" style="height: 600px;">
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Địa chỉ:  <abbr class="p-red">*</abbr></label>
+                        <input type="text" class="input-text" placeholder="Nhập địa chỉ">
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Quận / Huyện:  <abbr class="p-red">*</abbr> </label>
+                        <input type="text" class="input-text" placeholder="Chọn quận / huyện">
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Tỉnh / Thành phố: <abbr class="p-red">*</abbr></label>
+                        <input type="text" class="input-text" placeholder="Chọn thành phố">
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Số điện thoại  <abbr class="p-red">*</abbr></label>
+                        <input type="text" class="input-text">
+                    </div>
+                    <div class="col-md-12 flex-column">
+                        <label for="" class="pb-10">Địa chỉ email: <abbr class="p-red">*</abbr> </label>
+                        <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
+                    </div>
+                    <div class="col-sm-3 col-md-3 flex-column">
+                        <button class="b-w-b p-2-1">Cập nhật</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->
+            <div id="reminds-products">
+                <div class="wish-list">
+                    <div class="wish-list-title margin-lr-20">
+                        <h5>Danh sách yêu thích</h5>
+                    </div>
+                </div>
+                <div class="product-viewed">
+                    <div class="wish-list-viewed margin-lr-20">
+                        <h5>Sản phẩm vừa xem</h5>
+                    </div>
+                    <div class="list-products">
+                        <div class="row">
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/1.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/77.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/44.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/33.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/55.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/134.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/100.jpg" alt="">
+                                </a>
+                            </div>
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="">
+                                    <img src="../../../../public/images/all-products/13.jpg" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
