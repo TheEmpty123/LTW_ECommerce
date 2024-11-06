@@ -31,21 +31,107 @@
                         </div>
                         <div class="item-actions">
                             <button class="remove-btn">✕</button>
-                            <div class="quantity">
+                            <!-- <div class="quantity">
                                 <button class="decrease">-</button>
                                 <span class="quantity-number">1</span>
                                 <button class="increase">+</button>
+                            </div> -->
+                            <div class="quantity buttons-added left-btn">
+                                <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
+                                <input type="number" name="quatity" id="input-quantity" value="1" min="1"inputmode="numeric" autocomplete="off">
+                                <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-5 col-md-5 order-detail">
-
+                    <div class="cart-total">
+                        <h2>Tổng đơn hàng</h2>
+                        <table class="shop-total">
+                            <tbody>
+                                <tr class="cart-subtotal">
+                                    <th>Thành tiền</th>
+                                    <td data-title="Thành tiền" class="t-bold">13,900,000 <span>đ</span></td>
+                                </tr>
+                                <tr class="shipping">
+                                    <th>Vận chuyển</th>
+                                    <td data-title="Vận chuyển">
+                                        <ul>
+                                            <li>
+                                                <input type="radio" id="shipping-method-0" name="group" checked>
+                                                <label for="shipping-method-0">Liên hệ phí vận chuyển sau</label>
+                                            </li>
+                                            <li>
+                                                <input type="radio" id="shipping-method-1" name="group">
+                                                <label for="shipping-method-1">Phí vận chuyển</label>
+                                            </li>
+                                        </ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="row sale-buy">
+                            <this class="col-sm-8 col-md-8 sale-input">
+                                <input type="text" placeholder="Mã giảm giá">
+                            </this>
+                            <this class="col-sm-4 col-md-4">
+                                <div class="use-button fake-btn">
+                                    <p>SỬ DỤNG</p>
+                                </div>
+                            </this>
+                            <this class="col-sm-8 col-md-8 text-total">
+                                <p>Tổng cộng</p>
+                            </this>
+                            <this class="col-sm-4 col-md-4 t-bold total-price">
+                                <p>13,900,000 <span>đ</span></p>
+                            </this>
+                        </div>
+                        <div class="shipping-infor">
+                            <h5>Thông tin giao hàng</h5>
+                            <p>Đối với những sản phẩm có sẵn tại khu vực, chúng tôi sẽ giao hàng
+                                trong vòng 2-7 ngày tới. Đối với những sản phẩm không có sẵn, thời gian 
+                                giao hàng sẽ được nhân viên thông báo đến quý khách. 
+                            </p>
+                            <p>Từ 2-6: 8:80 - 17:30</p>
+                            <p>Thứ 7, CN: 9:30 - 16:30</p>
+                            <a href="#" style="text-decoration: none; color: #fbaf1a;" >Của hàng gần bạn</a>
+                        </div>
+                        <div class="btn-group">
+                            <div class="row">
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="buy-button use-button fake-btn">
+                                        <p>Tiếp tục mua hàng</p>
+                                    </div> 
+                                </div>
+                                <div class="col-sm-6 col-md-6">
+                                    <div class="use-button fake-btn">
+                                        <p>Đặt hàng</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function plusQuantity(){
+            const currQuan = document.getElementById("input-quantity")
+            const newQuan = parseInt(currQuan.getAttribute("value"))+1
+            // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
+            currQuan.setAttribute("value",newQuan)
+        }
+        function minusQuantity(){
+            const currQuan = document.getElementById("input-quantity")
+            const newQuan = parseInt(currQuan.getAttribute("value"))-1
+            // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
+            if(newQuan > 0){
+                currQuan.setAttribute("value",newQuan)
+            }
 
+        }
+    </script>
 
 </body>
 </html>
