@@ -16,6 +16,7 @@ html, body{
     width: 100%;
     height: 534px;
 }
+
 #product-details h1{
     font-size: 30px;
 }
@@ -105,9 +106,11 @@ html, body{
     font-size: 38px;
     letter-spacing: 2px;
 }
-.wishlist-icon .wishlist-button{
+.wishlist-button{
     width: 30px;
     height: 30px;
+    border: none;
+    background-color: white;
 }
 .price-wrapper .product-page-price{
     font-size: 18px;
@@ -284,6 +287,16 @@ input[type="number"]::-webkit-outer-spin-button,
 .image-top{
     opacity: 1;
 }
+.like-price-product{
+    position: relative;
+}
+.like-price-product .wishlist-button{
+    position: absolute;
+    right: 0;
+}
+.wishlist-button.clicked .bi-heart{
+    color: red;
+}
 .fake-btn{
     background-color: black;
     color: white;
@@ -310,7 +323,7 @@ input[type="number"]::-webkit-outer-spin-button,
     font-weight: bold;
 }
 .card.product-card:hover{
-    border: solid 1px black;
+    border: solid 1px #dddddd;
     cursor: pointer;
 }
 .card.product-card:hover .cart-see-more-btns{
@@ -531,3 +544,71 @@ input:checked + label {
 }
 
 /* END FILTER */
+/* START Watched -prodcut */
+#watched-product{
+    height: 840px;
+    border-top: solid 1px #dddddd;
+}
+#watched-product .title-watched{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.center-box{
+    width: 1264px;
+    height: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+/* .blr-1{
+    border-left: solid 1px #dddddd;
+    border-right: solid 1px #dddddd;
+} */
+.carousel-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+.carousel-next,
+.carousel-prev{
+    border: none;
+    background-color: white;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 24px;
+}
+.carousel-next-box,
+.carousel-prev-box{
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background-color: white;
+    /* transform: translateY(-50%); */
+    /* border-right: none;
+    border-top: none;
+    border-bottom: none; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+}
+.carousel-next-box{
+    right: 0;
+    box-shadow: -10px 0 10px #6666666c;
+}
+.carousel-prev-box{
+    left: 0;
+    box-shadow: 10px 0 10px #6666666c;
+}
+.carousel-next{
+    right: 10px;
+}
+.carousel-prev{
+    left: 10px;
+}

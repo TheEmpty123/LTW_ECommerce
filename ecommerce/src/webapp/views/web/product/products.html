@@ -404,7 +404,12 @@
                             <img src="" alt="">
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Alum/Granite</h6>
-                                <p class="product-price">670,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">670,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -429,7 +434,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Nickel</h6>
-                                <p class="product-price">1,390,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">1,390,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -454,7 +464,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Steel/Alum</h6>
-                                <p class="product-price">880,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">880,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -480,7 +495,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn trang trí 17cm</h6>
-                                <p class="product-price">2,580,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">2,580,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -506,7 +526,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn trang trí 21cm</h6>
-                                <p class="product-price">3,900,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">3,900,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -531,7 +556,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ Baxter S</h6>
-                                <p class="product-price">3,900,001₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">3,900,001₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -557,7 +587,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ cát 10 phút cam</h6>
-                                <p class="product-price">750,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">750,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -582,7 +617,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ cát 10 phút hồng</h6>
-                                <p class="product-price">750,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">750,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -607,7 +647,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name"> Đồng hồ treo tường 58cm</h6>
-                                <p class="product-price">1,400,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">1,400,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -632,7 +677,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ treo tường Belt</h6>
-                                <p class="product-price">5,360,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">5,360,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -726,6 +776,11 @@
             }
         });
 
+        document.querySelectorAll('.wishlist-button').forEach(function(heart){
+            heart.addEventListener('click', function(){
+                heart.classList.toggle('clicked')
+            })
+        })
        
     </script>
 </body>

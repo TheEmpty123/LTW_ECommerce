@@ -617,6 +617,11 @@
             
 
         }
+        document.querySelectorAll('.wishlist-button').forEach(function(heart){
+            heart.addEventListener('click', function(){
+                heart.classList.toggle('clicked')
+            })
+        })
     </script>
 </body>
 </html>
