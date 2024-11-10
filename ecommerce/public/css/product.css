@@ -544,9 +544,10 @@ input:checked + label {
 }
 
 /* END FILTER */
+
 /* START Watched -prodcut */
 #watched-product{
-    height: 840px;
+    height: 890px;
     border-top: solid 1px #dddddd;
 }
 #watched-product .title-watched{
@@ -558,14 +559,10 @@ input:checked + label {
 }
 .center-box{
     width: 1264px;
-    height: 90%;
+    height: 85%;
     margin-left: auto;
     margin-right: auto;
 }
-/* .blr-1{
-    border-left: solid 1px #dddddd;
-    border-right: solid 1px #dddddd;
-} */
 .carousel-container{
     position: relative;
     display: flex;
@@ -574,6 +571,9 @@ input:checked + label {
     height: 100%;
     max-width: 1250px;
     margin: 0 auto;
+}
+.carousel-items{
+    margin: 0 20px;
 }
 .carousel-next,
 .carousel-prev{
@@ -589,26 +589,53 @@ input:checked + label {
     width: 30px;
     height: 100%;
     background-color: white;
-    /* transform: translateY(-50%); */
-    /* border-right: none;
-    border-top: none;
-    border-bottom: none; */
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 1;
+    opacity: 0;
+}
+#watched-product .center-box:hover .carousel-next-box,
+#watched-product .center-box:hover .carousel-prev-box{
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s ease;
 }
 .carousel-next-box{
     right: 0;
-    box-shadow: -10px 0 10px #6666666c;
+    box-shadow: -10px 0 10px #bbb9b96c;
+    transform: translateX(100%);
 }
 .carousel-prev-box{
     left: 0;
-    box-shadow: 10px 0 10px #6666666c;
+    box-shadow: 10px 0 10px #bbb9b96c;
+    transform: translateX(-100%);
 }
 .carousel-next{
     right: 10px;
 }
 .carousel-prev{
     left: 10px;
+}
+.nav-watched{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 20px;
+}
+.nav-watched .nav-box{
+    border: solid 1px #ddd;
+    background-color: #ddd;
+    border-radius: 5px;
+    margin: 0 10px;
+    width: 25px;
+    height: 8px;
+}
+.nav-watched .nav-box:hover{
+    background-color: gray;
+    cursor: pointer;
+}
+.nav-box.clicked{
+    background-color: #e5a321;
 }

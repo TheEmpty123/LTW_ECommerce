@@ -1335,6 +1335,13 @@
                 </div>
             </div>
         </div>
+        <div class="nav-watched">
+            <div class="nav-box"></div>
+            <div class="nav-box"></div>
+            <div class="nav-box"></div>
+            <div class="nav-box"></div>
+            <div class="nav-box"></div>
+        </div>
     </div>
     <!-- FOOTER -->
      <iframe src="../../common/footer.html" frameborder="0" class="footer"></iframe>
@@ -1408,17 +1415,19 @@
             }
         });
 
-        // document.querySelectorAll('.wishlist-button').forEach(function(heart){
-        //     heart.addEventListener("click", function(){
-        //         heart.classList.toggle("clicked")
-        //     })
-        // })
-        document.querySelectorAll(".wishlist-button").forEach(function(heart) {
-            heart.addEventListener("click", function() {
-                heart.classList.toggle("clicked");
+        document.querySelectorAll('.wishlist-button').forEach(function(heart) {
+            heart.addEventListener('click', function() {
+                heart.classList.toggle('clicked');
             });
         });
+        const dots = document.querySelectorAll('.nav-box');
 
+        dots.forEach(dot =>{
+            dot.addEventListener('click', ()=>{
+                dots.forEach(e =>e.classList.remove('clicked'));
+                dot.classList.add('clicked');
+            });
+        });
        
     </script>
 </body>
