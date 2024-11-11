@@ -12,18 +12,18 @@
             padding: 0;
             font-size: 16px;
         }
-        #container{
+        #mask-container{
             display:flex;
             width: 100vw;
             height: 100vh;
         }
-        #mask{
+        #mask-cart{
             float: left;
             width: 70%;
             height: 100%;
             background-color: rgba(0, 0, 0, 0.5);
         }
-        #content{
+        #content-cart{
             position: relative;
             float: right;
             width: 29%;
@@ -37,7 +37,7 @@
             display: flex;
             flex-direction: column;
         }
-        .list-product{
+        .list-product-cart{
             width: 100%;
             height: auto;
         }
@@ -108,16 +108,14 @@
         .total-price .money-text{
             float: left;
             width: 50%;
-
         }
         .total-price .money-number{
             float: right;
             width: 50%;
             display: flex;
             justify-content: right;
-            
         }
-        a{
+        #pay-pal a{
             text-decoration: none;
             font-weight: bold;
             font-size: 16px;
@@ -129,26 +127,27 @@
             padding: 10px 20px;
             border: solid 1px black;
             margin-bottom: 20px;
+            cursor: pointer;
         }
         .watch-cart{
             background-color: black;
         }
-        .watch-cart a{
+        #pay-pal .watch-cart a{
             color: white;
         }
     </style>
 </head>
 <body>  
-    <div id="container">
-        <div id="mask">
+    <div id="mask-container">
+        <div id="mask-cart">
         </div>
-        <div id="content">
+        <div id="content-cart">
             <div class="exit-box center-items">
                 <h5>Giỏ hàng</h5>
-                <i class="bi bi-x-square"></i>
+                <i class="bi bi-x-square" id="close-pop-up"></i>
                 <div class="block"></div>
             </div>
-            <div class="list-product">
+            <div class="list-product-cart">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -187,5 +186,20 @@
             </div>
         </div>
     </div>
+
+<script>
+    const pop_up_cart = document.body;
+    function hiddenCart(){
+        document.body.style.overflow = 'auto'
+        pop_up_cart.style.opacity = 0;
+        pop_up_cart.style.zIndex = -2000;
+    }
+    document.getElementById('mask').addEventListener('click',hiddenCart)
+    document.getElementById('close-pop-up').addEventListener('click', hiddenCart)
+    
+    function getMask(){
+        return document.getElementById('mask');
+    }
+</script>
 </body>
 </html>
