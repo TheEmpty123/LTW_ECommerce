@@ -18,8 +18,8 @@ body {
 .footer-container {
     display: flex;
     justify-content: space-between;
-    max-width: 1200px;
-    margin: 0 auto;
+    background-color: #2a2a2a;
+    width: 100vm;
 }
 
 .footer-column {
@@ -38,10 +38,12 @@ body {
 
 .footer-column ul {
     list-style: none;
+    padding-left: none;
 }
 
 .footer-column ul li {
     margin: 10px 0;
+    /* padding-left: 0; */
 }
 
 .footer-column ul li a {
