@@ -285,7 +285,8 @@ main {
 .activity-card,
 .summary-card,
 .bday-card,
-.prof-card {
+.prof-card,
+.prof-card-alt {
     background: #fff;
     border-radius: 7px;
 }
@@ -460,6 +461,33 @@ tbody tr:nth-child(even) {
     margin-right: .7rem;
 }
 
+.prof-card-alt {
+    padding: 1rem;
+    height: 270px;
+    display: grid;
+}
+
+.prof-img-alt {
+    display: block;
+    width: 100%;
+    /* Set container dimensions */
+    height: 200px;
+    /* Adjust as needed */
+    object-fit: cover;
+    object-position: center;
+    border: 3px solid #efefef;    
+    background-size: cover;
+    background-repeat: no-repeat;
+    border-radius: 20%;
+    background-image: url(../../../../ecommerce/public/images/admin/profile/1.jpg);
+    margin-right: 15%;
+    margin-left: 15%;
+}
+
+.text-center input{
+    width: 50%;
+}
+
 .bday-img {
     height: 60px;
     width: 60px;
@@ -570,7 +598,8 @@ h6.show-entries {
 
 input[type="text"],
 input[type="email"],
-input[type="tel"] {
+input[type="tel"],
+select[type="role"] {
     flex: 2;
     padding: 10px;
     font-size: 16px;

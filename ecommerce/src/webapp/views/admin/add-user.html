@@ -166,44 +166,52 @@
             <section class="recent">
                 <div class="activity-grid-alt3">
 
-                    <div class="prof-card">
+                    <div class="prof-card-alt">
                         <div class="prof-flex">
-                            <div class="prof-img"></div>
-                            <div class="prof-info">
-                                <h1>The Empty</h1>
-                                <div class="prof-details">
-                                    <h4>Administrators</h4>
-                                </div>
-                                <div class="prof-details">
-                                    <h4>21130569</h4>
-                                </div>
-                            </div>
+                            <div class="prof-img-alt"></div>
                         </div>
 
                         <div class="text-center">
                             <button type="button">
                                 <span class="ti-upload"></span>
-                                <a href="#">Add product</a>                                
+                                <input type="file" id="fileInput" accept="image/*">      
                             </button>
                         </div>
                     </div>
 
                     <div class="activity-card">
                         <div class="form-container">
-                            <h2>Product Information</h2>
+                            <h2>User Information</h2>
                             <form>
                                 <div class="form-group">
-                                    <label for="fullName">Product Name</label>
-                                    <input type="text" id="fullName" name="fullName" placeholder="The Empty" required>
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter full name" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="Enter username" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="emptythe.56@gmail.com" required>
+                                    <input type="email" id="email" name="email" placeholder="Enter email" required>
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone No.</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="01864977437" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
                                 </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>                                    
+                                    <select type="role" id="role" name="role">
+                                        <option value="CLIENT">Client</option>
+                                        <option value="VIP_CLIENT">VIP client</option>
+                                        <option value="MANAGER">Manager</option>
+                                        <option value="EMPLOYEE">Employee</option>
+                                        <option value="ADMINISTRATOR">Administrator</option>
+                                    </select>    
+                                </div>
+
+                                <button type="submit" class="submit-btn">Submit</button>
+
                             </form>
 
                         </div>
