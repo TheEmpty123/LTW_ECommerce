@@ -30,7 +30,7 @@
                     </a>
                  </li>
                 <li>
-                    <a href="#">
+                    <a href="dashboard.html">
                         <span class="ti-home"></span>
                         <span>Home</span>
                     </a>
@@ -173,7 +173,7 @@
                     <div class="card-body">
                         <span class="ti-briefcase"></span>
                         <div>
-                            <h5>Account Balance</h5>
+                            <h5>Total Revenue</h5>
                             <h4>730,659,462.45 vnđ</h4>
                         </div>
                     </div>
@@ -222,7 +222,6 @@
                                         <th>Order ID</th>
                                         <th>Order Date</th>
                                         <th>Delivery Date</th>
-                                        <th>Staff IC</th>
                                         <th>Total</th>
                                         <th>Status</th>
                                     </tr>
@@ -232,10 +231,6 @@
                                         <td>FUR-5491-LMN7</td>
                                         <td>15 Aug, 2020</td>
                                         <td>22 Aug, 2020</td>
-                                        <td class="td-staff">
-                                            <div class="img-1"></div>
-
-                                        </td>
                                         <td>1,500,000.30 vnđ</td>
                                         <td>
                                             <span class="badge success">Success</span>
@@ -245,9 +240,6 @@
                                         <td>FUR-8734-AXQ2</td>
                                         <td>15 Aug, 2020</td>
                                         <td>Delivering...</td>
-                                        <td class="td-staff">
-                                            <div class="img-3"></div>
-                                        </td>
                                         <td>1,300,000.52 vnđ</td>
                                         <td>
                                             <span class="badge warning">Delivering</span>
@@ -257,10 +249,6 @@
                                         <td>FUR-3287-QZX4</td>
                                         <td>15 Aug, 2020</td>
                                         <td>22 Aug, 2020</td>
-                                        <td class="td-staff">
-                                            <div class="img-1"></div>
-                                            <div class="img-2"></div>
-                                        </td>
                                         <td>15,000,000.00 vnđ</td>
                                         <td>
                                             <span class="badge success">Success</span>
@@ -270,10 +258,6 @@
                                         <td>FUR-7625-BTY9</td>
                                         <td>15 Aug, 2020</td>
                                         <td>Delivering...</td>
-                                        <td class="td-staff">
-                                            <div class="img-2"></div>
-                                            <div class="img-3"></div>
-                                        </td>
                                         <td>9,900,000.90 vnđ</td>
                                         <td>
                                             <span class="badge warning">Delivering</span>
@@ -283,9 +267,6 @@
                                         <td>FUR-4159-PKD3</td>
                                         <td>15 Aug, 2020</td>
                                         <td>22 Aug, 2020</td>
-                                        <td class="td-staff">
-                                            <div class="img-2"></div>
-                                        </td>
                                         <td>7,200,000.21 vnđ</td>
                                         <td>
                                             <span class="badge success">Success</span>
@@ -293,7 +274,8 @@
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
+                        </div>                        
+
                     </div>
 
                     <div class="summary">
@@ -301,7 +283,7 @@
                             <div class="summary-single">
                                 <span class="ti-id-badge"></span>
                                 <div>
-                                    <h5>75</h5>
+                                    <h5>25</h5>
                                     <small>Number of staff</small>
                                 </div>
                             </div>
@@ -309,7 +291,7 @@
                                 <span class="ti-calendar"></span>
                                 <div>
                                     <h5>16</h5>
-                                    <small>Number of leave</small>
+                                    <small>Number of online</small>
                                 </div>
                             </div>
                             <div class="summary-single">
@@ -321,30 +303,35 @@
                             </div>
                         </div>
 
-                        <div class="bday-card">
-                            <div class="bday-flex">
-                                <div class="bday-img"></div>
-                                <div class="bday-info">
-                                    <h5>The Empty</h5>
-                                    <small>Birthday Today</small>
-                                </div>
-                            </div>
-
-                            <div class="text-center">
-                                <button>
-                                    <span class="ti-gift"></span>
-                                    Wish meh!
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     
                 </div>
+<br>
+                <div class="activity-grid-alt4">
+                    <div class="activity-card">
+                        <h3>Total Revenue</h3>
+                        <canvas id="total-revenue"></canvas>
+                    </div>
+
+                    <div class="activity-card">
+                        <h3>Order Status (%)</h3>
+                        <canvas id="order-status"></canvas>
+                    </div>
+                </div>
+
             </section>
 
         </main>
 
     </div>
+
+    <!--
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.min.js"></script>
+    data: [1500000, 1300000, 15000000, 9900000, 7200000]
+    -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="../../../../public/js/admin/chart1.js"></script>
+    <script src="../../../../public/js/admin/chart2.js"></script>
 
 </body>
 

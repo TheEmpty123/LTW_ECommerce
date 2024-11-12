@@ -276,6 +276,12 @@ main {
     grid-column-gap: 1.5rem;
 }
 
+.activity-grid-alt4 {
+    display: grid;
+    grid-template-columns: 67% 33%;
+    grid-column-gap: 1.5rem;
+}
+
 .activity-card,
 .summary-card,
 .bday-card,
@@ -630,6 +636,17 @@ input[type="tel"]:focus {
 .task-timestamp {
     font-size: 14px;
     color: #888;
+}
+
+.chart{
+    padding-left: 30%;
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    background: conic-gradient(
+        rgb(255, 186, 57) 0% 37%,
+        rgb(91, 255, 91) 37% 100%
+    );
 }
 
 /* Responsive design */
