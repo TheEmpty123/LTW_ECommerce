@@ -440,6 +440,7 @@ tbody tr:nth-child(even) {
 
 .prof-card {
     padding: 1rem;
+    height: 250px;
 }
 
 .prof-flex {
