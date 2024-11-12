@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Coupon Plan</title>
+  <style>
+    /* Basic reset and container styling */
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+    body, html {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f2f5;
+    }
+    .activities-grid-alt2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 20px;
+    }
+    .form-container {
+      display: flex;
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+    .left-section, .right-section {
+      padding: 10px;
+    }
+
+    /* Left section styling */
+    .left-section {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      border-right: 1px solid #ddd;
+    }
+    .left-section label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .date-group, .status-group {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-bottom: 15px;
+    }
+    .status-group label {
+      display: inline-flex;
+      align-items: center;
+      font-weight: normal;
+      color: #333;
+    }
+    .status-group input {
+      margin-right: 5px;
+    }
+
+    .create-btn {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+    .create-btn:hover {
+      background-color: #0056b3;
+    }
+
+    /* Right section styling */
+    .right-section {
+      flex: 3;
+      padding-left: 20px;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 15px;
+    }
+    .form-group label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus {
+      border-color: #007bff;
+    }
+
+    /* Row styling */
+    .form-row {
+      display: flex;
+      gap: 10px;
+    }
+    .form-row .form-group {
+      flex: 1;
+    }
+    /* Radio group for coupon type */
+    .coupon-type {
+      display: flex;
+      flex-direction: column;
+    }
+    .coupon-type label {
+      display: inline-flex;
+      align-items: center;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+    .coupon-type input {
+      margin-right: 5px;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .form-container {
+        flex-direction: column;
+      }
+      .left-section {
+        border-right: none;
+        border-bottom: 1px solid #ddd;
+        margin-bottom: 15px;
+      }
+      .form-row {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="activities-grid-alt2">
+    <div class="form-container">
+      <!-- Left section: Status and Dates -->
+      <div class="left-section">
+        <div class="status-group">
+          <label>Status</label>
+          <label><input type="radio" name="status" value="active" required> Active</label>
+          <label><input type="radio" name="status" value="inactive" required> Inactive</label>
+        </div>
+        <div class="date-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate" name="startDate" required>
+          <label for="endDate" style="margin-top: 10px;">End Date</label>
+          <input type="date" id="endDate" name="endDate" required>
+        </div>
+        <button type="submit" class="create-btn">Create Coupon</button>
+      </div>
+
+      <!-- Right section: Coupon details -->
+      <div class="right-section">
+        <h2>Create Coupon Plan</h2>
+        <form>
+          <!-- Coupon Code and Limits on the same row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="couponCode">Coupon Code</label>
+              <input type="text" id="couponCode" name="couponCode" placeholder="Enter coupon code" required>
+            </div>
+            <div class="form-group">
+              <label for="limits">Limits</label>
+              <input type="number" id="limits" name="limits" placeholder="Enter usage limits" required>
+            </div>
+          </div>
+
+          <!-- Coupon Type and Discount Value on the same row -->
+          <div class="form-row">
+            <div class="form-group">
+              <label>Type</label>
+              <div class="coupon-type">
+                <label><input type="radio" name="type" value="free_shipping" required> Free Shipping</label>
+                <label><input type="radio" name="type" value="percent" required> Percentage (%)</label>
+                <label><input type="radio" name="type" value="amount" required> Fixed Amount</label>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="discountValue">Discount Value</label>
+              <input type="number" id="discountValue" name="discountValue" placeholder="Enter discount value" required>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,180 +1,274 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add New Product</title>
-  <style>
-    /* Basic reset and container styling */
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-    }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 100vh;
-      background-color: #f0f2f5;
-      padding: 20px;
-    }
-    .form-container {
-      display: flex;
-      max-width: 800px;
-      width: 100%;
-      padding: 20px;
-      background-color: #fff;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      border-radius: 8px;
-    }
-    .left-section, .right-section {
-      padding: 10px;
-    }
-    /* Left section styling */
-    .left-section {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      border-right: 1px solid #ddd;
-    }
-    .left-section label {
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 8px;
-    }
-    .img-upload {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-    .img-preview {
-      width: 100%;
-      max-width: 150px;
-      height: 150px;
-      background-color: #f7f7f7;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 14px;
-      color: #888;
-    }
-    .create-btn {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      background-color: #007bff;
-      color: #fff;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-      transition: background-color 0.3s;
-    }
-    .create-btn:hover {
-      background-color: #0056b3;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Admin</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/style.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/add-product.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/add-discount.css">
 
-    /* Right section styling */
-    .right-section {
-      flex: 3;
-      padding-left: 20px;
-    }
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      margin-bottom: 15px;
-    }
-    .form-group label {
-      font-weight: bold;
-      color: #333;
-      margin-bottom: 5px;
-    }
-    input[type="text"],
-    input[type="number"],
-    textarea,
-    select {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      outline: none;
-      transition: border-color 0.3s;
-    }
-    input[type="text"]:focus,
-    input[type="number"]:focus,
-    textarea:focus,
-    select:focus {
-      border-color: #007bff;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 100px;
-    }
-    /* Responsive design */
-    @media (max-width: 600px) {
-      .form-container {
-        flex-direction: column;
-      }
-      .left-section {
-        border-right: none;
-        border-bottom: 1px solid #ddd;
-        margin-bottom: 15px;
-      }
-    }
-  </style>
 </head>
+
 <body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-panel"></span>
+                <span>Dashboard</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
 
-  <div class="form-container">
-    <!-- Left section: Image upload and button -->
-    <div class="left-section">
-      <div class="img-upload">
-        <label for="productImg">Product Image</label>
-        <div class="img-preview">No Image</div>
-        <input type="file" id="productImg" name="productImg" accept="image/*">
-      </div>
-      <button type="submit" class="create-btn">Create Product</button>
+        <div class="sidebar-menu">
+            <ul>
+                <!-- For management -->
+                <li>
+                    <a class="separator">
+                        General
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="ti-home"></span>
+                        <span>Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-management.html">
+                        <span class="ti-wheelchair"></span>
+                        <span>Admins</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <span class="ti-user"></span>
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="role-permissions-management.html">
+                        <span class="ti-agenda"></span>
+                        <span>Role & Permissions</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <span class="ti-truck"></span>
+                        <span>Product Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="category-management.html">
+                        <span class="ti-menu"></span>
+                        <span>Category Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html">
+                        <span class="ti-server"></span>
+                        <span>Inventory Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <span class="ti-receipt"></span>
+                        <span>Order Management</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="promotions-discounts.html">
+                        <span class="ti-ticket"></span>
+                        <span>Promotions & Discounts</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchases-management.html">
+                        <span class="ti-money"></span>
+                        <span>Purchases</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sales-reports.html">
+                        <span class="ti-bar-chart"></span>
+                        <span>Sales Report</span>
+                    </a>
+                </li>
+
+                <!-- For user self -->
+
+                <li>
+                    <a class="separator">Users</a>
+                </li>
+
+                <li>
+                    <a href="profile-management.html">
+                        <span class="ti-user"></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <!-- For support -->
+
+                <li>
+                    <a class="separator">
+                        Support
+                    </a>
+                </li>
+
+                <li>
+                    <a href="settings.html">
+                        <span class="ti-settings"></span>
+                        <span>Settings</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="privacy-policy.html">
+                        <span class="ti-info-alt"></span>
+                        <span>Privacy policy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="FAQs.html">
+                        <span class="ti-help-alt"></span>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help-center.html">
+                        <span class="ti-headphone-alt"></span>
+                        <span>Help center</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
     </div>
 
-    <!-- Right section: Product details -->
-    <div class="right-section">
-      <h2>Add New Product</h2>
-      <form>
-        <div class="form-group">
-          <label for="productName">Product Name</label>
-          <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
-        </div>
-        <div class="form-group">
-          <label for="productCategory">Product Categories</label>
-          <select id="productCategory" name="productCategory" required>
-            <option value="">Select category</option>
-            <option value="electronics">Electronics</option>
-            <option value="fashion">Fashion</option>
-            <option value="home">Home & Living</option>
-            <!-- Add more categories as needed -->
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="productDescription">Description</label>
-          <textarea id="productDescription" name="productDescription" placeholder="Enter product description"></textarea>
-        </div>
-        <div class="form-group">
-          <label for="stock">Stock</label>
-          <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
-        </div>
-        <div class="form-group">
-          <label for="price">Price (vnđ)</label>
-          <input type="number" id="price" name="price" placeholder="Enter product price" required>
-        </div>
-      </form>
+
+    <div class="main-content">
+
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                <div></div>
+            </div>
+        </header>
+
+        <main>
+            <section class="recent">
+                <div class="activity-grid-alt5">
+
+                    <div class="form-container">
+                        <!-- Left section: Image upload and button -->
+                        <div class="left-section">
+                            <h3>Coupon Status</h3>
+                            <div class="hidden-toggles">
+				
+                                <input name="status" type="radio" id="active" class="hidden-toggles__input" checked>
+                                <label for="active" class="hidden-toggles__label">Active</label>
+                                
+                                <input name="status" type="radio" id="inactive" class="hidden-toggles__input" >
+                                <label for="inactive" class="hidden-toggles__label">Inactive</label>	
+                                
+                                <input name="status" type="radio" id="plan" class="hidden-toggles__input">
+                                <label for="plan" class="hidden-toggles__label">Future plan</label>
+                                
+                                <input name="status" type="radio" id="super" class="hidden-toggles__input">
+                                <label for="super" class="hidden-toggles__label">Super</label>
+                                
+                            </div>
+
+                            <h3>Date Schedule</h3>
+                            <div class="date-container">
+                                <label for="start">Start date:</label>
+                                <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                                
+                                <label for="start">Start date:</label>
+                                <input type="date" id="start" name="trip-start" value="2018-07-22" min="2018-01-01" max="2018-12-31" />
+                                    
+                            </div>
+
+
+
+                        </div>
+                  
+                        <!-- Right section: Product details -->
+                        <div class="right-section">
+                          <h2>Add New Product</h2>
+                          <form>
+                            <!-- Name and Category on the same row -->
+                            <div class="form-row">
+                                
+                              <div class="form-group">
+                                <label for="productName">Product Name</label>
+                                <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="productCategory">Product Categories</label>
+                                <select id="productCategory" name="productCategory" required>
+                                  <option value="">Select category</option>
+                                  <option value="Kệ phòng khách">Kệ phòng khách</option>
+                                  <option value="Bàn nước">Bàn nước</option>
+                                  <option value="Ghế dài & đôn">Ghế dài & đôn</option>
+                                  <option value="Đèn trang trí">Đèn trang trí</option>
+                                  <option value="Giường">Giường</option>
+                                  <option value="Ghế Bar">Ghế Bar</option>
+                                  <option value="Phòng khách">Phòng khách</option>
+                                  <option value="Armchair">Armchair</option>
+                                  <option value="Bàn bên">Bàn bên</option>
+                                  <option value="Tủ giày">Tủ giày</option>
+                                  <option value="Tủ ly">Tủ ly</option>
+                                  <option value="Sofa">Sofa</option>
+                                  <option value="Đồng hồ trang trí">Đồng hồ trang trí</option>
+                                  <option value="Tủ áo">Tủ áo</option>
+                                  <option value="Bình trang trí">Bình trang trí</option>
+                                  <option value="Khung gương">Khung gương</option>
+                                  <option value="Bàn làm việc">Bàn làm việc</option>
+                                  <!-- Add more categories as needed -->
+                                </select>
+                              </div>
+                            </div>
+                  
+                            <!-- Stock and Price on the same row -->
+                            <div class="form-row">
+                              <div class="form-group">
+                                <label for="stock">Stock</label>
+                                <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
+                              </div>
+                              <div class="form-group">
+                                <label for="price">Price (vnđ)</label>
+                                <input type="number" id="price" name="price" placeholder="Enter product price" required>
+                              </div>
+                            </div>
+                  
+                            <div class="form-group">
+                              <label for="productDescription">Description</label>
+                              <textarea id="productDescription" name="productDescription" placeholder="Enter product description"></textarea>
+                            </div>
+
+                            <button type="submit" class="create-btn">Create Product</button>
+                          </form>
+                        </div>
+                      </div>
+
+                </div>
+            </section>
+
+        </main>
+
     </div>
-  </div>
 
 </body>
+
 </html>
