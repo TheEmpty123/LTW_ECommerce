@@ -6,7 +6,6 @@
     <title>Chi tiết sản phẩm</title>
     <link rel="stylesheet" href="..\..\..\..\..\public\css\product.css">
     <link rel="stylesheet" href="../../../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../../../public/css/footer.css">
     <link href="..\..\..\..\public\bootstrap-5.3.3-dist\css\bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -335,6 +334,11 @@
     </div>
 
     <!-- End header -->
+     <div id="mask" class="center-items">
+        <div class="block-content center-items">
+            <img src="../../../../../public/images/all-products/52.jpg" alt="">
+        </div>
+     </div>
     <div id="container">
         <div id="path-nav">
             <a href="#">Trang chủ</a>
@@ -347,8 +351,8 @@
 
                 </div> -->
                 <!-- Hình ảnh của sản phẩm -->
-                <div class="image-right">
-                    <img src="../../../../../public/images/all-products/52.jpg" class="image-product-detail">
+                <div id="image-product" class="image-right">
+                    <img src="../../../../../public/images/all-products/52.jpg" class="image-product-detail"  onclick="showImage()">
                 </div>
             </div>
 
@@ -487,71 +491,142 @@
                 </div>
             </div>
         </div>
-        <!-- <div id="similar">
-
-        </div>
-        <div id="watched">
-
-        </div>
-        <div id="suggest">
-
-        </div> -->
-    </div>
-    <!-- Start footer -->
-    <footer class="footer">
-        <div class="footer-container">
-            <!-- Left Column -->
-            <div class="footer-column">
-                <h3>KẾT NỐI VỚI NHÀ XINH</h3>
-                <img src="https://media.discordapp.net/attachments/1284859855206744178/1298558579468668958/kanes-furniture-logo-vector.png?ex=671b51eb&is=671a006b&hm=dc2e44a1b008a11aa0eba91e78312a380685db11f8e263624e6db50813c454df&=&format=webp&quality=lossless&width=737&height=409"
-                    alt=" Logo" class="footer-logo">
-                <p>FOLLOW US</p>
-                <p>Instagram – Youtube – Facebook</p>
-                <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
+        <div id="similar">
+            <div class="title-similar">
+                <h2>Có thể bạn cũng thích</h2>
             </div>
-
-            <!-- Second Column -->
-            <div class="footer-column">
-                <h3>NHÀ XINH</h3>
-                <ul>
-                    <li><a href="#">Giới thiệu</a></li>
-                    <li><a href="#">Chuyện Nhà Xinh</a></li>
-                    <li><a href="#">Tổng công ty</a></li>
-                    <li><a href="#">Tuyển dụng</a></li>
-                    <li><a href="#">Thẻ hội viên</a></li>
-                    <li><a href="#">Đổi trả hàng</a></li>
-                </ul>
-            </div>
-
-            <!-- Third Column -->
-            <div class="footer-column">
-                <h3>CẢM HỨNG</h3>
-                <ul>
-                    <li><a href="#">Sản phẩm</a></li>
-                    <li><a href="#">Ý tưởng và cảm hứng</a></li>
-                </ul>
-            </div>
-
-            <!-- Fourth Column -->
-            <div class="footer-column">
-                <h3>NEWSLETTER</h3>
-                <p>Hãy để lại email của bạn để nhận được những ý tưởng trang trí mới và thông tin ưu đãi từ Nhà Xinh</p>
-                <p>Email: nhaxinhcare@akacompany.com.vn</p>
-                <p>Hotline: 18007200</p>
-                <div class="newsletter">
-                    <input type="email" placeholder="Nhập email của bạn">
-                    <button class="subscribe-button">ĐĂNG KÝ</button>
+            <div class="center-box">
+                <div class="row">
+                    <div class="col-sm-3 col-md-3 col-6">
+                        <div class="card product-card">
+                            <a href="">
+                                <img src="../../../../../public/images/all-products/32.jpg" class="image-top" alt="Bàn bên 3C-02">
+                                <img src="../../../../../public/images/all-products/32.1.jpg" class="image-back" alt="Bàn bên 3C-02 1">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="product-name">Bàn bên 3C-02</h6>
+                                <div class="like-price-product">
+                                    <span class="product-price">7,990,000đ</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn">
+                                            <p>THÊM VÀO GIỎ</p>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                            <p>XEM THÊM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-6">
+                        <div class="card product-card">
+                            <a href="">
+                                <img src="../../../../../public/images/all-products/34.jpg" class="image-top" alt="Bàn bên 3C-02">
+                                <img src="../../../../../public/images/all-products/34.1.jpg" class="image-back" alt="Bàn bên 3C-02 1">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="product-name">Bàn bên 3C-02</h6>
+                                <div class="like-price-product">
+                                    <span class="product-price">7,990,000đ</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn">
+                                            <p>THÊM VÀO GIỎ</p>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                            <p>XEM THÊM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-6">
+                        <div class="card product-card">
+                            <a href="">
+                                <img src="../../../../../public/images/all-products/86.jpg" class="image-top" alt="Bàn bên 3C-02">
+                                <img src="../../../../../public/images/all-products/86.1.jpg" class="image-back" alt="Bàn bên 3C-02 1">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="product-name">Bàn bên 3C-02</h6>
+                                <div class="like-price-product">
+                                    <span class="product-price">7,990,000đ</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn">
+                                            <p>THÊM VÀO GIỎ</p>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                            <p>XEM THÊM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-md-3 col-6">
+                        <div class="card product-card">
+                            <a href="">
+                                <img src="../../../../../public/images/all-products/56.jpg" class="image-top" alt="Bàn bên 3C-02">
+                                <img src="../../../../../public/images/all-products/56.1.jpg" class="image-back" alt="Bàn bên 3C-02 1">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="product-name">Bàn bên 3C-02</h6>
+                                <div class="like-price-product">
+                                    <span class="product-price">7,990,000đ</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn">
+                                            <p>THÊM VÀO GIỎ</p>
+                                        </div> 
+                                    </div>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                            <p>XEM THÊM</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <!-- Footer Bottom -->
-        <div class="footer-bottom">
-            <p>© 2021 - Bản quyền của Nhà Xinh - Thương hiệu thuộc AKA Furniture. Từ năm 1999 - Thương hiệu đăng ký số
-                284074 Cục sở hữu trí tuệ</p>
-        </div>
-    </footer>
-     <!-- End footer -->
+    </div>
+    <!-- FOOTER -->
+    <iframe src="../../common/footer.html" frameborder="0" class="footer"></iframe>
     <script>
         function guaraSelected(){
             const btnbaohanh = document.getElementById("guarantee-tab")
@@ -617,6 +692,27 @@
             
 
         }
+        document.querySelectorAll('.wishlist-button').forEach(function(heart){
+            heart.addEventListener('click', function(){
+                heart.classList.toggle('clicked')
+            })
+        })
+        // Ngăn cuộn
+        const mask = document.getElementById('mask');
+        function showImage(){   
+            document.body.style.overflow = 'hidden';
+            mask.style.opacity = 1;
+            mask.style.zIndex= 1000;
+
+        }
+
+        // Cho phép cuộn lại
+        function hiddenImage(){
+            document.body.style.overflow = 'auto';
+            mask.style.opacity = 0;
+            mask.style.zIndex= -1000;
+        }
+        document.getElementById('mask').addEventListener('click', hiddenImage);
     </script>
 </body>
 </html>

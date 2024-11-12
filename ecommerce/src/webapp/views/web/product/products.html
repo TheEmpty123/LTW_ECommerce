@@ -37,7 +37,7 @@
                 <div class="header-icons-hd">
                     <a href="#" class="fas fa-map-marker-alt"></a>
                     <a href="#" class="fas fa-heart"></a>
-                    <a href="#" class="fas fa-shopping-cart"></a>
+                    <a href="#" class="fas fa-shopping-cart" id="cart-logo" onclick="showCart()"></a>
                     <a href="#" class="fas fa-light fa-user"></a>
                     <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">Đăng nhập</h4>
                 </div>
@@ -331,6 +331,58 @@
         </header>
     </div>
     <!-- END HEADER -->
+    <div id="pop-up-cart">
+        <!-- <iframe src="../cart/pop-up-cart.html" frameborder="0" id="pop-up-cart"></iframe> -->
+        <div id="mask-container">
+            <div id="mask-cart">
+            </div>
+            <div id="content-cart">
+                <div class="exit-box center-items">
+                    <h5>Giỏ hàng</h5>
+                    <i class="bi bi-x-square" id="close-pop-up"></i>
+                    <div class="block"></div>
+                </div>
+                <div class="list-product-cart">
+                    <div class="row">
+                        <div class="col-md-12 col-12 order">
+                            <div class="image center-items">
+                                <img src="../../../../../public/images/all-products/53.jpg" alt="">
+                            </div>
+                            <div class="detail-order center-items" style="justify-content: left;">
+                                <div>
+                                    <h6>Armchair mây mới</h6>
+                                    <span>1</span> x <span>13,900,000đ</span>
+                                </div>
+                            </div>
+                            <div class="close-orders center-items">
+                                <button class="close-btn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="pay-pal">
+                    <div class="total-price">
+                        <div class="money-text">
+                            <p>Thành tiền: </p>
+                        </div>
+                        <div class="money-number">
+                            <p>13,900,000đ</p>
+                        </div>
+                    </div>
+                    <div class="watch-cart center-items">
+                        <a href="../cart/cart.html">XEM GIỎ HÀNG</a>
+                    </div>
+                    <div class="check-out center-items">
+                        <a href="#">THANH TOÁN</a>
+                    </div>
+    
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="container">
         <!-- IMAGE HEADER -->
         <div id="imageHeader">
@@ -404,7 +456,12 @@
                             <img src="" alt="">
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Alum/Granite</h6>
-                                <p class="product-price">670,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">670,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -429,7 +486,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Nickel</h6>
-                                <p class="product-price">1,390,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">1,390,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -454,7 +516,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn Steel/Alum</h6>
-                                <p class="product-price">880,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">880,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -480,7 +547,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn trang trí 17cm</h6>
-                                <p class="product-price">2,580,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">2,580,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -506,7 +578,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ bàn trang trí 21cm</h6>
-                                <p class="product-price">3,900,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">3,900,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -531,7 +608,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ Baxter S</h6>
-                                <p class="product-price">3,900,001₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">3,900,001₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -557,7 +639,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ cát 10 phút cam</h6>
-                                <p class="product-price">750,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">750,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -582,7 +669,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ cát 10 phút hồng</h6>
-                                <p class="product-price">750,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">750,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -607,7 +699,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name"> Đồng hồ treo tường 58cm</h6>
-                                <p class="product-price">1,400,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">1,400,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -632,7 +729,12 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">Đồng hồ treo tường Belt</h6>
-                                <p class="product-price">5,360,000₫</p>
+                                <div class="like-price-product">
+                                    <span class="product-price">5,360,000₫</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
+                                </div>
                             </div>
                             <div class="cart-see-more-btns">
                                 <div class="row">
@@ -726,7 +828,30 @@
             }
         });
 
-       
+        document.querySelectorAll('.wishlist-button').forEach(function(heart){
+            heart.addEventListener('click', function(){
+                heart.classList.toggle('clicked')
+            })
+        })
+        
+        // Xử lí phần ẩn hiện giỏ hàng
+        const pop_up_cart = document.getElementById('pop-up-cart')
+        function showCart(){
+            document.body.style.overflow = 'hidden';
+            pop_up_cart.style.opacity = 1;
+            pop_up_cart.style.zIndex = 2000;
+            pop_up_cart.style.transform = 'translateX(0)'
+            pop_up_cart.style.transition = 'transform 0.5s ease'
+        }
+        function hiddenCart(){
+            document.body.style.overflow = 'auto';
+            pop_up_cart.style.transform = 'translateX(50%)'
+            pop_up_cart.style.transition = 'transform 0.5s ease'
+            pop_up_cart.style.opacity = 0;
+            pop_up_cart.style.zIndex = -2000;
+        }
+        document.getElementById('mask-cart').addEventListener('click', hiddenCart)
+        document.getElementById('close-pop-up').addEventListener('click', hiddenCart)
     </script>
 </body>
 </html>
