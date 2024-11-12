@@ -8,13 +8,14 @@ html, body{
         to right, 
         rgba(23, 248, 42, 0.5), 
         rgba(121, 0, 187, 0.5)),
-        url('..\images\logos\backgroundlogin.png');
+        url('https://wedo.vn/wp-content/uploads/2023/03/thiet-ke-nha-2-tang-8x6m-7.jpg');
     background-size: cover;
     background-position: center;
     height: 100%;
 
 }
 a {
+    font-size: 16px;
     text-decoration: none !important;
     padding: 5px  !important;
     color: black  !important;
@@ -84,14 +85,17 @@ a {
     bottom: 30px;
     right: 30px;
     border-radius: 5px;
+    cursor: pointer;
 }
 
 .footer{
     height:15%;
 }
-
+.mb-10{
+    margin-bottom: 10px;
+}
 .footer .subfooter{
-    width: 400px;
+    width: 500px;
     margin-left: auto;
     margin-right: auto;
     display: flex;
