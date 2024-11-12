@@ -121,7 +121,7 @@ header {
     align-items: center;
 }
 
-.search-wrapper input{
+.search-wrapper input {
     border: 0;
     outline: 0;
     padding: 1rem;
@@ -214,7 +214,7 @@ main {
     align-items: center;
 }
 
-.card-body img{
+.card-body img {
     width: 10rem;
     height: 5rem;
     border-radius: 5%;
@@ -357,13 +357,15 @@ tbody tr:nth-child(even) {
     align-items: center;
 }
 
-.td-product img{
+.td-product img {
     display: block;
-    width: 100px;  /* Set container dimensions */
-    height: 100px; /* Adjust as needed */
+    width: 100px;
+    /* Set container dimensions */
+    height: 100px;
+    /* Adjust as needed */
     object-fit: cover;
-    object-position: center;    
-    border: 3px solid #efefef;    
+    object-position: center;
+    border: 3px solid #efefef;
     border-radius: 50%;
 }
 
@@ -478,7 +480,7 @@ tbody tr:nth-child(even) {
     overflow-x: auto;
 }
 
-h6.show-entries{
+h6.show-entries {
     color: var(--text-grey);
 }
 
@@ -499,11 +501,11 @@ h6.show-entries{
     transition: background-color 0.3s;
 }
 
-.pagination a:hover{
+.pagination a:hover {
     background-color: #f0f0f0;
 }
 
-.pagination a.active{
+.pagination a.active {
     background-color: #0073e6;
     color: white;
     border: 1px solid #0073e6;
@@ -523,7 +525,7 @@ h6.show-entries{
 
 .pagination a:first-child,
 .pagination a:last-child {
-  font-weight: bold;
+    font-weight: bold;
 }
 
 .form-container {
@@ -533,27 +535,31 @@ h6.show-entries{
     background-color: #fff;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 8px;
-  }
-  .form-container h2 {
+}
+
+.form-container h2 {
     margin-bottom: 20px;
     color: #333;
     text-align: center;
-  }
-  .form-group {
+}
+
+.form-group {
     display: flex;
     align-items: center;
     margin-bottom: 15px;
-  }
-  label {
+}
+
+label {
     flex: 1;
     font-weight: bold;
     color: #333;
     padding-right: 10px;
     min-width: 80px;
-  }
-  input[type="text"],
-  input[type="email"],
-  input[type="tel"] {
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
     flex: 2;
     padding: 10px;
     font-size: 16px;
@@ -561,13 +567,15 @@ h6.show-entries{
     border-radius: 4px;
     outline: none;
     transition: border-color 0.3s;
-  }
-  input[type="text"]:focus,
-  input[type="email"]:focus,
-  input[type="tel"]:focus {
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="tel"]:focus {
     border-color: #007bff;
-  }
-  .submit-btn {
+}
+
+.submit-btn {
     width: 100%;
     padding: 10px;
     font-size: 16px;
@@ -577,21 +585,65 @@ h6.show-entries{
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s;
-  }
-  .submit-btn:hover {
+}
+
+.submit-btn:hover {
     background-color: #0056b3;
-  }
-  /* Responsive design */
-  @media (max-width: 1200px) {
+}
+
+/* Latest Tasks section styling */
+.tasks-container {
+    margin-top: 30px;
+}
+
+.tasks-title {
+    font-weight: bold;
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.task-log {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 10px;
+    background-color: #fafafa;
+}
+
+.task-item {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ddd;
+    color: #333;
+}
+
+.task-item:last-child {
+    border-bottom: none;
+}
+
+.task-item strong {
+    color: #000000;
+}
+
+.task-timestamp {
+    font-size: 14px;
+    color: #888;
+}
+
+/* Responsive design */
+@media (max-width: 1200px) {
     .form-group {
-      flex-direction: column;
-      align-items: stretch;
+        flex-direction: column;
+        align-items: stretch;
     }
+
     label {
-      padding: 0;
-      margin-bottom: 5px;
+        padding: 0;
+        margin-bottom: 5px;
     }
-  }
+}
 
 @media only screen and (max-width: 1200px) {
     .sidebar {
