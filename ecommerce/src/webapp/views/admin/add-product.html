@@ -170,71 +170,75 @@
                     <div class="form-container">
                         <!-- Left section: Image upload and button -->
                         <div class="left-section">
-                          <div class="img-upload">
-                            <label for="productImg">Product Image</label>
-                            <div class="img-preview">No Image</div>
-                            <input type="file" id="productImg" name="productImg" accept="image/*">
-                          </div>
+                            <div class="img-upload">
+                                <label for="productImg">Product Image</label>
+                                <div class="img-preview">No Image</div>
+                                <input type="file" id="productImg" name="productImg" accept="image/*">
+                            </div>
 
                         </div>
-                  
+
                         <!-- Right section: Product details -->
                         <div class="right-section">
-                          <h2>Add New Product</h2>
-                          <form>
-                            <!-- Name and Category on the same row -->
-                            <div class="form-row">
-                              <div class="form-group">
-                                <label for="productName">Product Name</label>
-                                <input type="text" id="productName" name="productName" placeholder="Enter product name" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="productCategory">Product Categories</label>
-                                <select id="productCategory" name="productCategory" required>
-                                  <option value="">Select category</option>
-                                  <option value="Kệ phòng khách">Kệ phòng khách</option>
-                                  <option value="Bàn nước">Bàn nước</option>
-                                  <option value="Ghế dài & đôn">Ghế dài & đôn</option>
-                                  <option value="Đèn trang trí">Đèn trang trí</option>
-                                  <option value="Giường">Giường</option>
-                                  <option value="Ghế Bar">Ghế Bar</option>
-                                  <option value="Phòng khách">Phòng khách</option>
-                                  <option value="Armchair">Armchair</option>
-                                  <option value="Bàn bên">Bàn bên</option>
-                                  <option value="Tủ giày">Tủ giày</option>
-                                  <option value="Tủ ly">Tủ ly</option>
-                                  <option value="Sofa">Sofa</option>
-                                  <option value="Đồng hồ trang trí">Đồng hồ trang trí</option>
-                                  <option value="Tủ áo">Tủ áo</option>
-                                  <option value="Bình trang trí">Bình trang trí</option>
-                                  <option value="Khung gương">Khung gương</option>
-                                  <option value="Bàn làm việc">Bàn làm việc</option>
-                                  <!-- Add more categories as needed -->
-                                </select>
-                              </div>
-                            </div>
-                  
-                            <!-- Stock and Price on the same row -->
-                            <div class="form-row">
-                              <div class="form-group">
-                                <label for="stock">Stock</label>
-                                <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
-                              </div>
-                              <div class="form-group">
-                                <label for="price">Price (vnđ)</label>
-                                <input type="number" id="price" name="price" placeholder="Enter product price" required>
-                              </div>
-                            </div>
-                  
-                            <div class="form-group">
-                              <label for="productDescription">Description</label>
-                              <textarea id="productDescription" name="productDescription" placeholder="Enter product description"></textarea>
-                            </div>
+                            <h2>Add New Product</h2>
+                            <form>
+                                <!-- Name and Category on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="productName">Product Name</label>
+                                        <input type="text" id="productName" name="productName"
+                                            placeholder="Enter product name" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productCategory">Product Categories</label>
+                                        <select id="productCategory" name="productCategory" required>
+                                            <option value="">Select category</option>
+                                            <option value="Kệ phòng khách">Kệ phòng khách</option>
+                                            <option value="Bàn nước">Bàn nước</option>
+                                            <option value="Ghế dài & đôn">Ghế dài & đôn</option>
+                                            <option value="Đèn trang trí">Đèn trang trí</option>
+                                            <option value="Giường">Giường</option>
+                                            <option value="Ghế Bar">Ghế Bar</option>
+                                            <option value="Phòng khách">Phòng khách</option>
+                                            <option value="Armchair">Armchair</option>
+                                            <option value="Bàn bên">Bàn bên</option>
+                                            <option value="Tủ giày">Tủ giày</option>
+                                            <option value="Tủ ly">Tủ ly</option>
+                                            <option value="Sofa">Sofa</option>
+                                            <option value="Đồng hồ trang trí">Đồng hồ trang trí</option>
+                                            <option value="Tủ áo">Tủ áo</option>
+                                            <option value="Bình trang trí">Bình trang trí</option>
+                                            <option value="Khung gương">Khung gương</option>
+                                            <option value="Bàn làm việc">Bàn làm việc</option>
+                                            <!-- Add more categories as needed -->
+                                        </select>
+                                    </div>
+                                </div>
 
-                            <button type="submit" class="create-btn">Create Product</button>
-                          </form>
+                                <!-- Stock and Price on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="stock">Stock</label>
+                                        <input type="number" id="stock" name="stock" placeholder="Enter stock quantity"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="price">Price (vnđ)</label>
+                                        <input type="number" id="price" name="price" placeholder="Enter product price"
+                                            required>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="productDescription">Description</label>
+                                    <textarea id="productDescription" name="productDescription"
+                                        placeholder="Enter product description"></textarea>
+                                </div>
+
+                                <button type="submit" class="create-btn">Create Product</button>
+                            </form>
                         </div>
-                      </div>
+                    </div>
 
                 </div>
             </section>
