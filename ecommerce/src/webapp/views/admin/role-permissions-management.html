@@ -23,7 +23,6 @@
 
         <div class="sidebar-menu">
             <ul>
-
                 <!-- For management -->
                 <li>
                     <a class="separator">
@@ -39,25 +38,19 @@
                 <li>
                     <a href="admin-management.html">
                         <span class="ti-wheelchair"></span>
-                        <span>Admins (admin only)</span>
+                        <span>Admins</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <span class="ti-user"></span>
+                        <span>Users</span>
                     </a>
                 </li>
                 <li>
                     <a href="#">
-                        <span class="ti-user"></span>
-                        <span>User (admin only)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="role-permissions-management.html">
                         <span class="ti-agenda"></span>
-                        <span>Role & Permissions (admin only)</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="applications.html">
-                        <span class="ti-package"></span>
-                        <span>Applications</span>
+                        <span>Role & Permissions</span>
                     </a>
                 </li>
                 <li>
@@ -104,18 +97,20 @@
                 </li>
 
                 <!-- For user self -->
+
                 <li>
                     <a class="separator">Users</a>
                 </li>
 
                 <li>
-                    <a href="profile-management/html">
+                    <a href="profile-management.html">
                         <span class="ti-user"></span>
                         <span>Profile</span>
                     </a>
                 </li>
 
                 <!-- For support -->
+
                 <li>
                     <a class="separator">
                         Support
@@ -168,10 +163,9 @@
         </header>
 
         <main>
-
             <h2 class="dash-title">Overview</h2>
             <h3 class="dash-address">
-                <a href="dashboard.html">Home</a>/<a href="#">role_permissions</a>
+                <a href="dashboard.html">Home</a>/<a href="#">roles & permissions</a>
             </h3>
 
             <div class="dash-cards">
@@ -180,8 +174,8 @@
                     <div class="card-body">
                         <span class="ti-id-badge"></span>
                         <div>
-                            <h5>Number of Role</h5>
-                            <h4>5</h4>
+                            <h5>Number of Employee</h5>
+                            <h4>75</h4>
                         </div>
                     </div>
                 </div>
@@ -190,8 +184,18 @@
                     <div class="card-body">
                         <span class="ti-check-box"></span>
                         <div>
-                            <h5>Current Online Admins</h5>
-                            <h4>1</h4>
+                            <h5>Current Online User</h5>
+                            <h4>43</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-alert"></span>
+                        <div>
+                            <h5>User Suspected</h5>
+                            <h4>13</h4>
                         </div>
                     </div>
                 </div>
@@ -203,52 +207,29 @@
                 <div class="activity-grid-alt">
                     <div class="activity-card">
 
-                        <div>    
-                            <div class="search-wrapper">
-                                <h3>Admin List</h3>
-                                <span class="ti-search"></span>
-                                <input type="search" placeholder="Search content here...">
-                            </div>
+                        <div>
+                            <div class="search-wrapper"></div>
                         </div>
 
                         <div class="table-responsive">
                             <table>
                                 <thead>
                                     <tr>
-                                        <th>ID</th>
-                                        <th>Username</th>
-                                        <th>Email Address</th>
-                                        <th>Role</th>
-                                        <th>Status</th>
+                                        <th>Name</th>
+                                        <th>Assigned To</th>
+                                        <th>Created Date & Time</th>
+                                        <th>Last Update</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>1</td>
-                                        <td>theempty</td>
-                                        <td>emptythe.56@gmail.com</td>
-                                        <td>Admin</td>
+                                        <td>User Management</td>
                                         <td>
-                                            <span class="badge success">Online</span>
+                                            <span class="badge warning">Manager</span>
                                         </td>
-                                        <td>
-                                            <a href="">
-                                                <span class="ti-pencil-alt"></span>
-                                            </a>
-                                            <a href="">
-                                                <span class="ti-trash"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>2</td>
-                                        <td>harvey2807</td>
-                                        <td>harvey.2807@gmail.com</td>
-                                        <td>Admin</td>
-                                        <td>
-                                            <span class="badge warning">Offline</span>
-                                        </td>
+                                        <td>4 Mar 2023, 08:30 am</td>
+                                        <td>Today</td>
                                         <td>
                                             <a href="">
                                                 <span class="ti-pencil-alt"></span>
@@ -259,30 +240,13 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>3</td>
-                                        <td>PKhanhDuy</td>
-                                        <td>pkhanhduy.48@gmail.com</td>
-                                        <td>Admin</td>
+                                        <td>Financial Management</td>
                                         <td>
-                                            <span class="badge warning">Verifying</span>
+                                            <span class="badge success">Administrator</span>
+                                            <span class="badge dev">Developer</span>
                                         </td>
-                                        <td>
-                                            <a href="">
-                                                <span class="ti-pencil-alt"></span>
-                                            </a>
-                                            <a href="">
-                                                <span class="ti-trash"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>4</td>
-                                        <td>randomguy</td>
-                                        <td>randomguy@hotmail.com</td>
-                                        <td>Admin</td>
-                                        <td>
-                                            <span class="badge alert">Suspected</span>
-                                        </td>
+                                        <td>4 Mar 2023, 08:30 am</td>
+                                        <td>06 Dec 2023</td>
                                         <td>
                                             <a href="">
                                                 <span class="ti-pencil-alt"></span>
@@ -293,13 +257,30 @@
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td>5</td>
-                                        <td>nttoan</td>
-                                        <td>nttoan.3004@gmail.com</td>
-                                        <td>Admin</td>
+                                        <td>Content Management</td>
                                         <td>
-                                            <span class="badge alert">On Deleting Progress</span>
+                                            <span class="badge warning">Manager</span>
+                                            <span class="badge success">Administrator</span>
                                         </td>
+                                        <td>4 Mar 2023, 08:30 am</td>
+                                        <td>Yesterday</td>
+                                        <td>
+                                            <a href="">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Reporting</td>
+                                        <td>
+                                            <span class="badge warning">Manager</span>
+                                            <span class="badge dev">Developer</span>
+                                        </td>
+                                        <td>4 Mar 2023, 08:30 am</td>
+                                        <td>Yesterday</td>
                                         <td>
                                             <a href="">
                                                 <span class="ti-pencil-alt"></span>
@@ -314,10 +295,10 @@
                         </div>
 
                         <div class="pagination">
-                            <h6 class="show-entries">*Showing 1 to 5 of 5 entries</h3>
-                            <a href="#">&laquo;</a>
-                            <a href="#" class="active">1</a>
-                            <a href="#">&raquo;</a>
+                            <h6 class="show-entries">*Showing 1 to 4 of 4 entries</h3>
+                                <a href="#">&laquo;</a>
+                                <a href="#" class="active">1</a>
+                                <a href="#">&raquo;</a>
                         </div>
 
                     </div>

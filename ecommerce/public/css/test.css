@@ -1,0 +1,248 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.container-hd{
+    height: 130px;
+    width: 100%;
+    display: flex;
+    z-index: 1000;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, sans-serif;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    border-bottom: 1px solid #ccc;
+    background-color: #f8f8f8;
+    z-index: 1000;
+
+}
+
+.header-top-hd {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    font-size: 14px;
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
+.language-switcher-hd,
+.contact-info-hd,
+.header-icons-hd {
+    display: flex;
+    align-items: center;
+}
+.contact-info-hd{
+    /* background-color: red; */
+    display: flex;
+    margin-left: -15%;
+    width: 30%;
+}
+.header-top-hd a {
+    text-decoration: none;
+    color: #000;
+    margin: 0 5px 0 ;
+}
+.phone-hd{
+    display: flex;
+    padding: 5px;
+}
+.about-hd{
+    display: flex;
+    font-weight: lighter;
+}
+.header-bottom-hd {
+    width: 100%;
+    position: fixed;
+    padding-left: 5%;
+    padding-right: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    background-color: #f8f8f8;
+    z-index: 1000;
+    box-sizing: border-box;
+    overflow-x: hidden; 
+    display:none;
+    transition: 0.5s;
+    background-color: rgba(0, 0, 0, 0.9);
+
+}
+.overlay {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: hidden;
+    transition: height 0.5s ease;
+    z-index: 999;
+}
+.overlay-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    color: white;
+    font-size: 36px;
+}
+.overlay-content a {
+    color: #818181;
+    text-decoration: none;
+    font-size: 24px;
+    padding: 10px;
+    transition: color 0.3s;
+}
+
+.overlay-content a:hover {
+    color: #f1f1f1;
+}
+.header-bottom-hd a{
+    font-size: 36px;
+    color: #818181;
+    text-decoration: none;
+    display: block;
+    transition: 0.3s;
+}
+ .overlay-content {
+    height: 0;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    overflow-y: hidden;
+    transition: 0.5s;
+    z-index: 999;
+} 
+
+
+.product-categories-menu-container {
+    position: relative;
+    top: 20%;
+    width: 100%;
+    text-align: center;
+    color: white;
+}
+.menu-item {
+    list-style-type: none;
+    padding: 10px;
+}
+.menu-item a {
+    color: white;
+    text-decoration: none;
+    font-size: 24px;
+    transition: color 0.3s;
+}
+.menu-item a:hover {
+    color: #f1f1f1;
+}
+.closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 60px;
+    color: #ffffff;
+    cursor: pointer;
+}
+
+@media screen and (max-height: 450px) {
+    .header-bottom-hd a {
+        font-size: 20px;
+    }
+    .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }  
+}
+
+.menu-icon-hd {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+.overlay-content.open {
+    height: 100%;
+}
+.logo-hd img {
+    width: 70px;
+}
+
+.main-nav {
+    flex-grow: 1;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: #000;
+    font-weight: lighter;
+    font-size: 16px;
+}
+
+.header-icons-hd {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.header-icons-hd img {
+    width: 20px;
+    cursor: pointer;
+}
+
+.search-bar-hd {
+    display: flex;
+    align-items: center;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    padding: 5px 10px;
+}
+
+.search-bar-hd input {
+    border: none;
+    outline: none;
+    width: 200px;
+    padding: 5px;
+}
+
+.search-bar-hd button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+.search-bar-hd img {
+    width: 16px;
+}
+.btn:hover + .dropdown-menu,
+.dropdown-menu:hover {
+    display: block;
+}
+.dropdown-menu{
+    background-color: #f8f8f8;
+    margin-top: -10px;
+}
+.ux-menu-link{
+    padding: 5px;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-weight: lighter;
+}
