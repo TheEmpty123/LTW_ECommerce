@@ -8,6 +8,9 @@
     <title>Admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="../../../../public/css/admin/style.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/add-product.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/add-discount.css">
+
 </head>
 
 <body>
@@ -164,88 +167,83 @@
 
         <main>
             <section class="recent">
-                <div class="activity-grid-alt3">
+                <div class="activity-grid-alt5">
 
-                    <div class="prof-card">
-                        <div class="prof-flex">
-                            <div class="prof-img"></div>
-                            <div class="prof-info">
-                                <h1>The Empty</h1>
-                                <div class="prof-details">
-                                    <h4>Administrators</h4>
-                                </div>
-                                <div class="prof-details">
-                                    <h4>21130569</h4>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="form-container">
 
-                    <div class="activity-card">
-                        <div class="form-container">
-                            <h2>User Information</h2>
+                        <!-- Right section: Product details -->
+                        <div class="right-section">
+                            <h2>Coupon Information</h2>
                             <form>
-                                <div class="form-group">
-                                    <label for="fullName">Full Name</label>
-                                    <input type="text" id="fullName" name="fullName" placeholder="The Empty" required>
+                                <!-- Name and Category on the same row -->
+                                <div class="form-row">
+
+                                    <div class="form-group">
+                                        <label for="code">Code</label>
+                                        <input type="text" id="code" name="code" placeholder="Enter discount code"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="type">Coupons Types</label>
+                                        <select id="type" name="type" required>
+                                            <option value="">Select type</option>
+                                            <option value="SHIP">Free Shipping</option>
+                                            <option value="PERCENT">Percentage</option>
+                                            <option value="AMOUNT">Fixed Amount</option>
+                                            <!-- Add more categories as needed -->
+                                        </select>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="emptythe.56@gmail.com"
-                                        required>
+
+                                <!-- Stock and Price on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="limits">Limit</label>
+                                        <input type="number" id="limits" name="limits" placeholder="Enter limits uses"
+                                            required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="value">Value</label>
+                                        <input type="number" id="value" name="value" placeholder="Enter discount value"
+                                            required>
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="phone">Phone No.</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="01864977437" required>
+
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="status">Coupon Status</label>
+                                        <div class="hidden-toggles">
+                                            <input name="status" type="radio" id="active" class="hidden-toggles__input"
+                                                checked>
+                                            <label for="active" class="hidden-toggles__label">Active</label>
+
+                                            <input name="status" type="radio" id="inactive"
+                                                class="hidden-toggles__input">
+                                            <label for="inactive" class="hidden-toggles__label">Inactive</label>
+
+                                            <input name="status" type="radio" id="plan" class="hidden-toggles__input">
+                                            <label for="plan" class="hidden-toggles__label">Future plan</label>
+                                        </div>
+                                    </div>
                                 </div>
-                                <button type="submit" class="submit-btn">Update</button>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="date">Date Schedule</label>
+                                        <div class="date-container">
+                                            <label for="start">Start date:</label>
+                                            <input type="date" id="start" name="trip-start" value="" required />
+                                        </div>
+                                        <div>
+                                            <label for="end">End date:</label>
+                                            <input type="date" id="end" name="trip-end" value="" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="create-btn">Create Product</button>
                             </form>
-
-                            <!-- Latest Tasks Log -->
-                            <div class="tasks-container">
-                                <div class="tasks-title">Latest Tasks</div>
-                                <div class="task-log">
-                                    <!-- Example task items -->
-                                    <div class="task-item">
-                                        <div><strong>Created order #FUR-5491-LMN7</strong></div>
-                                        <div class="task-timestamp">2024-11-11 14:35</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Added product #001</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:00</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Marked order #FUR-5491-LMN7 as Packaging</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:20</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Created order #FUR-5491-LMN7</strong></div>
-                                        <div class="task-timestamp">2024-11-11 14:35</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Added product #001</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:00</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Marked order #FUR-5491-LMN7 as Packaging</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:20</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Created order #FUR-5491-LMN7</strong></div>
-                                        <div class="task-timestamp">2024-11-11 14:35</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Added product #001</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:00</div>
-                                    </div>
-                                    <div class="task-item">
-                                        <div><strong>Marked order #FUR-5491-LMN7 as Packaging</strong></div>
-                                        <div class="task-timestamp">2024-11-11 15:20</div>
-                                    </div>
-                                    <!-- More task items can be added dynamically -->
-                                </div>
-                            </div>
-
                         </div>
                     </div>
 
