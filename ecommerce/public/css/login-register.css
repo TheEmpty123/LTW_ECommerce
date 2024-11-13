@@ -25,19 +25,16 @@ a {
     margin-top: 10px;
 }
 .logo{
-    /* background-color: green; */
     height: 20%;
     display: flex;
     justify-content: center;
     align-items:center ;
 }
 .logobox{
-    /* background-color: aqua; */
     margin-top: 40px;
     width: 200px;
     height:100px;
     background-image: url("../images/logos/logo3.png");
-    /* background-image: url('https://cdn-icons-png.flaticon.com/512/3515/3515175.png'); */
     background-size: cover;
     background-position: center;
 }
@@ -48,16 +45,9 @@ a {
     align-items:center ;
 }
 .box{
-    /* background: linear-gradient(
-        to top, 
-        rgba(235, 13, 13, 0.5), 
-        rgba(86, 247, 17, 0.5)); */
     background-color: white;
     height: 80%;
     width: 400px;
-    /* margin-top: 50px; */
-    /* margin-left: auto ; */
-    /* margin-right: auto; */
     padding: 30px;
     border: solid 1px black;
     border-radius: 20px;
@@ -102,7 +92,6 @@ a {
     flex-direction: column;
 }
 .content-register{ 
-    /* margin-top: 30px;   */
     height: 60%;
     display: flex;
     justify-content: center;

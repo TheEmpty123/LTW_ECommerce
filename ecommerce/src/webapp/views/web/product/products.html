@@ -794,7 +794,6 @@
                 selectedItems.push(label.textContent.trim());
             });
             
-            
             document.querySelector('.dropdown-toggle-material').textContent = selectedItems.join(', ') || "Tất cả";
 
         }
@@ -843,6 +842,7 @@
             pop_up_cart.style.transform = 'translateX(0)'
             pop_up_cart.style.transition = 'transform 0.5s ease'
         }
+        //ẩn đi phần giỏ hàng
         function hiddenCart(){
             document.body.style.overflow = 'auto';
             pop_up_cart.style.transform = 'translateX(50%)'
