@@ -586,7 +586,7 @@ input:checked + label {
     position: relative;
     display: flex;
     align-items: center;
-    width: 100%;
+    width: 97%;
     height: 100%;
     max-width: 1250px;
     margin: 0 auto;
@@ -651,8 +651,8 @@ input:checked + label {
     width: 25px;
     height: 8px;
 }
-.nav-watched>div{
-    background-color: #e5a321 ;
+.nav-watched .fchild{
+    background-color: #e5a321;
 }
 .nav-watched .nav-box:hover{
     background-color: gray;
