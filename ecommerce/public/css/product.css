@@ -13,10 +13,10 @@ html, body{
     height: 138px;
     top: 0;
 }
-.footer{
+/* .footer{
     width: 100%;
-    height: 348px;
-}
+    height: 420px;
+} */
 .center-items{
     display: flex;
     justify-content: center;
