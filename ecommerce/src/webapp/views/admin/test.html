@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Create Coupon Plan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    body,
+    html {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background-color: #f0f2f5;
+    }
+
+    .activities-grid-alt2 {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      width: 100%;
+      padding: 20px;
+    }
+
+    .form-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-gap: 20px;
+      max-width: 800px;
+      width: 100%;
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+    }
+
+    /* Styling for individual containers */
+    .status-container,
+    .date-container,
+    .coupon-container {
+      background-color: #f9f9f9;
+      padding: 15px;
+      border-radius: 6px;
+    }
+
+    .status-container {
+      grid-column: 1 / 2;
+    }
+
+    .date-container {
+      grid-column: 1 / 2;
+    }
+
+    .coupon-container {
+      grid-column: 2 / 3;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Form styles */
+    label {
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+      display: inline-block;
+    }
+
+    .form-group {
+      margin-bottom: 15px;
+    }
+
+    /* Radio button styling */
+    .status-group label {
+      display: inline-flex;
+      align-items: center;
+      font-weight: normal;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .status-group input[type="radio"] {
+      margin-right: 5px;
+      accent-color: orange;
+      /* Orange radio button */
+    }
+
+    /* Input fields */
+    input[type="text"],
+    input[type="number"],
+    input[type="date"],
+    select {
+      width: 100%;
+      padding: 8px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      outline: none;
+      transition: border-color 0.3s;
+    }
+
+    input[type="text"]:focus,
+    input[type="number"]:focus,
+    input[type="date"]:focus,
+    select:focus {
+      border-color: orange;
+    }
+
+    /* Coupon type radio button styling */
+    .coupon-type {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .coupon-type label {
+      display: inline-flex;
+      align-items: center;
+      font-weight: normal;
+      margin-bottom: 5px;
+    }
+
+    .coupon-type input[type="radio"] {
+      margin-right: 5px;
+      accent-color: orange;
+      /* Orange radio button */
+    }
+
+    /* Submit button */
+    .create-btn {
+      width: 100%;
+      padding: 12px;
+      font-size: 16px;
+      background-color: orange;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      margin-top: auto;
+    }
+
+    .create-btn:hover {
+      background-color: darkorange;
+    }
+
+    /* Responsive design */
+    @media (max-width: 600px) {
+      .form-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="activities-grid-alt2">
+    <div class="form-container">
+      <!-- Status Container -->
+      <div class="status-container">
+        <div class="form-group status-group">
+          <label>Status</label>
+          <label><input type="radio" name="status" value="active" required> Active</label>
+          <label><input type="radio" name="status" value="inactive" required> Inactive</label>
+        </div>
+      </div>
+
+      <!-- Date Container -->
+      <div class="date-container">
+        <div class="form-group">
+          <label for="startDate">Start Date</label>
+          <input type="date" id="startDate" name="startDate" required>
+        </div>
+        <div class="form-group">
+          <label for="endDate">End Date</label>
+          <input type="date" id="endDate" name="endDate" required>
+        </div>
+      </div>
+
+      <!-- Coupon Information Container -->
+      <div class="coupon-container">
+        <div class="form-group">
+          <label for="couponCode">Coupon Code</label>
+          <input type="text" id="couponCode" name="couponCode" placeholder="Enter coupon code" required>
+        </div>
+        <div class="form-group">
+          <label for="limits">Limits</label>
+          <input type="number" id="limits" name="limits" placeholder="Enter usage limits" required>
+        </div>
+        <div class="form-group">
+          <label>Type</label>
+          <div class="coupon-type">
+            <label><input type="radio" name="type" value="free_shipping" required> Free Shipping</label>
+            <label><input type="radio" name="type" value="percent" required> Percentage (%)</label>
+            <label><input type="radio" name="type" value="amount" required> Fixed Amount</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="discountValue">Discount Value</label>
+          <input type="number" id="discountValue" name="discountValue" placeholder="Enter discount value" required>
+        </div>
+        <button type="submit" class="create-btn">Create Coupon</button>
+      </div>
+    </div>
+  </div>
+
+</body>
+
+</html>
