@@ -4,9 +4,6 @@ body,html {
     box-sizing: border-box;
     font-family: Arial, sans-serif;
 }
-/* header{
-    position: fixed;
-} */
 .container {
     display: flex;
     gap: 20px;
@@ -85,6 +82,7 @@ textarea {
     display: flex;
     align-items: center;
     margin: 15px 0;
+    border-bottom: 1px solid #000;
 }
 
 .product img {
