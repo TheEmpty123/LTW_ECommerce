@@ -101,16 +101,20 @@ a {
     height: 310px;
 }
 .register-button{
+    display: flex;
+    justify-content: center;
     position: absolute;
     background-color: rgb(29, 168, 17);
     color: white;
-    width: 70px;
-    height: 30px;
-    padding: 4px;
     bottom: 20px;
     left: 40%;
     text-align: center;
     border-radius: 5px;
+    width: 100px;
+    height: 32px;
+}
+.register-button a{
+    color: white !important;
 }
 .footer-register{
     width: 430px;
