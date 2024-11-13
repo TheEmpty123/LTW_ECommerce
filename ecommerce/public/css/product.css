@@ -124,7 +124,7 @@ html, body{
     opacity: 0;
 }
 /* START POP UP CART */
-#mask-container{
+/* #mask-container{
     display:flex;
     width: 100vw;
     height: 100vh;
@@ -245,7 +245,7 @@ html, body{
 }
 #pay-pal .watch-cart a{
     color: white;
-}
+} */
 /* END POP UP CART */
 /* Kết thúc lớp phủ */
 #product-details .product-describe{
