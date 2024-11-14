@@ -132,7 +132,10 @@ header {
 .btn:hover + .dropdown-menu,
 .dropdown-menu:hover {
     display: block;
-    margin-top: 3%;
+    margin-top: 50px;
+}
+.btn.dropdown-toggle{
+    padding-bottom: 20px;
 }
 .dropdown-menu{
     background-color: #f8f8f8;
