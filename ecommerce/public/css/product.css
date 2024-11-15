@@ -18,6 +18,10 @@ html, body{
     justify-content: center;
     align-items: center;
 }
+.use-button a{
+    text-decoration: none;
+    color: white;
+}
 #product-details h1{
     font-size: 30px;
 }
