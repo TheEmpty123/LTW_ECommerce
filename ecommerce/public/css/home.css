@@ -175,7 +175,6 @@ color: white;
 }
 .new-product-header {
     display: flex;
-    /* padding: 2px; */
     margin-left: 5%;
     margin-right: 5%;
     justify-content: space-between;
@@ -184,6 +183,10 @@ color: white;
     border-bottom: 1px solid #ddd;
     margin-bottom: 1px;
 
+}
+.card-body h5{
+    font-size: medium;
+    font-weight: bold;
 }
 
 .new-product-header h2 {
@@ -197,9 +200,12 @@ color: white;
 }
 .text-muted button{
     width: 100px;
-    height: 30px;
+    height: 40px;
 }
 .text-muted .add-to-cart{
+    margin-left: 1%;
+    width: 150px;
+    font-size: medium;
     float: left;
     cursor: pointer;
 }
@@ -360,7 +366,7 @@ textarea {
 
 }
 .card-d{
-    background-color: red;
+    height: 3rem;
 }
 
 .card img {
@@ -396,7 +402,7 @@ textarea {
 }
 
 /* css watched products */
-#watched-product{
+/* #watched-product{
     height: 890px;
     border-top: solid 1px #dddddd;
 }
@@ -492,4 +498,4 @@ textarea {
 }
 .nav-box.clicked{
     background-color: #e5a321;
-}
+} */
