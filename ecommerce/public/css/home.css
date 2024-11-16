@@ -394,3 +394,72 @@ textarea {
     position: relative;
     z-index: 2; 
 }
+
+/* css watched products */
+#watched-product{
+    height: 890px;
+    border-top: solid 1px #dddddd;
+}
+#similar .title-similar,
+#watched-product .title-watched{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0;
+}
+.center-box{
+    width: 1235px;
+    height: 85%;
+    margin-left: auto;
+    margin-right: auto;
+}
+.carousel-container{
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 97%;
+    height: 100%;
+    max-width: 1250px;
+    margin: 0 auto;
+}
+.carousel-items{
+    margin: 0 20px;
+}
+.carousel-next,
+.carousel-prev{
+    border: none;
+    background-color: white;
+    transform: translateY(-50%);
+    color: #333;
+    font-size: 24px;
+}
+.carousel-next-box,
+.carousel-prev-box{
+    position: absolute;
+    width: 30px;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1;
+    opacity: 0;
+}
+#watched-product .center-box:hover .carousel-next-box,
+#watched-product .center-box:hover .carousel-prev-box{
+    opacity: 1;
+    transform: translateX(0);
+    transition: transform 0.5s ease;
+}
+.carousel-next-box{
+    right: 0;
+    box-shadow: -10px 0 10px #bbb9b96c;
+    transform: translateX(100%);
+}
+.carousel-prev-box{
+    left: 0;
+    box-shadow: 10px 0 10px #bbb9b96c;
+    transform: translateX(-100%);
+}
+
