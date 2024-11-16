@@ -349,6 +349,7 @@ input[type="number"]::-webkit-outer-spin-button,
 }
 .card.product-card:hover{
     border: solid 1px #dddddd;
+    box-shadow: 16px 19px 10px rgba(0, 0, 0, 0.3);
     cursor: pointer;
 }
 .card.product-card:hover .cart-see-more-btns{
