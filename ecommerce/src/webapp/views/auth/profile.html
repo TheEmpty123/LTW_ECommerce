@@ -530,91 +530,127 @@
                     <h5 style="margin: 5px 0;">Tài khoản cá nhân</h5>
                 </div>
                 <div class="sub-menu">
-
-                    <h6 id="sub-menu-info" class="text-menu black">Thông tin của tôi</h6>
-                    <h6 id="sub-menu-order" class="text-menu">Đơn hàng</h6>
-                    <h6 id="sub-menu-product-viewed" class="text-menu">Sản phẩm vừa xem</h6>
-                    <h6 id="sub-menu-wish-list" class="text-menu">Danh sách ưa thích</h6>
-                    <h6 id="sub-menu-logout" class="text-menu">Đăng xuất</h6>
+                        <h6 id="sub-menu-info" class="text-menu clicked">Thông tin của tôi</h6>
+                        <h6 id="sub-menu-order" class="text-menu">Đơn hàng</h6>
+                        <!-- <h6 id="sub-menu-product-viewed" class="text-menu">Sản phẩm vừa xem</h6> -->
+                        <h6 id="sub-menu-wish-list" class="text-menu">Danh sách ưa thích</h6>
+                        <h6 id="sub-menu-logout" class="text-menu">Đăng xuất</h6>
 
                 </div>
             </div>
             <!-- Chứa các thông tin của người dùng -->
-            <div id="information">
-                <div class="row" style="height: 170px;">
-                    <div class="col-md-6 flex-column">
-                        <label for="" class="pb-10">Họ: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text">
-                    </div>
-                    <div class="col-md-6 flex-column">
-                        <label for="" class="pb-10">Tên: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text">
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Tên hiển thị: </label>
-                        <input type="text" class="input-text" value="Khanhduy270704">
-                    </div>
-                </div>
-                <div class="row" style="height: 140px;">
-                    <div class="col-md-12 flex-column">
-                        <label class="pt-10">Tên này sẽ được hiển thị ở phần tài khoản và bình luận</label>
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Địa chỉ email: <abbr class="p-red">*</abbr> </label>
-                        <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
-                    </div>
-                </div>
-                <div class="row" style="height: 360px;">
-                    <div class="col-md-12">
-                        <h5>Thay đổi mật khẩu</h5>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12 flex-column">
-                            <label for="" class="pb-10">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
+             <div id="sub-content">
+                <div id="information" class="show">
+                    <div class="row" style="height: 170px;">
+                        <div class="col-md-6 flex-column">
+                            <label for="" class="pb-10">Họ: <abbr class="p-red">*</abbr></label>
                             <input type="text" class="input-text">
                         </div>
-                    </div>
-                    <div class="col-md-12">
-                        <div class="col-md-12 flex-column">
-                            <label for="" class="pb-10">Mật khẩu mới (để trống nếu không có thay đổi) </label>
+                        <div class="col-md-6 flex-column">
+                            <label for="" class="pb-10">Tên: <abbr class="p-red">*</abbr></label>
                             <input type="text" class="input-text">
                         </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Tên hiển thị: </label>
+                            <input type="text" class="input-text" value="Khanhduy270704">
+                        </div>
                     </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Xác nhận mật khẩu mới </label>
-                        <input type="text" class="input-text">
+                    <div class="row" style="height: 140px;">
+                        <div class="col-md-12 flex-column">
+                            <label class="pt-10">Tên này sẽ được hiển thị ở phần tài khoản và bình luận</label>
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Địa chỉ email: <abbr class="p-red">*</abbr> </label>
+                            <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
+                        </div>
                     </div>
-                    <div class="col-sm-3 col-md-3 flex-column">
-                        <button class="b-w-b p-2-1">Lưu thay đổi</button>
+                    <div class="row" style="height: 360px;">
+                        <div class="col-md-12">
+                            <h5>Thay đổi mật khẩu</h5>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12 flex-column">
+                                <label for="" class="pb-10">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
+                                <input type="text" class="input-text">
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="col-md-12 flex-column">
+                                <label for="" class="pb-10">Mật khẩu mới (để trống nếu không có thay đổi) </label>
+                                <input type="text" class="input-text">
+                            </div>
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Xác nhận mật khẩu mới </label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <div class="col-sm-3 col-md-3 flex-column">
+                            <button class="b-w-b p-2-1">Lưu thay đổi</button>
+                        </div>
+                    </div>
+    
+                    <div class="row" style="height: 600px;">
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Địa chỉ: <abbr class="p-red">*</abbr></label>
+                            <input type="text" class="input-text" placeholder="Nhập địa chỉ">
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Quận / Huyện: <abbr class="p-red">*</abbr> </label>
+                            <input type="text" class="input-text" placeholder="Chọn quận / huyện">
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Tỉnh / Thành phố: <abbr class="p-red">*</abbr></label>
+                            <input type="text" class="input-text" placeholder="Chọn thành phố">
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Số điện thoại <abbr class="p-red">*</abbr></label>
+                            <input type="text" class="input-text">
+                        </div>
+                        <div class="col-md-12 flex-column">
+                            <label for="" class="pb-10">Địa chỉ email: <abbr class="p-red">*</abbr> </label>
+                            <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
+                        </div>
+                        <div class="col-sm-3 col-md-3 flex-column">
+                            <button class="b-w-b p-2-1">Cập nhật</button>
+                        </div>
                     </div>
                 </div>
 
-                <div class="row" style="height: 600px;">
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Địa chỉ: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text" placeholder="Nhập địa chỉ">
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Quận / Huyện: <abbr class="p-red">*</abbr> </label>
-                        <input type="text" class="input-text" placeholder="Chọn quận / huyện">
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Tỉnh / Thành phố: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text" placeholder="Chọn thành phố">
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Số điện thoại <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text">
-                    </div>
-                    <div class="col-md-12 flex-column">
-                        <label for="" class="pb-10">Địa chỉ email: <abbr class="p-red">*</abbr> </label>
-                        <input type="text" class="input-text" value="Khanhduy270704@gmail.com">
-                    </div>
-                    <div class="col-sm-3 col-md-3 flex-column">
-                        <button class="b-w-b p-2-1">Cập nhật</button>
+                <div id="order" class="hidden">
+                    <div class="box">
+                        <h3>Đơn hàng của tôi</h3>
+                        <div class="nav-order">
+                            <div class="nav-box fchild">Tất cả đơn hàng</div>
+                            <div class="nav-box">Đang xử lí</div>
+                            <div class="nav-box">Đang giao</div>
+                            <div class="nav-box">Đã hoàn thành</div>
+                            <div class="nav-box">Trả lại</div>
+                        </div>
                     </div>
                 </div>
-            </div>
+                <div id="wish-list" class="hidden">
+                    <div class="box">
+                        <h3>Danh sách yêu thích</h3>
+                    </div>
+                </div>
+    
+                <div id="log-out" class="hidden">
+                    <div class="box-logout">
+                        <div class="content-logout">
+                            <div class="check-out-image">
+                                <!-- <img src="../../../../public/images/check-out.png" alt=""> -->
+                            </div>
+                            <h5>Bạn chắc chắn muốn đăng xuất?</h5>
+                            <div class="buttons-box">
+                                <a href="../common/home.html">
+                                    <button class="btns">Đăng xuất</button>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+             </div>
+            
             <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->
             <div id="reminds-products">
                 <div class="wish-list">
@@ -725,6 +761,7 @@
     </footer>
     <script src="../../../../public/js/curtainmenu.js"></script>
     <script src="../../../../public/js/popup.js"></script>
+    <script src="../../../../public/js/submenu.js"></script>
 </body>
 
 </html>
