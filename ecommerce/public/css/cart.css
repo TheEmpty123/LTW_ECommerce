@@ -62,6 +62,7 @@ h1{
 
 .item-details {
     flex: 1;
+    margin-top: 40px;
 }
 
 .item-details h3 {
@@ -141,7 +142,7 @@ input:checked + label{
     font-weight: bold;
 }
 .shop-total{
-    margin-top: 30px;
+    margin: 30px 0;
     width: 100%;
     border-bottom: solid 1px rgb(175, 175, 175);
 }
@@ -177,6 +178,7 @@ th{
     justify-content: center;
     align-items: center;
 }
+
 .sale-buy.row{
     margin: 10px 0;
 }
