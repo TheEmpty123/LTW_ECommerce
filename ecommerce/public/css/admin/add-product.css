@@ -99,7 +99,7 @@
   .form-row .form-group {
     flex: 1;
   }
-
+  
   /* Responsive design */
   @media (max-width: 600px) {
     .form-container {
