@@ -8,6 +8,7 @@
     <title>Admin</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="../../../../public/css/admin/style.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/popup.css">
 </head>
 
 <body>
@@ -143,6 +144,18 @@
 
     <div class="main-content">
 
+
+        <!-- Pop up -->
+
+        <div id="iframePopup" class="modal">
+            <div class="modal-content">
+              <span class="close">&times;</span>
+              <iframe src="add-stock.html" frameborder="0"></iframe>
+            </div>
+        </div>
+
+        <!-- End pop up -->
+
         <header>
             <div class="search-wrapper">
                 <span class="ti-search"></span>
@@ -205,7 +218,7 @@
                                             <h5>44 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -235,7 +248,7 @@
                                             <h5>13 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -265,7 +278,7 @@
                                             <h5>5 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -295,7 +308,7 @@
                                             <h5>108 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -325,7 +338,7 @@
                                             <h5>99 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -355,7 +368,7 @@
                                             <h5>99 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -385,7 +398,7 @@
                                             <h5>245 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -415,7 +428,7 @@
                                             <h5>23 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -445,7 +458,7 @@
                                             <h5>23 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -475,7 +488,7 @@
                                             <h5>23 reviews</h5>
                                         </td>
                                         <td>
-                                            <a href="add-stock.html">
+                                            <a href="#" id="openIframePopup">
                                                 <span class="ti-plus"></span>
                                             </a>
                                             <a href="#">
@@ -508,7 +521,7 @@
         </main>
 
     </div>
-
+<script src="../../../../public/js/admin/popup.js"></script>
 </body>
 
 </html>

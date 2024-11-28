@@ -6,113 +6,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
     <title>Admin</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
-    <link rel="stylesheet" href="../../../../public/css/admin/style.css">
     <link rel="stylesheet" href="../../../../public/css/admin/add-product.css">
 </head>
 
 <body>
-    <iframe src="menu-bar.html" frameborder="0"></iframe>
 
-
-    <div class="main-content">
-
-        <header>
-            <div class="search-wrapper">
-                <span class="ti-search"></span>
-                <input type="search" placeholder="Search">
+    <div class="form-container">
+        <!-- Left section: Image upload and button -->
+        <div class="left-section">
+            <div class="img-upload">
+                <label for="productImg">Add More Product Image</label>
+                <div class="img-preview">No Image</div>
+                <input type="file" id="productImg" name="productImg" accept="image/*" multiple>
             </div>
 
-            <div class="social-icons">
-                <span class="ti-bell"></span>
-                <span class="ti-comment"></span>
-                <div></div>
-            </div>
-        </header>
+        </div>
 
-        <main>
-            <section class="recent">
-                <div class="activity-grid-alt5">
-
-                    <div class="form-container">
-                        <!-- Left section: Image upload and button -->
-                        <div class="left-section">
-                            <div class="img-upload">
-                                <label for="productImg">Product Image</label>
-                                <div class="img-preview">No Image</div>
-                                <input type="file" id="productImg" name="productImg" accept="image/*">
-                            </div>
-
-                        </div>
-
-                        <!-- Right section: Product details -->
-                        <div class="right-section">
-                            <h2>Add New Product</h2>
-                            <form>
-                                <!-- Name and Category on the same row -->
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="productName">Product Name</label>
-                                        <input type="text" id="productName" name="productName"
-                                            placeholder="Enter product name" required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="productCategory">Product Categories</label>
-                                        <select id="productCategory" name="productCategory" required>
-                                            <option value="">Select category</option>
-                                            <option value="Kệ phòng khách">Kệ phòng khách</option>
-                                            <option value="Bàn nước">Bàn nước</option>
-                                            <option value="Ghế dài & đôn">Ghế dài & đôn</option>
-                                            <option value="Đèn trang trí">Đèn trang trí</option>
-                                            <option value="Giường">Giường</option>
-                                            <option value="Ghế Bar">Ghế Bar</option>
-                                            <option value="Phòng khách">Phòng khách</option>
-                                            <option value="Armchair">Armchair</option>
-                                            <option value="Bàn bên">Bàn bên</option>
-                                            <option value="Tủ giày">Tủ giày</option>
-                                            <option value="Tủ ly">Tủ ly</option>
-                                            <option value="Sofa">Sofa</option>
-                                            <option value="Đồng hồ trang trí">Đồng hồ trang trí</option>
-                                            <option value="Tủ áo">Tủ áo</option>
-                                            <option value="Bình trang trí">Bình trang trí</option>
-                                            <option value="Khung gương">Khung gương</option>
-                                            <option value="Bàn làm việc">Bàn làm việc</option>
-                                            <!-- Add more categories as needed -->
-                                        </select>
-                                    </div>
-                                </div>
-
-                                <!-- Stock and Price on the same row -->
-                                <div class="form-row">
-                                    <div class="form-group">
-                                        <label for="stock">Stock</label>
-                                        <input type="number" id="stock" name="stock" placeholder="Enter stock quantity"
-                                            required>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="price">Price (vnđ)</label>
-                                        <input type="number" id="price" name="price" placeholder="Enter product price"
-                                            required>
-                                    </div>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="productDescription">Description</label>
-                                    <textarea id="productDescription" name="productDescription"
-                                        placeholder="Enter product description"></textarea>
-                                </div>
-
-                                <button type="submit" class="create-btn">Create Product</button>
-                            </form>
-                        </div>
+        <!-- Right section: Product details -->
+        <div class="right-section">
+            <form>
+                <!-- Name and Category on the same row -->
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="stock">Stock</label>
+                        <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
                     </div>
-
+                    <div class="form-group">
+                        <label for="inventory">Product Categories</label>
+                        <select id="inventory" name="inventory" required>
+                            <option value="">Select inventory</option>
+                            <option value="WH-001">Hợp Tiến Logistics</option>
+                            <option value="WH-002">Noi Bai Cargo Terminal Service JSC</option>
+                            <option value="WH-003">SPX Châu Phú</option>
+                            <option value="WH-004">SPX Thống Nhất</option>
+                            <option value="WH-005">SPX Biên Hòa 01</option>
+                            <!-- Add more categories as needed -->
+                        </select>
+                    </div>
                 </div>
-            </section>
 
-        </main>
-
+                <button type="submit" class="create-btn">Add Stock</button>
+            </form>
+        </div>
     </div>
+
 
 </body>
 
