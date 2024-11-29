@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="../../../../public/css/admin/style.css">
     <link rel="stylesheet" href="../../../../public/css/admin/popup.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/filter-style.css">
 </head>
 
 <body>
@@ -117,7 +118,7 @@
                         Support
                     </a>
                 </li>
-                
+
                 <li>
                     <a href="privacy-policy.html">
                         <span class="ti-info-alt"></span>
@@ -141,16 +142,14 @@
         </div>
     </div>
 
-
     <div class="main-content">
-
 
         <!-- Pop up -->
 
         <div id="iframePopup" class="modal">
             <div class="modal-content">
-              <span class="close">&times;</span>
-              <iframe src="add-stock.html" frameborder="0"></iframe>
+                <span class="close">&times;</span>
+                <iframe src="add-stock.html" frameborder="0"></iframe>
             </div>
         </div>
 
@@ -171,6 +170,61 @@
 
         <main>
             <section class="recent">
+
+                <!-- Filter -->
+                <div class="filter-container">
+                    <div class="filter">
+                        <div class="filter-component">
+                            <h2>Category:</h2>
+                        </div>
+
+                        <!-- Filter Box -->
+                        <div class="filter-component">
+                            <select id="productCategory" name="productCategory">
+                                <option value="">Select category</option>
+                                <option value="Kệ phòng khách" selected>Kệ phòng khách</option>
+                                <option value="Bàn nước">Bàn nước</option>
+                                <option value="Ghế dài & đôn">Ghế dài & đôn</option>
+                                <option value="Đèn trang trí">Đèn trang trí</option>
+                                <option value="Giường">Giường</option>
+                                <option value="Ghế Bar">Ghế Bar</option>
+                                <option value="Phòng khách">Phòng khách</option>
+                                <option value="Armchair">Armchair</option>
+                                <option value="Bàn bên">Bàn bên</option>
+                                <option value="Tủ giày">Tủ giày</option>
+                                <option value="Tủ ly">Tủ ly</option>
+                                <option value="Sofa">Sofa</option>
+                                <option value="Đồng hồ trang trí">Đồng hồ trang trí</option>
+                                <option value="Tủ áo">Tủ áo</option>
+                                <option value="Bình trang trí">Bình trang trí</option>
+                                <option value="Khung gương">Khung gương</option>
+                                <option value="Bàn làm việc">Bàn làm việc</option>
+                                <!-- Add more categories as needed -->
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="filter">
+                        <div class="filter-component">
+                            <h2>Warehouse:</h2>
+                        </div>
+
+                        <!-- Filter Box -->
+                        <div class="filter-component">
+                            <select id="inventory" name="inventory">
+                                <option value="">Select inventory</option>
+                                <option value="WH-001">Hợp Tiến Logistics</option>
+                                <option value="WH-002">Noi Bai Cargo Terminal Service JSC</option>
+                                <option value="WH-003">SPX Châu Phú</option>
+                                <option value="WH-004">SPX Thống Nhất</option>
+                                <option value="WH-005">SPX Biên Hòa 01</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+
+
                 <div class="activity-grid-alt2">
                     <div class="activity-card">
 
@@ -182,8 +236,11 @@
                                 <div class="pagination">
                                     <a href="add-product.html" class="add-product-btn">Add product</a>
                                 </div>
+
                             </div>
                         </div>
+
+
 
                         <div class="table-responsive">
                             <table>
@@ -521,7 +578,7 @@
         </main>
 
     </div>
-<script src="../../../../public/js/admin/popup.js"></script>
+    <script src="../../../../public/js/admin/popup.js"></script>
 </body>
 
 </html>
