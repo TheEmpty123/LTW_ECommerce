@@ -165,8 +165,10 @@
                         <!-- Left section: Image upload and button -->
                         <div class="left-section">
                             <div class="img-upload">
-                                <label for="productImg">Product Image</label>
-                                <div class="img-preview">No Image</div>
+                                <label for="productImg">Product Thumbnail</label>
+                                <div class="img-preview">
+                                    <img src="../../../../public/images/all-products/1.jpg" alt="">
+                                </div>
                                 <input type="file" id="productImg" name="productImg" accept="image/*">
                             </div>
 
@@ -174,20 +176,20 @@
 
                         <!-- Right section: Product details -->
                         <div class="right-section">
-                            <h2>Add New Product</h2>
+                            <h2>Edit Product ID #001</h2>
                             <form>
                                 <!-- Name and Category on the same row -->
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="productName">Product Name</label>
                                         <input type="text" id="productName" name="productName"
-                                            placeholder="Enter product name" required>
+                                            placeholder="Kệ 3 tầng Gold" required>
                                     </div>
                                     <div class="form-group">
                                         <label for="productCategory">Product Categories</label>
                                         <select id="productCategory" name="productCategory" required>
                                             <option value="">Select category</option>
-                                            <option value="Kệ phòng khách">Kệ phòng khách</option>
+                                            <option value="Kệ phòng khách" selected>Kệ phòng khách</option>
                                             <option value="Bàn nước">Bàn nước</option>
                                             <option value="Ghế dài & đôn">Ghế dài & đôn</option>
                                             <option value="Đèn trang trí">Đèn trang trí</option>
@@ -220,7 +222,7 @@
                                     -->
                                     <div class="form-group">
                                         <label for="price">Price (vnđ)</label>
-                                        <input type="text" id="price" name="price" placeholder="Enter product price"
+                                        <input type="text" id="price" name="price" placeholder="24,480,000"
                                             required>
                                     </div>
                                 </div> 
@@ -231,7 +233,7 @@
                                         placeholder="Enter product description"></textarea>
                                 </div>
 
-                                <button type="submit" class="create-btn">Create Product</button>
+                                <button type="submit" class="create-btn">Update</button>
                             </form>
                         </div>
                     </div>
