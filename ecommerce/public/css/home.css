@@ -331,7 +331,7 @@ textarea {
     font-weight: bold ;
     font-size: 4.5rem;
     color: white;
-    z-index:1000;
+    z-index:-1000;
 }
 .part4 button{
     display: inline-block;
@@ -347,7 +347,7 @@ textarea {
 }
 .listpart4{
     margin-top: -20%;
-    z-index: 10000;
+    z-index: -1;
 }
 .part4 button:hover{
     background-color: white;
