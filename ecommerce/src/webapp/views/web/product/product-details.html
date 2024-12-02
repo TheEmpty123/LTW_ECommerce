@@ -87,13 +87,58 @@
         color: #555;
     }
 
-    .review-images img {
-        width: 80px;
-        height: 80px;
-        border-radius: 4px;
-        margin-right: 5px;
-        object-fit: cover;
+
+    .product-review {
+        max-width: 1000px;
+        margin: 20px auto;
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
+
+    .product-review h3 {
+        margin-bottom: 10px;
+        width: 300px;
+        font-size: 1.2rem;
+        color: #333;
+    }
+
+    .product-review textarea {
+        width: 100%;
+        padding: 10px;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        resize: none;
+        box-sizing: border-box;
+        height: 50px;
+    }
+
+    .product-review textarea:focus {
+        outline: none;
+        border-color: #007bff;
+        box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+    }
+
+    .product-review button {
+        margin: 10px;
+        padding: 10px 15px;
+        width: 200px;
+        height: 50px;
+        background-color: #007bff;
+        color: white;
+        font-size: 1rem;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .product-review button:hover {
+        background-color: #0056b3;
+    }
+
     </style>
 </head>
 <body>
@@ -534,7 +579,6 @@
                     <button>3 Sao (52)</button>
                     <button>2 Sao (10)</button>
                     <button>1 Sao (26)</button>
-                    <button>Có Hình Ảnh/Video (598)</button>
                 </div>
             </div>
     
@@ -545,11 +589,6 @@
                     <p>2024-07-28 00:19 | Số lượng: 2</p>
                 </div>
                 <p>Ghế quá đẹp và chất lượng, đúng như hình. Giao hàng nhanh chóng, chuyên nghiệp 10đ. Đặt vào rất hợp với nội thất của nhà mình.</p>
-                <div class="review-images">
-                    <img src="../../../../../public/images/all-products/52.jpg" alt="Ảnh 1">
-                    <!-- <img src="image2.jpg" alt="Ảnh 2">
-                    <img src="image3.jpg" alt="Ảnh 3"> -->
-                </div>
             </div>
     
             <div class="review">
@@ -562,11 +601,12 @@
                     Nhân viên rất nhiệt tình có hỗ trợ trả hàng hoàn tiền khi khách không ưng, đầu tiên
                     mình định trả hàng rồi mà chả hiểu điều gì khiến mình giữ lại!ghế không có chỗ nào để chê, đẹp luôn.
                 </p>
-                <div class="review-images">
-                    <img src="../../../../../public/images/all-products/52.jpg" alt="Ảnh 4">
-                    <!-- <img src="../../../../../public/images/all-products/52.jpg" alt="Ảnh 5">
-                    <img src="../../../../../public/images/all-products/52.jpg" alt="Ảnh 6"> -->
-                </div>
+            </div>
+
+            <div class="product-review">
+                <h3>Đánh giá sản phẩm</h3>
+                <textarea placeholder="Nhập đánh giá của bạn ở đây..." rows="1"></textarea>
+                <button type="submit">Gửi đánh giá</button>
             </div>
         </div>
 
