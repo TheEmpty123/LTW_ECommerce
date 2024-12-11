@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Category Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/style.css">
+</head>
+
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-panel"></span>
+                <span>Dashboard</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <!-- For management -->
+                <li>
+                    <a class="separator">
+                        General
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="ti-home"></span>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-management.html">
+                        <span class="ti-wheelchair"></span>
+                        <span>Admins</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <span class="ti-user"></span>
+                        <span>Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="role-permissions-management.html">
+                        <span class="ti-agenda"></span>
+                        <span>Vai trò & Quyền hạn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <span class="ti-truck"></span>
+                        <span>Quản lý sản phẩm</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="category-management.html">
+                        <span class="ti-menu"></span>
+                        <span>Quản lý danh mục</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html">
+                        <span class="ti-server"></span>
+                        <span>Quản lý hàng tồn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <span class="ti-receipt"></span>
+                        <span>Quản lý đơn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="promotions-discounts.html">
+                        <span class="ti-ticket"></span>
+                        <span>Giảm giá</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchases-management.html">
+                        <span class="ti-money"></span>
+                        <span>Thanh toán</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sales-reports.html">
+                        <span class="ti-bar-chart"></span>
+                        <span>Báo cáo doanh thu</span>
+                    </a>
+                </li>
+
+                <!-- For user self -->
+
+                <li>
+                    <a class="separator">Users</a>
+                </li>
+
+                <li>
+                    <a href="profile-management.html">
+                        <span class="ti-user"></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <!-- For support -->
+
+                <li>
+                    <a class="separator">
+                        Support
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="privacy-policy.html">
+                        <span class="ti-info-alt"></span>
+                        <span>Privacy policy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="FAQs.html">
+                        <span class="ti-help-alt"></span>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help-center.html">
+                        <span class="ti-headphone-alt"></span>
+                        <span>Help center</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                <div></div>
+            </div>
+        </header>
+
+        <main>
+
+            <h2 class="dash-title">Most Popular Product</h2>
+
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="../../../../public/images/admin/category1-714x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Khách</h5>
+                            <h4>7,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="../../../../public/images/admin/category2-581x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Ăn</h5>
+                            <h4>2,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="../../../../public/images/admin/category3-581x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Ngủ</h5>
+                            <h4>1,146 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <section class="recent">
+                <div class="activity-grid-alt2">
+                    <div class="activity-card">
+
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>All Category List</h3>
+                                <span class="ti-search"></span>
+                                <input type="search" placeholder="Search content here...">
+                                <div class="pagination">
+                                    <a href="add-product.html" class="add-product-btn">Add product</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>Categories</th>
+                                        <th>Starting Price</th>
+                                        <th>Create by</th>
+                                        <th>ID</th>
+                                        <th>Product Stock</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/1.jpg" alt="">
+                                            Kệ phòng khách
+                                        </td>
+                                        <td>8,670,000₫ - 24,480,000₫</td>
+                                        <td>Admin</td>
+                                        <td>001010</td>
+                                        <td>1,028</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/71.jpg" alt="">
+                                            Bàn nước
+                                        </td>
+                                        <td>7,900,000₫ - 124,900,000₫</td>
+                                        <td>Manager</td>
+                                        <td>071080</td>
+                                        <td>2,048</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/81.jpg" alt="">
+                                            Ghế dài & đôn
+                                        </td>
+                                        <td>3,999,000₫ - 28,860,000₫</td>
+                                        <td>Employee</td>
+                                        <td>081090</td>
+                                        <td>4,096</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/91.jpg" alt="">
+                                            Đèn trang trí
+                                        </td>
+                                        <td>9,490,000₫ - 32,880,000₫</td>
+                                        <td>Admin</td>
+                                        <td>091100</td>
+                                        <td>8,192</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/11.jpg" alt="">
+                                            Giường
+                                        </td>
+                                        <td>19,300,001₫ - 28,900,000₫</td>
+                                        <td>Manager</td>
+                                        <td>011020</td>
+                                        <td>16,384</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/21.jpg" alt="">
+                                            Phòng ăn
+                                        </td>
+                                        <td>28,900,000₫ - 179,900,000₫</td>
+                                        <td>Employee</td>
+                                        <td>021030</td>
+                                        <td>32,768</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/31.jpg" alt="">
+                                            Ghế Bar
+                                        </td>
+                                        <td>5,490,000₫ - 29,950,001₫</td>
+                                        <td>Admin</td>
+                                        <td>031040</td>
+                                        <td>64</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/41.jpg" alt="">
+                                            Phòng khách
+                                        </td>
+                                        <td>19,900,000₫ - 135,750,000₫</td>
+                                        <td>Manager</td>
+                                        <td>041050</td>
+                                        <td>128</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/51.jpg" alt="">
+                                            Armchair
+                                        </td>
+                                        <td>8,900,000₫ - 28,500,000₫</td>
+                                        <td>Employee</td>
+                                        <td>051060</td>
+                                        <td>256</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="td-product">
+                                            <img src="../../../../public/images/all-products/61.jpg" alt="">
+                                            Bàn bên
+                                        </td>
+                                        <td>7,990,000₫ - 95,600,185₫</td>
+                                        <td>Admin</td>
+                                        <td>061070</td>
+                                        <td>512</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <h6 class="show-entries">*Showing 1 to 10 of 16 entries</h3>
+                                <a href="#">&laquo;</a>
+                                <a href="#" class="active">1</a>
+                                <a href="#">2</a>
+                                <a href="#">&raquo;</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
