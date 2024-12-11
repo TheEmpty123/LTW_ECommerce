@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+    <title>Inventory Management</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
+    <link rel="stylesheet" href="../../../../public/css/admin/style.css">
+</head>
+
+<body>
+    <input type="checkbox" id="sidebar-toggle">
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <h3 class="brand">
+                <span class="ti-panel"></span>
+                <span>Dashboard</span>
+            </h3>
+            <label for="sidebar-toggle" class="ti-menu-alt"></label>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul>
+                <!-- For management -->
+                <li>
+                    <a class="separator">
+                        General
+                    </a>
+                </li>
+                <li>
+                    <a href="dashboard.html">
+                        <span class="ti-home"></span>
+                        <span>Trang chủ</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="admin-management.html">
+                        <span class="ti-wheelchair"></span>
+                        <span>Admins</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user-management.html">
+                        <span class="ti-user"></span>
+                        <span>Người dùng</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="role-permissions-management.html">
+                        <span class="ti-agenda"></span>
+                        <span>Vai trò & Quyền hạn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="product-management.html">
+                        <span class="ti-truck"></span>
+                        <span>Quản lý sản phẩm</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="category-management.html">
+                        <span class="ti-menu"></span>
+                        <span>Quản lý danh mục</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="inventory-management.html">
+                        <span class="ti-server"></span>
+                        <span>Quản lý hàng tồn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="order-management.html">
+                        <span class="ti-receipt"></span>
+                        <span>Quản lý đơn</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="promotions-discounts.html">
+                        <span class="ti-ticket"></span>
+                        <span>Giảm giá</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="purchases-management.html">
+                        <span class="ti-money"></span>
+                        <span>Thanh toán</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sales-reports.html">
+                        <span class="ti-bar-chart"></span>
+                        <span>Báo cáo doanh thu</span>
+                    </a>
+                </li>
+
+                <!-- For user self -->
+
+                <li>
+                    <a class="separator">Users</a>
+                </li>
+
+                <li>
+                    <a href="profile-management.html">
+                        <span class="ti-user"></span>
+                        <span>Profile</span>
+                    </a>
+                </li>
+
+                <!-- For support -->
+
+                <li>
+                    <a class="separator">
+                        Support
+                    </a>
+                </li>
+                
+                <li>
+                    <a href="privacy-policy.html">
+                        <span class="ti-info-alt"></span>
+                        <span>Privacy policy</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="FAQs.html">
+                        <span class="ti-help-alt"></span>
+                        <span>FAQs</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="help-center.html">
+                        <span class="ti-headphone-alt"></span>
+                        <span>Help center</span>
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="main-content">
+
+        <header>
+            <div class="search-wrapper">
+                <span class="ti-search"></span>
+                <input type="search" placeholder="Search">
+            </div>
+
+            <div class="social-icons">
+                <span class="ti-bell"></span>
+                <span class="ti-comment"></span>
+                <div></div>
+            </div>
+        </header>
+
+        <main>
+
+            <h2 class="dash-title">Most Popular Product</h2>
+
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-package"></span>
+                        <div>
+                            <h5>Total Product Items</h5>
+                            <h4>107,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-export"></span>
+                        <div>
+                            <h5>In Stock Product</h5>
+                            <h4>2,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <span class="ti-import"></span>
+                        <div>
+                            <h5>Out Of Stock Product</h5>
+                            <h4>1,146 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <section class="recent">
+                <div class="activity-grid-alt2">
+                    <div class="activity-card">
+
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>All Warehouse List</h3>
+                                <span class="ti-search"></span>
+                                <input type="search" placeholder="Search content here...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                    <tr>
+                                        <th>WareH ID</th>
+                                        <th>Name</th>
+                                        <th>Location</th>
+                                        <th>Manager</th>
+                                        <th>Contact Number</th>
+                                        <th>Stock Available</th>
+                                        <th>Stock Shipping</th>
+                                        <th>Revenue</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+
+                                    <tr>
+                                        <td>#WH-001</td>
+                                        <td>Hợp Tiến Logistics</td>
+                                        <td>P. An Bình, TX. Dĩ An, Bình Dương</td>
+                                        <td>The Empty</td>
+                                        <td>0941 688 123</td>
+                                        <td>1,028</td>
+                                        <td>512</td>
+                                        <td>9,490,000₫</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>#WH-002</td>
+                                        <td>Noi Bai Cargo Terminal Service JSC</td>
+                                        <td>VNHAN / HA NOI</td>
+                                        <td>The Empty</td>
+                                        <td>0243 886 5592</td>
+                                        <td>901,028</td>
+                                        <td>12,512</td>
+                                        <td>809,490,000₫</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>#WH-003</td>
+                                        <td>Điểm dịch vụ SPX Châu Phú</td>
+                                        <td>Vĩnh Thạnh Trung, Huyện Châu Phú, An Giang.</td>
+                                        <td>Toàn</td>
+                                        <td>0327 500 168</td>
+                                        <td>2,056</td>
+                                        <td>750</td>
+                                        <td>490,000₫</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>#WH-004</td>
+                                        <td>Điểm dịch vụ SPX Thống Nhất</td>
+                                        <td>Quang Trung, Huyện Thống Nhất, Đồng Nai.</td>
+                                        <td>Lực</td>
+                                        <td>0327 500 168</td>
+                                        <td>2,056</td>
+                                        <td>122</td>
+                                        <td>12,490,000₫</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>#WH-005</td>
+                                        <td>Điểm dịch vụ SPX Biên Hòa 01</td>
+                                        <td>Hóa An, thành phố Biên Hòa, Đồng Nai.</td>
+                                        <td>Duy</td>
+                                        <td>0327 500 168</td>
+                                        <td>2,056</td>
+                                        <td>268</td>
+                                        <td>5,490,000₫</td>
+                                        <td>
+                                            <a href="#">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <h6 class="show-entries">*Showing 1 to 5 of 5 entries</h3>
+                                <a href="#">&laquo;</a>
+                                <a href="#" class="active">1</a>
+                                <a href="#">&raquo;</a>
+                        </div>
+
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+    </div>
+
+</body>
+
+</html>
