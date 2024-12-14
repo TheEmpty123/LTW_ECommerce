@@ -1,0 +1,26 @@
+[
+  {
+    "ID": 1,
+    "permissionName": "User Management",
+    "createDate": "2023-03-04 08:30:00",
+    "lastUpdate": "Today"
+  },
+  {
+    "ID": 2,
+    "permissionName": "Financial Management",
+    "createDate": "2023-03-04 08:30:00",
+    "lastUpdate": "2023-12-06"
+  },
+  {
+    "ID": 3,
+    "permissionName": "Content Management",
+    "createDate": "2023-03-04 08:30:00",
+    "lastUpdate": "Yesterday"
+  },
+  {
+    "ID": 4,
+    "permissionName": "Reporting",
+    "createDate": "2023-03-04 08:30:00",
+    "lastUpdate": "Yesterday"
+  }
+]

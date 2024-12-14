@@ -22,7 +22,7 @@ SET time_zone = "+00:00";
 --
 
 SET FOREIGN_KEY_CHECKS = 0;
-DROP TABLE IF EXISTS address,asign_role, category,favourite_products, having_product, order_item, orders, own_address, payment, permission, products, product_atribute, promotions, ratings, role, product_img,having_img, users, warehouse;
+DROP TABLE IF EXISTS address,asign_role, category,favourite_products, having_product, order_item, orders, own_address, payment, permission, products, product_atribute, promotions, ratings, role, product_img,having_img, users, warehouse,asigning_role;
 
 -- DROP TABLE IF EXISTS employment;
 -- --------------------------------------------------------
@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS address,asign_role, category,favourite_products, having_pro
 --
 
 CREATE TABLE address (
-  ID INT NOT NULL,
+  ID INT   NOT NULL,
   Princible varchar(100) NOT NULL,
   Street text NOT NULL,
   FullAddress text NOT NULL
@@ -68,7 +68,7 @@ CREATE TABLE category (
 
 
 CREATE TABLE permission (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   permissionName varchar(40) NOT NULL,
   createDate datetime NOT NULL,
   lastUpdate text DEFAULT NULL
@@ -93,13 +93,13 @@ CREATE TABLE having_product (
 --
 
 CREATE TABLE orders (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   userID INT NOT NULL,
   paymentID INT NOT NULL,
   shippingStatus ENUM('completed','packaging','cancelled','delivering') NOT NULL,
   createDate datetime NOT NULL,
   sđt varchar(11) NOT NULL,
-  promotion_code varchar(10) 
+  promotion_id int
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -109,10 +109,10 @@ CREATE TABLE orders (
 --
 
 CREATE TABLE order_item (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   orderID INT NOT NULL,
   productID INT NOT NULL,
-  totalPrice float NOT NULL
+  amount INT NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -133,7 +133,7 @@ CREATE TABLE own_address (
 --
 
 CREATE TABLE payment (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   method ENUM('cash','bank') NOT NULL,
   statuss ENUM('pending','completed','cancelled') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -143,7 +143,7 @@ CREATE TABLE payment (
 --
 
 CREATE TABLE role (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   nameRole varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -151,7 +151,7 @@ CREATE TABLE role (
 
 -- --------------------------------------------------------
 CREATE TABLE users (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   username varchar(30) NOT NULL,
   fullName varchar(100) NOT NULL,
   gender ENUM('male','female') NOT NULL,
@@ -168,7 +168,7 @@ CREATE TABLE users (
 --
 
 CREATE TABLE products (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   proName varchar(255) NOT NULL,
   price float NOT NULL,
   description text NOT NULL,
@@ -180,15 +180,10 @@ CREATE TABLE products (
 
 -- --------------------------------------------------------
 create table product_img(
-  ID int not null PRIMARY KEY,
+  ID int  not null PRIMARY KEY,
+  product_id int not null,
   path varchar(255)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
-  CREATE TABLE having_img (
-    product_id int not null,
-    path_id int not null
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
 
 CREATE TABLE favourite_products(
   productID INT NOT NULL,
@@ -200,9 +195,9 @@ CREATE TABLE favourite_products(
 --
 
 CREATE TABLE product_atribute (
-  ID INT NOT NULL,
-  material text NOT NULL,
-  size varchar(30) NOT NULL
+  ID INT  NOT NULL,
+  material text,
+  size varchar(30)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -212,6 +207,7 @@ CREATE TABLE product_atribute (
 --
 
 CREATE TABLE promotions (
+  ID int  not null,
   codes varchar(10) NOT NULL,
   type ENUM('fix_value','percentage') NOT NULL,
   limitPro int(11) NOT NULL,
@@ -241,7 +237,7 @@ CREATE TABLE ratings (
 --
 
 CREATE TABLE warehouse (
-  ID INT NOT NULL,
+  ID INT  NOT NULL,
   wareHouseName varchar(40) NOT NULL,
   managerID INT NOT NULL,
   addressID INT NOT NULL,
@@ -254,7 +250,8 @@ CREATE TABLE warehouse (
 -- Indexes for table address
 --
 ALTER TABLE address
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table asignrole
@@ -268,13 +265,15 @@ ALTER TABLE asigning_role
 -- Indexes for table category
 --
 ALTER TABLE category
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table employment
 --
 ALTER TABLE permission
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table having_product
@@ -289,7 +288,8 @@ ALTER TABLE having_product
 ALTER TABLE orders
   ADD PRIMARY KEY (ID),
   ADD KEY userID (userID),
-  ADD KEY paymentID (paymentID);
+  ADD KEY paymentID (paymentID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table order_item
@@ -297,13 +297,15 @@ ALTER TABLE orders
 ALTER TABLE order_item
   ADD PRIMARY KEY (ID),
   ADD KEY orderID (orderID),
-  ADD KEY productID (productID);
+  ADD KEY productID (productID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table payment
 --
 ALTER TABLE payment
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;;
 
 --
 -- Indexes for table product
@@ -311,19 +313,22 @@ ALTER TABLE payment
 ALTER TABLE products
   ADD PRIMARY KEY (ID),
   ADD KEY cateID (cateID),
-  ADD KEY atributeID (atributeID);
+  ADD KEY atributeID (atributeID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table product_atribute
 --
 ALTER TABLE product_atribute
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table promotions
 --
 ALTER TABLE promotions
-  ADD PRIMARY KEY (codes);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table ratings
@@ -336,20 +341,23 @@ ALTER TABLE ratings
 -- Indexes for table role
 --
 ALTER TABLE role
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table users
 --
 ALTER TABLE users
-  ADD PRIMARY KEY (ID);
+  ADD PRIMARY KEY (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Indexes for table warehouse
 --
 ALTER TABLE warehouse
   ADD PRIMARY KEY (ID),
-  ADD CONSTRAINT warehouse_add_fk  FOREIGN KEY (addressID) REFERENCES address (ID);
+  ADD CONSTRAINT warehouse_add_fk  FOREIGN KEY (addressID) REFERENCES address (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables
@@ -364,7 +372,9 @@ ALTER TABLE asigning_role
   ADD CONSTRAINT asignrole_ibfk_1 FOREIGN KEY (permissionID) REFERENCES permission (ID),
   ADD CONSTRAINT asignrole_ibfk_2 FOREIGN KEY (roleID) REFERENCES role (ID);
 
-
+AlTER TABLE product_img
+  ADD CONSTRAINT product_img_fk FOREIGN KEY (product_id) REFERENCES products (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 
 -- Constraints for table having_product
@@ -373,23 +383,22 @@ ALTER TABLE having_product
   ADD CONSTRAINT having_product_ibfk_1 FOREIGN KEY (warehouseID) REFERENCES warehouse (ID),
   ADD CONSTRAINT having_product_ibfk_2 FOREIGN KEY (productID) REFERENCES products (ID);
 
-ALTER TABLE having_img 
-  ADD CONSTRAINT having_img_fk1 FOREIGN KEY (path_id) REFERENCES product_img (ID),
-  ADD CONSTRAINT having_product_fk1 FOREIGN KEY (product_id) REFERENCES products (ID);
 --
 -- Constraints for table orderr
 --
 ALTER TABLE orders
   ADD CONSTRAINT orderr_ibfk_1 FOREIGN KEY (userID) REFERENCES users (ID),
   ADD CONSTRAINT orderr_ibfk_2 FOREIGN KEY (paymentID) REFERENCES payment (ID),
-  ADD CONSTRAINT order_fk_3 FOREIGN KEY (promotion_code) REFERENCES promotions(codes);
+  ADD CONSTRAINT order_fk_3 FOREIGN KEY (promotion_id) REFERENCES promotions(ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Constraints for table order_item
 --
 ALTER TABLE order_item
   ADD CONSTRAINT order_item_ibfk_1 FOREIGN KEY (orderID) REFERENCES orders (ID),
-  ADD CONSTRAINT order_item_ibfk_2 FOREIGN KEY (productID) REFERENCES products (ID);
+  ADD CONSTRAINT order_item_ibfk_2 FOREIGN KEY (productID) REFERENCES products (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 --
 -- Constraints for table ownaddress
@@ -403,7 +412,8 @@ ALTER TABLE own_address
 --
 ALTER TABLE products
   ADD CONSTRAINT product_ibfk_1 FOREIGN KEY (cateID) REFERENCES category (ID),
-  ADD CONSTRAINT product_ibfk_2 FOREIGN KEY (atributeID) REFERENCES product_atribute (ID);
+  ADD CONSTRAINT product_ibfk_2 FOREIGN KEY (atributeID) REFERENCES product_atribute (ID),
+  MODIFY id INT AUTO_INCREMENT;
 
 
 -- Constraints for table ratings
