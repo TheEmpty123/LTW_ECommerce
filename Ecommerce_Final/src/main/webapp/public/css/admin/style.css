@@ -143,7 +143,7 @@ header {
     width: 38px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../images/admin/1.jpg);
+    background-image: url(../../../public/images/admin/1.jpg);
     border-radius: 50%;
 }
 
@@ -395,15 +395,15 @@ tbody tr:nth-child(even) {
 }
 
 .img-1 {
-    background-image: url(../../images/admin/1.jpg);
+    background-image: url(../../../public/images/admin/1.jpg);
 }
 
 .img-2 {
-    background-image: url(../../images/admin/2.jpg);
+    background-image: url(../../../public/images/admin/2.jpg);
 }
 
 .img-3 {
-    background-image: url(../../images/admin/3.jpeg);
+    background-image: url(../../../public/images/admin/3.jpeg);
 }
 
 .summary-card {
@@ -463,7 +463,7 @@ tbody tr:nth-child(even) {
     border: 3px solid #efefef;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../images/admin/profile/1.jpg);
+    background-image: url(../../../public/images/admin/profile/1.jpg);
     margin-right: .7rem;
 }
 
@@ -485,7 +485,7 @@ tbody tr:nth-child(even) {
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 20%;
-    background-image: url(../../images/admin/profile/1.jpg);
+    background-image: url(../../../public/images/admin/profile/1.jpg);
     margin-right: 15%;
     margin-left: 15%;
 }
@@ -501,7 +501,7 @@ tbody tr:nth-child(even) {
     border: 3px solid #efefef;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url(../../images/admin/3.jpeg);
+    background-image: url(../../../public/images/admin/3.jpeg);
     margin-right: .7rem;
 }
 

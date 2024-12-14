@@ -79,9 +79,8 @@ html, body{
 
 #product-details{
     min-width: 500px;
-    height: auto;
+    height: auto !important;
     overflow: hidden;
-    
 }
 #product-details .product-image{
     float: left;
@@ -383,7 +382,7 @@ input[type="number"]::-webkit-outer-spin-button,
 }
 #imageHeader .title-bg{
     height: 100%;
-    background-image: url('..nners/banner-all-product.jpg');
+    background-image: url('../../public/images/banners/banner-all-product.jpg');
     background-size: cover;
     background-position: center;
     z-index: -1;

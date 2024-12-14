@@ -1,13 +1,22 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: KhanhDuy
+  Date: 12/14/2024
+  Time: 3:56 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
     <title>Chi tiết sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="..\..\..\..\..\public\css\product.css">
-    <link rel="stylesheet" href="../../../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../../../public/css/footer.css">
-    <link href="..\..\..\..\public\bootstrap-5.3.3-dist\css\bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../public/css/product.css">
+    <link rel="stylesheet" href="../../../public/css/header.css">
+    <link rel="stylesheet" href="../../../public/css/footer.css">
+    <link href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -18,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="../../../../../public/js/curtainmenu.js"></script>
+    <script src="../../../public/js/curtainmenu.js"></script>
     <style>
         .review-section {
             background: white;
@@ -159,7 +168,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../../../public/images/all-products/53.jpg" alt="">
+                        <img src="../../../public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -185,10 +194,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="../cart/Cart.jsp">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="../order/order.html">THANH TOÁN</a>
+                <a href="">THANH TOÁN</a>
             </div>
 
         </div>
@@ -206,9 +215,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="../../../contact.html">0906 904 114</a>
+                <a href="">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../../about.html">Giới thiệu</a>
+                    <a href="">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -219,7 +228,7 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../../auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="../../auth/Profile.jsp">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
@@ -227,13 +236,13 @@
         <div class="header-bottom-hd">
 
             <div class="logo-hd">
-                <a href="../../common/home.html"><img src="../../../../../public/images/logos/logo3.png"
+                <a href=""><img src="../../../public/images/logos/logo3.png"
                                                       alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;"
-                   class="btn dropdown-toggle" href="all-product.html">SẢN PHẨM</a>
+                   class="btn dropdown-toggle" href="All-products.jsp">SẢN PHẨM</a>
 
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
@@ -375,7 +384,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="products.html">
+                                        <a class="ux-menu-link__link flex" href="Products.jsp">
                                                 <span class="ux-menu-link__text">
                                         Đồng hồ			</span>
                                         </a>
@@ -419,12 +428,12 @@
 <!-- End header -->
 <div id="mask" class="center-items">
     <div class="block-content center-items">
-        <img src="../../../../../public/images/all-products/52.jpg" alt="">
+        <img src="../../../public/images/all-products/52.jpg" alt="">
     </div>
 </div>
 <div id="container">
     <div id="path-nav">
-        <a href="../../common/home.html">Trang chủ</a>
+        <a href="">Trang chủ</a>
         <a href="#">/Phòng khách</a>
         <a href="#">/Armchair</a>
     </div>
@@ -432,7 +441,7 @@
         <div class="product-image">
             <!-- Hình ảnh của sản phẩm -->
             <div id="image-product" class="image-right">
-                <img src="../../../../../public/images/all-products/52.jpg" class="image-product-detail"
+                <img src="../../../public/images/all-products/52.jpg" class="image-product-detail"
                      onclick="showImage()">
             </div>
         </div>
@@ -503,25 +512,25 @@
                     <div id="guarantee-panels">
                         <div id="content-baohanh" class="guarantee-panels-content">
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Các sản phẩm nội thất tại Nhà Xinh đa số đều được sản xuất tại nhà máy của
                                 công ty cổ phần xây dựng kiến trúc AA với đội ngũ nhân viên và công nhân ưu
                                 tú cùng cơ sở vật chất hiện đại
-                                <a href="../../../../../public/images/cart/check.png"></a>. Nhà Xinh đã
+                                <a href="../../../public/images/cart/check.png"></a>. Nhà Xinh đã
                                 kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến sản phẩm hoàn thiện cuối cùng.
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Nhà Xinh bảo hành một năm cho các trường hợp có lỗi về kỹ thuật trong quá trình sản xuất
                                 hay lắp đặt.
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Quý khách không nên tự sửa chữa mà hãy báo ngay cho Nhà Xinh qua hotline:
                                 <a href="">1800 7200.</a>
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Sau thời gian hết hạn bảo hành, nếu quý khách có bất kỳ yêu cầu hay thắc mắc thì
                                 vui lòng liên hệ với Nhà Xinh để được hướng dẫn và giải quyết các vấn đề gặp phải.
                             </p>
@@ -529,26 +538,26 @@
                                 <strong>TUY NHIÊN NHÀ XINH KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG HỢP SAU:</strong>
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Khách hàng tự ý sửa chữa khi sản phẩm bị trục trặc mà không báo cho Nhà Xinh.
                             </p>
-                            <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                            <p>../../
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Sản phẩm được sử dụng không đúng quy cách của sổ bảo hành (được trao gửi khi
                                 quý khách mua sản phẩm) gây nên trầy xước, móp, dơ bẩn hay mất màu.
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Sản phẩm bị biến dạng do môi trường bên ngoài bất bình thường (quá ẩm, quá khô,
                                 mối hay do tác động từ các thiết bị điện nước, các hóa chất hay dung môi khách hàng sử
                                 dụng không phù hợp).
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Sản phẩm hết hạn bảo hành.
                             </p>
                             <p>
-                                <img src="../../../../../public/images/cart/check.png" alt="">
+                                <img src="../../../public/images/cart/check.png" alt="">
                                 Sản phẩm không có phiếu bảo hành của Nhà Xinh.
                             </p>
 
@@ -631,9 +640,9 @@
                 <div class="col-sm-3 col-md-3 col-6">
                     <div class="card product-card">
                         <a href="">
-                            <img src="../../../../../public/images/all-products/32.jpg" class="image-top"
+                            <img src="../../../public/images/all-products/32.jpg" class="image-top"
                                  alt="Bàn bên 3C-02">
-                            <img src="../../../../../public/images/all-products/32.1.jpg" class="image-back"
+                            <img src="../../../public/images/all-products/32.1.jpg" class="image-back"
                                  alt="Bàn bên 3C-02 1">
                         </a>
                         <div class="card-body">
@@ -664,9 +673,9 @@
                 <div class="col-sm-3 col-md-3 col-6">
                     <div class="card product-card">
                         <a href="">
-                            <img src="../../../../../public/images/all-products/34.jpg" class="image-top"
+                            <img src="../../../public/images/all-products/34.jpg" class="image-top"
                                  alt="Bàn bên 3C-02">
-                            <img src="../../../../../public/images/all-products/34.1.jpg" class="image-back"
+                            <img src="../../../public/images/all-products/34.1.jpg" class="image-back"
                                  alt="Bàn bên 3C-02 1">
                         </a>
                         <div class="card-body">
@@ -697,9 +706,9 @@
                 <div class="col-sm-3 col-md-3 col-6">
                     <div class="card product-card">
                         <a href="">
-                            <img src="../../../../../public/images/all-products/86.jpg" class="image-top"
+                            <img src="../../../public/images/all-products/86.jpg" class="image-top"
                                  alt="Bàn bên 3C-02">
-                            <img src="../../../../../public/images/all-products/86.1.jpg" class="image-back"
+                            <img src="../../../public/images/all-products/86.1.jpg" class="image-back"
                                  alt="Bàn bên 3C-02 1">
                         </a>
                         <div class="card-body">
@@ -730,9 +739,9 @@
                 <div class="col-sm-3 col-md-3 col-6">
                     <div class="card product-card">
                         <a href="">
-                            <img src="../../../../../public/images/all-products/56.jpg" class="image-top"
+                            <img src="../../../public/images/all-products/56.jpg" class="image-top"
                                  alt="Bàn bên 3C-02">
-                            <img src="../../../../../public/images/all-products/56.1.jpg" class="image-back"
+                            <img src="../../../public/images/all-products/56.1.jpg" class="image-back"
                                  alt="Bàn bên 3C-02 1">
                         </a>
                         <div class="card-body">
@@ -772,7 +781,7 @@
         <!-- Left Column -->
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../../../../public/images/logos/logo3.png"
+            <img src="../../../public/images/logos/logo3.png"
                  alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
@@ -868,21 +877,16 @@
         if (newQuan > 0) {
             currQuan.setAttribute("value", newQuan)
         }
-
     }
 
     function openNav() {
         document.getElementById("myNav").style.width = "20%";
         document.getElementById("background-trans").hidden = false;
-
-
     }
 
     function closeNav() {
         document.getElementById("myNav").style.width = "0%";
         document.getElementById("background-trans").hidden = true;
-
-
     }
 
     document.querySelectorAll('.wishlist-button').forEach(function (heart) {
