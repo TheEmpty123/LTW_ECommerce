@@ -1,0 +1,47 @@
+[
+  {
+    "codes": "SPRING2024",
+    "type": "percentage",
+    "limitPro": 100,
+    "valueOfPro": 20.0,
+    "statusOfPro": "available",
+    "startDate": "2024-03-01 00:00:00",
+    "endDate": "2024-03-15 23:59:59"
+  },
+  {
+    "codes": "BLACKFRI2024",
+    "type": "fix_value",
+    "limitPro": 500,
+    "valueOfPro": 1000000.0,
+    "statusOfPro": "available",
+    "startDate": "2024-11-25 00:00:00",
+    "endDate": "2024-11-30 23:59:59"
+  },
+  {
+    "codes": "SUMMERCLEAR2024",
+    "type": "fix_value",
+    "limitPro": 200,
+    "valueOfPro": 500000.0,
+    "statusOfPro": "available",
+    "startDate": "2024-06-01 00:00:00",
+    "endDate": "2024-06-30 23:59:59"
+  },
+  {
+    "codes": "HOLIDAY25",
+    "type": "percentage",
+    "limitPro": 300,
+    "valueOfPro": 25.0,
+    "statusOfPro": "available",
+    "startDate": "2024-12-01 00:00:00",
+    "endDate": "2024-12-25 23:59:59"
+  },
+  {
+    "codes": "LOYALTY10",
+    "type": "fix_value",
+    "limitPro": 1000,
+    "valueOfPro": 100000.0,
+    "statusOfPro": "available",
+    "startDate": "2024-01-01 00:00:00",
+    "endDate": "2024-12-31 23:59:59"
+  }
+]
