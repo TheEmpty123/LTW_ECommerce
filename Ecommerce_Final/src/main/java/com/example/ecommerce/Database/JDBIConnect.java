@@ -1,5 +1,6 @@
 package com.example.ecommerce.Database;
 
+import com.example.ecommerce.Bean.*;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.ManagerBase;
 
@@ -7,15 +8,15 @@ import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 import java.sql.SQLException;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class JDBIConnect extends ManagerBase {
-    private boolean status = false;
-    private String url;
+    private boolean status;
     private Jdbi jdbi;
     private MysqlDataSource src;
 
-    private IInitializable[] primaryManager;
-    private DBProperties properties = new DBProperties();
+    private final IInitializable[] primaryManager;
+    private final DBProperties properties = new DBProperties();
 
     public static JDBIConnect Instance;
 
@@ -35,10 +36,11 @@ public class JDBIConnect extends ManagerBase {
 
     @Override
     protected void startInitializeBehavior() {
-        Arrays.stream(primaryManager).forEach(o -> o.Initialize());
+        status = false;
+        Arrays.stream(primaryManager).forEach(IInitializable::Initialize);
 
         log.info("Prepare for connection");
-        url = "jdbc:mysql://" +
+        String url = "jdbc:mysql://" +
                 properties.host + ":" +
                 properties.port + "/" +
                 properties.dbname + "?" +
@@ -59,11 +61,12 @@ public class JDBIConnect extends ManagerBase {
             log.error("Error setting up database connection");
             log.error(new RuntimeException(e));
             status = false;
-            endInitialize(status);
+            endInitialize(false);
+            return;
         }
 
         status = true;
-        endInitialize(status);
+        endInitialize(true);
     }
 
     @Override
@@ -81,12 +84,44 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public static void main(String[] args) {
-//        JDBIConnect db = new JDBIConnect();
+        JDBIConnect db = new JDBIConnect();
+
+//        Map<Integer, Product> products = db.jdbi.withHandle(handle -> handle
+//                        .createQuery("select * from products")
+//                        .mapToBean(Product.class)
+//                        .stream()
+//                        .collect(Collectors.toMap(Product::getId, product -> product)));
 //
-//        List<Product> products = db.jdbi.withHandle(handle -> {
-//            return handle.createQuery("select * from products").mapToBean(Product.class).list();
-//        });
-//        products.forEach(System.out::println);
+//        products.forEach((integer, product) -> System.out.println(product));
+
+//        Map<Integer, User> users = db.jdbi.withHandle(handle -> handle
+//                .createQuery("SELECT * FROM users")
+//                .mapToBean(User.class)
+//                .stream()
+//                .collect(Collectors.toMap(User::getId, user -> user)));
+//        users.forEach((id, user) -> System.out.println(user));
+
+//        Map<Integer, Role> roles = db.jdbi.withHandle(handle -> handle
+//                .createQuery("SELECT * FROM role")
+//                .mapToBean(Role.class)
+//                .stream()
+//                .collect(Collectors.toMap(Role::getId, user -> user)));
+//        roles.forEach((id, role) -> System.out.println(role));
+
+//        Map<Integer, Permission> roles = db.jdbi.withHandle(handle -> handle
+//                .createQuery("SELECT * FROM permission")
+//                .mapToBean(Permission.class)
+//                .stream()
+//                .collect(Collectors.toMap(Permission::getId, per -> per)));
+//        roles.forEach((id, per) -> System.out.println(per));
+
+        Map<Integer, Warehouse> wh = db.jdbi.withHandle(handle -> handle
+                .createQuery("SELECT * FROM warehouse")
+                .mapToBean(Warehouse.class)
+                .stream()
+                .collect(Collectors.toMap(Warehouse::getId, w -> w)));
+        wh.forEach((id, w) -> System.out.println(w));
+
 
 //        Logging.log("Message");
 //        Logging.warn("Warn message");

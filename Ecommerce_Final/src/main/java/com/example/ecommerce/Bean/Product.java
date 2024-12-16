@@ -1,7 +1,7 @@
 package com.example.ecommerce.Bean;
 
 import java.io.Serializable;
-import java.sql.Date;
+import java.time.LocalDateTime;
 
 public class Product implements Serializable {
     private int id;
@@ -9,13 +9,13 @@ public class Product implements Serializable {
     private String description;
     private double price;
     private String thumb;
-    private String created_at;
+    private LocalDateTime created_at;
     private int attributeId;
     private int cateId;
 
     public Product() {}
 
-    public Product(int id, String proName, String description, double price, String thumb, String created_at, int attributeId, int cateId) {
+    public Product(int id, String proName, String description, double price, String thumb, LocalDateTime created_at, int attributeId, int cateId) {
         this.id = id;
         this.proName = proName;
         this.description = description;
@@ -46,7 +46,7 @@ public class Product implements Serializable {
         return thumb;
     }
 
-    public String getcreated_at() {
+    public LocalDateTime getCreated_at() {
         return created_at;
     }
 
@@ -74,7 +74,7 @@ public class Product implements Serializable {
         this.thumb = thumb;
     }
 
-    public void setcreated_at(String created_at) {
+    public void setCreated_at(LocalDateTime created_at) {
         this.created_at = created_at;
     }
 
