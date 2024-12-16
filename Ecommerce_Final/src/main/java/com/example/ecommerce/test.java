@@ -1,4 +1,4 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce;
 
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;

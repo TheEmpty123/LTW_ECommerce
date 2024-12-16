@@ -1,6 +1,5 @@
 package com.example.ecommerce.Database;
 
-import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.ManagerBase;
 
@@ -18,8 +17,13 @@ public class JDBIConnect extends ManagerBase {
     private IInitializable[] primaryManager;
     private DBProperties properties = new DBProperties();
 
+    public static JDBIConnect Instance;
+
     public static JDBIConnect getInstance() {
-        return new JDBIConnect();
+        if (Instance == null) {
+            return Instance = new JDBIConnect();
+        }
+        return Instance;
     }
 
     JDBIConnect(){
@@ -77,12 +81,12 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public static void main(String[] args) {
-        JDBIConnect db = new JDBIConnect();
-
-        List<Product> products = db.jdbi.withHandle(handle -> {
-            return handle.createQuery("select * from products").mapToBean(Product.class).list();
-        });
-        products.forEach(System.out::println);
+//        JDBIConnect db = new JDBIConnect();
+//
+//        List<Product> products = db.jdbi.withHandle(handle -> {
+//            return handle.createQuery("select * from products").mapToBean(Product.class).list();
+//        });
+//        products.forEach(System.out::println);
 
 //        Logging.log("Message");
 //        Logging.warn("Warn message");
