@@ -1,4 +1,4 @@
-package com.example.ecommerce.DAO.db;
+package com.example.ecommerce.Database;
 
 import com.example.ecommerce.Common.ManagerBase;
 

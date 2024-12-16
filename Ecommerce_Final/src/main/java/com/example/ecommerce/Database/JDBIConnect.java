@@ -1,15 +1,13 @@
-package com.example.ecommerce.DAO.db;
+package com.example.ecommerce.Database;
 
+import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.IInitializable;
-import com.example.ecommerce.Common.LogObj;
-import com.example.ecommerce.Common.Logging;
 import com.example.ecommerce.Common.ManagerBase;
+
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
-
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class JDBIConnect extends ManagerBase {
     private boolean status = false;
@@ -81,21 +79,21 @@ public class JDBIConnect extends ManagerBase {
     public static void main(String[] args) {
         JDBIConnect db = new JDBIConnect();
 
-//        List<Object> products = db.jdbi.withHandle(handle -> {
-//            return handle.createQuery("select * from products").mapToBean(Object.class).list();
-//        });
-//        System.out.println(products);
+        List<Product> products = db.jdbi.withHandle(handle -> {
+            return handle.createQuery("select * from products").mapToBean(Product.class).list();
+        });
+        products.forEach(System.out::println);
 
 //        Logging.log("Message");
 //        Logging.warn("Warn message");
 //        Logging.error("Error message");
 
-        LogObj log = LogObj.defaultLog;
-        String logName = JDBIConnect.class.getName();
-        log.setName(logName);
-
-        log.info("Message");
-        log.warn("Warn message");
-        log.error("Error message");
+//        LogObj log = LogObj.defaultLog;
+//        String logName = JDBIConnect.class.getName();
+//        log.setName(logName);
+//
+//        log.info("Message");
+//        log.warn("Warn message");
+//        log.error("Error message");
     }
 }

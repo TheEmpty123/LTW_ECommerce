@@ -7,21 +7,21 @@ public class Product implements Serializable {
     private int id;
     private String proName;
     private String description;
-    private float price;
+    private double price;
     private String thumb;
-    private Date create_at;
+    private String created_at;
     private int attributeId;
     private int cateId;
 
     public Product() {}
 
-    public Product(int id, String proName, String description, float price, String thumb, Date create_at, int attributeId, int cateId) {
+    public Product(int id, String proName, String description, double price, String thumb, String created_at, int attributeId, int cateId) {
         this.id = id;
         this.proName = proName;
         this.description = description;
         this.price = price;
         this.thumb = thumb;
-        this.create_at = create_at;
+        this.created_at = created_at;
         this.attributeId = attributeId;
         this.cateId = cateId;
     }
@@ -38,7 +38,7 @@ public class Product implements Serializable {
         return description;
     }
 
-    public float getPrice() {
+    public double getPrice() {
         return price;
     }
 
@@ -46,8 +46,8 @@ public class Product implements Serializable {
         return thumb;
     }
 
-    public Date getCreate_at() {
-        return create_at;
+    public String getcreated_at() {
+        return created_at;
     }
 
     public int getAttributeId() {
@@ -66,7 +66,7 @@ public class Product implements Serializable {
         this.description = description;
     }
 
-    public void setPrice(float price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -74,17 +74,31 @@ public class Product implements Serializable {
         this.thumb = thumb;
     }
 
-    public void setCreate_at(Date create_at) {
-        this.create_at = create_at;
+    public void setcreated_at(String created_at) {
+        this.created_at = created_at;
+    }
+
+    public void setAttributeId(int attributeId) {
+        this.attributeId = attributeId;
+    }
+
+    public void setCateId(int cateId) {
+        this.cateId = cateId;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     @Override
     public String toString() {
-        return "id=" + id +
+        return "Product{" +
+                "id=" + id +
                 ", proName=" + proName +
                 ", description=" + description +
                 ", price=" + price +
                 ", thumb=" + thumb +
-                ", create_at=" + create_at;
+                ", created_at=" + created_at +
+                "}";
     }
 }
