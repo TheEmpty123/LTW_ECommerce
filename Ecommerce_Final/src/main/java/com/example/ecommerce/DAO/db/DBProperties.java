@@ -1,37 +1,55 @@
 package com.example.ecommerce.DAO.db;
 
+import com.example.ecommerce.Common.ManagerBase;
+
 import java.io.IOException;
 import java.util.Properties;
 
-public class DBProperties {
+public class DBProperties extends ManagerBase {
     private static final Properties prop = new Properties();
-    static {
+
+    public String host;
+    public int port;
+    public String username;
+    public String password;
+    public String dbname;
+    public String option;
+
+    public static DBProperties getInstance(){
+        return new DBProperties();
+    }
+
+    @Override
+    protected void startInitializeBehavior() {
+
+        log.info("Loading properties from file");
         try {
             prop.load(DBProperties.class.getClassLoader().getResourceAsStream("db.properties"));
+
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error loading properties");
+            log.error(e);
+            endInitialize(false);
         }
-    }
-    public static String host() {
-        return prop.getProperty("db.host");
-    }
-    public static int port(){
+
+        host = prop.getProperty("db.host");
+        username = prop.getProperty("db.username");
+        password = prop.getProperty("db.password");
+        dbname = prop.getProperty("db.dbname");
+        option = prop.getProperty("db.option");
+
+        log.info("Loaded properties from file");
+
         try{
-            return Integer.parseInt(prop.getProperty("db.port"));
+            port = Integer.parseInt(prop.getProperty("db.port"));
         }catch (NumberFormatException e){
-            return 3306;
+            port = 3306;
+            log.error("Error parsing port, using 3306");
         }
+
+        endInitialize(true);
     }
-    public static String username(){
-        return prop.getProperty("db.username");
-    }
-    public static String password(){
-        return prop.getProperty("db.password");
-    }
-    public static String dbname(){
-        return prop.getProperty("db.dbname");
-    }
-    public static String option(){
-        return prop.getProperty("db.option");
-    }
+
+    @Override
+    protected void endInitializeBehavior() {}
 }

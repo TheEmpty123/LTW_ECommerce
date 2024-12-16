@@ -3,50 +3,7 @@ package com.example.ecommerce.Common;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class MyLogger {
-    public static boolean shouldLog = true;
-
-    public static void log(Object msg) {
-        if (shouldLog) {
-            System.out.println(msg);
-        }
-    }
-
-    public static void log(Object log, Object context) {
-        if (shouldLog) {
-            System.out.print(log + " ");
-            System.out.println(context);
-        }
-    }
-
-    public static void warn(Object msg) {
-        if (shouldLog) {
-            System.err.println(msg);
-        }
-    }
-
-    public static void warn(Object log, Object context) {
-        if (shouldLog) {
-            System.err.print(log + " ");
-            System.out.println(context);
-        }
-    }
-
-    public static void error(Object msg) {
-        if (shouldLog) {
-            System.err.println(msg);
-        }
-    }
-
-    public static void error(Object log, Object context) {
-        if (shouldLog) {
-            System.err.print(log + " ");
-            System.out.println(context);
-        }
-    }
-}
-
-class LogObj{
+public class LogObj{
 
     public static final LogObj defaultLog = new LogObj();
 
@@ -65,27 +22,27 @@ class LogObj{
     }
 
     public void info(Object msg){
-        MyLogger.log(getLog("INFO", "", msg));
+        Logging.log(getLog("INFO", "", msg));
     }
 
     public void info(String extraName, Object msg){
-        MyLogger.log(getLog("INFO", extraName, msg));
+        Logging.log(getLog("INFO", extraName, msg));
     }
 
     public void warn(Object msg){
-        MyLogger.warn(getLog("WARN", "", msg));
+        Logging.warn(getLog("WARN", "", msg));
     }
 
     public void warn(String extraName, Object msg){
-        MyLogger.warn(getLog("WARN", extraName, msg));
+        Logging.warn(getLog("WARN", extraName, msg));
     }
 
     public void error(Object msg){
-        MyLogger.error(getLog("ERROR", "", msg));
+        Logging.error(getLog("ERROR", "", msg));
     }
 
     public void error(String extraName, Object msg){
-        MyLogger.error(getLog("ERROR", extraName, msg));
+        Logging.error(getLog("ERROR", extraName, msg));
     }
 
     private String getLog(String pad, String extraName, Object msg){
