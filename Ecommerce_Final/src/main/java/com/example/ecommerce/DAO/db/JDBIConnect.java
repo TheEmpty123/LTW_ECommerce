@@ -1,6 +1,8 @@
 package com.example.ecommerce.DAO.db;
 
 import com.example.ecommerce.Common.IInitializable;
+import com.example.ecommerce.Common.LogObj;
+import com.example.ecommerce.Common.Logging;
 import com.example.ecommerce.Common.ManagerBase;
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
@@ -79,9 +81,21 @@ public class JDBIConnect extends ManagerBase {
     public static void main(String[] args) {
         JDBIConnect db = new JDBIConnect();
 
-        List<Object> products = db.jdbi.withHandle(handle -> {
-            return handle.createQuery("select * from products").mapToBean(Object.class).list();
-        });
-        System.out.println(products);
+//        List<Object> products = db.jdbi.withHandle(handle -> {
+//            return handle.createQuery("select * from products").mapToBean(Object.class).list();
+//        });
+//        System.out.println(products);
+
+//        Logging.log("Message");
+//        Logging.warn("Warn message");
+//        Logging.error("Error message");
+
+        LogObj log = LogObj.defaultLog;
+        String logName = JDBIConnect.class.getName();
+        log.setName(logName);
+
+        log.info("Message");
+        log.warn("Warn message");
+        log.error("Error message");
     }
 }
