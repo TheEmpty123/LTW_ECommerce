@@ -5,7 +5,7 @@ import com.example.ecommerce.Common.Enum.ProductFilter;
 
 import java.util.*;
 
-public interface ProductDAO {
+public interface IProductDAO {
     // Total records size in database
     int recordSize();
 
