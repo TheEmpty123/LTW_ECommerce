@@ -1,7 +1,8 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.DateTime;
 import com.example.ecommerce.Bean.Promotion;
+import com.example.ecommerce.DAO.interf.IPromotionDao;
 
 import java.util.ArrayList;
 import java.util.List;

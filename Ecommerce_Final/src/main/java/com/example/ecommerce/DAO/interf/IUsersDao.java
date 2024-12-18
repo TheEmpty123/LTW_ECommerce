@@ -1,4 +1,4 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.interf;
 
 import com.example.ecommerce.Bean.User;
 

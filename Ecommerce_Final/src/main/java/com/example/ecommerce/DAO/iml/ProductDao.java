@@ -1,13 +1,14 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ProductFilter;
+import com.example.ecommerce.DAO.interf.IProductDAO;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ProductDao implements IProductDAO{
+public class ProductDao implements IProductDAO {
     List<Product> productList = new ArrayList<>();
     @Override
     public int recordSize() {

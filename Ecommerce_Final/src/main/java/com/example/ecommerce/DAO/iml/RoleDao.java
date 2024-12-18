@@ -1,6 +1,7 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Role;
+import com.example.ecommerce.DAO.interf.IRoleDao;
 
 import java.util.ArrayList;
 import java.util.List;

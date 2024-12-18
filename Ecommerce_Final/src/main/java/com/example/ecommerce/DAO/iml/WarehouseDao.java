@@ -1,6 +1,7 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Warehouse;
+import com.example.ecommerce.DAO.interf.IWarehouseDao;
 
 import java.util.ArrayList;
 import java.util.List;

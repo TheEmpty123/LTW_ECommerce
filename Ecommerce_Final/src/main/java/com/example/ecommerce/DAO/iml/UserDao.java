@@ -1,11 +1,12 @@
-package com.example.ecommerce.DAO;
+package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.DAO.interf.IUsersDao;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements IUsersDao{
+public class UserDao implements IUsersDao {
     List<User> users = new ArrayList<>();
     @Override
     public List<User> getAllUsers() {
