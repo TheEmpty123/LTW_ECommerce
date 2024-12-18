@@ -52,7 +52,7 @@ public class LogObj{
                 , pad
                 , FormateDate(new Date())
                 , (_name != null ? "[" + _name + "]" : "")
-                , (extraName.equals("") ? "[" + extraName + "]" : "")
+                , (!extraName.equals("") ? "[" + extraName + "]" : "")
                 , msg);
     }
 

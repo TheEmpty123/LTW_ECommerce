@@ -6,8 +6,12 @@ import com.example.ecommerce.DAO.interf.IWarehouseDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class WarehouseDao implements IWarehouseDao {
+public class WarehouseDao extends ImplementBase implements IWarehouseDao {
     List<Warehouse> warehouses = new ArrayList<>();
+
+    public WarehouseDao() {
+        super();
+    }
     @Override
     public List<Warehouse> getAllWarehouse() {
         return List.of();

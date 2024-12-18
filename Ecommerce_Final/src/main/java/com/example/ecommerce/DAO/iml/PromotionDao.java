@@ -7,8 +7,12 @@ import com.example.ecommerce.DAO.interf.IPromotionDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PromotionDao implements IPromotionDao {
+public class PromotionDao extends ImplementBase implements IPromotionDao {
     List<Promotion> promotionList = new ArrayList<>();
+
+    public PromotionDao() {
+        super();
+    }
     @Override
     public List<Promotion> getAll() {
         return List.of();

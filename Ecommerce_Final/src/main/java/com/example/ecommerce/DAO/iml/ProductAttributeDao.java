@@ -6,8 +6,12 @@ import com.example.ecommerce.DAO.interf.IProductAttributeDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductAttributeDao implements IProductAttributeDao {
+public class ProductAttributeDao extends ImplementBase implements IProductAttributeDao {
     List<ProductAttribute> productAttributeList = new ArrayList<>();
+
+    public ProductAttributeDao() {
+        super();
+    }
     @Override
     public List<ProductAttribute> getAll() {
         return List.of();

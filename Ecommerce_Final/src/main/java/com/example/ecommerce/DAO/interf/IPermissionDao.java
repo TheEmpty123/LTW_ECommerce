@@ -15,5 +15,4 @@ public interface IPermissionDao {
     boolean updateName(int id, String newName);
 //    Xoa mot permission
     boolean deletePermission(int id);
-
 }

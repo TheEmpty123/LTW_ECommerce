@@ -6,8 +6,13 @@ import com.example.ecommerce.DAO.interf.ICategoryDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CategoryDao implements ICategoryDao {
+public class CategoryDao extends ImplementBase implements ICategoryDao{
     List<Category> categories = new ArrayList<>();
+
+    public CategoryDao() {
+        super();
+    }
+
     @Override
     public List<Category> getAllCategory() {
         return List.of();
@@ -31,5 +36,10 @@ public class CategoryDao implements ICategoryDao {
     @Override
     public boolean deleteCategory(int id) {
         return false;
+    }
+
+    public static void main(String[] args) {
+        CategoryDao dao = new CategoryDao();
+        dao.log.info("test");
     }
 }
