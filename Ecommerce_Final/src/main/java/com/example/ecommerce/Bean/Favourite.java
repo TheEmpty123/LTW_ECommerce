@@ -1,6 +1,10 @@
 package com.example.ecommerce.Bean;
 
-public class Favourite {
+import com.example.ecommerce.DAO.interf.IFavouriteDAO;
+
+import java.util.List;
+
+public class Favourite implements IFavouriteDAO {
     //productID
     private int productID;
     //userID
@@ -36,5 +40,25 @@ public class Favourite {
                 "productID=" + productID +
                 ", userID=" + userID +
                 '}';
+    }
+
+    @Override
+    public Favourite getFavouriteProduct(int pID) {
+        return null;
+    }
+
+    @Override
+    public List<Favourite> getAllFavourite() {
+        return List.of();
+    }
+
+    @Override
+    public Favourite addFavouriteProduct(Favourite favourite) {
+        return null;
+    }
+
+    @Override
+    public boolean deleteFavouriteProduct(int pID) {
+        return false;
     }
 }
