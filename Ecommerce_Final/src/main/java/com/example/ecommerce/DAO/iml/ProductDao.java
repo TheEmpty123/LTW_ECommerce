@@ -8,8 +8,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class ProductDao implements IProductDAO {
+public class ProductDao extends ImplementBase implements IProductDAO {
     List<Product> productList = new ArrayList<>();
+
+    public ProductDao() {
+        super();
+    }
+
     @Override
     public int recordSize() {
         return 0;

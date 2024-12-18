@@ -6,8 +6,12 @@ import com.example.ecommerce.DAO.interf.IUsersDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserDao implements IUsersDao {
+public class UserDao extends ImplementBase implements IUsersDao {
     List<User> users = new ArrayList<>();
+
+    public UserDao() {
+        super();
+    }
     @Override
     public List<User> getAllUsers() {
         return List.of();

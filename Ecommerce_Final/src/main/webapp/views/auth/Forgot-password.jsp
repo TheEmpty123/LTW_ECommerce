@@ -12,7 +12,7 @@
 <head>
     <title>Quên mật khẩu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../public/css/password.css">
+    <link rel="stylesheet" href="../../public/css/password.css">
 </head>
 <body>
 <div id="container">

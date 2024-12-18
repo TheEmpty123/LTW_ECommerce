@@ -6,8 +6,12 @@ import com.example.ecommerce.DAO.interf.IRoleDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RoleDao implements IRoleDao {
+public class RoleDao extends ImplementBase implements IRoleDao {
     List<Role> roles = new ArrayList<>();
+
+    public RoleDao() {
+        super();
+    }
     @Override
     public List<Role> getAllRoles() {
         return List.of();

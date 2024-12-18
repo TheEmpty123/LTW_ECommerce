@@ -6,9 +6,12 @@ import com.example.ecommerce.DAO.interf.IPermissionDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PermissionDao implements IPermissionDao {
+public class PermissionDao extends ImplementBase implements IPermissionDao {
     List<Permission> permissions = new ArrayList<>();
 
+    public PermissionDao() {
+        super();
+    }
     @Override
     public List<Permission> getAllPermissions() {
         return List.of();
