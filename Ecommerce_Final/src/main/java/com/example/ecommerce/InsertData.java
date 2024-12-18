@@ -75,6 +75,10 @@ public class InsertData {
             content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
             JSONArray orderItems = new JSONArray(content);
 
+            jsonFilePath = p + "having_products.json";
+            content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
+            JSONArray havingProducts = new JSONArray(content);
+
             // Database connection
             String url = "jdbc:mysql://127.0.0.1:3306/ltw?useUnicode=true&characterEncoding=utf-8";
             String user = "root";
