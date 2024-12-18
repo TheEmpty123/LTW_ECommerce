@@ -5,16 +5,17 @@
   Time: 12:36 PM
   To change this template use File | Settings | File Templates.
 --%>
+<!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
+<html lang="en">
 <head>
-    <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Home</title>
-    <link rel="stylesheet" href="../../../public/css/home.css"/>
-    <link rel="stylesheet" href="../../../public/css/header.css"/>
+    <link rel="stylesheet" href="../../../public/css/home.css" />
+    <link rel="stylesheet" href="../../../public/css/header.css" />
     <link rel="stylesheet" href="../../../public/css/footer.css">
     <link rel="stylesheet" href="../../../public/css/product.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -23,7 +24,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -116,8 +117,7 @@
                 <a href="home.html"> <img src="../../../public/images/logos/logo3.png" alt="Logo"></a>
             </div>
             <nav class="main-nav">
-                <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="../web/product/all-product.html">SẢN
+                <a style="color: black; border: none;" class="btn dropdown-toggle" href="../web/product/all-product.html">SẢN
                     PHẨM</a>
 
                 <ul class="dropdown-menu">
@@ -273,7 +273,9 @@
                             <div class="col-inner">
 
 
+
                                 <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
+
 
 
                                     <div class="ux-menu-link flex menu-item">
@@ -282,15 +284,11 @@
                           Hàng trang trí khác </span>
                                         </a>
                                     </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ul>
 
+
+                </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
-
 
             </nav>
 
@@ -305,7 +303,7 @@
 <!-- Nội dung trang chủ -->
 <div class="body">
     <div class="homepage-button-pic">
-        <img class="homepage-pic" src="../../../public/images/banners/homepage.jpg" alt=""/>
+        <img class="homepage-pic" src="../../../public/images/banners/homepage.jpg" alt="" />
         <div class="text-home">
             <h1 style="font-size: 64px; position: relative;">BỘ SƯU TẬP MÂY</h1>
             <p style="font-size: x-large;  position: relative;"><strong>Nét đẹp đương đại</strong></p>
@@ -336,8 +334,7 @@
         </div>
     </div>
     <div class="search-home">
-        <input type="search" id="woocommerce-product-search-field-2" class="search-field mb-0"
-               placeholder="Tìm sản phẩm"
+        <input type="search" id="woocommerce-product-search-field-2" class="search-field mb-0" placeholder="Tìm sản phẩm"
                value="" name="s" autocomplete="off">
         <button class="but-search" style="background-color: #d26e4b;"><i
                 class="fa-solid fa-magnifying-glass"></i></button>
@@ -372,16 +369,13 @@
         <section class="part2">
             <div class="left-part2">
                 <h2>NỘI THẤT TINH TẾ</h2>
-                <p>Với kinh nghiệm hơn 25 năm trong hoàn thiện nội thất, Nhà Xinh mang đến giải pháp toàn diện trong bao
-                    gồm
-                    thiết kế, trang trí và cung cấp nội thất trọn gói. Sở hữu đội ngũ chuyên nghiệp và hệ thống 10 cửa
-                    hàng, Nhà
+                <p>Với kinh nghiệm hơn 25 năm trong hoàn thiện nội thất, Nhà Xinh mang đến giải pháp toàn diện trong bao gồm
+                    thiết kế, trang trí và cung cấp nội thất trọn gói. Sở hữu đội ngũ chuyên nghiệp và hệ thống 10 cửa hàng, Nhà
                     Xinh là lựa chọn cho không gian tinh tế và hiện đại.</p>
                 <button class="xemthem" style="font-size: large;font-weight: bold;">Xem thêm</button>
             </div>
             <div class="right-part2">
-                <img style="width: 100%;"
-                     src=".././../../public/images/banners/nha-xinh-banner-ban-an-vuong-24423.jpg"
+                <img style="width: 100%;" src=".././../../public/images/banners/nha-xinh-banner-ban-an-vuong-24423.jpg"
                      alt="">
             </div>
         </section>
@@ -417,10 +411,8 @@
                         <p class="card-text"><i class="fa-regular fa-heart"></i></br>135,750,000đ </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">
-                            <button class="add-to-cart">Thêm vào giỏ</button>
-                            <button class="see-more">Xem thêm</button>
-                        </small>
+                        <small class="text-muted"> <button class="add-to-cart">Thêm vào giỏ</button>
+                            <button class="see-more">Xem thêm</button></small>
                     </div>
                 </div>
                 <div class="card">
@@ -433,9 +425,7 @@
                         <p class="card-text"><i class="fa-regular fa-heart"></i></br>19,900,000đ </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">
-                            <button class="add-to-cart">Thêm vào giỏ</button>
-                        </small>
+                        <small class="text-muted"> <button class="add-to-cart">Thêm vào giỏ</button></small>
                     </div>
                 </div>
                 <div class="card">
@@ -448,15 +438,13 @@
                         <p class="card-text"><i class="fa-regular fa-heart"></i></br>13,900,000đ </p>
                     </div>
                     <div class="card-footer">
-                        <small class="text-muted">
-                            <button class="see-more">Xem thêm</button>
-                        </small>
+                        <small class="text-muted"><button class="see-more">Xem thêm</button></small>
                     </div>
                 </div>
             </div>
         </section>
 
-        <div id="watched-product" style="margin-top:3%;">
+        <div id="watched-product"  style="margin-top:3%;" >
             <div class="title-watched">
                 <h3>Sản phẩm vừa xem</h3>
             </div>
