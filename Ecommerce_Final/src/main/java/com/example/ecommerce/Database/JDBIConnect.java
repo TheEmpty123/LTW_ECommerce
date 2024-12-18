@@ -33,7 +33,9 @@ public class JDBIConnect extends ManagerBase {
         };
         Initialize();
     }
-
+    public Jdbi getJdbi() {
+        return jdbi;
+    }
     @Override
     protected void startInitializeBehavior() {
         status = false;

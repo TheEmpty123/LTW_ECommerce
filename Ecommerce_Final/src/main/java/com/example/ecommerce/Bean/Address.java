@@ -2,15 +2,15 @@ package com.example.ecommerce.Bean;
 
 public class Address {
     private int id;
-    private String princible;
-    private String street;
-    private String fullAddress;
+    private String Princible;
+    private String Street;
+    private String FullAddress;
 
     public Address(int id, String princible, String street, String fullAddress) {
         this.id = id;
-        this.princible = princible;
-        this.street = street;
-        this.fullAddress = fullAddress;
+        this.Princible = princible;
+        this.Street = street;
+        this.FullAddress = fullAddress;
     }
 
     public int getId() {
@@ -18,15 +18,15 @@ public class Address {
     }
 
     public String getPrincible() {
-        return princible;
+        return Princible;
     }
 
     public String getStreet() {
-        return street;
+        return Street;
     }
 
     public String getFullAddress() {
-        return fullAddress;
+        return FullAddress;
     }
 
     public void setId(int id) {
@@ -34,23 +34,23 @@ public class Address {
     }
 
     public void setPrincible(String princible) {
-        this.princible = princible;
+        this.Princible = princible;
     }
 
     public void setStreet(String street) {
-        this.street = street;
+        this.Street = street;
     }
 
     public void setFullAddress(String fullAddress) {
-        this.fullAddress = fullAddress;
+        this.FullAddress = fullAddress;
     }
 
     @Override
     public String toString() {
         return "Address{" +
-                "fullAddress='" + fullAddress +
-                ", street='" + street +
-                ", princible='" + princible +
+                "fullAddress='" + FullAddress +
+                ", street='" + Street +
+                ", princible='" + Princible +
                 ", id=" + id +
                 '}';
     }
