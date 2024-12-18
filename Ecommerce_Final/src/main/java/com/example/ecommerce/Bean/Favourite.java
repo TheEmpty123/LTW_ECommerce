@@ -1,7 +1,9 @@
 package com.example.ecommerce.Bean;
 
 import com.example.ecommerce.DAO.interf.IFavouriteDAO;
+import com.example.ecommerce.Database.JDBIConnect;
 
+import java.util.Collections;
 import java.util.List;
 
 public class Favourite implements IFavouriteDAO {
@@ -49,16 +51,41 @@ public class Favourite implements IFavouriteDAO {
 
     @Override
     public List<Favourite> getAllFavourite() {
-        return List.of();
+        return Collections.singletonList(JDBIConnect.getInstance().getJdbi().withHandle(handle -> {
+            return handle.createQuery(" SELECT * FROM favourite WHERE productID = :productID")
+                    .bind("productID", productID)
+                    .mapTo(Favourite.class)
+                    .findOne()
+                    .orElse(null);
+        }));
     }
 
     @Override
     public Favourite addFavouriteProduct(Favourite favourite) {
-        return null;
+        JDBIConnect.getInstance().getJdbi().withHandle(handle -> {
+            int rowsAffected = handle.createUpdate("INSERT INTO favourite (productID, userID) VALUES (:productID, :userID)")
+                    .bind("productID", favourite.productID)
+                    .bind("userID", favourite.userID)
+                    .execute();
+
+            if (rowsAffected > 0) {
+                return favourite;
+            } else {
+                return null;
+            }
+        });
+        return favourite;
     }
 
     @Override
     public boolean deleteFavouriteProduct(int pID) {
-        return false;
+        return JDBIConnect.getInstance().getJdbi().withHandle(handle -> {
+            int rowsAffected = handle.createQuery("delete from favourite where productID = :productID")
+                    .bind("productID", pID)
+                    .mapTo(Favourite.class)
+                    .findOne().orElse(null);
+            return rowsAffected > 0;
+        });
+
     }
 }
