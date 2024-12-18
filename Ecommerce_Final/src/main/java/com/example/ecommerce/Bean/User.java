@@ -1,5 +1,8 @@
 package com.example.ecommerce.Bean;
 
+import com.example.ecommerce.Common.Enum.Gender;
+import com.example.ecommerce.Common.Enum.StatusUser;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
@@ -7,18 +10,19 @@ public class User implements Serializable {
     private int id;
     private String username;
     private String fullName;
-    private String gender;
+    private Gender gender;
     private String pass;
     private String email;
     private String phoneNum;
-    private String statusUser;
+    private StatusUser statusUser;
     private LocalDateTime createUser;
     private String avatar;
     private int roleID;
 
-    public User() {}
+    public User() {
+    }
 
-    public User(int id, String username, String fullName, String gender, String pass, String email, String phoneNum, String statusUser, LocalDateTime createUser, String avatar, int roleID) {
+    public User(int id, String username, String fullName, Gender gender, String pass, String email, String phoneNum, StatusUser statusUser, LocalDateTime createUser, String avatar, int roleID) {
         this.id = id;
         this.username = username;
         this.fullName = fullName;
@@ -56,11 +60,11 @@ public class User implements Serializable {
         this.fullName = fullName;
     }
 
-    public String getGender() {
+    public Gender getGender() {
         return gender;
     }
 
-    public void setGender(String gender) {
+    public void setGender(Gender gender) {
         this.gender = gender;
     }
 
@@ -88,11 +92,11 @@ public class User implements Serializable {
         this.phoneNum = phoneNum;
     }
 
-    public String getStatusUser() {
+    public StatusUser getStatusUser() {
         return statusUser;
     }
 
-    public void setStatusUser(String statusUser) {
+    public void setStatusUser(StatusUser statusUser) {
         this.statusUser = statusUser;
     }
 

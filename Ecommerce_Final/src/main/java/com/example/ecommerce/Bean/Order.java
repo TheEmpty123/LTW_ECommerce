@@ -1,5 +1,7 @@
 package com.example.ecommerce.Bean;
 
+import com.example.ecommerce.Common.Enum.ShippingStatus;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -7,7 +9,7 @@ public class Order {
     private int id;
     private int userID;
     private int paymentID;
-    private boolean shippingStatus;
+    private ShippingStatus shippingStatus;
     private LocalDateTime createDate;
     private String promotion_id;
     private int sdt;
@@ -15,7 +17,8 @@ public class Order {
     public Order() {
     }
 
-    public Order(int id, int userID, int paymentID, boolean shippingStatus, LocalDateTime createDate, String promotion_id, int sdt) {
+
+    public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, int sdt) {
         this.id = id;
         this.userID = userID;
         this.paymentID = paymentID;
@@ -49,13 +52,14 @@ public class Order {
         this.paymentID = paymentID;
     }
 
-    public boolean isShippingStatus() {
+    public ShippingStatus getShippingStatus() {
         return shippingStatus;
     }
 
-    public void setShippingStatus(boolean shippingStatus) {
+    public void setShippingStatus(ShippingStatus shippingStatus) {
         this.shippingStatus = shippingStatus;
     }
+
 
     public LocalDateTime getCreateDate() {
         return createDate;
