@@ -1,24 +1,26 @@
 package com.example.ecommerce.Bean;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Promotion {
     private int id;
     private String codes;
     private String type;
-    private int limitePro;
+    private int limitPro;
     private double valueOfPro;
-    private String status;
-    private DateTime startDate;
-    private DateTime endDate;
+    private String statusOfPro;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
 
-    public Promotion(int id, String codes, String type, int limitePro, double valueOfPro, String status, DateTime startDate, DateTime endDate) {
+    public Promotion(int id, String codes, String type, int limitePro, double valueOfPro, String status, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.codes = codes;
         this.type = type;
-        this.limitePro = limitePro;
+        this.limitPro = limitePro;
         this.valueOfPro = valueOfPro;
-        this.status = status;
+        this.statusOfPro = status;
         this.startDate = startDate;
         this.endDate = endDate;
     }
@@ -35,8 +37,8 @@ public class Promotion {
         return type;
     }
 
-    public int getLimitePro() {
-        return limitePro;
+    public int getLimitPro() {
+        return limitPro;
     }
 
     public double getValueOfPro() {
@@ -44,14 +46,14 @@ public class Promotion {
     }
 
     public String getStatus() {
-        return status;
+        return statusOfPro;
     }
 
-    public DateTime getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public DateTime getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
@@ -67,8 +69,8 @@ public class Promotion {
         this.type = type;
     }
 
-    public void setLimitePro(int limitePro) {
-        this.limitePro = limitePro;
+    public void setLimitPro(int limitePro) {
+        this.limitPro = limitePro;
     }
 
     public void setValueOfPro(double valueOfPro) {
@@ -76,14 +78,14 @@ public class Promotion {
     }
 
     public void setStatus(String status) {
-        this.status = status;
+        this.statusOfPro = status;
     }
 
-    public void setStartDate(DateTime startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public void setEndDate(DateTime endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
@@ -92,9 +94,9 @@ public class Promotion {
         return "Promotion {id =" + id +
                 ", code = " + codes +
                 ", type = " + type + ", " +
-                "limit = " + limitePro +
+                "limit = " + limitPro +
                 ", value = " + valueOfPro +
-                ", status = " + status +
+                ", status = " + statusOfPro +
                 ", startDate = " + startDate +
                 ", endDate = " + endDate +
                 '}';
