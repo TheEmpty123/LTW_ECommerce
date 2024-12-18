@@ -75,7 +75,7 @@ public class InsertData {
             content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
             JSONArray orderItems = new JSONArray(content);
 
-            jsonFilePath = p + "having_products.json";
+            jsonFilePath = p + "having-product.json";
             content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
             JSONArray havingProducts = new JSONArray(content);
 
@@ -264,6 +264,16 @@ public class InsertData {
                     System.out.println("Inserted order item " + orderItem);
                 }
 
+                // having product
+                for (int i = 0; i < havingProducts.length(); i++){
+                    JSONObject havingProduct = havingProducts.getJSONObject(i);
+                    int productID = havingProduct.getInt("productID");
+                    int warehouseID = havingProduct.getInt("warehouseID");
+                    int amount = havingProduct.getInt("amount");
+
+                    insertHavingProduct(conn, warehouseID, productID, amount);
+                    System.out.println("Added having product " + productID + " with amount " + amount);
+                }
 
             } catch (SQLException e) {
                 System.out.println("Can not connect to database, please check your connection or url.");
@@ -275,6 +285,20 @@ public class InsertData {
 
         System.out.println("Disconnected from database");
 
+    }
+
+    private static void insertHavingProduct(Connection conn, int warehouseID, int productID, int amount) {
+        String sql = "insert into having_product values(?,?,?)";
+
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, warehouseID);
+            ps.setInt(2, productID);
+            ps.setInt(3, amount);
+            ps.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void insertOrderItems(Connection conn, JSONObject orderItem, int productID, int amount) {

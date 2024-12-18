@@ -84,9 +84,39 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public static void main(String[] args) {
-//        JDBIConnect db = new JDBIConnect();
-//        JDBIConnect db2 = JDBIConnect.getInstance();
-        JDBIConnect db3 = JDBIConnect.getInstance();
+        JDBIConnect db = new JDBIConnect();
+
+        Random rd = new Random();
+        rd.setSeed(2);
+
+        int stock = 0;
+
+        System.out.println("[");
+
+        for (int i = 1; i <= 2; i++) {
+            int sum = 0;
+
+            for (int j = 1; j <= 152; j++) {
+                if(j == 1 && i == 1) stock = 5000;
+                else {
+                    if (j == 1 && i == 2) stock = 3500;
+                }
+
+                int amount = 0;
+
+                if (i == 1)
+                    amount = rd.nextInt(67);
+                else amount = rd.nextInt(50);
+
+                if (sum + amount > stock) {
+                    amount = stock - sum;
+                }
+                sum += amount;
+
+                System.out.println("{\"warehouseID\":" + i + ",\"productID\":" + j + ", \"amount\":" + amount + "},");
+            }
+        }
+        System.out.println("]");
 
 //        Map<Integer, Product> products = db.jdbi.withHandle(handle -> handle
 //                        .createQuery("select * from products")
