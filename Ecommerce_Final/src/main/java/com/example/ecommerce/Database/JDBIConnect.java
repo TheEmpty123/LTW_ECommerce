@@ -84,7 +84,9 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public static void main(String[] args) {
-        JDBIConnect db = new JDBIConnect();
+//        JDBIConnect db = new JDBIConnect();
+//        JDBIConnect db2 = JDBIConnect.getInstance();
+        JDBIConnect db3 = JDBIConnect.getInstance();
 
 //        Map<Integer, Product> products = db.jdbi.withHandle(handle -> handle
 //                        .createQuery("select * from products")
@@ -115,12 +117,12 @@ public class JDBIConnect extends ManagerBase {
 //                .collect(Collectors.toMap(Permission::getId, per -> per)));
 //        roles.forEach((id, per) -> System.out.println(per));
 
-        Map<Integer, Warehouse> wh = db.jdbi.withHandle(handle -> handle
-                .createQuery("SELECT * FROM warehouse")
-                .mapToBean(Warehouse.class)
-                .stream()
-                .collect(Collectors.toMap(Warehouse::getId, w -> w)));
-        wh.forEach((id, w) -> System.out.println(w));
+//        Map<Integer, Warehouse> wh = db.jdbi.withHandle(handle -> handle
+//                .createQuery("SELECT * FROM warehouse")
+//                .mapToBean(Warehouse.class)
+//                .stream()
+//                .collect(Collectors.toMap(Warehouse::getId, w -> w)));
+//        wh.forEach((id, w) -> System.out.println(w));
 
 
 //        Logging.log("Message");
