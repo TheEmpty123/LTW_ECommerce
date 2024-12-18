@@ -1,14 +1,17 @@
-.body{
+.body {
     font-family: sans-serif;
 }
-.homepage-button-pic{
+
+.homepage-button-pic {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
-    /* position: absolute;  */
+    justify-content: center;
+    align-items: center;
+    position: absolute;
     max-height: 100%;
     margin-top: -12px;
+
 }
+
 .homepage-pic {
     width: 100%;
     height: auto;
@@ -16,7 +19,7 @@
 }
 
 .text-home {
-    position: absolute;
+    /*position: absolute;*/
     display: block;
     max-height: 100%;
     /* width: 792px; */
@@ -37,7 +40,7 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
-    
+
 }
 
 .img-banner {
@@ -48,21 +51,25 @@
     flex-wrap: wrap;
     width: 100%;
 }
-.left-img{
+
+.left-img {
     display: flex;
     flex-wrap: wrap;
 }
+
 .left-img img {
     width: 48%;
     height: auto;
     padding-top: 10px;
     text-align: center;
 }
-.right-img{
+
+.right-img {
     display: flex;
     flex-wrap: wrap;
     width: 48%;
 }
+
 .right-img img {
     /* width: 48%; */
     margin-top: 10px;
@@ -71,21 +78,25 @@
     width: 350px;
     height: 350px;
 }
-.search-home{
+
+.search-home {
     justify-content: center;
     text-align: center;
-    
+
 
 }
-.search-field{
-   width: 94%;
-   height: 54px;
+
+.search-field {
+    width: 94%;
+    height: 54px;
 
 }
-.but-search{
+
+.but-search {
     height: 54px;
     width: 5%;
 }
+
 .part1 {
     display: flex;
     padding: 50px 0;
@@ -100,7 +111,7 @@
 
 .middle-text {
     width: 20%;
-    padding: 15px; 
+    padding: 15px;
     text-align: center;
 }
 
@@ -112,32 +123,39 @@
     text-align: left;
     padding: 10px;
 }
-.top-text{
+
+.top-text {
     margin-left: auto;
     margin-right: auto;
     padding: 20px;
 }
-.top-text h1{
+
+.top-text h1 {
     padding-bottom: 10px;
 }
-.top-text h4{
+
+.top-text h4 {
     padding-top: 10px;
 }
 
-.bot-text{
+.bot-text {
     margin-top: 50px;
     margin-left: 50px;
 }
-.bot-text h1{
+
+.bot-text h1 {
     padding-bottom: 10px;
 }
-.bot-text h4{
+
+.bot-text h4 {
     padding-top: 10px;
 }
-.part2{
+
+.part2 {
     display: flex;
 }
-.left-part2{
+
+.left-part2 {
     /* float: left; */
     display: block;
     flex-wrap: wrap;
@@ -147,31 +165,37 @@
     margin-bottom: auto;
     padding: 20px;
 }
-.left-part2 h1{
+
+.left-part2 h1 {
     padding: 20px;
 }
-.left-part2 p{
+
+.left-part2 p {
     padding: 20px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
 }
-.left-part2 .xemthem{
+
+.left-part2 .xemthem {
     width: 160px;
     height: 50px;
     border-color: #7a9c59;
     color: #7a9c59;
     cursor: pointer;
 }
-.left-part2 .xemthem:hover{
-background-color: #7a9c59;
-color: white;
+
+.left-part2 .xemthem:hover {
+    background-color: #7a9c59;
+    color: white;
 }
-.right-part2{
+
+.right-part2 {
     width: 48%;
     display: flex;
     flex-wrap: wrap;
 }
+
 .new-product-header {
     display: flex;
     margin-left: 5%;
@@ -183,7 +207,8 @@ color: white;
     margin-bottom: 1px;
 
 }
-.card-body h5{
+
+.card-body h5 {
     font-size: medium;
     font-weight: bold;
 }
@@ -197,28 +222,33 @@ color: white;
     margin-top: 6px;
     cursor: pointer;
 }
-.text-muted button{
+
+.text-muted button {
     width: 100px;
     height: 40px;
 }
-.text-muted .add-to-cart{
+
+.text-muted .add-to-cart {
     margin-left: 1%;
     width: 150px;
     font-size: medium;
     float: left;
     cursor: pointer;
 }
-.text-muted .add-to-cart:hover{
+
+.text-muted .add-to-cart:hover {
     color: white;
     background-color: black;
 }
-.text-muted .see-more{
+
+.text-muted .see-more {
     float: right;
     cursor: pointer;
     background-color: black;
     color: white;
 }
-.text-muted .see-more:hover{
+
+.text-muted .see-more:hover {
     color: black;
     background-color: white;
 }
@@ -319,21 +349,24 @@ textarea {
     height: auto;
     border-radius: 4px;
 }
-.part4{
+
+.part4 {
     position: relative;
     width: 100%;
-    padding-bottom:10%;
+    padding-bottom: 10%;
 }
-.part4 h1{
+
+.part4 h1 {
     text-align: center;
     justify-content: center;
     margin-top: -11.1%;
-    font-weight: bold ;
+    font-weight: bold;
     font-size: 4.5rem;
     color: white;
-    z-index:-1000;
+    z-index: -1000;
 }
-.part4 button{
+
+.part4 button {
     display: inline-block;
     font-size: x-large;
     text-align: center;
@@ -343,13 +376,15 @@ textarea {
     background-color: transparent;
     color: white;
     height: 50px;
-    border: 3px solid white ;
+    border: 3px solid white;
 }
-.listpart4{
+
+.listpart4 {
     margin-top: -20%;
     z-index: -1;
 }
-.part4 button:hover{
+
+.part4 button:hover {
     background-color: white;
     color: #555;
 }
@@ -360,23 +395,26 @@ textarea {
     gap: 20px;
 
 }
-.card-body{
+
+.card-body {
     margin-top: 65%;
 }
+
 .card {
     position: relative;
     box-shadow: 22px 19px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;  
+    overflow: hidden;
     height: 250px;
 
 }
-.card-d{
+
+.card-d {
     height: 3rem;
 }
 
 .card img {
     position: absolute;
-    padding:10px;
+    padding: 10px;
     border-radius: 5px;
     width: 100%;
     transition: opacity 0.5s ease-in-out;
@@ -403,6 +441,6 @@ textarea {
 
 .card-body, .card-footer {
     position: relative;
-    z-index: 2; 
+    z-index: 2;
 }
 

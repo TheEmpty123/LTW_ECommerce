@@ -1,4 +1,4 @@
-package com.example.ecommerce.dao.db;
+package com.example.ecommerce.DAO.db;
 
 import java.sql.*;
 
