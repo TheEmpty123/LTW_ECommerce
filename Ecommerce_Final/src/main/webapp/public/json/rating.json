@@ -1,0 +1,122 @@
+[
+  {
+    "userID": 1,
+    "productID": 101,
+    "stars": 5,
+    "commentRate": "Excellent product! Highly recommended."
+  },
+  {
+    "userID": 2,
+    "productID": 102,
+    "stars": 4,
+    "commentRate": "Good product, but the packaging could be better."
+  },
+  {
+    "userID": 3,
+    "productID": 103,
+    "stars": 3,
+    "commentRate": "Decent, but it did not meet my expectations."
+  },
+  {
+    "userID": 4,
+    "productID": 104,
+    "stars": 2,
+    "commentRate": "The quality is not as advertised, disappointed."
+  },
+  {
+    "userID": 5,
+    "productID": 105,
+    "stars": 5,
+    "commentRate": "Perfect! Exactly what I needed. Will buy again."
+  },
+  {
+    "userID": 6,
+    "productID": 106,
+    "stars": 4,
+    "commentRate": "Very good, but the delivery was delayed."
+  },
+  {
+    "userID": 7,
+    "productID": 107,
+    "stars": 1,
+    "commentRate": "Horrible experience. The product broke after one use."
+  },
+  {
+    "userID": 8,
+    "productID": 108,
+    "stars": 5,
+    "commentRate": "Fantastic! I'm extremely satisfied with this purchase."
+  },
+  {
+    "userID": 9,
+    "productID": 109,
+    "stars": 3,
+    "commentRate": "Okay, but nothing special about it."
+  },
+  {
+    "userID": 10,
+    "productID": 110,
+    "stars": 4,
+    "commentRate": "Good overall, just a bit more expensive than expected."
+  },
+  {
+    "userID": 1,
+    "productID": 111,
+    "stars": 5,
+    "commentRate": "Very reliable and works as advertised."
+  },
+  {
+    "userID": 2,
+    "productID": 112,
+    "stars": 2,
+    "commentRate": "The color was not as expected and quality is poor."
+  },
+  {
+    "userID": 3,
+    "productID": 113,
+    "stars": 3,
+    "commentRate": "It’s alright, but it could be improved."
+  },
+  {
+    "userID": 4,
+    "productID": 114,
+    "stars": 4,
+    "commentRate": "Very good, but I expected better performance."
+  },
+  {
+    "userID": 5,
+    "productID": 115,
+    "stars": 5,
+    "commentRate": "Excellent quality, fast shipping, highly recommended!"
+  },
+  {
+    "userID": 6,
+    "productID": 116,
+    "stars": 4,
+    "commentRate": "Good product, but the instructions were unclear."
+  },
+  {
+    "userID": 7,
+    "productID": 117,
+    "stars": 1,
+    "commentRate": "Terrible, it arrived broken and the customer service was unhelpful."
+  },
+  {
+    "userID": 8,
+    "productID": 118,
+    "stars": 5,
+    "commentRate": "I love it! Will definitely buy more."
+  },
+  {
+    "userID": 9,
+    "productID": 119,
+    "stars": 3,
+    "commentRate": "Not bad, but expected better quality for the price."
+  },
+  {
+    "userID": 10,
+    "productID": 120,
+    "stars": 4,
+    "commentRate": "Satisfactory, but a little noisy when in use."
+  }
+]

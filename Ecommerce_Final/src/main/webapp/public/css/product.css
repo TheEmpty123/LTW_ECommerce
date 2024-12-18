@@ -79,9 +79,8 @@ html, body{
 
 #product-details{
     min-width: 500px;
-    height: auto;
+    height: auto !important;
     overflow: hidden;
-    
 }
 #product-details .product-image{
     float: left;
