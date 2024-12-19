@@ -11,10 +11,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../../public/css/profile.css">
-    <link rel="stylesheet" href="../../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../../public/css/footer.css">
-    <link rel="stylesheet" href="../../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -39,7 +39,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -65,10 +65,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../web/cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}web/cart/cart.html">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="../web/order/order.html">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}web/order/order.html">THANH TOÁN</a>
             </div>
         </div>
     </div>
@@ -84,9 +84,9 @@
                 <div class="phone-hd">
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
-                <a href="../../contact.html">0906 904 114</a>
+                <a href="${pageContext.request.contextPath}contact.html">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}about.html">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -96,20 +96,20 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}auth/profile.html">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="../common/home.html">
-                    <img src="../../../../public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}common/home.html">
+                    <img src="${pageContext.request.contextPath}public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="../web/product/all-product.html">SẢN PHẨM</a>
+                   href="${pageContext.request.contextPath}web/product/all-product.html">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <div id="col-1465340020" class="col medium-2 small-6 large-2">
@@ -375,7 +375,7 @@
                         </div>
                         <h5>Bạn chắc chắn muốn đăng xuất?</h5>
                         <div class="buttons-box">
-                            <a href="../common/home.html">
+                            <a href="${pageContext.request.contextPath}common/home.html">
                                 <button class="btns">Đăng xuất</button>
                             </a>
                         </div>
@@ -398,42 +398,42 @@
                     <div class="row">
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/1.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/1.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/77.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/77.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/44.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/44.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/33.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/33.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/55.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/55.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/134.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/134.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/100.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/100.jpg" alt="">
                             </a>
                         </div>
                         <div class="col-sm-3 col-md-4 product-item">
                             <a href="">
-                                <img src="../../../../public/images/all-products/13.jpg" alt="">
+                                <img src="${pageContext.request.contextPath}public/images/all-products/13.jpg" alt="">
                             </a>
                         </div>
                     </div>
@@ -449,7 +449,7 @@
         <!-- Left Column -->
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../../../public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
+            <img src="${pageContext.request.contextPath}public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
             <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
@@ -491,8 +491,8 @@
     </div>
 
 </footer>
-<script src="../../../../public/js/curtainmenu.js"></script>
-<script src="../../../../public/js/popup.js"></script>
-<script src="../../../../public/js/submenu.js"></script>
+<script src="${pageContext.request.contextPath}public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}public/js/submenu.js"></script>
 </body>
 </html>

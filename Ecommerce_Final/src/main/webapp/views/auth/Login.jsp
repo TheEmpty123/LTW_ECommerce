@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Đăng nhập</title>
-  <link rel="stylesheet" type="text/css" href="../../login-register.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}login-register.css">
 </head>
 <body>
 <div id="container">
@@ -29,15 +29,15 @@
         <input type="checkbox" id="remember" name="remember">
         <label for="remember">Ghi nhớ tôi</label>
       </div>
-      <label class="loginButton"><a href="../common/home.html" style="color: white !important;">Đăng nhập</a></label>
+      <label class="loginButton"><a href="${pageContext.request.contextPath}common/home.html" style="color: white !important;">Đăng nhập</a></label>
     </div>
   </div>
   <div class="footer">
     <div class="subfooter">
       <div class="row">
-        <div class="col-md-6 mb-10"><a href="forgot-password.html">Quên mật khẩu?</a></div>
-        <div class="col-md-6 mb-10"> <span style="color: black;">Bạn chưa có tài khoản? <a href="../auth/register.html" style="color: green !important;">Đăng ký</a></span></div>
-        <div class="col-md-6 mb-10"><a href="../common/home.html"><i class="bi bi-arrow-left"></i>Đi đến cửa hàng</a> </div>
+        <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}forgot-password.html">Quên mật khẩu?</a></div>
+        <div class="col-md-6 mb-10"> <span style="color: black;">Bạn chưa có tài khoản? <a href="${pageContext.request.contextPath}auth/register.html" style="color: green !important;">Đăng ký</a></span></div>
+        <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}common/home.html"><i class="bi bi-arrow-left"></i>Đi đến cửa hàng</a> </div>
       </div>
     </div>
   </div>
