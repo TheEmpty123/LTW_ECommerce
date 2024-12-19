@@ -41,16 +41,18 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
 
     @Override
-    public Order updateOrder(OrderItem orderItem) {
-        return db.getJdbi().withHandle(handle -> {
-            handle.createUpdate("UPDATE orderItem SET id , orderID = ?, productID = ?, amount = ? WHERE id = ?\" ")
-                    .bind("id", orderItem.getId())
-                    .bind("orderID", orderItem.getOrderID())
-                    .bind("productID", orderItem.getProductID())
-                    .bind("amount", orderItem.getAmount())
-                    .execute();
-            return getOrderById(orderItem.getId());
-        });
+    public Order updateOrderByID(int id, int orderID, int productID, int amount) {
+        return db.getJdbi().withHandle(handle ->
+                handle.createUpdate("UPDATE orderItem SET orderID = :orderID, productID = :productID, amount = :amount  WHERE id = :id")
+                        .bind("id", id)
+                        .bind("orderID", orderID)
+                        .bind("productID", orderID)
+                        .bind("amount", amount)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapToBean(Order.class)
+                        .findOne()
+                        .orElseThrow(() -> new IllegalArgumentException("Order not found"))
+        );
     }
 
     @Override

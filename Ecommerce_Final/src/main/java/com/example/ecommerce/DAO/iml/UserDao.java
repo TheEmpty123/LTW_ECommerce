@@ -54,24 +54,34 @@ public class UserDao extends ImplementBase implements IUsersDao {
     }
 
     @Override
-    public boolean updateInfoUserNameById(int id, String userName, String fullName, String gender, String
+    public User updateInfoUserNameById(int id, String userName, String fullName, String gender, String
             email, String phone) {
-        return false;
+        return db.getJdbi().withHandle(handle -> handle.createUpdate("UPDATE users SET userName = :userName, fullName = :fullName, gender = :gender, email = :email, phone = :phone WHERE id = :id")
+                .bind("username", userName)
+                .bind("fullName", fullName)
+                .bind("gender", gender)
+                .bind("email", email)
+                .bind("phone", phone)
+                .executeAndReturnGeneratedKeys("id")
+                .mapToBean(User.class)
+                .findOne()
+                .orElseThrow(() -> new IllegalStateException("User with id " + id + " not found")));
     }
 
     @Override
-    public boolean updateAvatarById(int id, String avatar) {
-        return false;
+    public User updateAvatarById(int id, String avatar) {
+        return null;
     }
 
     @Override
-    public boolean updatePasswordById(int id, String password) {
-        return false;
+    public User updatePasswordById(int id, String password) {
+        return null;
     }
 
     @Override
     public boolean deleteUserById(int id) {
-        return false;
+        return db.getJdbi().withHandle(
+                handle -> handle.createUpdate("delete * from users where id=:id")).bind(0, id).execute() > 0;
     }
 
     @Override

@@ -10,9 +10,11 @@ import java.time.LocalDateTime;
 
 public interface IOrderDao {
     int recordSize();
+
     public Order addOrder(OrderItem orderItem);
 
-    public Order updateOrder(OrderItem orderItem);
+
+    Order updateOrderByID(int id, int orderID, int productID, int amount);
 
     public boolean deleteOrder(int id);
 
