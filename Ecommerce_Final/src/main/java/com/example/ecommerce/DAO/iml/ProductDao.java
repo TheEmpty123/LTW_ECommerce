@@ -26,23 +26,23 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         db = JDBIConnect.getInstance();
         return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products where id = :id")
                 .bind("id", id)
-                .mapToBean(Product.class).findOne().orElse(null)) ;
+                .mapToBean(Product.class).findOne().orElse(null));
     }
 
     @Override
-    public List<Product>  getAllProducts() {
+    public List<Product> getAllProducts() {
         db = JDBIConnect.getInstance();
         return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products")
                 .mapToBean(Product.class).list());
     }
 
     @Override
-    public List<Product>  get20ProductEach(int index) {
+    public List<Product> get20ProductEach(int index) {
         return null;
     }
 
     @Override
-    public List<Product>  getProductByCategory(int cateId) {
+    public List<Product> getProductByCategory(int cateId) {
         db = JDBIConnect.getInstance();
         return db.getJdbi().withHandle(handle -> handle.createQuery("select * from product where cateID = :cateID")
                 .bind("cateID", cateId)
@@ -50,12 +50,19 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     }
 
     @Override
-    public List<Product>  Search(String txt) {
+    public List<Product> Search(String txt) {
         return null;
     }
 
     @Override
-    public List<Product>  getProductByFilter(ProductFilter filter) {
-        return  null;
+    public List<Product> get8NewProducts() {
+        db = JDBIConnect.getInstance();
+       return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products limit 8")).mapToBean(Product.class).list();
+
+    }
+
+    @Override
+    public List<Product> getProductByFilter(ProductFilter filter) {
+        return null;
     }
 }

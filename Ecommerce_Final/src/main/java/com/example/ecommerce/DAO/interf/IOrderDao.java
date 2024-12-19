@@ -9,6 +9,7 @@ import com.example.ecommerce.Common.Enum.ShippingStatus;
 import java.time.LocalDateTime;
 
 public interface IOrderDao {
+    int recordSize();
     public Order addOrder(OrderItem orderItem);
 
     public Order updateOrder(OrderItem orderItem);

@@ -20,29 +20,32 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     }
 
     @Override
+    public int recordSize() {
+        return 0;
+    }
+
+    @Override
     public Order addOrder(OrderItem orderItem) {
         return db.getJdbi().withHandle(handle -> {
-            handle.createQuery("insert into orderItem(id, orderID, productID, amount) values(null, ?, ?, ?)")
-                    .bind("id", orderItem.getId())
-                    .bind("orderID", orderItem.getOrderID())
-                    .bind("productID", orderItem.getProductID())
-                    .bind("amount", orderItem.getAmount())
-                    .mapToBean(Order.class).one();
-            orderItem.setId(orderItem.getId());
-            return getOrderById(orderItem.getId());
+            handle.createUpdate("INSERT INTO orderItem (orderID, productID, amount) VALUES (?, ?, ?)")
+                    .bind(0, orderItem.getOrderID())
+                    .bind(1, orderItem.getProductID())
+                    .bind(2, orderItem.getAmount())
+                    .execute();
+            return getOrderById(orderItem.getOrderID());
         });
     }
+
 
     @Override
     public Order updateOrder(OrderItem orderItem) {
         return db.getJdbi().withHandle(handle -> {
-            handle.createQuery("UPDATE orderItem SET id , orderID = ?, productID = ?, amount = ? WHERE id = ?\" ")
+            handle.createUpdate("UPDATE orderItem SET id , orderID = ?, productID = ?, amount = ? WHERE id = ?\" ")
                     .bind("id", orderItem.getId())
                     .bind("orderID", orderItem.getOrderID())
                     .bind("productID", orderItem.getProductID())
                     .bind("amount", orderItem.getAmount())
-                    .mapToBean(Order.class).one();
-            orderItem.setId(orderItem.getId());
+                    .execute();
             return getOrderById(orderItem.getId());
         });
     }
@@ -67,7 +70,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
     @Override
     public Promotion addPromotion(int id) {
-        return null;
+        PromotionDao promotionDao = new PromotionDao();
+        return promotionDao.getById(id);
     }
 
     @Override

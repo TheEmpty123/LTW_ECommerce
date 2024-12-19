@@ -19,14 +19,17 @@ public interface IProductDAO {
     List<Product> get20ProductEach(int index);
 
     // Get product by category
-    List<Product>  getProductByCategory(int cateId);
+    List<Product> getProductByCategory(int cateId);
 
     // Get product using Search
-    List<Product>  Search(String txt);
+    List<Product> Search(String txt);
+
+    // get about 8 new products
+    List<Product> get8NewProducts();
 
     //    Filter
 //    Sắp xếp theo điều kiện filter (option: tên, giá, ngày nhập khẩu, filter:asc,desc)
-    List<Product>  getProductByFilter(ProductFilter filter);
+    List<Product> getProductByFilter(ProductFilter filter);
 
 //   Admin page section
 
