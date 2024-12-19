@@ -3,7 +3,9 @@ package com.example.ecommerce.Bean;
 import com.example.ecommerce.Common.Enum.Method;
 import com.example.ecommerce.Common.Enum.Statuss;
 
-public class Payment {
+import java.io.Serializable;
+
+public class Payment implements Serializable {
     private int id;
     private Method method;
     private Statuss status;

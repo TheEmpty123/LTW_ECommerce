@@ -1,6 +1,8 @@
 package com.example.ecommerce.Bean;
 
-public class Address {
+import java.io.Serializable;
+
+public class Address implements Serializable {
     private int id;
     private String Princible;
     private String Street;

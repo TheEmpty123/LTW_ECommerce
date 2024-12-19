@@ -1,10 +1,11 @@
 package com.example.ecommerce.Bean;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-public class Promotion {
+public class Promotion implements Serializable {
     private int id;
     private String codes;
     private String type;
