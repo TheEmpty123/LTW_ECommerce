@@ -3,10 +3,11 @@ package com.example.ecommerce.Bean;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderDao;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class Order implements IOrderDao {
+public class Order implements Serializable {
     private int id;
     private int userID;
     private int paymentID;
@@ -97,30 +98,5 @@ public class Order implements IOrderDao {
                 ", promotion_id='" + promotion_id + '\'' +
                 ", sdt=" + sdt +
                 '}';
-    }
-
-    @Override
-    public Order addOrder(Order order) {
-        return null;
-    }
-
-    @Override
-    public Order updateOrder(Order order) {
-        return null;
-    }
-
-    @Override
-    public Order deleteOrder(int id) {
-        return null;
-    }
-
-    @Override
-    public Promotion addPromotion(int id) {
-        return null;
-    }
-
-    @Override
-    public Payment getMethodPayment(int id) {
-        return null;
     }
 }
