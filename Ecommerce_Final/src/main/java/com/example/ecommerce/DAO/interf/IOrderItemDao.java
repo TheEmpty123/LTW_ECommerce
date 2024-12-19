@@ -6,6 +6,5 @@ public interface IOrderItemDao {
     int recordSize();
     public int countAmount(Order order);
 
-//    public Order addOrder(Order order);
 
 }

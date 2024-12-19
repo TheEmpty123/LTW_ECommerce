@@ -10,7 +10,7 @@ public interface IUsersDao {
     //Lay user theo id
     User getUserById(int id);
     //Them mot user
-    boolean addUser(User user);
+    User addUser(User user);
     //Cap nhat cac thong tin co ban trong profile cua moi user theo id;
     boolean updateInfoUserNameById(int id, String userName, String fullName, String gender, String email, String phone);
     //Cap nhat avata cho user theo id

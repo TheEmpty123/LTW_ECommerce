@@ -13,6 +13,7 @@ public class PromotionDao extends ImplementBase implements IPromotionDao {
     public PromotionDao() {
         super();
     }
+
     @Override
     public List<Promotion> getAll() {
         return List.of();
@@ -24,8 +25,8 @@ public class PromotionDao extends ImplementBase implements IPromotionDao {
     }
 
     @Override
-    public boolean add(Promotion promotion) {
-        return false;
+    public Promotion add(Promotion promotion) {
+        return null;
     }
 
     @Override

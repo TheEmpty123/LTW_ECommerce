@@ -12,6 +12,7 @@ public class ProductAttributeDao extends ImplementBase implements IProductAttrib
     public ProductAttributeDao() {
         super();
     }
+
     @Override
     public List<ProductAttribute> getAll() {
         return List.of();
@@ -23,8 +24,8 @@ public class ProductAttributeDao extends ImplementBase implements IProductAttrib
     }
 
     @Override
-    public boolean addAttribute(ProductAttribute attribute) {
-        return false;
+    public ProductAttribute addAttribute(ProductAttribute attribute) {
+        return null;
     }
 
     @Override

@@ -14,6 +14,9 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     List<Order> orders;
     JDBIConnect db;
 
+    public OrderDao() {
+    }
+
     public OrderDao(List<Order> orders, JDBIConnect db) {
         this.orders = new ArrayList<>();
         this.db = JDBIConnect.getInstance();
@@ -77,5 +80,10 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     @Override
     public Payment getMethodPayment(int id) {
         return null;
+    }
+
+    public static void main(String[] args) {
+        OrderDao orderDao = new OrderDao();
+        orderDao.log.info("test");
     }
 }
