@@ -19,7 +19,6 @@ public class Order implements Serializable {
     public Order() {
     }
 
-
     public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, int sdt) {
         this.id = id;
         this.userID = userID;
