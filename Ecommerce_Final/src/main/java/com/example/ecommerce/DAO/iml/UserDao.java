@@ -88,4 +88,9 @@ public class UserDao extends ImplementBase implements IUsersDao {
     public User findUser(String username) {
         return null;
     }
+
+    public static void main(String[] args) {
+        UserDao dao = new UserDao();
+        dao.log.info("test");
+    }
 }
