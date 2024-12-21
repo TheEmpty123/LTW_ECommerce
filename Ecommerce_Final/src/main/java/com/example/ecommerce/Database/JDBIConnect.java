@@ -12,7 +12,7 @@ import java.util.stream.Collectors;
 
 public class JDBIConnect extends ManagerBase {
     private boolean status;
-    private Jdbi jdbi;
+    public Jdbi jdbi;
     private MysqlDataSource src;
 
     private final IInitializable[] primaryManager;
@@ -34,6 +34,8 @@ public class JDBIConnect extends ManagerBase {
         Initialize();
     }
     public Jdbi getJdbi() {
+        startInitializeBehavior();
+        createConnect();
         return jdbi;
     }
     @Override

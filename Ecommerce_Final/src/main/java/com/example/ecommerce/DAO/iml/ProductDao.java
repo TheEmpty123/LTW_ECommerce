@@ -24,7 +24,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public Product getProductById(int id) {
         db = JDBIConnect.getInstance();
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products where id = :id")
+        return db.jdbi.withHandle(handle -> handle.createQuery("select * from products where id = :id")
                 .bind("id", id)
                 .mapToBean(Product.class).findOne().orElse(null));
     }
@@ -57,7 +57,8 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public List<Product> get8NewProducts() {
         db = JDBIConnect.getInstance();
-       return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products limit 8")).mapToBean(Product.class).list();
+       return db.jdbi.withHandle(handle -> handle.createQuery("select * from products limit 8"))
+               .mapToBean(Product.class).list();
 
     }
 
