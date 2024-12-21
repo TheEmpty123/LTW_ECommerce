@@ -19,7 +19,7 @@ public class MC {
 
     public static MC instance;
 
-    public static MC getInstance() {
+    public static MC createInstance() {
         if (instance == null) {
             instance = new MC();
             instance.init();

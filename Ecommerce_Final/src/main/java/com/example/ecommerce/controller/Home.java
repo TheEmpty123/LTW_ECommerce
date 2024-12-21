@@ -1,29 +1,21 @@
 package com.example.ecommerce.controller;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ecommerce.Bean.Product;
-import com.example.ecommerce.Common.IInitializable;
-import com.example.ecommerce.Common.LogObj;
-import com.example.ecommerce.Database.JDBIConnect;
-import com.example.ecommerce.service.ProductService;
-import com.example.ecommerce.service.ServiceBase;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.jdbi.v3.core.ConnectionException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "home", value = "/kenes")
 public class Home extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        MC.getInstance();
+        MC.createInstance();
 
         try {
             List<Product> products = MC.instance.productService.getNew4Products();
