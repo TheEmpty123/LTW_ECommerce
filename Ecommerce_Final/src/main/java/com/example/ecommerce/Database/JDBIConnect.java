@@ -11,7 +11,7 @@ import java.util.*;
 
 public class JDBIConnect extends ManagerBase {
     private boolean status;
-    private Jdbi jdbi;
+    public Jdbi jdbi;
     private MysqlDataSource src;
 
     private final IInitializable[] primaryManager;
@@ -33,6 +33,8 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public Jdbi getJdbi() {
+        startInitializeBehavior();
+        createConnect();
         return jdbi;
     }
 
