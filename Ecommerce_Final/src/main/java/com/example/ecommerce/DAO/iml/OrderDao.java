@@ -28,14 +28,15 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     }
 
     @Override
-    public Order addOrder(OrderItem orderItem) {
+    public Order addOrder(int id, int orderID, int productID, int amount) {
         return db.getJdbi().withHandle(handle -> {
-            handle.createUpdate("INSERT INTO orderItem (orderID, productID, amount) VALUES (?, ?, ?)")
-                    .bind(0, orderItem.getOrderID())
-                    .bind(1, orderItem.getProductID())
-                    .bind(2, orderItem.getAmount())
+            handle.createUpdate("INSERT INTO orderItem (orderID, productID, amount) " +
+                            "VALUES (:orderID, :productID, :amount)")
+                    .bind("orderID", orderID)
+                    .bind("productID", productID)
+                    .bind("amount", amount)
                     .execute();
-            return getOrderById(orderItem.getOrderID());
+            return getOrderById(orderID);
         });
     }
 

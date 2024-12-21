@@ -22,6 +22,10 @@ html, body{
     text-decoration: none;
     color: white;
 }
+.pagination a.active {
+    background-color: #007bff;
+    color: #fff;
+}
 #product-details h1{
     font-size: 30px;
 }

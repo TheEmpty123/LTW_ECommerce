@@ -1,6 +1,7 @@
 package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Order;
+import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.DAO.interf.IOrderItemDao;
 import com.example.ecommerce.Database.JDBIConnect;
 
@@ -21,8 +22,8 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
 
     @Override
     public int countAmount(Order order) {
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select count(*) from orderItem"))
-                .mapToBean(Integer.class).one();
+        return db.getJdbi().withHandle(handle -> handle.createQuery("select sum(*) from orderItem"))
+                .mapTo(Integer.class).one();
     }
 
     public static void main(String[] args) {

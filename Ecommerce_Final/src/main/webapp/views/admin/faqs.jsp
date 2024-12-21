@@ -1,0 +1,599 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: KhanhDuy
+  Date: 12/19/2024
+  Time: 3:52 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>FAQs</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css" />
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/admin/style.css" />
+  <style>
+    /* Reset CSS */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f4f6;
+      color: #333;
+      width: 98%;
+    }
+
+    /* Header */
+    .header-bar {
+      background-image: url('${pageContext.request.contextPath}/public/images/banners/img-2.jpg');
+      /* Replace with your image URL */
+      background-size: cover;
+      background-position: center;
+      padding: 50px 20px;
+      text-align: center;
+      color: #fff;
+      border-radius: 10px;
+      margin: 20px;
+    }
+
+    .header h1 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .header p {
+      font-size: 1em;
+      opacity: 0.8;
+    }
+
+    /* Search bar */
+    .search-bar {
+      display: flex;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 80%;
+      max-width: 500px;
+      padding: 10px;
+      border-radius: 20px;
+      border: none;
+      outline: none;
+      font-size: 1em;
+      padding-left: 15px;
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 10px;
+      font-size: 0.9em;
+      color: #888;
+    }
+
+    .footer a {
+      color: #ff5722;
+      text-decoration: none;
+    }
+
+    .footer a:hover {
+      text-decoration: underline;
+    }
+
+    #container {
+      /* background-color: greenyellow; */
+      position: relative;
+      min-height: 600px;
+      height: auto;
+      margin: 20px;
+      border-radius: 10px;
+      width: 100%;
+
+    }
+
+    .row {
+      width: 100%;
+    }
+
+    #faq-content {
+      position: relative;
+      min-height: 450px;
+      height: auto;
+      padding-bottom: 180px;
+    }
+
+    .content {
+      /* background-color: blue; */
+      width: 100%;
+      min-height: 100px;
+      height: auto;
+      border-radius: 10px;
+    }
+
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+    #contact {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 150px;
+    }
+
+    .center-box {
+      width: 600px;
+      height: 100%;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* a{
+        padding: 10px;
+    } */
+    .center-box .email {
+      background-color: #22c55e;
+      width: 90%;
+      border-radius: 15px;
+
+    }
+
+    .center-box .tweet {
+      background-color: #4ecac2;
+      width: 90%;
+      border-radius: 15px;
+    }
+
+    .center-text {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .p-40 {
+      padding: 40px;
+    }
+
+    .title-content {
+      margin-bottom: 20px;
+    }
+
+    .content {
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <input type="checkbox" id="sidebar-toggle" />
+  <div class="sidebar">
+    <div class="sidebar-header">
+      <h3 class="brand">
+        <span class="ti-panel" style="font-size: 1.17rem;"></span>
+        <span style="font-size: 1.17rem;">Dashboard</span>
+      </h3>
+      <label for="sidebar-toggle" class="ti-menu-alt"></label>
+    </div>
+
+    <div class="sidebar-menu">
+      <ul style="padding-left: 0px;">
+        <!-- For management -->
+        <li>
+          <a class="separator">
+            General
+          </a>
+        </li>
+        <li>
+          <a href="dashboard.jsp">
+            <span class="ti-home"></span>
+            <span>Trang chủ</span>
+          </a>
+        </li>
+        <li>
+          <a href="admin-management.jsp">
+            <span class="ti-wheelchair"></span>
+            <span>Admins</span>
+          </a>
+        </li>
+        <li>
+          <a href="user-management.jsp">
+            <span class="ti-user"></span>
+            <span>Người dùng</span>
+          </a>
+        </li>
+        <li>
+          <a href="role-permissions-management.jsp">
+            <span class="ti-agenda"></span>
+            <span>Vai trò & Quyền hạn</span>
+          </a>
+        </li>
+        <li>
+          <a href="product-management.jsp">
+            <span class="ti-truck"></span>
+            <span>Quản lý sản phẩm</span>
+          </a>
+        </li>
+        <li>
+          <a href="category-management.jsp">
+            <span class="ti-menu"></span>
+            <span>Quản lý danh mục</span>
+          </a>
+        </li>
+        <li>
+          <a href="inventory-management.jsp">
+            <span class="ti-server"></span>
+            <span>Quản lý hàng tồn</span>
+          </a>
+        </li>
+        <li>
+          <a href="order-management.jsp">
+            <span class="ti-receipt"></span>
+            <span>Quản lý đơn</span>
+          </a>
+        </li>
+        <li>
+          <a href="promotions-discounts.jsp">
+            <span class="ti-ticket"></span>
+            <span>Giảm giá</span>
+          </a>
+        </li>
+        <li>
+          <a href="purchases-management.jsp">
+            <span class="ti-money"></span>
+            <span>Thanh toán</span>
+          </a>
+        </li>
+        <li>
+          <a href="sales-reports.jsp">
+            <span class="ti-bar-chart"></span>
+            <span>Báo cáo doanh thu</span>
+          </a>
+        </li>
+
+        <!-- For user self -->
+
+        <li>
+          <a class="separator">Users</a>
+        </li>
+
+        <li>
+          <a href="profile-management.jsp">
+            <span class="ti-user"></span>
+            <span>Profile</span>
+          </a>
+        </li>
+
+        <!-- For support -->
+
+        <li>
+          <a class="separator">
+            Support
+          </a>
+        </li>
+
+        <li>
+          <a href="privacy-policy.jsp">
+            <span class="ti-info-alt"></span>
+            <span>Privacy policy</span>
+          </a>
+        </li>
+        <li>
+          <a href="faqs.jsp">
+            <span class="ti-help-alt"></span>
+            <span>FAQs</span>
+          </a>
+        </li>
+        <li>
+          <a href="help-center.jsp">
+            <span class="ti-headphone-alt"></span>
+            <span>Help center</span>
+          </a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+  <div class="main-content">
+    <header>
+      <div class="search-wrapper">
+        <span class="ti-search"></span>
+        <input type="search" placeholder="Search" />
+      </div>
+
+      <div class="social-icons">
+        <span class="ti-bell"></span>
+        <span class="ti-comment"></span>
+        <div></div>
+      </div>
+    </header>
+    <div class="header-bar">
+      <h1>Frequently Asked Questions</h1>
+      <p>We're here to help with any questions you have about plans, pricing, and supported features. </p>
+
+      <div class="search-bar">
+        <input type="text" placeholder="Search ...">
+      </div>
+    </div>
+    <div id="container">
+      <div class="my-5" id="faq-content">
+        <div class="row">
+          <!-- General Column -->
+          <div class="col-md-6 mb-4">
+            <h5>General</h5>
+            <div class="accordion" id="accordionGeneral">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Can I use Dummy FAQs for my website or project?
+                  </button>
+                </h2>
+                <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne"
+                     data-bs-parent="#accordionGeneral">
+                  <div class="accordion-body">
+                    Yes, you can use Dummy FAQs to populate your website or project during
+                    development or testing phases. They help simulate the appearance and
+                    functionality of a real FAQ section without requiring actual content.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Are Dummy FAQs suitable for customer support purposes?
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                     data-bs-parent="#accordionGeneral">
+                  <div class="accordion-body">
+                    While Dummy FAQs can be used internally for training customer support teams,
+                    they are not suitable for public-facing customer support. Real FAQs should be
+                    based on genuine customer inquiries to provide accurate and helpful information.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseThree" aria-expanded="false"
+                          aria-controls="collapseThree">
+                    Do Dummy FAQs require attribution?
+                  </button>
+                </h2>
+                <div id="collapseThree" class="accordion-collapse collapse"
+                     aria-labelledby="headingThree" data-bs-parent="#accordionGeneral">
+                  <div class="accordion-body">
+                    No, Dummy FAQs do not require attribution since they are not based on real
+                    questions or contributed by individuals. You can use them freely for internal
+                    testing or demonstration purposes.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Payments Column -->
+          <div class="col-md-6 mb-4">
+            <h5>Payments</h5>
+            <div class="accordion" id="accordionPayments">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFour">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFour" aria-expanded="true"
+                          aria-controls="collapseFour">
+                    Can I test my website/app with Dummy Payments?
+                  </button>
+                </h2>
+                <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour"
+                     data-bs-parent="#accordionPayments">
+                  <div class="accordion-body">
+                    Yes, Dummy Payments are commonly used by developers and businesses to test the
+                    functionality of e-commerce platforms, mobile apps, and payment gateways. They
+                    help identify and resolve issues without risking real transactions.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingFive">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseFive" aria-expanded="false"
+                          aria-controls="collapseFive">
+                    Are Dummy Payments secure?
+                  </button>
+                </h2>
+                <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive"
+                     data-bs-parent="#accordionPayments">
+                  <div class="accordion-body">
+                    Dummy Payments used in controlled environments for training or demonstration
+                    purposes are generally secure. However, it's crucial not to confuse them with
+                    real transactions and avoid entering genuine financial information.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                    How can I differentiate between a Dummy Payment and a real one?
+                  </button>
+                </h2>
+                <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix"
+                     data-bs-parent="#accordionPayments">
+                  <div class="accordion-body">
+                    Real payments involve the transfer of actual funds, resulting in a change in
+                    financial balances. Dummy Payments, on the other hand, do not involve any
+                    monetary exchange and are typically labeled or indicated as test transactions.
+                    Always verify the authenticity of transactions before proceeding with any
+                    action.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Refunds Column -->
+          <div class="col-md-6 mb-4">
+            <h5>Refunds</h5>
+            <div class="accordion" id="accordionRefunds">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingSeven">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseSeven" aria-expanded="true"
+                          aria-controls="collapseSeven">
+                    How do I request a refund?
+                  </button>
+                </h2>
+                <div id="collapseSeven" class="accordion-collapse collapse"
+                     aria-labelledby="headingSeven" data-bs-parent="#accordionRefunds">
+                  <div class="accordion-body">
+                    To request a refund, simply contact our customer support team through email or
+                    phone and provide details about your purchase and reason for the refund. Our
+                    representatives will guide you through the process.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEight">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseEight" aria-expanded="false"
+                          aria-controls="collapseEight">
+                    What is the refund policy?
+                  </button>
+                </h2>
+                <div id="collapseEight" class="accordion-collapse collapse"
+                     aria-labelledby="headingEight" data-bs-parent="#accordionRefunds">
+                  <div class="accordion-body">
+                    Our refund policy allows customers to request a refund within 30 days of
+                    purchase for eligible products or services. Certain restrictions may apply, so
+                    it's essential to review the terms and conditions specific to your purchase.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingNine">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseNine" aria-expanded="false"
+                          aria-controls="collapseNine">
+                    How long does it take to process a refund?
+                  </button>
+                </h2>
+                <div id="collapseNine" class="accordion-collapse collapse" aria-labelledby="headingNine"
+                     data-bs-parent="#accordionRefunds">
+                  <div class="accordion-body">
+                    Refunds are typically processed within 3-5 business days after the request is
+                    approved. However, it may take longer depending on the payment method and
+                    financial institution involved.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Support Column -->
+          <div class="col-md-6 mb-4">
+            <h5>Support</h5>
+            <div class="accordion" id="accordionSupport">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTen">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTen" aria-expanded="true" aria-controls="collapseTen">
+                    How do I contact customer support?
+                  </button>
+                </h2>
+                <div id="collapseTen" class="accordion-collapse collapse" aria-labelledby="headingTen"
+                     data-bs-parent="#accordionSupport">
+                  <div class="accordion-body">
+                    You can contact our customer support team via email, phone, or live chat. Our
+                    representatives are available to assist you during business hours, Monday
+                    through Friday.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingEleven">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseEleven" aria-expanded="false"
+                          aria-controls="collapseEleven">
+                    Is customer support available 24/7?
+                  </button>
+                </h2>
+                <div id="collapseEleven" class="accordion-collapse collapse"
+                     aria-labelledby="headingEleven" data-bs-parent="#accordionSupport">
+                  <div class="accordion-body">
+                    Our customer support is available during regular business hours, Monday through
+                    Friday. However, you can leave us a message outside of these hours, and we'll
+                    respond to you as soon as possible.
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="headingTwelve">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                          data-bs-target="#collapseTwelve" aria-expanded="false"
+                          aria-controls="collapseTwelve">
+                    How long does it take to receive a response from customer support?
+                  </button>
+                </h2>
+                <div id="collapseTwelve" class="accordion-collapse collapse"
+                     aria-labelledby="headingTwelve" data-bs-parent="#accordionSupport">
+                  <div class="accordion-body">
+                    We strive to respond to all customer inquiries within 24 hours during regular
+                    business hours. Response times may vary depending on the volume of inquiries
+                    received.
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="contact">
+        <div class="center-box">
+          <div class="row">
+            <div class="col-sm-12 col-md-12 center-text">
+              <h4>Can't find the questions?</h4>
+            </div>
+            <div class="col-sm-6 col-md-6 center-text">
+              <div class="email center-text">
+                <a href="#" style="padding: 10px;">
+                  <i class="bi bi-envelope"></i>
+                  <span>Email us your question</span>
+                </a>
+              </div>
+
+            </div>
+            <div class="col-sm-6 col-md-6 center-text">
+              <div class="tweet center-text">
+                <a href="#" style="padding: 10px;">
+                  <i class="bi bi-twitter-x"></i>
+                  <span>Send us a tweet</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="footer">
+      © 2024 © Nong Lam University. created by ❤️ <a href="#">Admin</a>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </div>
+</body>
+</html>

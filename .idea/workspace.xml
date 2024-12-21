@@ -4,7 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="2f8ec4cf-719c-4693-92fa-9d404cf3b2ba" name="Changes" comment="" />
+=======
+    <list default="true" id="2f8ec4cf-719c-4693-92fa-9d404cf3b2ba" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
+>>>>>>> origin/FIxJspFile
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -14,6 +20,7 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
+<<<<<<< HEAD
   &quot;lastFilter&quot;: {}
 }</component>
   <component name="GithubPullRequestsUISettings">{
@@ -22,6 +29,19 @@
     &quot;accountId&quot;: &quot;fd0405c6-6f69-45d4-9caf-56784d0860d9&quot;
   }
 }</component>
+=======
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;harvey2807&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/TheEmpty123/LTW_ECommerce&quot;,
+    &quot;accountId&quot;: &quot;79dd1237-7f62-430a-be9e-1b776fcb2eb0&quot;
+  }
+}</component>
+>>>>>>> origin/FIxJspFile
   <component name="ProjectColorInfo">{
   &quot;customColor&quot;: &quot;&quot;,
   &quot;associatedIndex&quot;: 5
@@ -34,9 +54,14 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "RunOnceActivity.ShowReadmeOnStart": "true",
+<<<<<<< HEAD
     "git-widget-placeholder": "Bean&&DAO",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "E:/Study/LTW/Ecommerce_Final",
+=======
+    "git-widget-placeholder": "Duy",
+    "last_opened_file_path": "D:/LTW/LTW_project",
+>>>>>>> origin/FIxJspFile
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -45,11 +70,6 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
-  <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\Study\LTW\Ecommerce_Final\public\json" />
-    </key>
-  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -68,8 +88,11 @@
       <workItem from="1729770915723" duration="42000" />
       <workItem from="1731656496894" duration="32000" />
       <workItem from="1733299923870" duration="612000" />
+<<<<<<< HEAD
       <workItem from="1733910690305" duration="1867000" />
       <workItem from="1734448124551" duration="10000" />
+=======
+>>>>>>> origin/FIxJspFile
     </task>
     <servers />
   </component>
