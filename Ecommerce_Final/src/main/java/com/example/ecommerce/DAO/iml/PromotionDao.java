@@ -3,6 +3,7 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.DAO.interf.IPromotionDao;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,12 +45,12 @@ public class PromotionDao extends ImplementBase implements IPromotionDao {
     }
 
     @Override
-    public boolean updateStartDate(DateTime newStartDate) {
+    public boolean updateStartDate(LocalDateTime newStartDate) {
         return false;
     }
 
     @Override
-    public boolean updateEndDate(DateTime newEndDate) {
+    public boolean updateEndDate(LocalDateTime newEndDate) {
         return false;
     }
 
