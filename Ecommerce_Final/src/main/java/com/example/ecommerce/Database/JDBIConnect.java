@@ -30,6 +30,7 @@ public class JDBIConnect extends ManagerBase {
         primaryManager = new IInitializable[]{
                 properties
         };
+        Initialize();
     }
 
     public Jdbi getJdbi() {

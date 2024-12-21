@@ -27,6 +27,7 @@ public class ProductService extends ServiceBase {
     public static ProductService getInstance() {
         if (instance == null) {
             instance = new ProductService();
+            instance.productDao = new ProductDao();
         }
         return instance;
     }
