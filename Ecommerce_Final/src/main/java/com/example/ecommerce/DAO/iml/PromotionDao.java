@@ -1,6 +1,5 @@
 package com.example.ecommerce.DAO.iml;
 
-import com.example.ecommerce.Bean.DateTime;
 import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.DAO.interf.IPromotionDao;
 

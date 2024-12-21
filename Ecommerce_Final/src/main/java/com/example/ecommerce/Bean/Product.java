@@ -1,7 +1,9 @@
 package com.example.ecommerce.Bean;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
+import java.util.Locale;
 
 public class Product implements Serializable {
     private int id;
@@ -12,6 +14,8 @@ public class Product implements Serializable {
     private LocalDateTime created_at;
     private int attributeId;
     private int cateId;
+
+    private String fullPrice;
 
     public Product() {}
 
@@ -24,6 +28,8 @@ public class Product implements Serializable {
         this.created_at = created_at;
         this.attributeId = attributeId;
         this.cateId = cateId;
+        NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
+        fullPrice = formater.format(price);
     }
 
     public int getId() {
@@ -96,7 +102,7 @@ public class Product implements Serializable {
                 "id=" + id +
                 ", proName=" + proName +
                 ", description=" + description +
-                ", price=" + price +
+                ", price=" + fullPrice +
                 ", thumb=" + thumb +
                 ", created_at=" + created_at +
                 "}";

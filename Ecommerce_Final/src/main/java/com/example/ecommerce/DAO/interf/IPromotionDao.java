@@ -1,6 +1,5 @@
 package com.example.ecommerce.DAO.interf;
 
-import com.example.ecommerce.Bean.DateTime;
 import com.example.ecommerce.Bean.Promotion;
 
 import java.util.List;
