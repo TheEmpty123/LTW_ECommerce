@@ -3,8 +3,8 @@
 }
 .homepage-button-pic{
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     /* position: absolute;  */
     max-height: 100%;
     margin-top: -12px;
@@ -37,7 +37,7 @@
     border: none;
     cursor: pointer;
     font-size: 16px;
-    
+
 }
 
 .img-banner {
@@ -74,12 +74,12 @@
 .search-home{
     justify-content: center;
     text-align: center;
-    
+
 
 }
 .search-field{
-   width: 94%;
-   height: 54px;
+    width: 94%;
+    height: 54px;
 
 }
 .but-search{
@@ -100,7 +100,7 @@
 
 .middle-text {
     width: 20%;
-    padding: 15px; 
+    padding: 15px;
     text-align: center;
 }
 
@@ -164,8 +164,8 @@
     cursor: pointer;
 }
 .left-part2 .xemthem:hover{
-background-color: #7a9c59;
-color: white;
+    background-color: #7a9c59;
+    color: white;
 }
 .right-part2{
     width: 48%;
@@ -366,7 +366,7 @@ textarea {
 .card {
     position: relative;
     box-shadow: 22px 19px 10px rgba(0, 0, 0, 0.3);
-    overflow: hidden;  
+    overflow: hidden;
     height: 250px;
 
 }
@@ -403,6 +403,5 @@ textarea {
 
 .card-body, .card-footer {
     position: relative;
-    z-index: 2; 
+    z-index: 2;
 }
-
