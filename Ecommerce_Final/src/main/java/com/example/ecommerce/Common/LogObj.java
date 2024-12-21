@@ -9,7 +9,7 @@ public class LogObj{
 
     private String _name;
 
-    LogObj(){
+    public LogObj(){
         this._name = null;
     }
 

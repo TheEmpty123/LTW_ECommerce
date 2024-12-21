@@ -14,12 +14,13 @@ public class ProductService extends ServiceBase {
     private ProductDao productDao;
 
     public ProductService() {
-        productDao = new ProductDao();
+        super();
+        instance = this;
     }
 
     @Override
     public void init() {
-
+        productDao = new ProductDao();
     }
 
     public static ProductService getInstance() {

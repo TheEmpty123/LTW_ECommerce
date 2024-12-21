@@ -13,33 +13,25 @@ import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
+import org.jdbi.v3.core.ConnectionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @WebServlet(name = "home", value = "/kenes")
 public class Home extends HttpServlet {
 
-
-
-    @Override
-    public void init() throws ServletException {
-        super.init();
-        ProductService productService = new ProductService();
-
-//        List<ServiceBase> services = new ArrayList<ServiceBase>();
-//
-//        services.add(productService);
-//
-//        services.forEach(ServiceBase::init);
-
-    }
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        LogObj.defaultLog.info("a");
 
-        init();
+        try {
 
-        List<Product> products = ProductService.getInstance().getNew4Products();
-        request.setAttribute("listproduct", products);
+            List<Product> products = MC.instance.productService.getNew4Products();
+            request.setAttribute("listproduct", products);
+
+        } catch (ConnectionException e) {
+            MC.instance.log.error(this.getClass().getName(),"Error connecting to DB");
+            MC.instance.log.error(this.getClass().getName(), new RuntimeException(e));
+        }
 
         String url = "/views/web/common/home.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);

@@ -284,8 +284,10 @@
                           Hàng trang trí khác </span>
                                         </a>
                                     </div>
-
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
