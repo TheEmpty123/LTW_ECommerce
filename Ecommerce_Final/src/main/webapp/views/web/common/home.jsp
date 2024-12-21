@@ -375,7 +375,7 @@
                 <button class="xemthem" style="font-size: large;font-weight: bold;">Xem thêm</button>
             </div>
             <div class="right-part2">
-                <img style="width: 100%;" src=".././../../public/images/banners/nha-xinh-banner-ban-an-vuong-24423.jpg"
+                <img style="width: 100%;" src="../../../public/images/banners/nha-xinh-banner-ban-an-vuong-24423.jpg"
                      alt="">
             </div>
         </section>

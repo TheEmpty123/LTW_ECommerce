@@ -5,6 +5,7 @@ import com.example.ecommerce.Common.Enum.ProductFilter;
 import com.example.ecommerce.DAO.interf.IProductDAO;
 import com.example.ecommerce.Database.JDBIConnect;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +20,24 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public int recordSize() {
         return 0;
+    }
+
+    @Override
+    public Product addNewProduct(int id, String name, int price, String description, String thumb, LocalDateTime create_at, int cateID, int attributeID) {
+        return db.getJdbi().withHandle(handle ->
+                handle.createUpdate("INSERT INTO products (id, name, price, description, thumb, create_at, cateID, attributeID) " +
+                                "VALUES (:id, :name, :price, :description, :thumb, :create_at, :cateID, :attributeID)")
+                        .bind("id", id)
+                        .bind("name", name)
+                        .bind("price", price)
+                        .bind("description", description)
+                        .bind("thumb", thumb)
+                        .bind("create_at", create_at)
+                        .bind("cateID", cateID)
+                        .bind("attributeID", attributeID)
+                        .executeAndReturnGeneratedKeys("id")
+                        .mapTo(Product.class).findOne().orElse(null));
+
     }
 
     @Override
@@ -55,9 +74,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     }
 
     @Override
-    public List<Product> get8NewProducts() {
+    public List<Product> get4NewProducts() {
         db = JDBIConnect.getInstance();
-       return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products limit 8")).mapToBean(Product.class).list();
+        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products limit 4")).mapToBean(Product.class).list();
 
     }
 

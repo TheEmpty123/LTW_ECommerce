@@ -11,8 +11,7 @@ import java.time.LocalDateTime;
 public interface IOrderDao {
     int recordSize();
 
-    public Order addOrder(OrderItem orderItem);
-
+    public Order addOrder(int id, int orderID, int productID, int amount);
 
     Order updateOrderByID(int id, int orderID, int productID, int amount);
 
