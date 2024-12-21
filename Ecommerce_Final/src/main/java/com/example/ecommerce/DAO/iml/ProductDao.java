@@ -10,7 +10,6 @@ import java.util.List;
 
 public class ProductDao extends ImplementBase implements IProductDAO {
     List<Product> productList = new ArrayList<>();
-    JDBIConnect db;
 
     public ProductDao() {
         super();
