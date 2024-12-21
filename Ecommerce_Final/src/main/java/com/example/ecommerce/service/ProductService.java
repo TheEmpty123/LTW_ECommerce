@@ -20,6 +20,7 @@ public class ProductService extends ServiceBase {
 
     @Override
     public void init() {
+        log.info("ProductService init...");
         productDao = new ProductDao();
     }
 

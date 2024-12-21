@@ -7,6 +7,7 @@ import java.util.List;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.LogObj;
+import com.example.ecommerce.Database.JDBIConnect;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.ServiceBase;
 import jakarta.servlet.RequestDispatcher;
@@ -22,9 +23,9 @@ public class Home extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        MC.getInstance();
 
         try {
-
             List<Product> products = MC.instance.productService.getNew4Products();
             request.setAttribute("listproduct", products);
 

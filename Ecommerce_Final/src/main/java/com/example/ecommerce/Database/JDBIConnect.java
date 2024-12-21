@@ -33,8 +33,6 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public Jdbi getJdbi() {
-        startInitializeBehavior();
-        createConnect();
         return jdbi;
     }
 

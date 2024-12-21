@@ -13,32 +13,28 @@ public class MC {
     public ProductService productService;
     public LogObj log = new LogObj();
 
-    private boolean initialized = false;
+    private boolean initialized;
     private final IInitializable conn;
     private final ArrayList<ServiceBase> serviceList;
 
-    public static MC instance = new MC();
+    public static MC instance;
 
     public static MC getInstance() {
         if (instance == null) {
             instance = new MC();
+            instance.init();
         }
         return instance;
     }
 
     public MC() {
-        instance = this;
-
+        initialized = false;
         conn = JDBIConnect.getInstance();
-
         serviceList = new ArrayList<>();
-
         serviceList.add(productService = ProductService.getInstance());
-
-        init();
     }
 
-    public void init() {
+    private void init() {
         if (initialized) return;
 
         log.setName(getClass().getName());
