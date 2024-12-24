@@ -39,7 +39,6 @@ public class ListProductController extends HttpServlet {
 
         // Tổng số trang
         int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
-
         // Gửi dữ liệu tới JSP
         req.setAttribute("products", pageProducts);
         req.setAttribute("currentPage", currentPage);
