@@ -50,7 +50,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public List<Product> getAllProducts() {
         db = JDBIConnect.getInstance();
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products")
+        return db.jdbi.withHandle(handle -> handle.createQuery("select * from products")
                 .mapToBean(Product.class).list());
     }
 

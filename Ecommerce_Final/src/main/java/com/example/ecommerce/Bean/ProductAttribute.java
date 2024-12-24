@@ -7,7 +7,7 @@ public class ProductAttribute implements Serializable {
     private String material;
     private String size;
 
-    ProductAttribute(){}
+    public ProductAttribute(){}
 
     public ProductAttribute(int id, String material, String size) {
         this.id = id;

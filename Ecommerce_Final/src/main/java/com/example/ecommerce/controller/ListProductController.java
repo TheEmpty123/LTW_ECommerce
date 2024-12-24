@@ -1,13 +1,15 @@
-package com.example.ecommerce.controller;
+package com.example.ecommerce.Controller;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.DAO.iml.ProductDao;
+import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
+import java.awt.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -16,10 +18,10 @@ public class ListProductController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDao dao = new ProductDao();
+        ProductService service = new ProductService();
         List<Product> data = null;
         try{
-            data = dao.getAllProducts();
+            data = service.getAllProducts();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
@@ -41,9 +43,9 @@ public class ListProductController extends HttpServlet {
         int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
         // Gửi dữ liệu tới JSP
         req.setAttribute("products", pageProducts);
-        req.setAttribute("currentPage", currentPage);
-        req.setAttribute("totalPages", totalPages);
-        req.getRequestDispatcher("views/web/product/All-products.jsp").forward(req, resp);
+        req.setAttribute("currentPage", (Integer) currentPage);
+        req.setAttribute("totalPages", (Integer) totalPages);
+        req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
     }
 
     @Override

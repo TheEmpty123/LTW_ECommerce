@@ -12,9 +12,9 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/product.css">
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/product.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
     <link href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -24,7 +24,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="../../../public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <title>Tất cả sản phẩm</title>
 </head>
 <body>
@@ -42,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -106,7 +106,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="../../../public/images/logos/logo3.png" alt="Logo">
+                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -347,11 +347,11 @@
                 <c:forEach var="p" items="${products}">
                     <div class="col-sm-3 col-md-3 col-6">
                         <div class="card product-card">
-                            <a href="">
+                            <a href="product?id=${p.id}&atributeID=${p.atributeID}">
                                 <img src="${p.thumb}" class="image-top"
-                                     alt="Armchair Doulton vintage">
+                                     alt="${p.proName}">
                                 <img src="${p.thumb}" class="image-back"
-                                     alt="Armchair Doulton vintage 1">
+                                     alt="${p.proName}">
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
@@ -371,7 +371,7 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}"> <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>
@@ -395,18 +395,20 @@
 <%--                    </li>--%>
 
                     <c:if test="${currentPage > 1}">
-                        <a href="products?page=${currentPage - 1}">« Trước</a>
+                        <li class="page-item">
+                            <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>
+                        </li>
                     </c:if>
                     <c:forEach begin="1" end="${totalPages}" var="page" >
                         <!-- Các trang lân cận -->
                         <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
-                                                 href="products?page=${page}">${page}</a></li>
+                                                 href="list-product?page=${page}">${page}</a></li>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
 <%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
                         <li class="page-item">
-                            <a class="page-link" href="products?page=${currentPage + 1}" aria-label="Next">
+                            <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
                                 <span aria-hidden="true">Tiếp »</span>
                             </a>
                         </li>

@@ -11,7 +11,7 @@ import java.util.Map;
 public class ProductService extends ServiceBase {
     private static ProductService instance;
     static Map<String, String> data = new HashMap<>();
-    private ProductDao productDao;
+    private ProductDao productDao = new ProductDao();
 
     public ProductService() {
         super();
@@ -24,6 +24,9 @@ public class ProductService extends ServiceBase {
         productDao = new ProductDao();
     }
 
+    public List<Product> getAllProducts() {
+        return productDao.getAllProducts();
+    }
     public static ProductService getInstance() {
         if (instance == null) {
             instance = new ProductService();

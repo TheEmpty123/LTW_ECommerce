@@ -12,22 +12,22 @@ public class Product implements Serializable {
     private double price;
     private String thumb;
     private LocalDateTime created_at;
-    private int attributeId;
-    private int cateId;
+    private int atributeID;
+    private int cateID;
 
     private String fullPrice;
 
     public Product() {}
 
-    public Product(int id, String proName, String description, double price, String thumb, LocalDateTime created_at, int attributeId, int cateId) {
+    public Product(int id, String proName, String description, double price, String thumb, LocalDateTime created_at, int cateID, int atributeID) {
         this.id = id;
         this.proName = proName;
         this.description = description;
         this.price = price;
         this.thumb = thumb;
         this.created_at = created_at;
-        this.attributeId = attributeId;
-        this.cateId = cateId;
+        this.cateID = cateID;
+        this.atributeID = atributeID;
         NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
         fullPrice = formater.format(price);
     }
@@ -56,12 +56,16 @@ public class Product implements Serializable {
         return created_at;
     }
 
-    public int getAttributeId() {
-        return attributeId;
+    public int getAtributeID() {
+        return atributeID;
     }
 
-    public int getCateId() {
-        return cateId;
+    public String getFullPrice() {
+        return fullPrice;
+    }
+
+    public int getCateID() {
+        return cateID;
     }
 
     public void setProName(String proName) {
@@ -84,12 +88,12 @@ public class Product implements Serializable {
         this.created_at = created_at;
     }
 
-    public void setAttributeId(int attributeId) {
-        this.attributeId = attributeId;
+    public void setAtributeID(int attributeId) {
+        this.atributeID = attributeId;
     }
 
-    public void setCateId(int cateId) {
-        this.cateId = cateId;
+    public void setCateID(int cateId) {
+        this.cateID = cateId;
     }
 
     public void setId(int id) {

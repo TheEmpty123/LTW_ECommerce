@@ -437,6 +437,7 @@
         <a href="#">/Phòng khách</a>
         <a href="#">/Armchair</a>
     </div>
+
     <div id="product-details">
         <div class="product-image">
             <!-- Hình ảnh của sản phẩm -->
@@ -448,7 +449,7 @@
 
         <!-- Mô tả sản phẩm -->
         <div class="product-describe">
-            <h1 class="product-title">Armchair Hùng King + Gối VACT3231</h1>
+            <h1 class="product-title">${p.proName}</h1>
             <div class="wishlist-wrapper">
                 <div class="wishlist-icon">
                     <button class="wishlist-button">
@@ -457,16 +458,16 @@
                 </div>
             </div>
             <div class="price-wrapper">
-                <p class="product-page-price">13,900,000 đ</p>
+                <p class="product-page-price">${p.price}</p>
             </div>
             <div class="product-attributes-wrapper">
                 <div class="product-attributes-materail">
                     <strong>Vật liệu </strong>
-                    <span class="product-attributes-option">Gỗ Beech tự nhiên, mây công nghiệp, bọc vải</span>
+                    <span class="product-attributes-option">${pat.material}</span>
                 </div>
                 <div class="product-attributes-size">
                     <strong>Kích thước</strong>
-                    <span class="product-attributes-option">D700 - R745 - C755 mm</span>
+                    <span class="product-attributes-option">${pat.size}</span>
                 </div>
             </div>
             <div class="stock-available margin-top-bottom-25">
