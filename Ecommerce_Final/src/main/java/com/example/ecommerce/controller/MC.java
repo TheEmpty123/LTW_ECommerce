@@ -1,16 +1,19 @@
 package com.example.ecommerce.controller;
 
+import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.LogObj;
 import com.example.ecommerce.Database.JDBIConnect;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.ServiceBase;
+import com.example.ecommerce.service.UserService;
 
 import java.util.ArrayList;
 
 public class MC {
 
     public ProductService productService;
+    public UserService userService;
     public LogObj log = new LogObj();
 
     private boolean initialized;
@@ -32,6 +35,7 @@ public class MC {
         conn = JDBIConnect.getInstance();
         serviceList = new ArrayList<>();
         serviceList.add(productService = ProductService.getInstance());
+        serviceList.add(userService = UserService.getInstance());
     }
 
     private void init() {
@@ -46,7 +50,7 @@ public class MC {
     }
 
     public static void main(String[] args) {
-        System.out.println(" ee địt mẹ");
+//        System.out.println(" ee địt mẹ");
     }
 
 }

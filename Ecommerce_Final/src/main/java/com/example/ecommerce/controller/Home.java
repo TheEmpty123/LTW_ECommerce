@@ -18,8 +18,6 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        MC.createInstance();
 
-        System.out.println("đit con ă ê");
-
         try {
 //            List<Product> products = MC.instance.productService.getNew4Products();
             List<Product> products = ProductService.getInstance().getNew4Products();
