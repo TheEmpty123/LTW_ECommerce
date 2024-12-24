@@ -1,24 +1,20 @@
-package com.example.ecommerce.controller;
-
-import java.io.*;
-import java.util.List;
+package com.example.ecommerce.controller.test;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.service.ProductService;
-import jakarta.servlet.RequestDispatcher;
-import jakarta.servlet.ServletException;
+import jakarta.servlet.*;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 import org.jdbi.v3.core.ConnectionException;
 
-@WebServlet(name = "home", value = "/kenes")
-public class Home extends HttpServlet {
+import java.io.IOException;
+import java.util.List;
 
+@WebServlet(name = "Dashboard", value = "/dashboard")
+public class Dashboard extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        MC.createInstance();
-
-        System.out.println("đit con ă ê");
 
         try {
 //            List<Product> products = MC.instance.productService.getNew4Products();

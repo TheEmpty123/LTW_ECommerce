@@ -1,8 +1,8 @@
 package com.example.ecommerce.DAO.interf;
 
-import com.example.ecommerce.Bean.DateTime;
 import com.example.ecommerce.Bean.Promotion;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public interface IPromotionDao {
@@ -19,9 +19,9 @@ public interface IPromotionDao {
     //Cap nhat trang thai cua promotion
     boolean updateStatus(String newStatus);
     //Cap nhat ngay bat dau cua promotion
-    boolean updateStartDate(DateTime newStartDate);
+    boolean updateStartDate(LocalDateTime newStartDate);
     //Cap nhat ngay ket thuc cua promotion
-    boolean updateEndDate(DateTime newEndDate);
+    boolean updateEndDate(LocalDateTime newEndDate);
     //xoa promotion theo id
     boolean delete(int id);
 }

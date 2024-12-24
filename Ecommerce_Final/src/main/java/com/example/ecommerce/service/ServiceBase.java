@@ -3,7 +3,7 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Common.LogObj;
 
 public abstract class ServiceBase{
-    LogObj log;
+    protected final LogObj log = new LogObj();
     String logName = getClass().getName();;
 
     public ServiceBase() {

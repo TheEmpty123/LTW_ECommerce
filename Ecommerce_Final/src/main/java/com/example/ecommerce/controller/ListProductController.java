@@ -1,4 +1,4 @@
-package com.example.ecommerce.Controller;
+package com.example.ecommerce.controller;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.DAO.iml.ProductDao;
@@ -44,11 +44,9 @@ public class ListProductController extends HttpServlet {
         req.setAttribute("currentPage", currentPage);
         req.setAttribute("totalPages", totalPages);
         req.getRequestDispatcher("views/web/product/All-products.jsp").forward(req, resp);
-        super.doGet(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }

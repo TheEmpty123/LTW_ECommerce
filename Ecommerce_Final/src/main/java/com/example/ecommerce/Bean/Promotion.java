@@ -1,9 +1,11 @@
 package com.example.ecommerce.Bean;
 
 import java.io.Serializable;
+import java.text.NumberFormat;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.Locale;
 
 public class Promotion implements Serializable {
     private int id;
@@ -14,6 +16,7 @@ public class Promotion implements Serializable {
     private String statusOfPro;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
+    private String fullValueOfPro;
 
     public Promotion(int id, String codes, String type, int limitePro, double valueOfPro, String status, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
@@ -24,6 +27,9 @@ public class Promotion implements Serializable {
         this.statusOfPro = status;
         this.startDate = startDate;
         this.endDate = endDate;
+
+        NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+        fullValueOfPro = formatter.format(valueOfPro);
     }
 
     public int getId() {
@@ -95,7 +101,7 @@ public class Promotion implements Serializable {
         return "Promotion {id =" + id +
                 ", code = " + codes +
                 ", type = " + type + ", " +
-                "limit = " + limitPro +
+                "limit = " + fullValueOfPro +
                 ", value = " + valueOfPro +
                 ", status = " + statusOfPro +
                 ", startDate = " + startDate +
