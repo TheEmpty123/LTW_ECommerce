@@ -393,39 +393,43 @@
 <%--                            <span class="page-link"--%>
 <%--                                  style="background-color: black; font-weight: bold; border-color: black;">1</span>--%>
 <%--                    </li>--%>
+
                     <c:if test="${currentPage > 1}">
                         <a href="products?page=${currentPage - 1}">« Trước</a>
                     </c:if>
-                    <c:forEach begin="1" var="pa" end="totalPages">
+                    <c:forEach begin="1" end="${totalPages}" var="page" >
                         <!-- Các trang lân cận -->
-                        <li class="page-item"><a class="page-link ${pa == currentPage ? 'active' : ''}"
-                                                 href="products?page=${pa}">${pa}</a></li>
+                        <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
+                                                 href="products?page=${page}">${page}</a></li>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
-                        <a href="products?page=${currentPage + 1}">Tiếp »</a>
+<%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
                         <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
-                                <span aria-hidden="true">&raquo;</span>
+                            <a class="page-link" href="products?page=${currentPage + 1}" aria-label="Next">
+                                <span aria-hidden="true">Tiếp »</span>
                             </a>
                         </li>
+
                     </c:if>
-                    <!-- Dấu ba chấm -->
-                    <li class="page-item disabled">
-                        <span class="page-link">...</span>
-                    </li>
 
-                    <!-- Các trang cuối -->
-                    <li class="page-item"><a class="page-link" href="#">18</a></li>
-                    <li class="page-item"><a class="page-link" href="#">19</a></li>
-                    <li class="page-item"><a class="page-link" href="#">20</a></li>
 
-                    <!-- Nút sang trang kế -->
-                    <li class="page-item">
-                        <a class="page-link" href="#" aria-label="Next">
-                            <span aria-hidden="true">&raquo;</span>
-                        </a>
-                    </li>
+<%--                    <!-- Dấu ba chấm -->--%>
+<%--                    <li class="page-item disabled">--%>
+<%--                        <span class="page-link">...</span>--%>
+<%--                    </li>--%>
+
+<%--                    <!-- Các trang cuối -->--%>
+<%--                    <li class="page-item"><a class="page-link" href="#">18</a></li>--%>
+<%--                    <li class="page-item"><a class="page-link" href="#">19</a></li>--%>
+<%--                    <li class="page-item"><a class="page-link" href="#">20</a></li>--%>
+
+<%--                    <!-- Nút sang trang kế -->--%>
+<%--                    <li class="page-item">--%>
+<%--                        <a class="page-link" href="#" aria-label="Next">--%>
+<%--                            <span aria-hidden="true">&raquo;</span>--%>
+<%--                        </a>--%>
+<%--                    </li>--%>
                 </ul>
             </nav>
         </div>
