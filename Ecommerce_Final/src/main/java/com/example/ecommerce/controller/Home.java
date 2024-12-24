@@ -22,6 +22,7 @@ public class Home extends HttpServlet {
 //            List<Product> products = MC.instance.productService.getNew4Products();
             List<Product> products = ProductService.getInstance().getNew4Products();
             request.setAttribute("listproduct", products);
+            Cart cart;
 
         } catch (ConnectionException e) {
 //            MC.instance.log.error(this.getClass().getName(),"Error connecting to DB");
