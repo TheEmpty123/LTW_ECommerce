@@ -225,7 +225,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="Products.jsp">
+                                        <a class="ux-menu-link__link flex" href="product?cateID=${p.cateID}">
                                                 <span class="ux-menu-link__text">
                                                     Đồng hồ </span>
                                         </a>
@@ -414,24 +414,6 @@
                         </li>
 
                     </c:if>
-
-
-<%--                    <!-- Dấu ba chấm -->--%>
-<%--                    <li class="page-item disabled">--%>
-<%--                        <span class="page-link">...</span>--%>
-<%--                    </li>--%>
-
-<%--                    <!-- Các trang cuối -->--%>
-<%--                    <li class="page-item"><a class="page-link" href="#">18</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#">19</a></li>--%>
-<%--                    <li class="page-item"><a class="page-link" href="#">20</a></li>--%>
-
-<%--                    <!-- Nút sang trang kế -->--%>
-<%--                    <li class="page-item">--%>
-<%--                        <a class="page-link" href="#" aria-label="Next">--%>
-<%--                            <span aria-hidden="true">&raquo;</span>--%>
-<%--                        </a>--%>
-<%--                    </li>--%>
                 </ul>
             </nav>
         </div>

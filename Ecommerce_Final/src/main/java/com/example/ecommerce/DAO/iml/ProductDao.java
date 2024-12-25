@@ -82,4 +82,6 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     public List<Product> getProductByFilter(ProductFilter filter) {
         return null;
     }
+
+
 }
