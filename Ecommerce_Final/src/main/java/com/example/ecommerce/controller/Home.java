@@ -3,6 +3,7 @@ package com.example.ecommerce.controller;
 import java.io.*;
 import java.util.List;
 
+import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.RequestDispatcher;
@@ -25,6 +26,8 @@ public class Home extends HttpServlet {
             Cart cart;
 
         } catch (ConnectionException e) {
+            System.out.println("ncc");
+
 //            MC.instance.log.error(this.getClass().getName(),"Error connecting to DB");
 //            MC.instance.log.error(this.getClass().getName(), new RuntimeException(e));
         }
