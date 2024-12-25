@@ -13,10 +13,10 @@
 <head>
     <title>Chi tiết sản phẩm</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/product.css">
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
-    <link href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/product.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -27,7 +27,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="../../../public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <style>
         .review-section {
             background: white;
@@ -168,7 +168,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -194,7 +194,7 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../cart/Cart.jsp">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}Cart.jsp">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -228,7 +228,7 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../../auth/Profile.jsp">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}Profile.jsp">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
@@ -236,7 +236,7 @@
         <div class="header-bottom-hd">
 
             <div class="logo-hd">
-                <a href=""><img src="../../../public/images/logos/logo3.png"
+                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                                       alt="Logo">
                 </a>
             </div>
@@ -428,7 +428,7 @@
 <!-- End header -->
 <div id="mask" class="center-items">
     <div class="block-content center-items">
-        <img src="../../../public/images/all-products/52.jpg" alt="">
+        <img src=".${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="">
     </div>
 </div>
 <div id="container">
@@ -513,25 +513,25 @@
                     <div id="guarantee-panels">
                         <div id="content-baohanh" class="guarantee-panels-content">
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Các sản phẩm nội thất tại Nhà Xinh đa số đều được sản xuất tại nhà máy của
                                 công ty cổ phần xây dựng kiến trúc AA với đội ngũ nhân viên và công nhân ưu
                                 tú cùng cơ sở vật chất hiện đại
-                                <a href="../../../public/images/cart/check.png"></a>. Nhà Xinh đã
+                                <a href="${pageContext.request.contextPath}/public/images/cart/check.png"></a>. Nhà Xinh đã
                                 kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến sản phẩm hoàn thiện cuối cùng.
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Nhà Xinh bảo hành một năm cho các trường hợp có lỗi về kỹ thuật trong quá trình sản xuất
                                 hay lắp đặt.
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Quý khách không nên tự sửa chữa mà hãy báo ngay cho Nhà Xinh qua hotline:
                                 <a href="">1800 7200.</a>
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sau thời gian hết hạn bảo hành, nếu quý khách có bất kỳ yêu cầu hay thắc mắc thì
                                 vui lòng liên hệ với Nhà Xinh để được hướng dẫn và giải quyết các vấn đề gặp phải.
                             </p>
@@ -539,26 +539,26 @@
                                 <strong>TUY NHIÊN NHÀ XINH KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG HỢP SAU:</strong>
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Khách hàng tự ý sửa chữa khi sản phẩm bị trục trặc mà không báo cho Nhà Xinh.
                             </p>
-                            <p>../../
-                                <img src="../../../public/images/cart/check.png" alt="">
+                            <p>
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sản phẩm được sử dụng không đúng quy cách của sổ bảo hành (được trao gửi khi
                                 quý khách mua sản phẩm) gây nên trầy xước, móp, dơ bẩn hay mất màu.
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/ublic/images/cart/check.png" alt="">
                                 Sản phẩm bị biến dạng do môi trường bên ngoài bất bình thường (quá ẩm, quá khô,
                                 mối hay do tác động từ các thiết bị điện nước, các hóa chất hay dung môi khách hàng sử
                                 dụng không phù hợp).
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sản phẩm hết hạn bảo hành.
                             </p>
                             <p>
-                                <img src="../../../public/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sản phẩm không có phiếu bảo hành của Nhà Xinh.
                             </p>
 

@@ -13,10 +13,10 @@
 <head>
     <title>Đồng hồ</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../../public/css/product.css">
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
-    <link rel="stylesheet" href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/product.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="../../../public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 </head>
 <body>
 <!-- HEADER -->
@@ -61,13 +61,13 @@
         <div class="header-bottom-hd">
 
             <div class="logo-hd">
-                <a href=""><img src="../../../public/images/logos/logo3.png"
+                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                 alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;"
-                   class="btn dropdown-toggle" href="../product/All-products.jsp">SẢN PHẨM</a>
+                   class="btn dropdown-toggle" href="All-products.jsp">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <div id="col-1465340020" class="col medium-2 small-6 large-2">
@@ -182,7 +182,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../product/Products.jsp">
+                                        <a class="ux-menu-link__link flex" href="products?cateID=${p.cateID}">
                                                 <span class="ux-menu-link__text">
                                         Đồng hồ			</span>
                                         </a>
@@ -230,7 +230,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -256,7 +256,7 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../cart/Cart.jsp">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}Cart.jsp">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -269,7 +269,7 @@
 <div id="container">
     <!-- IMAGE HEADER -->
     <div id="imageHeader">
-        <div class="title-bg" style="age: url('../../../public/images/banners/dongho.jpg')">
+        <div class="title-bg" style="age: url('${pageContext.request.contextPath}/public/images/banners/dongho.jpg')">
             <div class="title">
                 <Strong style="padding: 10px; font-size: 30px;">Đồng hồ</Strong><br>
                 <a href="" style="font-weight: normal;">Trang chủ</a> / <a
@@ -333,321 +333,40 @@
     <div id="p-product">
         <div class="container mt-5">
             <div class="row">
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/101.jpg"
-                                 alt="Đồng hồ bàn Alum/Granite">
-                        </a>
-<%--                        <img src="" alt="">--%>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ bàn Alum/Granite</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">670,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn use-button fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="use-button fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
+                <c:forEach var="p" items="${products}">
+                    <div class="col-md-3">
+                        <div class="card product-card">
+                            <a href="">
+                                <img src="${pageContext.request.contextPath}/public/images/all-products/101.jpg"
+                                     alt="Đồng hồ bàn Alum/Granite">
+                            </a>
+                                <%--                        <img src="" alt="">--%>
+                            <div class="card-body">
+                                <h6 class="product-name">${p.proName}</h6>
+                                <div class="like-price-product">
+                                    <span class="product-price">${p.price}</span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/102.jpg"
-                                 alt="Đồng hồ bàn Nickel">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ bàn Nickel</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">1,390,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn">
+                                            <p>THÊM VÀO GIỎ</p>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                           <a href="product?id=${p.id}&atributeID=${p.atributeID}"> <p>XEM THÊM</p></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/103.jpg"
-                                 alt="Đồng hồ bàn Steel/Alum">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ bàn Steel/Alum</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">880,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/104.jpg" class="image-top"
-                                 alt="Đồng hồ bàn trang trí 17cm">
-                            <img src="../../../public/images/all-products/104.1.jpg" class="image-back"
-                                 alt="Đồng hồ bàn trang trí 17cm banner">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ bàn trang trí 17cm</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">2,580,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/105.jpg" class="image-top"
-                                 alt="Đồng hồ bàn trang trí 21cm">
-                            <img src="../../../public/images/all-products/105.1.jpg" class="image-back"
-                                 alt="Đồng hồ bàn trang trí 21cm 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ bàn trang trí 21cm</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">3,900,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/106.jpg" alt="Bàn bên 3C-02">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ Baxter S</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">3,900,001₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/107.jpg" class="image-top"
-                                 alt="Đồng hồ cát 10 phút cam">
-                            <img src="../../../public/images/all-products/107.1.jpg" class="image-back"
-                                 alt="Đồng hồ cát 10 phút cam 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ cát 10 phút cam</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">750,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/108.jpg"
-                                 alt="Bàn bên butterfly ginkgo 411510 MCA">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ cát 10 phút hồng</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">750,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/109.jpg"
-                                 alt="Sofa 1 chỗ Orientale da beige R5">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name"> Đồng hồ treo tường 58cm</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">1,400,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/110.jpg" alt="Sofa 2 chỗ Hà Nội">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Đồng hồ treo tường Belt</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">5,360,000₫</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
