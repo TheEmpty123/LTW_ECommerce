@@ -1,9 +1,9 @@
-package com.example.ecommerce.controller.adm;
+package com.example.ecommerce.controller2.adm;
 
 import java.io.*;
 
 import com.example.ecommerce.Common.Enum.Accessibility;
-import com.example.ecommerce.controller.MC;
+import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;

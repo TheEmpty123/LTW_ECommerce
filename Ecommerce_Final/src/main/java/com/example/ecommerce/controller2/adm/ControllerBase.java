@@ -1,6 +1,6 @@
-package com.example.ecommerce.controller.adm;
+package com.example.ecommerce.controller2.adm;
 
-import com.example.ecommerce.controller.MC;
+import com.example.ecommerce.controller2.MC;
 
 public interface ControllerBase {
     default void initialize(){

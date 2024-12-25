@@ -1,25 +1,21 @@
-package com.example.ecommerce.controller;
+package com.example.ecommerce.controller2;
 
 import com.example.ecommerce.Bean.Product;
-import com.example.ecommerce.DAO.iml.ProductDao;
 import com.example.ecommerce.service.ProductService;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
-import jakarta.servlet.http.HttpServlet;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
-
-import java.awt.*;
-import java.io.IOException;
 import java.util.List;
+import java.io.*;
 
-@WebServlet(name = "ListProduct", value = "/list-product")
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.*;
+import jakarta.servlet.annotation.*;
+
+@WebServlet(name = "listProduct", value = "/list-product")
 public class ListProductController extends HttpServlet {
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProductService service = new ProductService();
-        List<Product> data = null;
+        List<Product> data;
         try{
             data = service.getAllProducts();
         }catch (Exception e){

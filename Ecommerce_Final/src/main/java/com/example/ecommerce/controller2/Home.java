@@ -1,9 +1,8 @@
-package com.example.ecommerce.controller;
+package com.example.ecommerce.controller2;
 
 import java.io.*;
 import java.util.List;
 
-import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.RequestDispatcher;

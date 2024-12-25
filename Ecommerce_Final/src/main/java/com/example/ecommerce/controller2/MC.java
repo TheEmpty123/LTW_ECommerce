@@ -1,6 +1,5 @@
-package com.example.ecommerce.controller;
+package com.example.ecommerce.controller2;
 
-import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.LogObj;
 import com.example.ecommerce.Database.JDBIConnect;
