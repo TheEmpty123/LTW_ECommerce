@@ -1,4 +1,4 @@
-package com.example.ecommerce.Controller;
+package com.example.ecommerce.controller;
 
 import java.io.*;
 import java.util.List;

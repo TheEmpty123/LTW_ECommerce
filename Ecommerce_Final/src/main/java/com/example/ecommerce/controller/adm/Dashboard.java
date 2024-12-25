@@ -23,7 +23,7 @@ public class Dashboard extends HttpServlet implements ControllerBase {
         Accessibility isAccessible = null;
 
         try {
-            // get user INFO throw session
+            // get user INFO through session
             isAccessible = MC.instance.userService.isAccessible(session);
         } catch (ConnectionException e) {
             MC.instance.log.error("Error connecting to server");
@@ -31,11 +31,11 @@ public class Dashboard extends HttpServlet implements ControllerBase {
         }
 
         // Temporary
-//        isAccessible = Accessibility.ADMINISTRATOR;
+        isAccessible = Accessibility.ADMINISTRATOR;
 
         if (isAccessible == Accessibility.NOT_LOGGED_IN) {
             MC.instance.log.warn(getClass().getName(), "Access denied");
-            
+
             RequestDispatcher dispatcher = request.getRequestDispatcher("/views/auth/Login.jsp");
             dispatcher.forward(request, response);
         } else if (isAccessible == Accessibility.CLIENT)

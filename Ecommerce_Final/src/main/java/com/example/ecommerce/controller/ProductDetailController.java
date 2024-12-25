@@ -1,4 +1,4 @@
-package com.example.ecommerce.Controller;
+package com.example.ecommerce.controller;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Bean.ProductAttribute;
