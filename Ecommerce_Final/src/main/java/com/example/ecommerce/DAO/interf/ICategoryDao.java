@@ -10,11 +10,10 @@ public interface ICategoryDao {
     //Lấy category theo id
     Category getCategoryById(int id);
     //Thêm một category mới
-    boolean addCategory(Category category);
+    boolean addCategory(int id, String cateName);
     //cập nhật ten cua catagory theo id
     boolean updateName(int id, String newName);
     //Xóa một category
     boolean deleteCategory(int id);
-
 
 }

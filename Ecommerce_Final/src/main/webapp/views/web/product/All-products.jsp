@@ -113,138 +113,23 @@
                 <a style="color: black; border: none;" class="btn dropdown-toggle" href="All-products.jsp">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-                        <div id="col-1465340020" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
+                        <c:forEach var="cates" items="${mapCate}">
+                            <div class="col medium-2 small-6 large-2">
+                                <div class="col-inner">
+                                    <div class="ux-menu stack stack-col justify-start">
+                                        <%--cates.value là danh sách các danh mục trong map--%>
+                                        <c:forEach var="c" items="${cates.value}">
+                                            <div class="ux-menu-link flex menu-item">
+                                                <a class="ux-menu-link__link flex" href="products?cateID=${c.id}">
                                                 <span class="ux-menu-link__text">
-                                                    Sofa </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
-                                                <span class="ux-menu-link__text">
-                                                    Armchair </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Ghế dài &amp; đôn </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn bên </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn nước </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ giày </span>
-                                        </a>
+                                                    ${c.cateName} </span>
+                                                </a>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div id="col-668683791" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Ghế Bar </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ ly </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-306964646" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Giường ngủ </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ áo </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-763303414" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn làm việc </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-2111288232" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Đèn trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bình trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
-                                                <span class="ux-menu-link__text">
-                                                    Gương </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="product?cateID=${p.cateID}">
-                                                <span class="ux-menu-link__text">
-                                                    Đồng hồ </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div id="col-225901627" class="col medium-2 small-12 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Hàng trang trí khác </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
@@ -371,7 +256,7 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}"> <p>XEM THÊM</p></a>
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}"><p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>
@@ -389,24 +274,24 @@
                 <ul class="pagination justify-content-center"
                     style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
                     <!-- Trang hiện tại -->
-<%--                    <li class="page-item active" aria-current="page">--%>
-<%--                            <span class="page-link"--%>
-<%--                                  style="background-color: black; font-weight: bold; border-color: black;">1</span>--%>
-<%--                    </li>--%>
+                    <%--                    <li class="page-item active" aria-current="page">--%>
+                    <%--                            <span class="page-link"--%>
+                    <%--                                  style="background-color: black; font-weight: bold; border-color: black;">1</span>--%>
+                    <%--                    </li>--%>
 
                     <c:if test="${currentPage > 1}">
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>
                         </li>
                     </c:if>
-                    <c:forEach begin="1" end="${totalPages}" var="page" >
+                    <c:forEach begin="1" end="${totalPages}" var="page">
                         <!-- Các trang lân cận -->
                         <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
                                                  href="list-product?page=${page}">${page}</a></li>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
-<%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
+                        <%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
                                 <span aria-hidden="true">Tiếp »</span>

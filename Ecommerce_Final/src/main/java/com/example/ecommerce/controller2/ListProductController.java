@@ -1,7 +1,12 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
+import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.io.*;
 
@@ -15,17 +20,41 @@ public class ListProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException, ServletException {
         ProductService service = new ProductService();
+        CategoryService cateService = new CategoryService();
+
         List<Product> data;
+        List<Category> categories;
         try{
             data = service.getAllProducts();
+            categories = cateService.getAllCategory();
         }catch (Exception e){
             throw new RuntimeException(e);
         }
         int itemsPerPage = 20;
         int currentPage = 1;
+        int catePerCol = 5;
+        HashMap<Integer, List<Category>> mapCate = new HashMap<>();
+
+        int countCol = categories.size()%catePerCol == 0 ?categories.size()/catePerCol : categories.size()/catePerCol+1;
+
+        for (int i =0; i< countCol; i++){
+            int index = i*catePerCol;
+            for (int j = index; j< index+catePerCol; j++){
+                if(!mapCate.containsKey(i)){
+                    List<Category> list = new ArrayList<>();
+                    list.add(categories.get(j));
+                    mapCate.put(i,list);
+                }
+                else {
+                    if(j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    else break;
+                }
+            }
+        }
 
         // Lấy tham số "page" từ URL
         String pageParam = req.getParameter("page");
+
         if (pageParam != null) {
             currentPage = Integer.parseInt(pageParam);
         }
@@ -41,6 +70,7 @@ public class ListProductController extends HttpServlet {
         req.setAttribute("products", pageProducts);
         req.setAttribute("currentPage", (Integer) currentPage);
         req.setAttribute("totalPages", (Integer) totalPages);
+        req.setAttribute("mapCate", mapCate);
         req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
     }
 
