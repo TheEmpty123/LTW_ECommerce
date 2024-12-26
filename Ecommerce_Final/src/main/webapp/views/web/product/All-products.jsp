@@ -232,7 +232,7 @@
                 <c:forEach var="p" items="${products}">
                     <div class="col-sm-3 col-md-3 col-6">
                         <div class="card product-card">
-                            <a href="product?id=${p.id}&atributeID=${p.atributeID}">
+                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
                                 <img src="${p.thumb}" class="image-back"

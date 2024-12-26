@@ -280,9 +280,10 @@
 </div>
 
 <!-- End header -->
+
 <div id="mask" class="center-items">
     <div class="block-content center-items">
-        <img src=".${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="">
+        <img src="${p.thumb}" alt="">
     </div>
 </div>
 <div id="container">

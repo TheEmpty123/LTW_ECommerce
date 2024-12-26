@@ -26,7 +26,6 @@ public class ProductDetailController extends HttpServlet {
         CategoryService cateService = CategoryService.getInstance();
         ProductAttributeService productDetailServ = ProductAttributeService.getInstance();
 
-
         Category category = null;
         List<Category> categories = new ArrayList<>();
         String pid = req.getParameter("id");

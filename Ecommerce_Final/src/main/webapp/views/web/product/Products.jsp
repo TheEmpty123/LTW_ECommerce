@@ -221,7 +221,7 @@
                 <c:forEach var="p" items="${productsForCate}">
                     <div class="col-md-3">
                         <div class="card product-card">
-                            <a href="product?id=${p.id}&atributeID=${p.atributeID}">
+                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}"
                                      alt="Đồng hồ bàn Alum/Granite">
                             </a>
@@ -244,7 +244,7 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                           <a href="product?id=${p.id}&atributeID=${p.atributeID}"> <p>XEM THÊM</p></a>
+                                           <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}"> <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>
