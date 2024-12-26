@@ -110,7 +110,7 @@
                 </a>
             </div>
             <nav class="main-nav">
-                <a style="color: black; border: none;" class="btn dropdown-toggle" href="All-products.jsp">SẢN PHẨM</a>
+                <a style="color: black; border: none;" class="btn dropdown-toggle" href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <c:forEach var="cates" items="${mapCate}">
@@ -256,7 +256,7 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}"><p>XEM THÊM</p></a>
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}"><p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>

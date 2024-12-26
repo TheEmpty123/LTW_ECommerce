@@ -60,10 +60,10 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     }
 
     @Override
-    public List<Product> getProductByCategory(int cateId) {
+    public List<Product> getProductByCategory(int cateID) {
         db = JDBIConnect.getInstance();
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from product where cateID = :cateID")
-                .bind("cateID", cateId)
+        return db.jdbi.withHandle(handle -> handle.createQuery("select * from products where cateID = :cateID")
+                .bind("cateID", cateID)
                 .mapToBean(Product.class).list());
     }
 

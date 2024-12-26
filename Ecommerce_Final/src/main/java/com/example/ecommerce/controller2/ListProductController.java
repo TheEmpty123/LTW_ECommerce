@@ -30,7 +30,7 @@ public class ListProductController extends HttpServlet {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
-        int itemsPerPage = 20;
+        int itemsPerPage = 32;
         int currentPage = 1;
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();

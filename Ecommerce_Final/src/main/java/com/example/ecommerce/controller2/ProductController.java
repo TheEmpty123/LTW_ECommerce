@@ -21,18 +21,19 @@ public class ProductController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService service = new ProductService();
-        CategoryService cateService = new CategoryService();
+        CategoryService cateService = CategoryService.getInstance();
 
         String categoryId = req.getParameter("cateID");
         List<Category> categories = new ArrayList<>();
         List<Product> products = new ArrayList<>();
-
+        Category category = null;
         try {
             int cateID = Integer.parseInt(categoryId);
-            products = service.getProductyByCategory(cateID);
+            products = service.getProductByCategory(cateID);
             categories = cateService.getAllCategory();
+            category = cateService.getCategoryById(cateID);
         } catch (Exception e) {
-            e.printStackTrace();
+            System.out.println("Khong lay duoc id cua category");
         }
 
         int catePerCol = 5;
@@ -53,9 +54,8 @@ public class ProductController extends HttpServlet {
                 }
             }
         }
-
-
-        req.setAttribute("products", products);
+        req.setAttribute("categories", category);
+        req.setAttribute("productsForCate", products);
         req.setAttribute("mapCate", mapCate);
         req.getRequestDispatcher("/views/web/product/Products.jsp").forward(req, resp);
 
