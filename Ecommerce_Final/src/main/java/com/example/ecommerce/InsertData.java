@@ -84,7 +84,7 @@ public class InsertData {
             String user = "root";
             String password = "";
 
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
@@ -99,7 +99,7 @@ public class InsertData {
                     String title = product.getString("title");
                     double price = parsePrice(product.getString("price"));
                     String description = product.optString("description", "");
-                    String thumb = "Ecommerce_Final\\src\\main\\webapp\\public\\images\\all-products\\" + (i+1) + ".jpg"; // Add your logic for thumbnails
+                    String thumb = "${pageContext.request.contextPath}/public/images/all-products/" + (i+1) + ".jpg"; // Add your logic for thumbnails
                     String category = extractCategory(product.getString("category"));
                     String[] attributes = parseAttributes(product.getString("attribute"));
                     String material = attributes[0];

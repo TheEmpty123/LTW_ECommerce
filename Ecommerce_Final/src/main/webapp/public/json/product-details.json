@@ -458,7 +458,7 @@
     "price": "28,500,000₫",
     "attribute": "chân kim loại",
     "code": "3*113982",
-    "category": "Category: Armchair",
+    "category": "Danh mục: Armchair",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -557,7 +557,7 @@
     "price": "15,400,000₫",
     "attribute": "Metal",
     "code": "3*113980",
-    "category": "Category: Bàn bên",
+    "category": "Danh mục: Bàn bên",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -575,7 +575,7 @@
     "price": "14,900,000₫",
     "attribute": "Chân kim loại - PU - mặt đá marble",
     "code": "3*112193",
-    "category": "Category: Bàn bên",
+    "category": "Danh mục: Bàn bên",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -584,7 +584,7 @@
     "price": "12,200,000₫",
     "attribute": "Chân kim loại - PU - mặt đá marble",
     "code": "3*112192",
-    "category": "Category: Bàn bên",
+    "category": "Danh mục: Bàn bên",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -593,7 +593,7 @@
     "price": "10,900,000₫",
     "attribute": "Chân kim loại - mặt kính",
     "code": "3*111704",
-    "category": "Category: Bàn bên",
+    "category": "Danh mục: Bàn bên",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -746,7 +746,7 @@
     "price": "11,890,000₫",
     "attribute": "Chân kim loại - nệm bọc vải",
     "code": "3*111689",
-    "category": "Category: Ghế dài & đôn",
+    "category": "Danh mục: Ghế dài & đôn",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -764,7 +764,7 @@
     "price": "19,900,000₫",
     "attribute": "Chân kim loại - nệm bọc vải",
     "code": "3*111662",
-    "category": "Category: Ghế dài & đôn",
+    "category": "Danh mục: Ghế dài & đôn",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -809,7 +809,7 @@
     "price": "5,590,000₫",
     "attribute": "Chân kim loại - nệm bọc vải",
     "code": "3*111663",
-    "category": "Category: Ghế dài & đôn",
+    "category": "Danh mục: Ghế dài & đôn",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -818,7 +818,7 @@
     "price": "32,880,000₫",
     "attribute": "170x410x630 mm",
     "code": "3*110920",
-    "category": "Category: Đèn trang trí",
+    "category": "Danh mục: Đèn trang trí",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -827,7 +827,7 @@
     "price": "32,880,000₫",
     "attribute": "170x410x630 mm",
     "code": "3*110899",
-    "category": "Category: Đèn trang trí",
+    "category": "Danh mục: Đèn trang trí",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -845,7 +845,7 @@
     "price": "4,980,000₫",
     "attribute": "Metal",
     "code": "3*112188",
-    "category": "Category: Đèn trang trí",
+    "category": "Danh mục: Đèn trang trí",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -854,7 +854,7 @@
     "price": "10,500,001₫",
     "attribute": "Metal",
     "code": "3*111787",
-    "category": "Category: Đèn trang trí",
+    "category": "Danh mục: Đèn trang trí",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -872,7 +872,7 @@
     "price": "19,400,000₫",
     "attribute": "Thủy tinh - kim loại",
     "code": "3*111786",
-    "category": "Category: Đèn trang trí",
+    "category": "Danh mục: Đèn trang trí",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -908,7 +908,7 @@
     "price": "670,000₫",
     "attribute": "Kim loại mặt kính trong",
     "code": "3*96829",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -917,7 +917,7 @@
     "price": "1,390,000₫",
     "attribute": "Kim loại mặt kính trong",
     "code": "3*99089",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -926,7 +926,7 @@
     "price": "880,000₫",
     "attribute": "Kim loại mặt kính trong",
     "code": "3*96870",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -935,7 +935,7 @@
     "price": "2,580,000₫",
     "attribute": "Thủy tinh - kim loại",
     "code": "3*111685",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -944,7 +944,7 @@
     "price": "3,900,000₫",
     "attribute": "Thủy tinh - kim loại",
     "code": "3*111683",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -953,7 +953,7 @@
     "price": "3,900,001₫",
     "attribute": "Kim loại nikel - Mặt kính trong",
     "code": "3*95511",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -962,7 +962,7 @@
     "price": "750,000₫",
     "attribute": "Thủy tinh",
     "code": "3*110855",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -971,7 +971,7 @@
     "price": "750,000₫",
     "attribute": "Thủy tinh",
     "code": "3*110856",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -980,7 +980,7 @@
     "price": "1,400,000₫",
     "attribute": "Khung MDF dán giấy",
     "code": "3*100330",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -989,7 +989,7 @@
     "price": "5,360,000₫",
     "attribute": "Thủy tinh - kim loại",
     "code": "3*112263",
-    "category": "Category: Đồng hồ",
+    "category": "Danh mục: Đồng hồ",
     "tags": "undefined",
     "description": "undefined"
   },
@@ -1007,7 +1007,7 @@
     "price": "273,930,000₫",
     "attribute": "MDF Laminate",
     "code": "3*104905",
-    "category": "Category: Tủ áo",
+    "category": "Danh mục: Tủ áo",
     "tags": "Tag: Gỗ",
     "description": "undefined"
   },
@@ -1016,7 +1016,7 @@
     "price": "24,010,001₫",
     "attribute": "D1600-R600-C2000mm",
     "code": "3*99496",
-    "category": "Category: Tủ áo",
+    "category": "Danh mục: Tủ áo",
     "tags": "undefined",
     "description": "Mẫu tủ áo hiện đại của Nhà Xinh với thiết kế giản đơn"
   },

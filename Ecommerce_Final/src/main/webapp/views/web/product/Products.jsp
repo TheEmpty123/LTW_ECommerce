@@ -271,7 +271,7 @@
     <div id="imageHeader">
         <div class="title-bg" style="age: url('${pageContext.request.contextPath}/public/images/banners/dongho.jpg')">
             <div class="title">
-                <Strong style="padding: 10px; font-size: 30px;">Đồng hồ</Strong><br>
+                <Strong style="padding: 10px; font-size: 30px;">${products.}</Strong><br>
                 <a href="" style="font-weight: normal;">Trang chủ</a> / <a
                     href="../product/All-products.jsp" style="font-weight: normal;">Sản phẩm</a> / <a
                     href="../product/Products.jsp" style="font-weight: bold;">Đồng hồ</a>
