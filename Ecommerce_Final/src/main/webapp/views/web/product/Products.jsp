@@ -225,7 +225,6 @@
                                 <img src="${p.thumb}"
                                      alt="Đồng hồ bàn Alum/Granite">
                             </a>
-                                <%--                        <img src="" alt="">--%>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">

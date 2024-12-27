@@ -86,7 +86,10 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public User findUser(String username) {
-        return null;
+        return db.jdbi.withHandle(handle ->
+                handle.createQuery("select * from users where username = :username")
+                        .bind("username", username)
+                        .mapToBean(User.class).findOne().orElse(null));
     }
 
     public static void main(String[] args) {
