@@ -7,7 +7,7 @@ import jakarta.servlet.http.HttpSession;
 
 public class UserService extends ServiceBase {
 
-    private UserDao userDao;
+    private UserDao userDao = new UserDao();
 
     public static UserService Instance;
 
@@ -27,7 +27,6 @@ public class UserService extends ServiceBase {
     public void init() {
         log.info("UserService init...");
         if (userDao == null) {
-            userDao = new UserDao();
         }
     }
 

@@ -75,7 +75,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public List<Product> get4NewProducts() {
         db = JDBIConnect.getInstance();
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from products limit 4")).mapToBean(Product.class).list();
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("select * from products limit 4")
+                        .mapToBean(Product.class).list());
     }
 
     @Override

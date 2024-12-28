@@ -1,6 +1,7 @@
 package com.example.ecommerce.controller2;
 
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.InsertData;
 import com.example.ecommerce.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -24,15 +25,16 @@ public class LoginController extends HttpServlet {
         resp.setCharacterEncoding("utf-8");
         String uname= req.getParameter("uname");
         String pass= req.getParameter("pass");
+        String hashPass = InsertData.hashPassword(pass);
         UserService authService=  new UserService();
-        User u = authService.checkLogin(uname,pass);
+        User u = authService.checkLogin(uname,hashPass);
         if(u!=null){
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect("");
+            resp.sendRedirect("/views/web/common/home.jsp");
         }else{
             req.setAttribute("error","Đăng nhập không thành công");
-            req.getRequestDispatcher("login.jsp").forward(req,resp);
+            req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);
         }
     }
 }

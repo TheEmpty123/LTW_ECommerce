@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Đặt lại mật khẩu thành công</title>
-    <link rel="stylesheet" href="../../${pageContext.request.contextPath}public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -27,7 +27,7 @@
                 <p>Bạn đã đặt lại mật khẩu thành công. Hãy tiếp tục quá trình đăng nhập.</p>
             </div>
             <div class="next submit2">
-                <a href="${pageContext.request.contextPath}login.html" class="btn">Đăng nhập</a>
+                <a href="Login.jsp" class="btn">Đăng nhập</a>
             </div>
         </div>
     </div>
