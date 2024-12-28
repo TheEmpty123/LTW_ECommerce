@@ -20,8 +20,8 @@ a {
     padding: 5px  !important;
     color: black  !important;
 }
-.box p{
-    margin-bottom: 5px;
+.box label{
+    margin-bottom: 10px;
     margin-top: 10px;
 }
 .logo{
@@ -38,6 +38,7 @@ a {
     background-size: cover;
     background-position: center;
 }
+
 .content{   
     height: 60%;
     display: flex;
@@ -54,12 +55,12 @@ a {
     position: relative;
 }
 
-.styled-input{
-    width: 100%;
+.box .styled-input{
+    width: 92%;
     height: 10%;
     border-radius: 5px;
     font-size: 14px;
-    padding: 13px;
+    padding: 10px;
 }
 .rememberBox{
     margin-top: 20px;
@@ -72,8 +73,8 @@ a {
     width: 100px;
     height: 30px;
     text-align: center;
-    bottom: 30px;
-    right: 30px;
+    bottom: 40px;
+    right: 40px;
     border-radius: 5px;
     cursor: pointer;
 }
