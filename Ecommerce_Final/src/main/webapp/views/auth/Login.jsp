@@ -11,7 +11,7 @@
 <html>
 <head>
     <title>Đăng nhập</title>
-  <link rel="stylesheet" type="text/css" href="../../login-register.css">
+  <link rel="stylesheet" type="text/css" href="${}login-register.css">
 </head>
 <body>
 <div id="container">
