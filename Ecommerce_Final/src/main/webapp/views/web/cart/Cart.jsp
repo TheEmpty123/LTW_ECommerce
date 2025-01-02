@@ -8,13 +8,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Giỏ hàng</title>
-    <link rel="stylesheet" href="../../../public/css/cart.css">
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
-    <link rel="stylesheet" href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/cart.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -24,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src="../../../public/js/curtainmenu.js"></script>
+    <script src=".${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 </head>
 <body>
 <!-- Start Header -->
@@ -39,9 +40,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="../../../contact.html">0906 904 114</a>
+                <a href=".${pageContext.request.contextPath}/contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../../about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}/views/web/about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -51,14 +52,15 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../../auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}/views/auth/Profile.jsp">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="menu-icon-hd">
-                <img src="../../../public/images/menu-bar/menu-bar.png" alt="Menu Icon" onclick="openNav()">
+                <img src="${pageContext.request.contextPath}/public/images/menu-bar/menu-bar.png" alt="Menu Icon"
+                     onclick="openNav()">
                 <div id="myNav" class="menu-overlay">
                     <a href="javascript:void(0)" class="meu-closebtn" style="border-bottom: none; font-size: 40px;"
                        onclick="closeNav()">&times;</a>
@@ -200,7 +202,7 @@
                                     <a href="#">Đồ trang trí Noel</a></li>
                                 <li id="menu-item-3356"
                                     class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3356">
-                                    <a href="../../web/product/products.html">Đồng hồ</a></li>
+                                    <a href="../../web/product/products.jsp">Đồng hồ</a></li>
                                 <li id="menu-item-3357"
                                     class="menu-item menu-item-type-taxonomy menu-item-object-product_cat menu-item-3357">
                                     <a href="#">Dụng cụ bếp</a></li>
@@ -374,7 +376,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../product/products.html">
+                                        <a class="ux-menu-link__link flex" href="../product/products.jsp">
                                                 <span class="ux-menu-link__text">
                                                     Đồng hồ </span>
                                         </a>
@@ -463,32 +465,33 @@
 <div id="container">
     <div id="cart-title">
         <h1>Giỏ hàng <span class="total-count">1</span></h1>
-
     </div>
     <div id="content">
         <div class="row">
-            <div class="col-sm-7 col-md-7 product-detail">
-                <div class="cart-item">
-                    <div class="image-box">
-                        <img src="../../../public/images/all-products/53.jpg" alt="Armchair Mây mới"
-                             class="item-image">
-                    </div>
-                    <div class="item-details">
-                        <h3>Armchair Mây mới</h3>
-                        <p class="item-price">13,900,000đ</p>
-                        <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
-                    </div>
-                    <div class="item-actions">
-                        <button class="remove-btn">✕</button>
-                        <div class="quantity buttons-added left-btn">
-                            <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
-                            <input type="number" name="quatity" id="input-quantity" value="1" min="1"
-                                   inputmode="numeric" autocomplete="off">
-                            <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
+                <div class="col-sm-7 col-md-7 product-detail">
+                    <div class="cart-item">
+                        <div class="image-box">
+                            <img src="${cp.img}" alt="Armchair Mây mới"
+                                 class="item-image">
+                        </div>
+                        <div class="item-details">
+                            <h3>${cp.name}</h3>
+                            <p class="item-price">${cp.price}</p>
+                            <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-btn">✕</button>
+                            <div class="quantity buttons-added left-btn">
+                                <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
+                                <input type="number" name="quatity" id="input-quantity" value="1" min="1"
+                                       inputmode="numeric" autocomplete="off">
+                                <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </c:forEach>
             <div class="col-sm-5 col-md-5 order-detail">
                 <div class="cart-total">
                     <h2>Tổng đơn hàng</h2>
@@ -551,7 +554,7 @@
     </div>
 </div>
 <!-- Footer -->
-<!-- <iframe src="../../common/footer.html" frameborder="0" id="footer"></iframe>      -->
+<!-- <iframe src="../../common/footer.jsp" frameborder="0" id="footer"></iframe>      -->
 <footer class="footer">
     <div class="footer-container">
         <!-- Left Column -->

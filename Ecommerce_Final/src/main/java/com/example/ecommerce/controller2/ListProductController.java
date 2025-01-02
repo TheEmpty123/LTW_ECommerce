@@ -1,5 +1,6 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.service.CategoryService;
@@ -67,6 +68,17 @@ public class ListProductController extends HttpServlet {
         // Tổng số trang
         int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
         // Gửi dữ liệu tới JSP
+
+        HttpSession session = req.getSession(true);
+        Cart c = (Cart) session.getAttribute("cart");
+        int pid = (Integer) req.getAttribute("pid");
+        Product p = service.getProductById(pid);
+        if(c == null) c = new Cart();
+        c.add(p);
+
+        session.setAttribute("cart", c);
+        resp.sendRedirect("list-product?cart=true");
+
         req.setAttribute("products", pageProducts);
         req.setAttribute("currentPage", (Integer) currentPage);
         req.setAttribute("totalPages", (Integer) totalPages);

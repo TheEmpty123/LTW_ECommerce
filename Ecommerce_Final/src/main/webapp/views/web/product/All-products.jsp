@@ -38,37 +38,39 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+        <c:forEach items="${sessionScope.cart.list}" var="cp">
+            <div class="list-product-cart">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
                         </div>
-                    </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x <span>${cp.price}</span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <button class="close-btn">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p>${sessionScope.cart.getTotal}</p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -110,19 +112,20 @@
                 </a>
             </div>
             <nav class="main-nav">
-                <a style="color: black; border: none;" class="btn dropdown-toggle" href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
+                <a style="color: black; border: none;" class="btn dropdown-toggle"
+                   href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <c:forEach var="cates" items="${mapCate}">
                             <div class="col medium-2 small-6 large-2">
                                 <div class="col-inner">
                                     <div class="ux-menu stack stack-col justify-start">
-                                        <%--cates.value là danh sách các danh mục trong map--%>
+                                            <%--cates.value là danh sách các danh mục trong map--%>
                                         <c:forEach var="c" items="${cates.value}">
                                             <div class="ux-menu-link flex menu-item">
                                                 <a class="ux-menu-link__link flex" href="products?cateID=${c.id}">
                                                 <span class="ux-menu-link__text">
-                                                    ${c.cateName} </span>
+                                                        ${c.cateName} </span>
                                                 </a>
                                             </div>
                                         </c:forEach>
@@ -251,12 +254,15 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
+                                            <a href="list-product?pid=${p.id}" style="color: black">
+                                                <p>THÊM VÀO GIỎ</p>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}"><p>XEM THÊM</p></a>
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>
