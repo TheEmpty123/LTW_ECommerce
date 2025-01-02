@@ -25,16 +25,16 @@
         </div>
     </div>
     <div class="content">
-        <p>
-            <% String error = (String) request.getAttribute("error");
-                String uname = request.getParameter("uname");
-                if (error == null) error = "";
-                if (uname == null) uname = "";
-            %>
-            <%= error  %>
-        </p>
 
         <div class="box" style="height: 80%">
+            <p style="margin-top: -20px; color: red">
+                <% String error = (String) request.getAttribute("error");
+                    String uname = request.getParameter("uname");
+                    if (error == null) error = "";
+                    if (uname == null) uname = "";
+                %>
+                <%= error  %>
+            </p>
             <form method="post" action="/login" style="height: 90%">
                 <label for="username-l">Tên người dùng hoặc địa chỉ email:</label>
                 <input type="text" id="username-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"

@@ -33,7 +33,7 @@ public class LoginController extends HttpServlet {
             session.setAttribute("auth",u);
             resp.sendRedirect("/views/web/common/home.jsp");
         }else{
-            req.setAttribute("error","Đăng nhập không thành công");
+            req.setAttribute("error","Đăng nhập không thành công!!!");
             req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);
         }
     }
