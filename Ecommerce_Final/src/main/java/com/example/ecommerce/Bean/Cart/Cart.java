@@ -58,6 +58,7 @@ public class Cart {
     }
     public CartProduct convert(Product p){
         CartProduct cp = new CartProduct();
+        cp.setId(p.getId());
         cp.setName(p.getProName());
         cp.setPrice(p.getPrice());
         cp.setImg(p.getThumb());
