@@ -3,14 +3,15 @@ package com.example.ecommerce.Bean.Cart;
 import com.example.ecommerce.Bean.Product;
 
 public class CartProduct {
-    private int quantity;
-    private Product product;
+    private String name;
+    private String img;
     private double price;
-
-    public CartProduct(int quantity, Product product, double price) {
+    private int quantity;
+    public CartProduct(String name,String img, double price, int quantity) {
+        this.name = name;
+        this.img = img;
+        this.price = price;
         this.quantity = quantity;
-        this.product = product;
-        this.price = product.getPrice() * price;
     }
     public CartProduct(){
 
@@ -24,12 +25,17 @@ public class CartProduct {
         this.quantity = quantity;
     }
 
-    public Product getProduct() {
-        return product;
+    public String getName() {
+        return name;
     }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public void setName(String name) {
+        this.name = name;
+    }
+    public String getImg() {
+        return img;
+    }
+    public void setImg(String img) {
+        this.img = img;
     }
 
     public double getPrice() {
