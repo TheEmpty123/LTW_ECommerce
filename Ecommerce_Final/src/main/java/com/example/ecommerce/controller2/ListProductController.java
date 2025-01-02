@@ -69,15 +69,6 @@ public class ListProductController extends HttpServlet {
         int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
         // Gửi dữ liệu tới JSP
 
-        HttpSession session = req.getSession(true);
-        Cart c = (Cart) session.getAttribute("cart");
-        int pid = (Integer) req.getAttribute("pid");
-        Product p = service.getProductById(pid);
-        if(c == null) c = new Cart();
-        c.add(p);
-
-        session.setAttribute("cart", c);
-        resp.sendRedirect("list-product?cart=true");
 
         req.setAttribute("products", pageProducts);
         req.setAttribute("currentPage", (Integer) currentPage);

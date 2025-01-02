@@ -34,7 +34,7 @@ public class Cart {
     }
 
     //Lay ra danh sach cac san pham co trong gio hang
-    public List<CartProduct> list(){
+    public List<CartProduct> getList(){
         return new ArrayList<CartProduct>(data.values());
     }
 

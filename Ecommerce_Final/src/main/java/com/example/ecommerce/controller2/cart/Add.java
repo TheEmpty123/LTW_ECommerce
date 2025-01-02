@@ -18,15 +18,22 @@ public class Add extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService ps = new ProductService();
         Product p = ps.getProductById(Integer.parseInt(req.getParameter("pid")));
-        if(p == null) resp.sendRedirect("list-product?cart=false");
+        if(p == null) {
+            resp.sendRedirect("list-product?cart=false");
+            return;
+        }
 
         HttpSession session = req.getSession(true);
         Cart c = (Cart) session.getAttribute("cart");
-        if(c == null) c = new Cart();
+        if(c == null) {
+            c = new Cart();
+            session.setAttribute("cart", c);
+        }
         c.add(p);
+        System.out.println(c.getList().size());
 
         session.setAttribute("cart", c);
-        resp.sendRedirect("list-product?cart=true");
+        resp.sendRedirect("list-product?cart=ok");
     }
 
     @Override

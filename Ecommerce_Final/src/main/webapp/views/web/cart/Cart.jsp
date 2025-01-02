@@ -464,12 +464,12 @@
 <!-- Phần giao diện chính của giỏ hàng -->
 <div id="container">
     <div id="cart-title">
-        <h1>Giỏ hàng <span class="total-count">1</span></h1>
+        <h1>Giỏ hàng <span class="total-count">${sessionScope.cart.list.size()}</span></h1>
     </div>
     <div id="content">
         <div class="row">
-            <c:forEach items="${sessionScope.cart.list}" var="cp">
-                <div class="col-sm-7 col-md-7 product-detail">
+            <div class="col-sm-7 col-md-7 product-detail">
+                <c:forEach items="${sessionScope.cart.list}" var="cp">
                     <div class="cart-item">
                         <div class="image-box">
                             <img src="${cp.img}" alt="Armchair Mây mới"
@@ -490,8 +490,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </c:forEach>
+                </c:forEach>
+            </div>
+
             <div class="col-sm-5 col-md-5 order-detail">
                 <div class="cart-total">
                     <h2>Tổng đơn hàng</h2>
@@ -499,7 +500,7 @@
                         <tbody>
                         <tr class="cart-subtotal">
                             <th>Thành tiền</th>
-                            <td data-title="Thành tiền" class="t-bold">13,900,000 <span>đ</span></td>
+                            <td data-title="Thành tiền" class="t-bold">${sessionScope.cart.total} <span>đ</span></td>
                         </tr>
                         </tbody>
                     </table>
@@ -516,7 +517,7 @@
                             <p>Tổng cộng</p>
                         </this>
                         <this class="col-sm-4 col-md-4 t-bold total-price">
-                            <p>13,900,000 <span>đ</span></p>
+                            <p>${sessionScope.cart.total}<span>đ</span></p>
                         </this>
                     </div>
                     <div class="shipping-infor">
