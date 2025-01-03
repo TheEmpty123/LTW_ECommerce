@@ -105,12 +105,12 @@
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
-                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                        <a href="${pageContext.request.contextPath}/profile">
                                 ${sessionScope.auth.username}
                         </a>
                     </c:if>
                     <c:if test="${sessionScope.auth == null}">
-                        <a>Tài khoản của tôi</a>
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                     </c:if>
                 </h4>
             </div>

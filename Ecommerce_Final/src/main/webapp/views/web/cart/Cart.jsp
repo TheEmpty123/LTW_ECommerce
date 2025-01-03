@@ -58,7 +58,7 @@
                         </a>
                     </c:if>
                     <c:if test="${sessionScope.auth == null}">
-                        <a>Tài khoản của tôi</a>
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
                     </c:if>
                 </h4>
             </div>
