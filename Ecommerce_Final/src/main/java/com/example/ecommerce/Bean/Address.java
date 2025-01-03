@@ -4,15 +4,16 @@ import java.io.Serializable;
 
 public class Address implements Serializable {
     private int id;
-    private String Princible;
-    private String Street;
-    private String FullAddress;
+    private String princible;
+    private String street;
+    private String fullAddress;
 
+    public Address() {}
     public Address(int id, String princible, String street, String fullAddress) {
         this.id = id;
-        this.Princible = princible;
-        this.Street = street;
-        this.FullAddress = fullAddress;
+        this.princible = princible;
+        this.street = street;
+        this.fullAddress = fullAddress;
     }
 
     public int getId() {
@@ -20,15 +21,15 @@ public class Address implements Serializable {
     }
 
     public String getPrincible() {
-        return Princible;
+        return princible;
     }
 
     public String getStreet() {
-        return Street;
+        return street;
     }
 
     public String getFullAddress() {
-        return FullAddress;
+        return fullAddress;
     }
 
     public void setId(int id) {
@@ -36,23 +37,23 @@ public class Address implements Serializable {
     }
 
     public void setPrincible(String princible) {
-        this.Princible = princible;
+        this.princible = princible;
     }
 
     public void setStreet(String street) {
-        this.Street = street;
+        this.street = street;
     }
 
     public void setFullAddress(String fullAddress) {
-        this.FullAddress = fullAddress;
+        this.fullAddress = fullAddress;
     }
 
     @Override
     public String toString() {
         return "Address{" +
-                "fullAddress='" + FullAddress +
-                ", street='" + Street +
-                ", princible='" + Princible +
+                "fullAddress='" + fullAddress +
+                ", street='" + street +
+                ", princible='" + princible +
                 ", id=" + id +
                 '}';
     }
