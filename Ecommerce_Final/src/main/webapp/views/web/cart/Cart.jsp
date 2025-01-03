@@ -51,8 +51,16 @@
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
-                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="${pageContext.request.contextPath}/views/auth/Profile.jsp">Tài khoản của tôi</a></h4>
+                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
+                    <c:if test="${sessionScope.auth != null}">
+                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                                ${sessionScope.auth.username}
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.auth == null}">
+                        <a>Tài khoản của tôi</a>
+                    </c:if>
+                </h4>
             </div>
         </div>
         <!-- create mobile menu -->
@@ -120,7 +128,7 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid ="${cp.id}">
+                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid="${cp.id}">
                                 <button class="close-btn">
                                     <i class="bi bi-x-circle"></i>
                                 </button>

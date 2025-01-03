@@ -227,8 +227,16 @@
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
-                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="${pageContext.request.contextPath}Profile.jsp">Tài khoản của tôi</a></h4>
+                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
+                    <c:if test="${sessionScope.auth != null}">
+                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                                ${sessionScope.auth.username}
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.auth == null}">
+                        <a>Tài khoản của tôi</a>
+                    </c:if>
+                </h4>
             </div>
         </div>
         <!-- create mobile menu -->
@@ -237,7 +245,7 @@
 
             <div class="logo-hd">
                 <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
-                                                      alt="Logo">
+                                alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -372,7 +380,8 @@
                                 Các sản phẩm nội thất tại Nhà Xinh đa số đều được sản xuất tại nhà máy của
                                 công ty cổ phần xây dựng kiến trúc AA với đội ngũ nhân viên và công nhân ưu
                                 tú cùng cơ sở vật chất hiện đại
-                                <a href="${pageContext.request.contextPath}/public/images/cart/check.png"></a>. Nhà Xinh đã
+                                <a href="${pageContext.request.contextPath}/public/images/cart/check.png"></a>. Nhà Xinh
+                                đã
                                 kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến sản phẩm hoàn thiện cuối cùng.
                             </p>
                             <p>

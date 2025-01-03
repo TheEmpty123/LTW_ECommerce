@@ -16,7 +16,7 @@ import java.io.IOException;
 public class LoginController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doGet(req, resp);
+        req.getRequestDispatcher("/views/auth/Login.jsp").forward(req, resp);
     }
 
     @Override
@@ -31,7 +31,7 @@ public class LoginController extends HttpServlet {
         if(u!=null){
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect("/views/web/common/home.jsp");
+            resp.sendRedirect("list-product");
         }else{
             req.setAttribute("error","Đăng nhập không thành công!!!");
             req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);
