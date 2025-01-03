@@ -12,10 +12,10 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/profile.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/header.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/footer.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/profile.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="${pageContext.request.contextPath}public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -62,19 +62,19 @@
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p>${sessionScope.cart.total}</p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}web/cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="${pageContext.request.contextPath}web/order/order.html">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/views/web/order/order.jsp">THANH TOÁN</a>
             </div>
         </div>
     </div>
 </div>
-<!-- HEADER -->
+<%-- HEADER --%>
 <div class="container-hd">
     <header>
         <div class="header-top-hd">
@@ -85,9 +85,9 @@
                 <div class="phone-hd">
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
-                <a href="${pageContext.request.contextPath}contact.html">0906 904 114</a>
+                <a href="${pageContext.request.contextPath}contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="${pageContext.request.contextPath}about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -96,21 +96,29 @@
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
-                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="${pageContext.request.contextPath}auth/profile.html">Tài khoản của tôi</a></h4>
+                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
+                    <c:if test="${sessionScope.auth != null}">
+                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                                ${sessionScope.auth.username}
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.auth == null}">
+                        <a>Tài khoản của tôi</a>
+                    </c:if>
+                </h4>
             </div>
         </div>
-        <!-- create mobile menu -->
+<%--    create mobile menu--%>
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}common/home.html">
-                    <img src="${pageContext.request.contextPath}public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/views/web/common/home.jsp">
+                    <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="${pageContext.request.contextPath}web/product/all-product.html">SẢN PHẨM</a>
+                   href="${pageContext.request.contextPath}web/product/all-product.jsp">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <div id="col-1465340020" class="col medium-2 small-6 large-2">
@@ -123,7 +131,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
+                                        <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                                     Armchair </span>
                                         </a>
@@ -225,7 +233,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../web/product/products.html">
+                                        <a class="ux-menu-link__link flex" href="../web/product/products.jsp">
                                                 <span class="ux-menu-link__text">
                                                     Đồng hồ </span>
                                         </a>
@@ -257,7 +265,7 @@
         </div>
     </header>
 </div>
-<!-- HEADER -->
+<%-- HEADER --%>
 <div id="container">
     <div id="content">
         <!-- Thanh menu -->
@@ -274,7 +282,7 @@
 
             </div>
         </div>
-        <!-- Chứa các thông tin của người dùng -->
+<%--    Chứa các thông tin của người dùng--%>
         <div id="sub-content">
             <div id="information" class="show">
                 <div class="row" style="height: 170px;">
@@ -376,7 +384,7 @@
                         </div>
                         <h5>Bạn chắc chắn muốn đăng xuất?</h5>
                         <div class="buttons-box">
-                            <a href="${pageContext.request.contextPath}common/home.html">
+                            <a href="${pageContext.request.contextPath}common/home.jsp">
                                 <button class="btns">Đăng xuất</button>
                             </a>
                         </div>
@@ -384,7 +392,7 @@
                 </div>
             </div>
         </div>
-        <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->
+<%--        <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->--%>
         <div id="reminds-products">
             <div class="wish-list">
                 <div class="wish-list-title margin-lr-20">
@@ -444,13 +452,13 @@
 
     </div>
 </div>
-<!-- <iframe src="../common/footer.html" frameborder="0" id="footer"></iframe> -->
+<%--<!-- <iframe src="../common/footer.jsp" frameborder="0" id="footer"></iframe> -->--%>
 <footer class="footer">
     <div class="footer-container">
-        <!-- Left Column -->
+<%--        <!-- Left Column -->--%>
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="${pageContext.request.contextPath}public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
+            <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
             <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
@@ -492,8 +500,8 @@
     </div>
 
 </footer>
-<script src="${pageContext.request.contextPath}public/js/curtainmenu.js"></script>
-<script src="${pageContext.request.contextPath}public/js/popup.js"></script>
-<script src="${pageContext.request.contextPath}public/js/submenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/submenu.js"></script>
 </body>
 </html>
