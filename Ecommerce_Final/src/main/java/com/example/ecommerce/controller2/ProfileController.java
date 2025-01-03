@@ -1,9 +1,11 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.Address;
 import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.service.AddressService;
 import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.ServletException;
@@ -32,6 +34,7 @@ public class ProfileController extends HttpServlet {
 
 
         ProductService service = new ProductService();
+        AddressService addService = new AddressService();
         CategoryService cateService = new CategoryService();
         List<Product> data;
         List<Category> categories;
@@ -61,6 +64,12 @@ public class ProfileController extends HttpServlet {
                 }
             }
         }
+
+        User u = (User) session.getAttribute("auth");
+        Address address = addService.getAddressById(u.getId());
+        System.out.println(u.getId()+ "hahahaa");
+
+        req.setAttribute("address",address);
         req.setAttribute("mapCate", mapCate);
         req.getRequestDispatcher("/views/auth/Profile.jsp").forward(req, resp);
     }

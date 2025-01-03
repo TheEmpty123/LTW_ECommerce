@@ -226,15 +226,15 @@
                 <div class="row" style="height: 600px;">
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Địa chỉ: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text" placeholder="Nhập địa chỉ">
+                        <input type="text" class="input-text" placeholder="Địa chỉ" value="${address.fullAddress}">
                     </div>
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Quận / Huyện: <abbr class="p-red">*</abbr> </label>
-                        <input type="text" class="input-text" placeholder="Chọn quận / huyện">
+                        <input type="text" class="input-text" placeholder="Quận / Huyện" value="${address.street}">
                     </div>
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Tỉnh / Thành phố: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text" placeholder="Chọn thành phố">
+                        <input type="text" class="input-text" placeholder="Tỉnh / Thành phố" value="${address.princible}">
                     </div>
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Số điện thoại <abbr class="p-red">*</abbr></label>
