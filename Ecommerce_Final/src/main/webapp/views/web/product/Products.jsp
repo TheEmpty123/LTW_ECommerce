@@ -26,6 +26,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+
 </head>
 <body>
 <!-- HEADER -->
@@ -111,37 +112,42 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+
+        <c:forEach items="${sessionScope.cart.list}" var="cp">
+            <div class="list-product-cart">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
                         </div>
-                    </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x <span>${cp.price}</span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <a href="del-cart?pid=${cp.id}" class="remove-to-cart" data-pid="${cp.id}">
+                                <button class="close-btn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p>${sessionScope.cart.total}</p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}Cart.jsp">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -158,8 +164,9 @@
             <div class="title">
                 <Strong style="padding: 10px; font-size: 30px;">${categories.cateName}</Strong><br>
                 <a href="" style="font-weight: normal;">Trang chủ</a> / <a
-                    href="${pageContext.request.contextPath}/list-product" style="font-weight: normal;">Sản phẩm</a> / <a
-                    href="../product/Products.jsp" style="font-weight: bold;">${categories.cateName}</a>
+                    href="${pageContext.request.contextPath}/list-product" style="font-weight: normal;">Sản phẩm</a> /
+                <a
+                        href="../product/Products.jsp" style="font-weight: bold;">${categories.cateName}</a>
             </div>
         </div>
         <div class="mask"></div>
@@ -238,12 +245,15 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
+                                            <a href="add-cart?pid=${p.id}" style="color: black">
+                                                <p>THÊM VÀO GIỎ</p>
+                                            </a>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                           <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}"> <p>XEM THÊM</p></a>
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
                                 </div>

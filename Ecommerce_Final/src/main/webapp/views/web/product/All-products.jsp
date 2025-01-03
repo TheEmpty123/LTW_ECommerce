@@ -52,7 +52,7 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${cp.id}">
+                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid="${cp.id}">
                                 <button class="close-btn">
                                     <i class="bi bi-x-circle"></i>
                                 </button>
@@ -257,7 +257,7 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <a href="add-cart?pid=${p.id}" style="color: black">
+                                            <a href="add-cart?pid=${p.id}&redirectTo=list-product" style="color: black">
                                                 <p>THÊM VÀO GIỎ</p>
                                             </a>
                                         </div>

@@ -1,5 +1,6 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.service.CategoryService;
@@ -9,6 +10,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -54,6 +56,16 @@ public class ProductController extends HttpServlet {
                 }
             }
         }
+
+        //Session
+        HttpSession session = req.getSession(true);
+        Cart c = (Cart) session.getAttribute("cart");
+        if(c == null) {
+            c = new Cart();
+            session.setAttribute("cart", c);
+        }
+        session.setAttribute("cart", c);
+
         req.setAttribute("categories", category);
         req.setAttribute("productsForCate", products);
         req.setAttribute("mapCate", mapCate);

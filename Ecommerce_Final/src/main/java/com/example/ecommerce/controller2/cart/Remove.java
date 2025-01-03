@@ -20,6 +20,7 @@ public class Remove extends HttpServlet {
             pid = Integer.parseInt(req.getParameter("pid"));
         }catch (NumberFormatException e){
             resp.sendRedirect("showCart");
+            return;
         }
         HttpSession session = req.getSession(true);
         Cart c = (Cart) session.getAttribute("cart");
@@ -37,4 +38,5 @@ public class Remove extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         super.doPost(req, resp);
     }
+
 }

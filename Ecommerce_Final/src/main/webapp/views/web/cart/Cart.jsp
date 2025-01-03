@@ -25,7 +25,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
-    <script src=".${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 </head>
 <body>
 <!-- Start Header -->
@@ -92,7 +92,6 @@
             <div class="search-bar-hd">
                 <input type="text" placeholder="Tìm sản phẩm">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
-
             </div>
         </div>
     </header>
@@ -121,7 +120,7 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${cp.id}">
+                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid ="${cp.id}">
                                 <button class="close-btn">
                                     <i class="bi bi-x-circle"></i>
                                 </button>

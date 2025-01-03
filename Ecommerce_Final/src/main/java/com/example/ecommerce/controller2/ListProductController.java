@@ -33,6 +33,8 @@ public class ListProductController extends HttpServlet {
         }
         int itemsPerPage = 32;
         int currentPage = 1;
+
+        //Lay du lieu category de hien thi len giao dien
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
 
@@ -67,8 +69,15 @@ public class ListProductController extends HttpServlet {
 
         // Tổng số trang
         int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
-        // Gửi dữ liệu tới JSP
 
+        // Gửi dữ liệu tới JSP
+        HttpSession session = req.getSession(true);
+        Cart c = (Cart) session.getAttribute("cart");
+        if(c == null) {
+            c = new Cart();
+            session.setAttribute("cart", c);
+        }
+        session.setAttribute("cart", c);
 
         req.setAttribute("products", pageProducts);
         req.setAttribute("currentPage", (Integer) currentPage);

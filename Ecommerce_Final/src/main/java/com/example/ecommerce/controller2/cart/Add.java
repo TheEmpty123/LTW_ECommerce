@@ -19,7 +19,7 @@ public class Add extends HttpServlet {
         ProductService ps = new ProductService();
         Product p = ps.getProductById(Integer.parseInt(req.getParameter("pid")));
         if(p == null) {
-            resp.sendRedirect("list-product?cart=false");
+            resp.sendRedirect("list-product");
             return;
         }
 
@@ -33,7 +33,7 @@ public class Add extends HttpServlet {
         System.out.println(c.getList().size());
 
         session.setAttribute("cart", c);
-        resp.sendRedirect("list-product?cart=ok");
+        resp.sendRedirect("list-product");
     }
 
     @Override
