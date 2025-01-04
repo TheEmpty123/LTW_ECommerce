@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/product.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
-    <link href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -25,6 +25,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <title>Tất cả sản phẩm</title>
 </head>
 <body>
@@ -48,7 +49,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -246,8 +248,8 @@
         <div class="container mt-5">
             <div class="row">
                 <c:forEach var="p" items="${products}">
-                    <div class="col-sm-3 col-md-3 col-6">
-                        <div class="card product-card">
+                    <div class="col-md-3">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
@@ -257,7 +259,8 @@
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
-                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></span>
+                                        <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${p.price}"/></span>
                                     <button class="wishlist-button">
                                         <i class="bi bi-heart"></i>
                                     </button>
@@ -266,10 +269,12 @@
                             <div class="cart-see-more-btns">
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <a href="add-cart?pid=${p.id}" style="color: black">
-                                                <p>THÊM VÀO GIỎ</p>
-                                            </a>
+                                        <div class="cart-btn use-button fake-btn" style="border: none">
+                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold">
+                                                THÊM VÀO GIỎ
+                                            </button>
+                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
