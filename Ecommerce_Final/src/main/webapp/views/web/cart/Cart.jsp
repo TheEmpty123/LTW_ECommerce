@@ -124,7 +124,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span>${cp.price}</span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber currencySymbol="đ"
+                                                                                    value="${cp.price}"/><span> VND</span></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -147,6 +148,8 @@
                 <div class="money-number">
                     <p>${sessionScope.cart.total}</p>
                 </div>
+                <f:formatNumber currencySymbol="đ"
+                                value="${sessionScope.cart.total}"/><span> VND</span>
             </div>
             <div class="watch-cart center-items">
                 <a href="${pageContext.request.contextPath}/showCart" onclick="hiddenCart()">XEM GIỎ HÀNG</a>
@@ -162,7 +165,14 @@
 <!-- Phần giao diện chính của giỏ hàng -->
 <div id="container">
     <div id="cart-title">
-        <h1>Giỏ hàng <span class="total-count">${sessionScope.cart.list.size()}</span></h1>
+        <h1>Giỏ hàng
+            <c:if test="${sessionScope.cart != null}">
+                <span class="total-count">${sessionScope.cart.list.size()}</span>
+            </c:if>
+            <c:if test="${sessionScope.cart == null}">
+                <span class="total-count">0</span>
+            </c:if>
+        </h1>
     </div>
     <div id="content">
         <div class="row">
@@ -175,7 +185,8 @@
                         </div>
                         <div class="item-details">
                             <h3>${cp.name}</h3>
-                            <p class="item-price">${cp.price}</p>
+                            <p class="item-price"><f:formatNumber currencySymbol="đ"
+                                                                  value="${cp.price}"/><span> VND</span></p>
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
@@ -200,24 +211,39 @@
                         <tbody>
                         <tr class="cart-subtotal">
                             <th>Thành tiền</th>
-                            <td data-title="Thành tiền" class="t-bold">${sessionScope.cart.total} <span>đ</span></td>
+                            <td data-title="Thành tiền" class="t-bold">
+                                <c:if test="${sessionScope.auth == null}">
+                                    <f:formatNumber currencySymbol="VND" value="0.0"/>
+                                </c:if>
+                                <c:if test="${sessionScope.auth != null}">
+                                    <f:formatNumber currencySymbol="VND" value="${sessionScope.cart.total}"/>
+                                </c:if>
+                                <span> VND</span>
+                            </td>
                         </tr>
                         </tbody>
                     </table>
                     <div class="row sale-buy">
-                        <this class="col-sm-8 col-md-8 sale-input">
+                        <this class="col-sm-6 col-md-6 sale-input">
                             <input type="text" placeholder="Mã giảm giá">
                         </this>
-                        <this class="col-sm-4 col-md-4">
+                        <this class="col-sm-6 col-md-6">
                             <div class="use-button fake-btn">
                                 <p>SỬ DỤNG</p>
                             </div>
                         </this>
-                        <this class="col-sm-8 col-md-8 text-total">
+                        <this class="col-sm-6 col-md-6 text-total">
                             <p>Tổng cộng</p>
                         </this>
-                        <this class="col-sm-4 col-md-4 t-bold total-price">
-                            <p>${sessionScope.cart.total}<span>đ</span></p>
+                        <this class="col-sm-6 col-md-6 t-bold total-price">
+                            <p>
+                                <c:if test="${sessionScope.auth == null}">
+                                    <f:formatNumber currencySymbol="VND" value="0.0"/>
+                                </c:if>
+                                <c:if test="${sessionScope.auth != null}">
+                                    <f:formatNumber currencySymbol="VND" value="${sessionScope.cart.total}"/>
+                                </c:if>
+                                <span> VND</span></p>
                         </this>
                     </div>
                     <div class="shipping-infor">
