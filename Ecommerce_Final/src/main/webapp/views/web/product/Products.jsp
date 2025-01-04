@@ -26,6 +26,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
 
 </head>
 <body>
@@ -254,9 +255,9 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <a href="add-cart?pid=${p.id}" style="color: black">
-                                                <p>THÊM VÀO GIỎ</p>
-                                            </a>
+<%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
+                                                <button class="add-to-cart">THÊM VÀO GIỎ</button>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">

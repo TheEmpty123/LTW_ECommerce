@@ -17,6 +17,11 @@ public class Cart {
         data.put(p.getId(), convert(p));
         return true;
     }
+    public boolean add(CartProduct p){
+        if(data.containsKey(p.getId())) return update(p.getId(), data.get(p.getId()).getQuantity()+1);
+        data.put(p.getId(), p);
+        return true;
+    }
 
     //cap nhat so luong san pham trong gio hang
     public boolean update(int id, int quantity){

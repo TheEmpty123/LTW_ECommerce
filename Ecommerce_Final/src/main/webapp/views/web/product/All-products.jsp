@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/product.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
-    <link href="../../../public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -25,6 +25,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
     <title>Tất cả sản phẩm</title>
 </head>
 <body>
@@ -246,7 +247,7 @@
         <div class="container mt-5">
             <div class="row">
                 <c:forEach var="p" items="${products}">
-                    <div class="col-sm-3 col-md-3 col-6">
+                    <div class="col-md-3">
                         <div class="card product-card">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
@@ -254,7 +255,7 @@
                                 <img src="${p.thumb}" class="image-back"
                                      alt="${p.proName}">
                             </a>
-                            <div class="card-body">
+                            <div class="card-body product">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
                                     <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></span>
@@ -267,9 +268,9 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <a href="add-cart?pid=${p.id}" style="color: black">
-                                                <p>THÊM VÀO GIỎ</p>
-                                            </a>
+<%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
+                                                <button class="add-to-cart">THÊM VÀO GIỎ</button>
+<%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
