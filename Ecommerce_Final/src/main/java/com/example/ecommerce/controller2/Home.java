@@ -1,6 +1,7 @@
 package com.example.ecommerce.controller2;
 
 import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ecommerce.Bean.Cart.Cart;
@@ -19,13 +20,15 @@ public class Home extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 //        MC.createInstance();
+        List<Product> products;
         HttpSession session = request.getSession(true);
+
+
         Cart c = (Cart) session.getAttribute("cart");
         if (c == null) {
             c = new Cart();
             session.setAttribute("cart", c);
         }
-        List<Product> products;
         CategoryService categoryService = new CategoryService();
         try {
 //            List<Product> products = MC.instance.productService.getNew4Products();
@@ -45,7 +48,28 @@ public class Home extends HttpServlet {
 //            MC.instance.log.error(this.getClass().getName(), new RuntimeException(e));
         }
 
-//        String url = "/webapp/WEB-INF/index.jsp";
+        int productId = Integer.parseInt(request.getParameter("id"));
+        Product product = ProductService.getInstance().getProductById(productId);
+        try {
+            if (product != null) {
+                products = (List<Product>) session.getAttribute("recentlyView");
+                if (products == null) {
+                    products = new ArrayList<>();
+                }
+
+                boolean alreadyView = products.stream().anyMatch(p -> p.getId() == product.getId());
+                if (!alreadyView) {
+                    products.add(0, product);
+                    if (products.size() > 8) {
+                        products.remove(products.size() - 1);
+                    }
+                }
+                session.setAttribute("recentlyView", products);
+            }
+        } catch (NumberFormatException e) {
+            e.printStackTrace();
+        }
+
         String url = "/index.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);

@@ -87,7 +87,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
 
     public static void main(String[] args) {
     ProductDao dao  =new ProductDao();
-        System.out.println(dao.get4NewProducts());
+        System.out.println(dao.getProductById(1));
     }
 
 }
