@@ -27,9 +27,34 @@
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <title>Tất cả sản phẩm</title>
+    <style>
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 <!-- HEADER -->
+
 <div id="mask-container">
     <div id="mask-cart">
     </div>
@@ -39,8 +64,9 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <c:forEach items="${sessionScope.cart.list}" var="cp">
-            <div class="list-product-cart">
+
+        <div id="list-product-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -63,15 +89,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
+
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                    <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
                                        value="${sessionScope.cart.total}"/>
                     </p>
                 </div>
@@ -161,8 +188,10 @@
         </div>
     </header>
 </div>
+
 <!-- HEADER -->
 <div id="container">
+    <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
     <!-- IMAGE HEADER -->
     <div id="imageHeader">
         <div class="title-bg">
@@ -249,7 +278,8 @@
             <div class="row">
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
-                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}" data-price="${p.price}">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
+                             data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">

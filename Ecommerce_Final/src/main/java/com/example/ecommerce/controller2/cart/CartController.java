@@ -11,6 +11,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet(name = "Cart" , value = "/CartController")
 public class CartController extends HttpServlet {
@@ -19,9 +20,14 @@ public class CartController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
+        if (cart == null) {
+            cart = new Cart();
+            session.setAttribute("cart", cart);
+        }
+
 //        List<CartProduct> listCart = cart.getList();
 
-        // Nhận dữ liệu từ AJAX
+        // Nhận dữ liệu từ AJAXd
         String json = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
         Gson gson = new Gson();
         CartProduct newItem = gson.fromJson(json, CartProduct.class);
@@ -41,23 +47,22 @@ public class CartController extends HttpServlet {
             newItem.setQuantity(1);
             cart.add(newItem);
         }
+        double total = cart.getTotal();
 
+        session.setAttribute("cart", cart);
         // Tạo JSON trả về
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(gson.toJson(cart));
+        resp.getWriter().write(gson.toJson(new CartResponse(cart.getList(), total)));
 
-        req.setAttribute("cart", cart);
     }
+    private static class CartResponse {
+        private final List<CartProduct> items;
+        private final double totalPrice;
 
-//    // Lớp đại diện cho giỏ hàng
-//    private static class Cart {
-//        private final List<CartProduct> items;
-//        private final int totalPrice;
-//
-//        public Cart(List<CartProduct> items, int totalPrice) {
-//            this.items = items;
-//            this.totalPrice = totalPrice;
-//        }
-//    }
+        public CartResponse(List<CartProduct> items, double totalPrice) {
+            this.items = items;
+            this.totalPrice = totalPrice;
+        }
+    }
 }

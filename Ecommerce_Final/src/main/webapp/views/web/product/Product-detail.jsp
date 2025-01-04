@@ -28,6 +28,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <style>
         .review-section {
             background: white;
@@ -152,6 +153,29 @@
             background-color: #0056b3;
         }
 
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
     </style>
 </head>
 <body>
@@ -164,8 +188,9 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <c:forEach items="${sessionScope.cart.list}" var="cp">
-            <div class="list-product-cart">
+
+        <div id="list-product-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -174,7 +199,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"  value="${cp.price}"/></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -186,20 +212,21 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
+
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                    <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
                                        value="${sessionScope.cart.total}"/></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}Cart.jsp">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -300,6 +327,7 @@
     </div>
 </div>
 <div id="container">
+    <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
     <div id="path-nav">
         <a href="">Trang chủ</a>/
         <a href="#">Phòng khách</a>/
@@ -326,7 +354,8 @@
                 </div>
             </div>
             <div class="price-wrapper">
-                <p class="product-page-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></p>
+                <p class="product-page-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                              value="${p.price}"/></p>
             </div>
             <div class="product-attributes-wrapper">
                 <div class="product-attributes-materail">
@@ -361,11 +390,12 @@
                            autocomplete="off">
                     <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
                 </div>
-                <div class="right-btn">
+                <div class="right-btn product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}"
+                     data-price="${p.price}">
                     <a href="../order/order.html" class="buy-button"> Mua ngay</a>
-                    <a href="add-cart?pid=${p.id}">
-                        <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
-                    </a>
+                    <%--                    <a href="add-cart?pid=${p.id}">--%>
+                    <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
+                    <%--                    </a>--%>
                 </div>
             </div>
             <div class="hotline">

@@ -13,6 +13,8 @@ html, body{
     height: 138px;
     top: 0;
 }
+
+
 .center-items{
     display: flex;
     justify-content: center;

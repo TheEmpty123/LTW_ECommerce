@@ -27,7 +27,30 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <style>
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
 <!-- HEADER -->
@@ -122,8 +145,9 @@
             <div class="block"></div>
         </div>
 
-        <c:forEach items="${sessionScope.cart.list}" var="cp">
-            <div class="list-product-cart">
+
+        <div id="list-product-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -132,7 +156,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"  value="${cp.price}"/></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -144,15 +169,16 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
+            </c:forEach>
+        </div>
+
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                    <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
                                        value="${sessionScope.cart.total}"/></p>
                 </div>
             </div>
@@ -168,6 +194,7 @@
 <!-- </div> -->
 
 <div id="container">
+    <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
     <!-- IMAGE HEADER -->
     <div id="imageHeader">
         <div class="title-bg" style="age: url('${pageContext.request.contextPath}/public/images/banners/dongho.jpg')">
@@ -237,7 +264,8 @@
             <div class="row">
                 <c:forEach var="p" items="${productsForCate}">
                     <div class="col-md-3">
-                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}" data-price="${p.price}">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
+                             data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}"
                                      alt="${p.proName}">
@@ -245,7 +273,8 @@
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
-                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></span>
+                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                value="${p.price}"/></span>
                                     <button class="wishlist-button">
                                         <i class="bi bi-heart"></i>
                                     </button>
@@ -255,9 +284,11 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-<%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
-                                                <button class="add-to-cart" style="font-size: 11px; font-weight: bold">THÊM VÀO GIỎ</button>
-<%--                                            </a>--%>
+                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold">THÊM
+                                                VÀO GIỎ
+                                            </button>
+                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
