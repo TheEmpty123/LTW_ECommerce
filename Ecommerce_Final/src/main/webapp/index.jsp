@@ -43,37 +43,43 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+        <c:forEach items="${sessionScope.cart.list}" var="cp">
+            <div class="list-product-cart">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
                         </div>
-                    </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <a href="del-cart?pid=${cp.id}" class="remove-to-cart" data-pid="${cp.id}">
+                                <button class="close-btn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                                       value="${sessionScope.cart.total}"/></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../web/cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="../web/order/order.html">THANH TOÁN</a>
