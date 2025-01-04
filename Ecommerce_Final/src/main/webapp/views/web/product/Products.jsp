@@ -26,7 +26,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
-<%--    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
 
 </head>
 <body>
@@ -237,10 +237,10 @@
             <div class="row">
                 <c:forEach var="p" items="${productsForCate}">
                     <div class="col-md-3">
-                        <div class="card product-card">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}"
-                                     alt="Đồng hồ bàn Alum/Granite">
+                                     alt="${p.proName}">
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
@@ -254,9 +254,9 @@
                             <div class="cart-see-more-btns">
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
+                                        <div class="cart-btn use-button fake-btn" style="border: none">
 <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
-                                                <button class="add-to-cart">THÊM VÀO GIỎ</button>
+                                                <button class="add-to-cart" style="font-size: 11px; font-weight: bold">THÊM VÀO GIỎ</button>
 <%--                                            </a>--%>
                                         </div>
                                     </div>

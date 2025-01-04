@@ -3,14 +3,16 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelectorAll(".add-to-cart").forEach((button) => {
         button.addEventListener("click", function () {
             const productElement = this.closest(".product");
+            console.log(productElement)
             const productId = productElement.dataset.id;
             const productName = productElement.dataset.name;
             const productImg = productElement.dataset.img;
             const productPrice = parseInt(productElement.dataset.price);
-            const productQuantity = productElement.dataset.quantity;
+            // const productQuantity = productElement.dataset.quantity;
 
+            console.log("Day nay no day nay");
             // Gửi yêu cầu AJAX tới servlet
-            fetch("CartController", {
+            fetch("/CartController", {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
@@ -19,8 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     id: productId,
                     name: productName,
                     img:productImg,
-                    price: productPrice,
-                    quantity: productQuantity
+                    price: productPrice
                 }),
             })
                 .then((response) => response.json())

@@ -190,9 +190,9 @@
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
-                            <a href="del-cart?pid=${cp.id}">
+<%--                            <a href="del-cart?pid=${cp.id}">--%>
                                 <button class="remove-btn">✕</button>
-                            </a>
+<%--                            </a>--%>
                             <div class="quantity buttons-added left-btn">
                                 <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
                                 <input type="number" name="quatity" id="input-quantity" value="1" min="1"

@@ -25,7 +25,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
-<%--    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <title>Tất cả sản phẩm</title>
 </head>
 <body>
@@ -49,7 +49,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -248,17 +249,18 @@
             <div class="row">
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
-                        <div class="card product-card">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
                                 <img src="${p.thumb}" class="image-back"
                                      alt="${p.proName}">
                             </a>
-                            <div class="card-body product">
+                            <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
-                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></span>
+                                        <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${p.price}"/></span>
                                     <button class="wishlist-button">
                                         <i class="bi bi-heart"></i>
                                     </button>
@@ -267,10 +269,12 @@
                             <div class="cart-see-more-btns">
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-<%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
-                                                <button class="add-to-cart">THÊM VÀO GIỎ</button>
-<%--                                            </a>--%>
+                                        <div class="cart-btn use-button fake-btn" style="border: none">
+                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold">
+                                                THÊM VÀO GIỎ
+                                            </button>
+                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
