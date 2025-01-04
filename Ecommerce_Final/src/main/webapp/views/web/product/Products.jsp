@@ -131,7 +131,7 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span>${cp.price}</span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber currencySymbol="đ"  value="${cp.price}"/><span> VND</span></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -151,7 +151,8 @@
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>${sessionScope.cart.total}</p>
+                    <p><f:formatNumber currencySymbol="đ"
+                                       value="${sessionScope.cart.total}"/><span> VND</span></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
@@ -243,7 +244,7 @@
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
-                                    <span class="product-price">${p.price}</span>
+                                    <span class="product-price"><f:formatNumber currencySymbol="đ"  value="${p.price}"/><span> VND</span></span>
                                     <button class="wishlist-button">
                                         <i class="bi bi-heart"></i>
                                     </button>

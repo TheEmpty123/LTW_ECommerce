@@ -164,33 +164,38 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+        <c:forEach items="${sessionScope.cart.list}" var="cp">
+            <div class="list-product-cart">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
                         </div>
-                    </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber currencySymbol="đ"  value="${cp.price}"/><span> VND</span></span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <a href="del-cart?pid=${cp.id}" class="remove-to-cart" data-pid="${cp.id}">
+                                <button class="close-btn">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </c:forEach>
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p><f:formatNumber currencySymbol="đ"
+                                       value="${sessionScope.cart.total}"/><span> VND</span></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
@@ -321,7 +326,7 @@
                 </div>
             </div>
             <div class="price-wrapper">
-                <p class="product-page-price">${p.price}</p>
+                <p class="product-page-price"><f:formatNumber currencySymbol="đ"  value="${p.price}"/><span> VND</span></p>
             </div>
             <div class="product-attributes-wrapper">
                 <div class="product-attributes-materail">
@@ -358,7 +363,9 @@
                 </div>
                 <div class="right-btn">
                     <a href="../order/order.html" class="buy-button"> Mua ngay</a>
-                    <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
+                    <a href="add-cart?pid=${p.id}">
+                        <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
+                    </a>
                 </div>
             </div>
             <div class="hotline">
