@@ -124,8 +124,8 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber currencySymbol="đ"
-                                                                                    value="${cp.price}"/><span> VND</span></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -146,10 +146,10 @@
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>${sessionScope.cart.total}</p>
+                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                                       value="${sessionScope.cart.total}"/></p>
                 </div>
-                <f:formatNumber currencySymbol="đ"
-                                value="${sessionScope.cart.total}"/><span> VND</span>
+
             </div>
             <div class="watch-cart center-items">
                 <a href="${pageContext.request.contextPath}/showCart" onclick="hiddenCart()">XEM GIỎ HÀNG</a>
@@ -185,8 +185,8 @@
                         </div>
                         <div class="item-details">
                             <h3>${cp.name}</h3>
-                            <p class="item-price"><f:formatNumber currencySymbol="đ"
-                                                                  value="${cp.price}"/><span> VND</span></p>
+                            <p class="item-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                  value="${cp.price}"/></p>
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
@@ -213,12 +213,11 @@
                             <th>Thành tiền</th>
                             <td data-title="Thành tiền" class="t-bold">
                                 <c:if test="${sessionScope.auth == null}">
-                                    <f:formatNumber currencySymbol="VND" value="0.0"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber currencySymbol="VND" value="${sessionScope.cart.total}"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
                                 </c:if>
-                                <span> VND</span>
                             </td>
                         </tr>
                         </tbody>
@@ -238,12 +237,11 @@
                         <this class="col-sm-6 col-md-6 t-bold total-price">
                             <p>
                                 <c:if test="${sessionScope.auth == null}">
-                                    <f:formatNumber currencySymbol="VND" value="0.0"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber currencySymbol="VND" value="${sessionScope.cart.total}"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
                                 </c:if>
-                                <span> VND</span></p>
                         </this>
                     </div>
                     <div class="shipping-infor">

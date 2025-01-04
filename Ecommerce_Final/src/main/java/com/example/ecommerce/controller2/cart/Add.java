@@ -16,10 +16,37 @@ import java.io.IOException;
 public class Add extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//        ProductService ps = new ProductService();
+//        Product p = ps.getProductById(Integer.parseInt(req.getParameter("pid")));
+//        if(p == null) {
+//            resp.sendRedirect("list-product");
+//            return;
+//        }
+//
+//        HttpSession session = req.getSession(true);
+//        Cart c = (Cart) session.getAttribute("cart");
+//        if(c == null) {
+//            c = new Cart();
+//            session.setAttribute("cart", c);
+//        }
+//        c.add(p);
+//        System.out.println(c.getList().size());
+//
+//        session.setAttribute("cart", c);
+//        resp.sendRedirect("list-product");
+        doPost(req, resp);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        super.doPost(req, resp);
+    }
+
+    @Override
+    protected void doPut(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         ProductService ps = new ProductService();
         Product p = ps.getProductById(Integer.parseInt(req.getParameter("pid")));
         if(p == null) {
-            resp.sendRedirect("list-product");
             return;
         }
 
@@ -33,11 +60,5 @@ public class Add extends HttpServlet {
         System.out.println(c.getList().size());
 
         session.setAttribute("cart", c);
-        resp.sendRedirect("list-product");
-    }
-
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        super.doPost(req, resp);
     }
 }

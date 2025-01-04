@@ -48,7 +48,7 @@
                         <div class="detail-order center-items" style="justify-content: left;">
                             <div>
                                 <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber currencySymbol="đ" value="${cp.price}"/><span> VND</span></span>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/></span>
                             </div>
                         </div>
                         <div class="close-orders center-items">
@@ -69,8 +69,8 @@
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p><f:formatNumber currencySymbol="đ"
-                                       value="${sessionScope.cart.total}"/><span> VND</span>
+                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                                       value="${sessionScope.cart.total}"/>
                     </p>
                 </div>
             </div>
@@ -257,7 +257,7 @@
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
                                 <div class="like-price-product">
-                                    <span class="product-price"><f:formatNumber currencySymbol="đ"  value="${p.price}"/><span> VND</span></span>
+                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"  value="${p.price}"/></span>
                                     <button class="wishlist-button">
                                         <i class="bi bi-heart"></i>
                                     </button>
@@ -267,7 +267,7 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn">
-                                            <a href="add-cart?pid=${p.id}&redirectTo=list-product" style="color: black">
+                                            <a href="add-cart?pid=${p.id}" style="color: black">
                                                 <p>THÊM VÀO GIỎ</p>
                                             </a>
                                         </div>
