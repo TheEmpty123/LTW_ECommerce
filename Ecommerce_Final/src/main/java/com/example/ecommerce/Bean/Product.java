@@ -5,6 +5,7 @@ import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.Locale;
 
+
 public class Product implements Serializable {
     private int id;
     private String proName;
@@ -17,7 +18,8 @@ public class Product implements Serializable {
 
     private String fullPrice;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Product(int id, String proName, String description, double price, String thumb, LocalDateTime created_at, int cateID, int atributeID) {
         this.id = id;
@@ -64,6 +66,7 @@ public class Product implements Serializable {
         return fullPrice;
     }
 
+    //    public void setFullPrice(String fullPrice)
     public int getCateID() {
         return cateID;
     }

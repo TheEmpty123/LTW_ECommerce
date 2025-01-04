@@ -25,14 +25,18 @@ public class Home extends HttpServlet {
             c = new Cart();
             session.setAttribute("cart", c);
         }
-
         List<Product> products;
         CategoryService categoryService = new CategoryService();
         try {
 //            List<Product> products = MC.instance.productService.getNew4Products();
             products = ProductService.getInstance().getNew4Products();
-            request.setAttribute("listproduct", products);
-
+            if (products == null || products.isEmpty()) {
+                request.setAttribute("error", "No product found");
+            } else {
+                request.setAttribute("success", "ddmmm");
+                request.setAttribute("list_product", products);
+                System.out.println(products);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "failed to load product");
@@ -41,7 +45,8 @@ public class Home extends HttpServlet {
 //            MC.instance.log.error(this.getClass().getName(), new RuntimeException(e));
         }
 
-        String url = "/views/web/common/home.jsp";
+//        String url = "/webapp/WEB-INF/index.jsp";
+        String url = "/index.jsp";
         RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
         dispatcher.forward(request, response);
 
