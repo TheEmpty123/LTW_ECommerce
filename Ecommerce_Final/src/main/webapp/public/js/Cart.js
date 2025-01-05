@@ -34,6 +34,24 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
+    document.querySelectorAll(".remove-item").forEach((button) =>{
+        console.log(button)
+        button.addEventListener("click",function (){
+            const productId = this.dataset.id;
+            console.log(productId)
+            fetch("/CartController?action=remove",{
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({id :productId})
+            })
+                .then((response) =>response.json())
+                .then((cart) => updateCartUI(cart))
+                .catch((error) => console.error("Lỗi: ", error))
+        });
+    });
+
     function updateCartUI(cart) {
         // Lấy container hiển thị giỏ hàng
         const cartContainer = document.getElementById('list-product-cart');
@@ -71,11 +89,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${item.id}" class="remove-to-cart" data-pid="${item.id}">
-                                <button class="close-btn">
+                                <button class="remove-item" data-id="${item.id}">
                                     <i class="bi bi-x-circle"></i>
                                 </button>
-                            </a>
                         </div>
                     </div>
             `;
@@ -83,6 +99,23 @@ document.addEventListener("DOMContentLoaded", function () {
             cartContainer.appendChild(cartItem);
         });
 
+        document.querySelectorAll(".remove-item").forEach((button) =>{
+            console.log(button)
+            button.addEventListener("click",function (){
+                const productId = this.dataset.id;
+                console.log(productId)
+                fetch("/CartController?action=remove",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({id :productId})
+                })
+                    .then((response) =>response.json())
+                    .then((cart) => updateCartUI(cart))
+                    .catch((error) => console.error("Lỗi: ", error))
+            });
+        });
 
     }
 

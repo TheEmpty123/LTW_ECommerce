@@ -26,6 +26,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
 </head>
 <body>
 <!-- Start Header -->
@@ -114,8 +115,9 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <c:forEach items="${sessionScope.cart.list}" var="cp">
-            <div class="list-product-cart">
+
+            <div id="list-product-cart">
+                <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -129,30 +131,28 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid="${cp.id}">
-                                <button class="close-btn">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
-                            </a>
-
+                            <button class="remove-item" data-id="${cp.id}">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
+                </c:forEach>
             </div>
-        </c:forEach>
+
         <div id="pay-pal">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p><f:formatNumber type="currency" currencySymbol="đ"
+                    <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
                                        value="${sessionScope.cart.total}"/></p>
                 </div>
 
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/showCart" onclick="hiddenCart()">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/CartController" onclick="hiddenCart()">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="">THANH TOÁN</a>
@@ -190,9 +190,9 @@
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
-<%--                            <a href="del-cart?pid=${cp.id}">--%>
-                                <button class="remove-btn">✕</button>
-<%--                            </a>--%>
+                            <button class="remove-item" data-id="${cp.id}">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                             <div class="quantity buttons-added left-btn">
                                 <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
                                 <input type="number" name="quatity" id="input-quantity" value="1" min="1"
@@ -216,7 +216,8 @@
                                     <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ"
+                                                    value="${sessionScope.cart.total}"/>
                                 </c:if>
                             </td>
                         </tr>
@@ -240,7 +241,8 @@
                                     <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
+                                    <f:formatNumber type="currency" currencySymbol="đ"
+                                                    value="${sessionScope.cart.total}"/>
                                 </c:if>
                         </this>
                     </div>
