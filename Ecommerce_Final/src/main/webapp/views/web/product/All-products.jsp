@@ -50,6 +50,10 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
+        .remove-item{
+            border: none;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -80,11 +84,9 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-<%--                            <a href="del-cart?pid=${cp.id}" class="remove-from-cart" data-pid="${cp.id}">--%>
-                                <button class="remove-item" data-id="${cp.id}">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
-<%--                            </a>--%>
+                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -98,7 +100,7 @@
                 </div>
                 <div class="money-number">
                     <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                       value="${sessionScope.cart.total}"/>
+                                                       value="${sessionScope.cart.total}"/>
                     </p>
                 </div>
             </div>
@@ -300,7 +302,8 @@
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
                                                 <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
-                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold">
+                                            <button class="add-to-cart"
+                                                    style="font-size: 11px; font-weight: bold;padding: 10px 5px">
                                                 THÊM VÀO GIỎ
                                             </button>
                                                 <%--                                            </a>--%>

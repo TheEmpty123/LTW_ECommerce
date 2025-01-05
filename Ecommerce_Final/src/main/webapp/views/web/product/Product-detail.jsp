@@ -175,7 +175,10 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
-
+        .remove-item{
+            border: none;
+            background-color: white;
+        }
     </style>
 </head>
 <body>
@@ -204,9 +207,9 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                                <button class="remove-item" data-id="${cp.id}">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
+                            <button class="remove-item" data-id="${cp.id}">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -392,12 +395,11 @@
                      data-price="${p.price}">
                     <a href="../order/order.html" class="buy-button"> Mua ngay</a>
                     <%--                    <a href="add-cart?pid=${p.id}">--%>
-                    <button type="submit" class="add-to-cart">Thêm vào giỏ</button>
+                    <button type="submit" class="add-to-cart" style=" padding: 10px 5px">Thêm vào giỏ</button>
                     <%--                    </a>--%>
                 </div>
             </div>
             <div class="hotline">
-                <span>Liên hệ tư vấn và đặt mua</span>
                 <a href="">18007200</a>
             </div>
 

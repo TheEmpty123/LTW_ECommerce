@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const productPrice = parseFloat(productElement.dataset.price);
             // const productQuantity = productElement.dataset.quantity;
 
-            console.log("Day nay no day nay");
+            // console.log("Day nay no day nay");
             // Gửi yêu cầu AJAX tới servlet
             fetch("/CartController", {
                 method: "POST",
@@ -34,23 +34,27 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     });
 
-    document.querySelectorAll(".remove-item").forEach((button) =>{
-        console.log(button)
-        button.addEventListener("click",function (){
-            const productId = this.dataset.id;
-            console.log(productId)
-            fetch("/CartController?action=remove",{
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({id :productId})
-            })
-                .then((response) =>response.json())
-                .then((cart) => updateCartUI(cart))
-                .catch((error) => console.error("Lỗi: ", error))
+    function removeItem(){
+        document.querySelectorAll(".remove-item").forEach((button) =>{
+            console.log(button)
+            button.addEventListener("click",function (){
+                const productId = this.dataset.id;
+                console.log(productId)
+                fetch("/CartController?action=remove",{
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                    },
+                    body: JSON.stringify({id :productId})
+                })
+                    .then((response) =>response.json())
+                    .then((cart) => updateCartUI(cart))
+                    .catch((error) => console.error("Lỗi: ", error))
+            });
         });
-    });
+    }
+
+    removeItem();
 
     function updateCartUI(cart) {
         // Lấy container hiển thị giỏ hàng
@@ -89,7 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                                <button class="remove-item" data-id="${item.id}">
+                                <button class="remove-item" data-id="${item.id}" style="border: none; background-color: white">
                                     <i class="bi bi-x-circle"></i>
                                 </button>
                         </div>
@@ -99,28 +103,27 @@ document.addEventListener("DOMContentLoaded", function () {
             cartContainer.appendChild(cartItem);
         });
 
-        document.querySelectorAll(".remove-item").forEach((button) =>{
-            console.log(button)
-            button.addEventListener("click",function (){
-                const productId = this.dataset.id;
-                console.log(productId)
-                fetch("/CartController?action=remove",{
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({id :productId})
-                })
-                    .then((response) =>response.json())
-                    .then((cart) => updateCartUI(cart))
-                    .catch((error) => console.error("Lỗi: ", error))
-            });
-        });
+       removeItem();
 
     }
 
     function showNotification(message) {
         const notification = document.getElementById('notification');
+
+        // Thay đổi nội dung thông báo nếu cần
+        notification.textContent = message;
+
+        // Hiển thị thông báo
+        notification.classList.remove('hidden');
+
+        // Tự động ẩn thông báo sau 3 giây
+        setTimeout(() => {
+            notification.classList.add('hidden');
+        }, 3000); // 3000ms = 3 giây
+    }
+
+    function loginNotification(message) {
+        const notification = document.getElementById('login-notification');
 
         // Thay đổi nội dung thông báo nếu cần
         notification.textContent = message;

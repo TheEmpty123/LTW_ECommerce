@@ -131,7 +131,7 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <button class="remove-item" data-id="${cp.id}">
+                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                         </div>
@@ -190,7 +190,7 @@
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
-                            <button class="remove-item" data-id="${cp.id}">
+                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                             <div class="quantity buttons-added left-btn">
