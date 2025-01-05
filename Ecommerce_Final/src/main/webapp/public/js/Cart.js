@@ -42,7 +42,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function removeItem(){
         document.querySelectorAll(".remove-item").forEach((button) =>{
-            console.log(button)
             button.addEventListener("click",function (){
                 const productId = this.dataset.id;
                 console.log(productId)
@@ -73,6 +72,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Lấy container hiển thị giỏ hàng
         const cartContainer = document.getElementById('list-product-cart');
         const totalCart = document.getElementById('total-cart')
+        const countProduct = document.querySelectorAll('.total-count')
+
 
         // Xóa nội dung cũ của giỏ hàng
         cartContainer.innerHTML = '';
@@ -86,7 +87,7 @@ document.addEventListener("DOMContentLoaded", function () {
         totalCart.textContent = formatter.format(cart.totalPrice)
 
         // Duyệt qua từng sản phẩm trong giỏ hàng (cart là một mảng JSON)
-        cart.items.forEach((item) => {
+        cart.lists.forEach((item) => {
 
             // Định dạng giá trị
             const formattedPrice = formatter.format(item.price);
@@ -116,7 +117,49 @@ document.addEventListener("DOMContentLoaded", function () {
             cartContainer.appendChild(cartItem);
         });
 
-       removeItem();
+        const  productsOfCart= document.getElementById('products-of-cart')
+        if(productsOfCart != null){
+            productsOfCart.innerHTML= '';
+            cart.lists.forEach((item) => {
+                // Định dạng giá trị
+                const formattedPrice = formatter.format(item.price);
+
+                // Tạo HTML cho từng sản phẩm
+                const cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                     <div class="image-box">
+                            <img src="${item.img}" alt="Armchair Mây mới"
+                                 class="item-image">
+                        </div>
+                        <div class="item-details">
+                            <h3>${item.name}</h3>
+                            <p class="item-price">${formattedPrice}</p>
+                            <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
+                        </div>
+                        <div class="item-actions">
+                            <button class="remove-item" data-id="${item.id}" style="border: none; background-color: white;">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                            <div class="quantity buttons-added left-btn">
+                                <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
+                                <input type="number" name="quatity" id="input-quantity" value="${item.quantity}" min="1"
+                                       inputmode="numeric" autocomplete="off">
+                                <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
+                            </div>
+                        </div>
+            `;
+                // Thêm sản phẩm vào container
+                productsOfCart.appendChild(cartItem);
+            })
+        }
+        removeItem();
+
+        if(countProduct != null){
+            countProduct.forEach(item =>{
+                item.textContent = cart.lists.length;
+            });
+        }
 
     }
 

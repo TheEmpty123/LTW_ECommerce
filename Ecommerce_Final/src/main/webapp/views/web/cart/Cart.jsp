@@ -27,6 +27,37 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <style>
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+        .remove-item{
+            border: none;
+            background-color: white;
+        }
+        .red{
+            background-color: red;
+        }
+    </style>
 </head>
 <body>
 <!-- Start Header -->
@@ -131,7 +162,7 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
+                            <button class="remove-item" data-id="${cp.id}">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                         </div>
@@ -164,6 +195,8 @@
 
 <!-- Phần giao diện chính của giỏ hàng -->
 <div id="container">
+    <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
+    <div id="login-notification" class="notification hidden red">Bạn chưa đăng nhập</div>
     <div id="cart-title">
         <h1>Giỏ hàng
             <c:if test="${sessionScope.cart != null}">
@@ -176,7 +209,7 @@
     </div>
     <div id="content">
         <div class="row">
-            <div class="col-sm-7 col-md-7 product-detail">
+            <div id="products-of-cart" class="col-sm-7 col-md-7 product-detail">
                 <c:forEach items="${sessionScope.cart.list}" var="cp">
                     <div class="cart-item">
                         <div class="image-box">

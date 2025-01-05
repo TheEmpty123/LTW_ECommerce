@@ -118,12 +118,12 @@ public class CartController extends HttpServlet {
     }
 
     private static class CartResponse {
-        private final List<CartProduct> items;
+        private final List<CartProduct> lists;
         private final double totalPrice;
         private final String userName;
 
-        public CartResponse(List<CartProduct> items, double totalPrice, String userName) {
-            this.items = items;
+        public CartResponse(List<CartProduct> lists, double totalPrice, String userName) {
+            this.lists = lists;
             this.totalPrice = totalPrice;
             this.userName = userName;
         }
