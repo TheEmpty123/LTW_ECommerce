@@ -50,9 +50,14 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
-        .remove-item{
+
+        .remove-item {
             border: none;
             background-color: white;
+        }
+
+        .red {
+            background-color: red;
         }
     </style>
 </head>
@@ -84,7 +89,8 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
+                            <button class="remove-item" data-id="${cp.id}"
+                                    style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                         </div>
@@ -193,6 +199,7 @@
 <!-- HEADER -->
 <div id="container">
     <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
+    <div id="login-notification" class="notification hidden red">Bạn chưa đăng nhập!</div>
     <!-- IMAGE HEADER -->
     <div id="imageHeader">
         <div class="title-bg">
@@ -301,12 +308,10 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
                                             <button class="add-to-cart"
                                                     style="font-size: 11px; font-weight: bold;padding: 10px 5px">
                                                 THÊM VÀO GIỎ
                                             </button>
-                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">

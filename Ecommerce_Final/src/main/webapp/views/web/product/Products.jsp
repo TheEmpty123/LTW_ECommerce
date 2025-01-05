@@ -54,6 +54,9 @@
             border: none;
             background-color: white;
         }
+        .red{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -197,6 +200,7 @@
 
 <div id="container">
     <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
+    <div id="login-notification" class="notification hidden red">Bạn chưa đăng nhập</div>
     <!-- IMAGE HEADER -->
     <div id="imageHeader">
         <div class="title-bg" style="age: url('${pageContext.request.contextPath}/public/images/banners/dongho.jpg')">

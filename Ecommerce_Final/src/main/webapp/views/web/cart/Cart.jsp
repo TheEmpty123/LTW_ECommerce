@@ -195,7 +195,7 @@
                             </button>
                             <div class="quantity buttons-added left-btn">
                                 <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
-                                <input type="number" name="quatity" id="input-quantity" value="1" min="1"
+                                <input type="number" name="quatity" id="input-quantity" value="${cp.quantity}" min="1"
                                        inputmode="numeric" autocomplete="off">
                                 <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
                             </div>

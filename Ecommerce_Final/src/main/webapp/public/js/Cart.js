@@ -27,8 +27,14 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => response.json())
                 .then((cart) => {
-                    updateCartUI(cart);
-                    showNotification("Đã thêm sản phẩm vào giỏ hàng.")
+                    console.log(cart.userName)
+                    if(cart.userName != null){
+                        updateCartUI(cart);
+                        showNotification("Đã thêm sản phẩm vào giỏ hàng.")
+                    }else{
+                        loginNotification("Bạn chưa đăng nhập!");
+                    }
+
                 })
                 .catch((error) => console.error("Lỗi:", error));
         });
@@ -48,7 +54,14 @@ document.addEventListener("DOMContentLoaded", function () {
                     body: JSON.stringify({id :productId})
                 })
                     .then((response) =>response.json())
-                    .then((cart) => updateCartUI(cart))
+                    .then((cart) => {
+                        if (cart.userName != null){
+                            updateCartUI(cart)
+                            showNotification("Đã xóa sản phẩm khỏi giỏ hàng.")
+                        }else{
+                            loginNotification("Phiên đã hết. Vui lòng đăng nhập lại.")
+                        }
+                    })
                     .catch((error) => console.error("Lỗi: ", error))
             });
         });

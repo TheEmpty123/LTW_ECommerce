@@ -179,6 +179,9 @@
             border: none;
             background-color: white;
         }
+        .red{
+            background-color: red;
+        }
     </style>
 </head>
 <body>
@@ -329,6 +332,7 @@
 </div>
 <div id="container">
     <div id="notification" class="notification hidden">Sản phẩm đã được thêm vào giỏ hàng!</div>
+    <div id="login-notification" class="notification hidden red">Bạn chưa đăng nhập!</div>
     <div id="path-nav">
         <a href="">Trang chủ</a>/
         <a href="#">Phòng khách</a>/

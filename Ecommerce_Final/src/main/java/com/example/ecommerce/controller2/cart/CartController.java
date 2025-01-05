@@ -4,6 +4,7 @@ import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Cart.CartProduct;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
+import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
 import com.google.gson.Gson;
@@ -30,28 +31,27 @@ public class CartController extends HttpServlet {
 
         List<Product> data;
         List<Category> categories;
-        try{
+        try {
             data = service.getAllProducts();
             categories = cateService.getAllCategory();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
 
-        int countCol = categories.size()%catePerCol == 0 ?categories.size()/catePerCol : categories.size()/catePerCol+1;
+        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
 
-        for (int i =0; i< countCol; i++){
-            int index = i*catePerCol;
-            for (int j = index; j< index+catePerCol; j++){
-                if(!mapCate.containsKey(i)){
+        for (int i = 0; i < countCol; i++) {
+            int index = i * catePerCol;
+            for (int j = index; j < index + catePerCol; j++) {
+                if (!mapCate.containsKey(i)) {
                     List<Category> list = new ArrayList<>();
                     list.add(categories.get(j));
-                    mapCate.put(i,list);
-                }
-                else {
-                    if(j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    mapCate.put(i, list);
+                } else {
+                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
                     else break;
                 }
             }
@@ -71,52 +71,61 @@ public class CartController extends HttpServlet {
             cart = new Cart();
             session.setAttribute("cart", cart);
         }
+        //Lấy trên người dùng
+        User u = (User) session.getAttribute("auth");
+        String uName;
+        if (u == null) uName = null;
+        else uName = u.getUsername();
 
-//        List<CartProduct> listCart = cart.getList();
 
-        // Nhận dữ liệu từ AJAXd
+        // Nhận dữ liệu từ AJAX
         String json = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
         Gson gson = new Gson();
         CartProduct newItem = gson.fromJson(json, CartProduct.class);
 
-        //lấy ra action cần thực hiện
-        String action = req.getParameter("action");
-        if ("remove".equals(action)) {
-            cart.remove(newItem.getId());
-        } else {
-            // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
-            boolean exists = false;
-            for (CartProduct item : cart.getList()) {
-                if (item.getId() == (newItem.getId())) {
-                    cart.update(item.getId(), item.getQuantity() + 1);
-                    exists = true;
-                    break;
+        double total = 0;
+        if (u != null) {
+            //lấy ra action cần thực hiện
+            String action = req.getParameter("action");
+            if ("remove".equals(action)) {
+                cart.remove(newItem.getId());
+            } else {
+                // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
+                boolean exists = false;
+                for (CartProduct item : cart.getList()) {
+                    if (item.getId() == (newItem.getId())) {
+                        cart.update(item.getId(), item.getQuantity() + 1);
+                        exists = true;
+                        break;
+                    }
+                }
+
+                // Nếu chưa tồn tại, thêm sản phẩm mới
+                if (!exists) {
+                    newItem.setQuantity(1);
+                    cart.add(newItem);
                 }
             }
+            total = cart.getTotal();
 
-            // Nếu chưa tồn tại, thêm sản phẩm mới
-            if (!exists) {
-                newItem.setQuantity(1);
-                cart.add(newItem);
-            }
+            session.setAttribute("cart", cart);
         }
-        double total = cart.getTotal();
-
-        session.setAttribute("cart", cart);
         // Tạo JSON trả về
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(gson.toJson(new CartResponse(cart.getList(), total)));
+        resp.getWriter().write(gson.toJson(new CartResponse(cart.getList(), total, uName)));
 
     }
 
     private static class CartResponse {
         private final List<CartProduct> items;
         private final double totalPrice;
+        private final String userName;
 
-        public CartResponse(List<CartProduct> items, double totalPrice) {
+        public CartResponse(List<CartProduct> items, double totalPrice, String userName) {
             this.items = items;
             this.totalPrice = totalPrice;
+            this.userName = userName;
         }
     }
 }
