@@ -14,12 +14,12 @@ public class Order implements Serializable {
     private ShippingStatus shippingStatus;
     private LocalDateTime createDate;
     private String promotion_id;
-    private int sdt;
+    private String sdt;
 
     public Order() {
     }
 
-    public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, int sdt) {
+    public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, String sdt) {
         this.id = id;
         this.userID = userID;
         this.paymentID = paymentID;
@@ -78,11 +78,11 @@ public class Order implements Serializable {
         this.promotion_id = promotion_id;
     }
 
-    public int getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(int sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 

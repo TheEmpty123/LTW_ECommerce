@@ -11,15 +11,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class OrderDao extends ImplementBase implements IOrderDao {
-    List<Order> orders;
-    JDBIConnect db;
 
     public OrderDao() {
-    }
-
-    public OrderDao(List<Order> orders, JDBIConnect db) {
-        this.orders = new ArrayList<>();
-        this.db = JDBIConnect.getInstance();
+        super();
     }
 
     @Override
@@ -85,8 +79,21 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         return null;
     }
 
+
+    // Admin
+    // Get 5 recent orders
+    @Override
+    public List<Order> get5Order() {
+
+        return  db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;")
+                        .bind(0, 5)
+                        .mapToBean(Order.class).list());
+    }
+
     public static void main(String[] args) {
         OrderDao orderDao = new OrderDao();
         orderDao.log.info("test");
+        System.out.println(orderDao.get5Order());
     }
 }

@@ -1,12 +1,10 @@
 package com.example.ecommerce.DAO.interf;
 
 import com.example.ecommerce.Bean.Order;
-import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Bean.Payment;
 import com.example.ecommerce.Bean.Promotion;
-import com.example.ecommerce.Common.Enum.ShippingStatus;
 
-import java.time.LocalDateTime;
+import java.util.List;
 
 public interface IOrderDao {
     int recordSize();
@@ -23,5 +21,7 @@ public interface IOrderDao {
     public Promotion addPromotion(int id);
 
     public Payment getMethodPayment(int id);
+
+    public List<Order> get5Order();
 
 }

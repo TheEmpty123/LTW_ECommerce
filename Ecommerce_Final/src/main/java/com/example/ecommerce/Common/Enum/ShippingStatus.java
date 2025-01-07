@@ -1,10 +1,10 @@
 package com.example.ecommerce.Common.Enum;
 
 public enum ShippingStatus {
-    Pending("pending"),
-    Shipped("shipped"),
-    Delivered("delivered"),
-    Canceled("canceled");
+    Packaging("packaging"),
+    Delivering("delivering"),
+    Completed("completed"),
+    Cancelled("cancelled");
 
     private String status;
 

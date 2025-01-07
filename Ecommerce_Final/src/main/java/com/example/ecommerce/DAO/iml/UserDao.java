@@ -8,14 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends ImplementBase implements IUsersDao {
-    List<User> users;
-    JDBIConnect db = JDBIConnect.getInstance();
-
-    public UserDao(JDBIConnect db, List<User> users) {
-        this.users = new ArrayList<>();
-        this.db = db;
-    }
-
     public UserDao() {
         super();
     }
