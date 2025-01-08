@@ -94,6 +94,6 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     public static void main(String[] args) {
         OrderDao orderDao = new OrderDao();
         orderDao.log.info("test");
-        System.out.println(orderDao.get5Order());
+        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;" ));
     }
 }

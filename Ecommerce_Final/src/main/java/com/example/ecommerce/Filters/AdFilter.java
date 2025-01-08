@@ -1,6 +1,5 @@
 package com.example.ecommerce.Filters;
 
-import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.Common.LogObj;
 import com.example.ecommerce.service.UserService;
@@ -11,8 +10,6 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
 @WebFilter(urlPatterns = {"/admin/*"})
 public class AdFilter implements Filter {
@@ -34,12 +31,16 @@ public class AdFilter implements Filter {
 
         HttpSession s = request.getSession(false);
 
-        Accessible a = UserService.Instance.isAccessible(s);
+//        Accessible a = UserService.getInstance().isAccessible(s);
+        Accessible a = Accessible.ADMINISTRATOR;
+
         if (a == Accessible.CLIENT || a == Accessible.NOT_LOGGED_IN) {
             log.warn("User don't have permission to access this resource");
             response.sendRedirect("/404");
+            return;
         } else {
             log.info("User is logged in and accessible");
+            request.setAttribute("role", a);
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

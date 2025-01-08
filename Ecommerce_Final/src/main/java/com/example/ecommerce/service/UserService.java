@@ -39,6 +39,9 @@ public class UserService extends ServiceBase {
     }
 
     public Accessible isAccessible(HttpSession session) {
+
+        if (session == null) return Accessible.NOT_LOGGED_IN;
+
         User user = getUser(session);
 
         if (user == null) {
