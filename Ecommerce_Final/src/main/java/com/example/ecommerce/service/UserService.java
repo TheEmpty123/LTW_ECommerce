@@ -58,6 +58,24 @@ public class UserService extends ServiceBase {
             return Accessible.ADMINISTRATOR;
         } else return Accessible.NOT_LOGGED_IN;
     }
+    public Accessible isAccessible(User user) {
+        if (user == null) {
+            log.warn("User not logged in");
+            return Accessible.NOT_LOGGED_IN;
+        } else if (user.getRoleID() == 0) {
+            log.info("A customer logged in!");
+            return Accessible.CLIENT;
+        } else if (user.getRoleID() == 1) {
+            log.info("User: " + user.getUsername() + " logged in!");
+            return Accessible.EMPLOYEE;
+        } else if (user.getRoleID() == 2) {
+            log.info("Manager: " + user.getUsername() + " logged in!");
+            return Accessible.MANAGER;
+        } else if (user.getRoleID() == 3) {
+            log.info("Administrator: " + user.getUsername() + " logged in!");
+            return Accessible.ADMINISTRATOR;
+        } else return Accessible.NOT_LOGGED_IN;
+    }
 
     public User checkLogin(String username, String pass) {
         User u = userDao.findUser(username);
