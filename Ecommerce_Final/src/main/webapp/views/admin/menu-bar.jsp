@@ -37,7 +37,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="dashboard.jsp">
+                    <a href="/admin/dashboard">
                         <span class="ti-home"></span>
                         <span>Trang chủ</span>
                     </a>

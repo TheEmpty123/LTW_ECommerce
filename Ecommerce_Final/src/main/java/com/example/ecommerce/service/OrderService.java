@@ -31,8 +31,31 @@ public class OrderService extends ServiceBase{
         super();
     }
 
-    public List<Order> get5RecentOrders(){
-        return orderDao.get5Order();
+    // Get 5 recent orders
+    // @param : forceUpdate -> force update query
+    public List<Order> get5RecentOrders(boolean forceUpdate){
+        log.info("UserService get5RecentOrders...");
+        return orderDao.get5Order(forceUpdate);
     }
 
+    // Get total revenue
+    // @param : forceUpdate -> force update query
+    public double getTotalRevenue(boolean forceUpdate) {
+        log.info("UserService getTotalRevenue...");
+        return orderDao.getTotalRevenue(forceUpdate);
+    }
+
+    // Get total processing money
+    // @param : forceUpdate -> force update query
+    public double getTotalProcessing(boolean forceUpdate) {
+        log.info("UserService getTotalProcessing...");
+        return orderDao.getTotalProcessing(forceUpdate);
+    }
+
+    // Get total shipped order's money
+    // @param : forceUpdate -> force update query
+    public double getTotalShipped(boolean forceUpdate) {
+        log.info("UserService getTotalShipped...");
+        return orderDao.getTotalShipped(forceUpdate);
+    }
 }

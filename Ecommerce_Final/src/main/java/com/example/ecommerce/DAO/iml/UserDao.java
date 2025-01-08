@@ -1,6 +1,7 @@
 package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.Common.Enum.Role;
 import com.example.ecommerce.DAO.interf.IUsersDao;
 import com.example.ecommerce.Database.JDBIConnect;
 
@@ -8,13 +9,32 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends ImplementBase implements IUsersDao {
+    List<User> allUser = new ArrayList<>();
+
     public UserDao() {
         super();
     }
 
     @Override
     public List<User> getAllUsers() {
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from users")).mapToBean(User.class).list();
+        if (allUser.isEmpty()) {
+            allUser = handle.createQuery("SELECT * FROM users")
+                    .mapToBean(User.class)
+                    .list();
+        }
+        return allUser;
+    }
+
+    public List<User> getAllUsers(boolean forced) {
+        log.info("Query all user with force: " + forced);
+        if (forced) {
+            allUser = handle.createQuery("SELECT * FROM users")
+                    .mapToBean(User.class)
+                    .list();
+        } else {
+            allUser = getAllUsers();
+        }
+        return allUser;
     }
 
     @Override
@@ -82,6 +102,25 @@ public class UserDao extends ImplementBase implements IUsersDao {
                 handle.createQuery("select * from users where username = :username")
                         .bind("username", username)
                         .mapToBean(User.class).findOne().orElse(null));
+    }
+
+    public int getTotalUsers(boolean force) {
+        log.info("Query total user with force: " + force);
+        getAllUsers(force);
+        return allUser.size();
+    }
+
+    @Override
+    public int getTotalEmployee(boolean force) {
+        log.info("Query total employee with force: " + force);
+        var users = getAllUsers(force);
+
+        int count = 0;
+        for (User user : users)
+            if (user.getRoleID() == Role.EMPLOYEE.getValue())
+                count++;
+
+        return count;
     }
 
     public static void main(String[] args) {

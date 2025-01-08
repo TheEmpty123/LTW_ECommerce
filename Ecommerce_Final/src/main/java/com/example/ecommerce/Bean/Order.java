@@ -6,6 +6,7 @@ import com.example.ecommerce.DAO.interf.IOrderDao;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 public class Order implements Serializable {
     private int id;
@@ -15,6 +16,8 @@ public class Order implements Serializable {
     private LocalDateTime createDate;
     private String promotion_id;
     private String sdt;
+    private double total;
+    private String totalS;
 
     public Order() {
     }
@@ -84,6 +87,22 @@ public class Order implements Serializable {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getTotalS() {
+        return totalS;
+    }
+
+    public void setTotalS(String totalS) {
+        this.totalS = totalS;
     }
 
     @Override

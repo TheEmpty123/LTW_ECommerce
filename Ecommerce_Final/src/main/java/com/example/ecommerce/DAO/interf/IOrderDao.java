@@ -9,6 +9,8 @@ import java.util.List;
 public interface IOrderDao {
     int recordSize();
 
+    List<Order> getAllOrders(boolean force);
+
     public Order addOrder(int id, int orderID, int productID, int amount);
 
     Order updateOrderByID(int id, int orderID, int productID, int amount);
@@ -22,6 +24,11 @@ public interface IOrderDao {
 
     public Payment getMethodPayment(int id);
 
-    public List<Order> get5Order();
+    public List<Order> get5Order(boolean force);
 
+    public double getTotalRevenue(boolean force);
+
+    public double getTotalProcessing(boolean force);
+
+    public double getTotalShipped(boolean force);
 }

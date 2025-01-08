@@ -5,6 +5,8 @@ import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.DAO.iml.UserDao;
 import jakarta.servlet.http.HttpSession;
 
+import java.util.List;
+
 public class UserService extends ServiceBase {
 
     private UserDao userDao = new UserDao();
@@ -38,6 +40,7 @@ public class UserService extends ServiceBase {
         return user;
     }
 
+    // Check if user whether is allowed to access advance feature
     public Accessible isAccessible(HttpSession session) {
 
         if (session == null) return Accessible.NOT_LOGGED_IN;
@@ -80,6 +83,7 @@ public class UserService extends ServiceBase {
         } else return Accessible.NOT_LOGGED_IN;
     }
 
+    // Login
     public User checkLogin(String username, String pass) {
         User u = userDao.findUser(username);
         if (u != null && pass != null && pass.equals(u.getPass())) {
@@ -89,4 +93,24 @@ public class UserService extends ServiceBase {
         return null;
     }
 
+    // Get all user
+    // @param : forceUpdate -> force update query
+    public List<User> getAllUser(boolean forceUpdate){
+        log.info("UserService getAllUser...");
+        return userDao.getAllUsers(forceUpdate);
+    }
+
+    // Get total user count
+    // @param : forceUpdate -> force update query
+    public int getTotalUsers(boolean forceUpdate){
+        log.info("UserService getTotalUsers...");
+        return userDao.getTotalUsers(forceUpdate);
+    }
+
+    // Get total user with role employee
+    // @param : forceUpdate -> force update query
+    public int getTotalEmployee(boolean forceUpdate) {
+        log.info("UserService getTotalEmployee...");
+        return userDao.getTotalEmployee(forceUpdate);
+    }
 }
