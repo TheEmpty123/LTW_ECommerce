@@ -34,7 +34,7 @@
 
             <div class="btns">
                 <div class="next">
-                    <a href="${pageContext.request.contextPath}notification-password.html" class="btn">Tiếp tục</a>
+                    <a href="${pageContext.request.contextPath}Notification-password.jsp" class="btn">Tiếp tục</a>
                 </div>
                 <div class="comeback">
                     <a href="${pageContext.request.contextPath}login.html" class="btn">Quay lại đăng nhập</a>
