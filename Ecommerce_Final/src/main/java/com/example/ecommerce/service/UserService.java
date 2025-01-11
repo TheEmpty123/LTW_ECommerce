@@ -3,7 +3,14 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessibility;
 import com.example.ecommerce.DAO.iml.UserDao;
+import com.example.ecommerce.DAO.interf.IJavaMail;
+import com.example.ecommerce.mail.MailProperties;
 import jakarta.servlet.http.HttpSession;
+
+import javax.mail.internet.InternetAddress;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
 
 public class UserService extends ServiceBase {
 
@@ -58,6 +65,7 @@ public class UserService extends ServiceBase {
             return Accessibility.ADMINISTRATOR;
         } else return Accessibility.NOT_LOGGED_IN;
     }
+
     public void addUser(User user) {
         log.info("UserService adding user...");
         userDao.addUser(user);
@@ -66,11 +74,30 @@ public class UserService extends ServiceBase {
 
     public User checkLogin(String username, String pass) {
         User u = userDao.findUser(username);
-        if (u!= null && pass != null && pass.equals(u.getPass())) {
+        if (u != null && pass != null && pass.equals(u.getPass())) {
             u.setPass(null);
             return u;
         }
         return null;
     }
 
+    public void verifyAccount(String email, String hash) {
+        IJavaMail emailService = new EmailService();
+        var listUser = userDao.getAllUsers();
+        for (var list : listUser) {
+            if (list.getEmail().equals(email)) {
+                log.warn("Email does not exist!");
+            }
+            try {
+                String to = String.valueOf(new InternetAddress(MailProperties.APP_EMAIL));
+                String subject = "Xac thuc tai khoan. Thoi han 30 phut.";
+                String messageContent = "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp"
+                        + email + "&key2=" + hash;
+                emailService.send(to, subject, messageContent);
+            } catch (Exception e) {
+                log.error("Error! Can not send email");
+                e.printStackTrace();
+            }
+        }
+    }
 }
