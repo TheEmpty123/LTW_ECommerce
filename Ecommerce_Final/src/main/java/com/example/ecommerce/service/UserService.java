@@ -138,9 +138,7 @@ public class UserService extends ServiceBase {
                 }
             }
         }
-        if (emailFound) {
-            log.warn("Email does not exist in the system!" + email);
-        }
+    }
 
     // Get all user
     // @param : forceUpdate -> force update query
