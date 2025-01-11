@@ -22,17 +22,17 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public List<User> getAllUsers() {
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from users")).mapToBean(User.class).list();
+        return db.jdbi.withHandle(handle -> handle.createQuery("select * from users")).mapToBean(User.class).list();
     }
 
     @Override
     public User getUserById(int id) {
-        return db.getJdbi().withHandle(handle -> handle.createQuery("select * from users where id = " + id).mapToBean(User.class).first());
+        return db.jdbi.withHandle(handle -> handle.createQuery("select * from users where id = " + id).mapToBean(User.class).first());
     }
 
     @Override
     public User addUser(User user) {
-        return db.getJdbi().withHandle(handle -> {
+        return db.jdbi.withHandle(handle -> {
             int id = handle.createUpdate(
                             "INSERT INTO users(username, fullname, gender, pass, email, phoneNum, statusUser, createUser, avatar, roleID) " +
                                     "VALUES (:username, :fullname, :gender, :pass, :email, :phoneNum, :statusUser, :createUser, :avatar, :roleID)")
@@ -56,7 +56,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
     @Override
     public User updateInfoUserNameById(int id, String userName, String fullName, String gender, String
             email, String phone) {
-        return db.getJdbi().withHandle(handle -> handle.createUpdate("UPDATE users SET userName = :userName, fullName = :fullName, gender = :gender, email = :email, phone = :phone WHERE id = :id")
+        return db.jdbi.withHandle(handle -> handle.createUpdate("UPDATE users SET userName = :userName, fullName = :fullName, gender = :gender, email = :email, phone = :phone WHERE id = :id")
                 .bind("username", userName)
                 .bind("fullName", fullName)
                 .bind("gender", gender)
@@ -82,7 +82,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public boolean deleteUserById(int id) {
-        return db.getJdbi().withHandle(
+        return db.jdbi.withHandle(
                 handle -> handle.createUpdate("delete * from users where id=:id")).bind(0, id).execute() > 0;
     }
 

@@ -13,7 +13,7 @@
 <head>
     <title>Đăng ký thành công</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -28,7 +28,7 @@
                 <p>Bạn đã đăng ký tài khoản thành công. Hãy đăng nhập để khám phá cửa hàng của chúng tôi nào.</p>
             </div>
             <div class="next submit2">
-                <a href="${pageContext.request.contextPath}Login.jsp" class="btn">Đăng nhập</a>
+                <a href="${pageContext.request.contextPath}/login" class="btn">Đăng nhập</a>
             </div>
         </div>
     </div>
