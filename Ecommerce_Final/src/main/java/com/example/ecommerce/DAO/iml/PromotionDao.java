@@ -8,21 +8,51 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PromotionDao extends ImplementBase implements IPromotionDao {
-    List<Promotion> promotionList = new ArrayList<>();
+    List<Promotion> promotionList;
 
+    public static PromotionDao instance;
     public PromotionDao() {
         super();
+        promotionList = getAll();
+    }
+
+    public static PromotionDao getInstance() {
+        if (instance == null) {
+            instance = new PromotionDao();
+        }
+        return instance;
+    }
+    public List<Promotion> getList(){
+        return promotionList;
     }
 
     @Override
     public List<Promotion> getAll() {
-        return List.of();
+        return db.jdbi.withHandle(handle1 ->
+                handle.createQuery("select * from promotions")
+                        .mapToBean(Promotion.class).list());
     }
 
     @Override
     public Promotion getById(int id) {
+        for (Promotion promotion : promotionList) {
+            if (promotion.getId() == id) {
+                return promotion;
+            }
+        }
         return null;
     }
+
+    @Override
+    public Promotion getByCode(String code) {
+        for (Promotion promotion : promotionList) {
+            if (promotion.getCodes().equals(code)) {
+                return promotion;
+            }
+        }
+        return null;
+    }
+
 
     @Override
     public Promotion add(Promotion promotion) {

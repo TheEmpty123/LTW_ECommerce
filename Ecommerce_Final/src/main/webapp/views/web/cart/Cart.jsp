@@ -50,11 +50,13 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
-        .remove-item{
+
+        .remove-item {
             border: none;
             background-color: white;
         }
-        .red{
+
+        .red {
             background-color: red;
         }
     </style>
@@ -147,8 +149,8 @@
             <div class="block"></div>
         </div>
 
-            <div id="list-product-cart">
-                <c:forEach items="${sessionScope.cart.list}" var="cp">
+        <div id="list-product-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -168,8 +170,8 @@
                         </div>
                     </div>
                 </div>
-                </c:forEach>
-            </div>
+            </c:forEach>
+        </div>
 
         <div id="pay-pal">
             <div class="total-price">
@@ -178,7 +180,7 @@
                 </div>
                 <div class="money-number">
                     <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                       value="${sessionScope.cart.total}"/></p>
+                                                       value="${sessionScope.cart.total}"/></p>
                 </div>
 
             </div>
@@ -223,7 +225,8 @@
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
                         <div class="item-actions">
-                            <button class="remove-item" data-id="${cp.id}" style="border: none; background-color: white;">
+                            <button class="remove-item" data-id="${cp.id}"
+                                    style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                             <div class="quantity buttons-added left-btn">
@@ -256,29 +259,47 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="row sale-buy">
-                        <this class="col-sm-6 col-md-6 sale-input">
-                            <input type="text" placeholder="Mã giảm giá">
-                        </this>
-                        <this class="col-sm-6 col-md-6">
-                            <div class="use-button fake-btn">
-                                <p>SỬ DỤNG</p>
-                            </div>
-                        </this>
-                        <this class="col-sm-6 col-md-6 text-total">
-                            <p>Tổng cộng</p>
-                        </this>
-                        <this class="col-sm-6 col-md-6 t-bold total-price">
-                            <p>
-                                <c:if test="${sessionScope.auth == null}">
-                                    <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
-                                </c:if>
-                                <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber type="currency" currencySymbol="đ"
-                                                    value="${sessionScope.cart.total}"/>
-                                </c:if>
-                        </this>
-                    </div>
+                    <p style="color: red">
+                        <% String error = (String) request.getAttribute("error");
+                            String code = request.getParameter("codePro");
+                            double value = 0;
+                            if (error == null) error = "";
+                            if (code == null){
+                                code = "";
+                            }else{
+                                value = (double) request.getAttribute("valueOfPro");
+                            }
+                        %>
+                        <%= error  %>
+                    </p>
+                    <form method="post" action="/promotion">
+                        <div class="row sale-buy">
+                            <this class="col-sm-6 col-md-6 sale-input">
+                                <input type="text" placeholder="Mã giảm giá" name="promotion" value="<%=code%>">
+                            </this>
+                            <this class="col-sm-6 col-md-6">
+                                <div class="use-button fake-btn">
+                                    <button type="submit" style="background-color: black; color: white; border:none">SỬ
+                                        DỤNG
+                                    </button>
+                                </div>
+                            </this>
+
+                            <this class="col-sm-6 col-md-6 text-total">
+                                <p>Tổng cộng</p>
+                            </this>
+                            <this class="col-sm-6 col-md-6 t-bold total-price">
+                                <p>
+                                    <c:if test="${sessionScope.auth == null}">
+                                        <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
+                                    </c:if>
+                                    <c:if test="${sessionScope.auth != null}">
+                                        <f:formatNumber type="currency" currencySymbol="đ"
+                                                        value="${sessionScope.cart.total}"/>
+                                    </c:if>
+                            </this>
+                        </div>
+                    </form>
                     <div class="shipping-infor">
                         <h5>Thông tin giao hàng</h5>
                         <p>Đối với những sản phẩm có sẵn tại khu vực, chúng tôi sẽ giao hàng

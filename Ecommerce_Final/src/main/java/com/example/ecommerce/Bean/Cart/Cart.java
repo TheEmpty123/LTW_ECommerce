@@ -57,7 +57,6 @@ public class Cart {
         return res.get();
     }
 
-
     public List<CartProduct> getSelectedProducts(List<String> selectedProductIds) {
         return null;
     }

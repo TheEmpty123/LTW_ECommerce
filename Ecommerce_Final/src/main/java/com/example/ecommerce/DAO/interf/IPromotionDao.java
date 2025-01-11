@@ -10,6 +10,8 @@ public interface IPromotionDao {
     List<Promotion> getAll();
     //lay promotion theo id
     Promotion getById(int id);
+    //lay promotion theo code
+    Promotion getByCode(String code);
     //Them mot promotion moi
     Promotion add(Promotion promotion);
     // cap nhat gioi han su dung cua promotion

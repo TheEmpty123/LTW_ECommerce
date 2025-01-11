@@ -7,6 +7,7 @@ import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
+import com.example.ecommerce.service.PromotionService;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -34,9 +35,11 @@ public class CartController extends HttpServlet {
         try {
             data = service.getAllProducts();
             categories = cateService.getAllCategory();
+
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
+
 
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
