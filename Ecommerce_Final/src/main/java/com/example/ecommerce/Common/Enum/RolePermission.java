@@ -1,6 +1,6 @@
 package com.example.ecommerce.Common.Enum;
 
-public enum Role {
+public enum RolePermission {
     CLIENT(1),
     MANAGER(2),
     EMPLOYEE(3),
@@ -8,11 +8,14 @@ public enum Role {
 
     private final int value;
 
-    Role(int value) {
+    RolePermission(int value) {
         this.value = value;
     }
 
     public int getValue() {
         return value;
     }
+
+    public static String SUPREME = "Supreme";
+    public static String USER_MANAGEMENT= "User Management";
 }

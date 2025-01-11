@@ -6,7 +6,7 @@ import org.jdbi.v3.core.ConnectionException;
 import org.jdbi.v3.core.Handle;
 
 public abstract class ImplementBase {
-    protected final LogObj log = LogObj.defaultLog;
+    protected final LogObj log = new LogObj();
     protected String logName = getClass().getName();
     protected JDBIConnect db;
     protected Handle handle;

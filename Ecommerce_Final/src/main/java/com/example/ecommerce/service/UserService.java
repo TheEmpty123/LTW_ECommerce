@@ -5,6 +5,7 @@ import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
+import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
@@ -121,14 +122,28 @@ public class UserService extends ServiceBase {
     }
 
     public int getTotalAdmin(boolean forceUpdate) {
+        log.info("UserService getTotalAdmin...");
         return userDao.getTotalAdmin(forceUpdate);
     }
 
     public List<User> getAllAdmin(boolean forceUpdate) {
+        log.info("UserService getAllAdmin");
         return userDao.getAllAdmin(forceUpdate);
     }
 
     public Map<Integer, Role> getRolesMap(boolean forceUpdate){
+        log.info("UserService getRolesMap...");
         return  roleDao.getAllRoles(forceUpdate);
+    }
+
+    public boolean hasPermission(User user, String permission){
+        log.info("UserService hasPermission...");
+
+        if (user == null || permission.equals("")) return false;
+
+        var roles = MC.instance.userService.getRolesMap(true);
+        Role userRole = roles.get(user.getRoleID());
+
+        return  userRole.equals(permission);
     }
 }

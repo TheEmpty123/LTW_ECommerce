@@ -1,3 +1,5 @@
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
@@ -233,7 +235,7 @@
                                     <c:forEach var="entry" items="${recentOrders}">
                                         <tr>
                                             <td>${entry.id}</td>
-                                            <td>${entry.createDate}</td>
+                                            <td>${entry.timeStamp}</td>
                                             <td>${entry.totalS} vnđ</td>
                                             <td>
                                                 <c:choose>

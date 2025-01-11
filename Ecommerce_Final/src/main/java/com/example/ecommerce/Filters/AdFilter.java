@@ -34,11 +34,11 @@ public class AdFilter implements Filter {
         Accessible a = Accessible.ADMINISTRATOR;
 
         if (a == Accessible.CLIENT || a == Accessible.NOT_LOGGED_IN) {
-            log.warn("User don't have permission to access this resource");
+            log.warn("User does not have access to this resource");
             response.sendRedirect("/404");
             return;
         } else {
-            log.info("User is logged in and accessible");
+            log.info("User logged in and accessible");
             request.setAttribute("role", a);
             filterChain.doFilter(servletRequest, servletResponse);
         }

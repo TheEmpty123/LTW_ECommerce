@@ -1,9 +1,8 @@
 package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.User;
-import com.example.ecommerce.Common.Enum.Role;
+import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.DAO.interf.IUsersDao;
-import com.example.ecommerce.Database.JDBIConnect;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -117,7 +116,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
         int count = 0;
         for (User user : users)
-            if (user.getRoleID() == Role.EMPLOYEE.getValue())
+            if (user.getRoleID() == RolePermission.EMPLOYEE.getValue())
                 count++;
 
         return count;
@@ -130,7 +129,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
         int count = 0;
         for (User user : users)
-            if (user.getRoleID() == Role.ADMINISTRATOR.getValue())
+            if (user.getRoleID() == RolePermission.ADMINISTRATOR.getValue())
                 count++;
 
         return count;
@@ -144,7 +143,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
         List<User> userList = new ArrayList<>();
 
         for (User user : users)
-            if (user.getRoleID() == Role.ADMINISTRATOR.getValue())
+            if (user.getRoleID() == RolePermission.ADMINISTRATOR.getValue())
                 userList.add(user);
 
         return userList;

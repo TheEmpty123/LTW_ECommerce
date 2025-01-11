@@ -18,16 +18,13 @@ public class RoleDao extends ImplementBase implements IRoleDao {
         log.info("Initializing...");
         try {
             roles = getAllRoles();
-            var pers = PermissionDao.getInstance().getAllPermissionsMap();
+            PermissionDao permissionDao = new PermissionDao();
+            var pers = permissionDao.getAllPermissionsMap();
             var assign = getAssignPermissions();
 
             for (var a : assign) {
                 assignRole(roles.get(a.getRoleID()), pers.get(a.getPermissionID()));
             }
-
-            log.info(pers.toString());
-            log.info(assign.toString());
-            log.info(roles.toString());
         }
         catch (Exception e) {
             log.error("Error in initializing RoleDao");
