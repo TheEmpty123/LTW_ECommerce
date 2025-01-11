@@ -554,7 +554,7 @@
         <div class="footer-column">
             <h3>KANE'S</h3>
             <ul>
-                <li><a href="../../about.html">Giới thiệu</a></li>
+                <li><a href="../../about.jsp">Giới thiệu</a></li>
                 <li><a href="#">Chuyện Kannes</a></li>
                 <li><a href="#">Tổng công ty</a></li>
                 <li><a href="#">Tuyển dụng</a></li>
