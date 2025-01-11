@@ -13,7 +13,7 @@
 <head>
     <title>Quên mật khẩu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -21,6 +21,7 @@
         <div class="logobox">
         </div>
     </div>
+    <form id="forgotPasswordForm" onsubmit="return handleForgotPassword(event);">
     <div class="content">
         <div class="box">
             <div class="title-fotgot-password">
@@ -34,19 +35,30 @@
 
             <div class="btns">
                 <div class="next">
-                    <a href="${pageContext.request.contextPath}Notification-password.jsp" class="btn">Tiếp tục</a>
+                    <a href="${pageContext.request.contextPath}/Notification-password.jsp" class="btn">Tiếp tục</a>
                 </div>
                 <div class="comeback">
-                    <a href="${pageContext.request.contextPath}Login.jsp" class="btn">Quay lại đăng nhập</a>
+                    <a href="${pageContext.request.contextPath}/Login.jsp" class="btn">Quay lại đăng nhập</a>
                 </div>
             </div>
         </div>
     </div>
+    </form>
 </div>
 </body>
 <script>
+    function handleForgotPassword(event) {
+        event.preventDefault();
+        const email = document.getElementById("emailInput").value;
+        const fakeData = "temporary-password";
+        Page.ForgotPasswordonSuccess(null, fakeData);
+    }
     Page.ForgotPasswordonSuccess = function (variable, data) {
-        Page.Variables.UpdatePWD.setInput("name", Page.Widgets.form1.formWidgets.text1.datavalue);
+        console.log("ForgotPasswordonSuccess được gọi!");
+        console.log("Email:", document.getElementById("emailInput").value);
+        console.log("Dữ liệu mật khẩu mới:", data);
+
+        Page.Variables.UpdatePWD.setInput("name", document.getElementById("emailInput").value);
         Page.Variables.UpdatePWD.setInput("pwd", data);
         Page.Variables.UpdatePWD.update();
     };

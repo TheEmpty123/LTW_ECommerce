@@ -101,7 +101,7 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="${pageContext.request.contextPath}/auth/Login.jsp">Đăng nhập</a></h4>
+                        href="${pageContext.request.contextPath}/views/auth/Login.jsp">Đăng nhập</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
