@@ -22,7 +22,7 @@ a {
 }
 .box p{
     margin-bottom: 5px;
-    margin-top: 10px;
+    /*margin-top: 10px;*/
 }
 .logo{
     height: 20%;
@@ -60,8 +60,8 @@ a {
     border-radius: 5px;
     font-size: 14px;
     padding: 13px;
-    margin-top: 10px;
-    margin-bottom: 20px;
+    /*margin-top: 10px;*/
+    /*margin-bottom: 20px;*/
 }
 .rememberBox{
     margin-top: 10px;

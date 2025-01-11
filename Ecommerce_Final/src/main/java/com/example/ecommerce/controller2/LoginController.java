@@ -29,6 +29,7 @@ public class LoginController extends HttpServlet {
         UserService authService=  new UserService();
         User u = authService.checkLogin(uname,hashPass);
         if(u!=null){
+            System.out.println("Login is successful");
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
             resp.sendRedirect("list-product");
