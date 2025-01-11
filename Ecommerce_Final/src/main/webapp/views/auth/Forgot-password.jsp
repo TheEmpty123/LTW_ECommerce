@@ -13,7 +13,7 @@
 <head>
     <title>Quên mật khẩu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -37,7 +37,7 @@
                     <a href="${pageContext.request.contextPath}Notification-password.jsp" class="btn">Tiếp tục</a>
                 </div>
                 <div class="comeback">
-                    <a href="${pageContext.request.contextPath}Login.jsp" class="btn">Quay lại đăng nhập</a>
+                    <a href="${pageContext.request.contextPath}/login" class="btn">Quay lại đăng nhập</a>
                 </div>
             </div>
         </div>

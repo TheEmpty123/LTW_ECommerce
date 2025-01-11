@@ -13,9 +13,18 @@
 <head>
     <title>Đăng ký</title>
     <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/public/css/login-register.css">
-    <link href="${pageContext.request.contextPath}\public\bootstrap-5.3.3-dist\css\bootstrap.min.css" rel="stylesheet">
+    <link href="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <script src="${pageContext.request.contextPath}\public\bootstrap-5.3.3-dist\js\bootstrap.bundle.min.js"></script>
+    <script src="${pageContext.request.contextPath}/public/bootstrap-5.3.3-dist/js/bootstrap.bundle.min.js"></script>
+    <style>
+        .styled-input{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .box p {
+            margin-top: 0;
+        }
+    </style>
 </head>
 <body>
 <div id="container">
@@ -31,17 +40,17 @@
             <p>Nhập lại mật khẩu:</p>
             <input type="text" class="styled-input">
             <div for="login" class="register-button">
-                <a href="${pageContext.request.contextPath}auth/success-register.jsp">Đăng ký</a>
+                <a href="${pageContext.request.contextPath}/views/auth/Success-register.jsp">Đăng ký</a>
             </div>
         </div>
     </div>
     <div class="footer footer-register">
         <div class="footer-left">
-            <a href="${pageContext.request.contextPath}common/home.jsp"><i class="bi bi-arrow-left"></i>Đi đến cửa hàng</a>
+            <a href="${pageContext.request.contextPath}/kenes"><i class="bi bi-arrow-left"></i>Đi đến cửa hàng</a>
         </div>
         <div class="footer-right">
             <a href="#">Bạn đã có tài khoản? </a>
-            <a href="${pageContext.request.contextPath}login.jsp" style="color: green !important;">Đăng nhập</a>
+            <a href="${pageContext.request.contextPath}/login" style="color: green !important;">Đăng nhập</a>
         </div>
     </div>
 </div>
