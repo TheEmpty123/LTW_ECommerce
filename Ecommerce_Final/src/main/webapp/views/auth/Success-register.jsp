@@ -28,7 +28,7 @@
                 <p>Bạn đã đăng ký tài khoản thành công. Hãy đăng nhập để khám phá cửa hàng của chúng tôi nào.</p>
             </div>
             <div class="next submit2">
-                <a href="${pageContext.request.contextPath}login.html" class="btn">Đăng nhập</a>
+                <a href="${pageContext.request.contextPath}Login.jsp" class="btn">Đăng nhập</a>
             </div>
         </div>
     </div>
