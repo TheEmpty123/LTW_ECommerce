@@ -30,7 +30,11 @@ public class RegisterController extends HttpServlet {
         String name = req.getParameter("uname");
         String pass = req.getParameter("pass");
         String hash = InsertData.hashPassword(pass);
-//        this.userDao.addUser(email)
+        User user = new User(name,pass,email);
+        this.userDao.addUser(user);
+
+        req.setAttribute("success", "Register successfully!");
+        req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);
     }
 
 }
