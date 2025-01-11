@@ -13,7 +13,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header</title>
+    <title>404</title>
     <link rel="stylesheet" href="../../../public/css/header.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
@@ -554,7 +554,7 @@
         <div class="footer-column">
             <h3>KANE'S</h3>
             <ul>
-                <li><a href="../../about.html">Giới thiệu</a></li>
+                <li><a href="../../about.jsp">Giới thiệu</a></li>
                 <li><a href="#">Chuyện Kannes</a></li>
                 <li><a href="#">Tổng công ty</a></li>
                 <li><a href="#">Tuyển dụng</a></li>

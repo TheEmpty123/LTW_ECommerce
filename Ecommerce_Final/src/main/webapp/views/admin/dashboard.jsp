@@ -1,3 +1,5 @@
+<%@ page import="java.time.LocalDateTime" %>
+<%@ page import="java.time.format.DateTimeFormatter" %>
 <%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
@@ -18,134 +20,137 @@
 </head>
 <body>
     <input type="checkbox" id="sidebar-toggle">
-    <div class="sidebar">
-        <div class="sidebar-header">
-            <h3 class="brand">
-                <span class="ti-panel"></span>
-                <span>Dashboard</span>
-            </h3>
-            <label for="sidebar-toggle" class="ti-menu-alt"></label>
-        </div>
 
-        <div class="sidebar-menu">
-            <ul>
-                <!-- For management -->
-                <li>
-                    <a class="separator">
-                        General
-                    </a>
-                </li>
-                <li>
-                    <a href="dashboard.jsp">
-                        <span class="ti-home"></span>
-                        <span>Trang chủ</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="admin-management.jsp">
-                        <span class="ti-wheelchair"></span>
-                        <span>Admins</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="user-management.jsp">
-                        <span class="ti-user"></span>
-                        <span>Người dùng</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="role-permissions-management.jsp">
-                        <span class="ti-agenda"></span>
-                        <span>Vai trò & Quyền hạn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="product-management.jsp">
-                        <span class="ti-truck"></span>
-                        <span>Quản lý sản phẩm</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="category-management.jsp">
-                        <span class="ti-menu"></span>
-                        <span>Quản lý danh mục</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="inventory-management.jsp">
-                        <span class="ti-server"></span>
-                        <span>Quản lý hàng tồn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="order-management.jsp">
-                        <span class="ti-receipt"></span>
-                        <span>Quản lý đơn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="promotions-discounts.jsp">
-                        <span class="ti-ticket"></span>
-                        <span>Giảm giá</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="purchases-management.jsp">
-                        <span class="ti-money"></span>
-                        <span>Thanh toán</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="sales-reports.jsp">
-                        <span class="ti-bar-chart"></span>
-                        <span>Báo cáo doanh thu</span>
-                    </a>
-                </li>
+    <%@ include file="menu-bar.jsp"%>
 
-                <!-- For user self -->
+<%--    <div class="sidebar">--%>
+<%--        <div class="sidebar-header">--%>
+<%--            <h3 class="brand">--%>
+<%--                <span class="ti-panel"></span>--%>
+<%--                <span>Dashboard</span>--%>
+<%--            </h3>--%>
+<%--            <label for="sidebar-toggle" class="ti-menu-alt"></label>--%>
+<%--        </div>--%>
 
-                <li>
-                    <a class="separator">Users</a>
-                </li>
+<%--        <div class="sidebar-menu">--%>
+<%--            <ul>--%>
+<%--                <!-- For management -->--%>
+<%--                <li>--%>
+<%--                    <a class="separator">--%>
+<%--                        General--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="dashboard.jsp">--%>
+<%--                        <span class="ti-home"></span>--%>
+<%--                        <span>Trang chủ</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="admin-management.jsp">--%>
+<%--                        <span class="ti-wheelchair"></span>--%>
+<%--                        <span>Admins</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="user-management.jsp">--%>
+<%--                        <span class="ti-user"></span>--%>
+<%--                        <span>Người dùng</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="role-permissions-management.jsp">--%>
+<%--                        <span class="ti-agenda"></span>--%>
+<%--                        <span>Vai trò & Quyền hạn</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="product-management.jsp">--%>
+<%--                        <span class="ti-truck"></span>--%>
+<%--                        <span>Quản lý sản phẩm</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="category-management.jsp">--%>
+<%--                        <span class="ti-menu"></span>--%>
+<%--                        <span>Quản lý danh mục</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="inventory-management.jsp">--%>
+<%--                        <span class="ti-server"></span>--%>
+<%--                        <span>Quản lý hàng tồn</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="order-management.jsp">--%>
+<%--                        <span class="ti-receipt"></span>--%>
+<%--                        <span>Quản lý đơn</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="promotions-discounts.jsp">--%>
+<%--                        <span class="ti-ticket"></span>--%>
+<%--                        <span>Giảm giá</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="purchases-management.jsp">--%>
+<%--                        <span class="ti-money"></span>--%>
+<%--                        <span>Thanh toán</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="sales-reports.jsp">--%>
+<%--                        <span class="ti-bar-chart"></span>--%>
+<%--                        <span>Báo cáo doanh thu</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
 
-                <li>
-                    <a href="profile-management.jsp">
-                        <span class="ti-user"></span>
-                        <span>Profile</span>
-                    </a>
-                </li>
+<%--                <!-- For user self -->--%>
 
-                <!-- For support -->
+<%--                <li>--%>
+<%--                    <a class="separator">Users</a>--%>
+<%--                </li>--%>
 
-                <li>
-                    <a class="separator">
-                        Support
-                    </a>
-                </li>
+<%--                <li>--%>
+<%--                    <a href="profile-management.jsp">--%>
+<%--                        <span class="ti-user"></span>--%>
+<%--                        <span>Profile</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
 
-                <li>
-                    <a href="privacy-policy.jsp">
-                        <span class="ti-info-alt"></span>
-                        <span>Privacy policy</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="faqs.jsp">
-                        <span class="ti-help-alt"></span>
-                        <span>FAQs</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="help-center.jsp">
-                        <span class="ti-headphone-alt"></span>
-                        <span>Help center</span>
-                    </a>
-                </li>
+<%--                <!-- For support -->--%>
 
-            </ul>
-        </div>
-    </div>
+<%--                <li>--%>
+<%--                    <a class="separator">--%>
+<%--                        Support--%>
+<%--                    </a>--%>
+<%--                </li>--%>
 
+<%--                <li>--%>
+<%--                    <a href="privacy-policy.jsp">--%>
+<%--                        <span class="ti-info-alt"></span>--%>
+<%--                        <span>Privacy policy</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="faqs.jsp">--%>
+<%--                        <span class="ti-help-alt"></span>--%>
+<%--                        <span>FAQs</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+<%--                <li>--%>
+<%--                    <a href="help-center.jsp">--%>
+<%--                        <span class="ti-headphone-alt"></span>--%>
+<%--                        <span>Help center</span>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
+
+<%--            </ul>--%>
+<%--        </div>--%>
+<%--    </div>--%>
+<%--    --%>
 
     <div class="main-content">
 
@@ -174,7 +179,7 @@
                         <span class="ti-briefcase"></span>
                         <div>
                             <h5>Tổng doanh thu</h5>
-                            <h4>730,659,462.45 vnđ</h4>
+                            <h4>${requestScope.get("totalRevenue")} vnđ</h4>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -187,7 +192,7 @@
                         <span class="ti-reload"></span>
                         <div>
                             <h5>Đang xử lý</h5>
-                            <h4>190,563,000.45 vnđ</h4>
+                            <h4>${requestScope.get("totalProcessing")} vnđ</h4>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -200,7 +205,7 @@
                         <span class="ti-check-box"></span>
                         <div>
                             <h5>Đã xử lý</h5>
-                            <h4> 200,659,432 vnđ</h4>
+                            <h4>${requestScope.get("totalShipped")} vnđ</h4>
                         </div>
                     </div>
                     <div class="card-footer">
@@ -221,57 +226,39 @@
                                 <tr>
                                     <th>Mã Đơn</th>
                                     <th>Ngày Đặt</th>
-                                    <th>Ngày Giao</th>
-                                    <th>Tổng</th>
+                                    <th>Tổng Giá</th>
                                     <th>Tình trạng</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>FUR-5491-LMN7</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>22 Aug, 2020</td>
-                                    <td>1,500,000.30 vnđ</td>
-                                    <td>
-                                        <span class="badge success">Success</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>FUR-8734-AXQ2</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>Delivering...</td>
-                                    <td>1,300,000.52 vnđ</td>
-                                    <td>
-                                        <span class="badge warning">Delivering</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>FUR-3287-QZX4</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>22 Aug, 2020</td>
-                                    <td>15,000,000.00 vnđ</td>
-                                    <td>
-                                        <span class="badge success">Success</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>FUR-7625-BTY9</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>Delivering...</td>
-                                    <td>9,900,000.90 vnđ</td>
-                                    <td>
-                                        <span class="badge warning">Delivering</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>FUR-4159-PKD3</td>
-                                    <td>15 Aug, 2020</td>
-                                    <td>22 Aug, 2020</td>
-                                    <td>7,200,000.21 vnđ</td>
-                                    <td>
-                                        <span class="badge success">Success</span>
-                                    </td>
-                                </tr>
+                                <c:if test="${not empty recentOrders}">
+                                    <c:forEach var="entry" items="${recentOrders}">
+                                        <tr>
+                                            <td>${entry.id}</td>
+                                            <td>${entry.timeStamp}</td>
+                                            <td>${entry.totalS} vnđ</td>
+                                            <td>
+                                                <c:choose>
+                                                    <c:when test="${entry.shippingStatus eq 'Delivering'}">
+                                                        <span class="badge warning"><span class="ti-truck"></span> Delivering</span>
+                                                    </c:when>
+                                                    <c:when test="${entry.shippingStatus eq 'Completed'}">
+                                                        <span class="badge success"><span class="ti-check"></span> Success</span>
+                                                    </c:when>
+                                                    <c:when test="${entry.shippingStatus eq 'Packaging'}">
+                                                        <span class="badge warning"><span class="ti-package"></span> Packaging...</span>
+                                                    </c:when>
+                                                    <c:when test="${entry.shippingStatus eq 'Cancelled'}">
+                                                        <span class="badge alert"><span class="ti-close"></span> Cancelled</span>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <span class="badge info">Unknown Status</span>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
                                 </tbody>
                             </table>
                         </div>
@@ -282,22 +269,8 @@
                             <div class="summary-single">
                                 <span class="ti-id-badge"></span>
                                 <div>
-                                    <h5>25</h5>
+                                    <h5>${totalEmployee}</h5>
                                     <small>Số lượng nhân viên</small>
-                                </div>
-                            </div>
-                            <div class="summary-single">
-                                <span class="ti-calendar"></span>
-                                <div>
-                                    <h5>16</h5>
-                                    <small>Người dùng đang online</small>
-                                </div>
-                            </div>
-                            <div class="summary-single">
-                                <span class="ti-face-smile"></span>
-                                <div>
-                                    <h5>12</h5>
-                                    <small>Yêu cầu cập nhật profile</small>
                                 </div>
                             </div>
                         </div>

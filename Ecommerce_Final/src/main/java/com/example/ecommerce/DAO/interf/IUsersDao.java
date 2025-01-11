@@ -2,6 +2,7 @@ package com.example.ecommerce.DAO.interf;
 
 import com.example.ecommerce.Bean.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public interface IUsersDao {
@@ -28,4 +29,10 @@ public interface IUsersDao {
 
     //Tim user theo userName cho phan dang nhap
     User findUser(String username);
+
+    int getTotalUsers(boolean force);
+    int getTotalEmployee(boolean force);
+    int getTotalAdmin(boolean force);
+
+    List<User> getAllAdmin(boolean forceUpdate);
 }

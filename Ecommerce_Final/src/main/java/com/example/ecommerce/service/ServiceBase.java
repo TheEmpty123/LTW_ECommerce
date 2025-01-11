@@ -4,7 +4,7 @@ import com.example.ecommerce.Common.LogObj;
 
 public abstract class ServiceBase{
     protected final LogObj log = new LogObj();
-    String logName = getClass().getName();;
+    String logName = getClass().getName();
 
     public ServiceBase() {
         log.setName(logName);

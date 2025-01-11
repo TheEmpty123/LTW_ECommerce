@@ -1,6 +1,6 @@
 package com.example.ecommerce.Common.Enum;
 
-public enum Accessibility {
+public enum Accessible {
     NOT_LOGGED_IN,
     CLIENT,
     EMPLOYEE,

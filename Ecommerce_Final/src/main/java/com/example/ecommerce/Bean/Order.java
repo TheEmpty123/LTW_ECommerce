@@ -4,8 +4,11 @@ import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderDao;
 
 import java.io.Serializable;
+import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
 public class Order implements Serializable {
     private int id;
@@ -13,8 +16,12 @@ public class Order implements Serializable {
     private int paymentID;
     private ShippingStatus shippingStatus;
     private LocalDateTime createDate;
+    private Timestamp timeStamp;
     private String promotion_id;
     private String sdt;
+    private double total;
+    private String totalS;
+
 
     public Order() {
     }
@@ -27,6 +34,14 @@ public class Order implements Serializable {
         this.createDate = createDate;
         this.promotion_id = promotion_id;
         this.sdt = sdt;
+    }
+
+    public Timestamp getTimeStamp() {
+        return timeStamp;
+    }
+
+    public void setTimeStamp(Timestamp timeStamp) {
+        this.timeStamp = timeStamp;
     }
 
     public int getId() {
@@ -68,6 +83,7 @@ public class Order implements Serializable {
 
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
+        this.timeStamp = Timestamp.valueOf(createDate);
     }
 
     public String getPromotion_id() {
@@ -84,6 +100,22 @@ public class Order implements Serializable {
 
     public void setSdt(String sdt) {
         this.sdt = sdt;
+    }
+
+    public double getTotal() {
+        return total;
+    }
+
+    public void setTotal(double total) {
+        this.total = total;
+    }
+
+    public String getTotalS() {
+        return totalS;
+    }
+
+    public void setTotalS(String totalS) {
+        this.totalS = totalS;
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.ecommerce.Database;
 
+import com.example.ecommerce.Bean.Order;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.ManagerBase;
 
@@ -34,6 +35,7 @@ public class JDBIConnect extends ManagerBase {
     }
 
     public Jdbi getJdbi() {
+        createConnect();
         return jdbi;
     }
 
@@ -84,10 +86,17 @@ public class JDBIConnect extends ManagerBase {
     }
 
     private void createConnect() {
-        jdbi = Jdbi.create(src);
+        jdbi = jdbi.create(src);
     }
 
     public static void main(String[] args) {
         JDBIConnect db = new JDBIConnect();
+        var a = db.jdbi.withHandle(handle -> handle
+                        .createQuery("SELECT * FROM orders")
+                        .mapToBean(Order.class)
+                        .list());
+
+        a.forEach(System.out::println);
+
     }
 }

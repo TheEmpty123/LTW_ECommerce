@@ -1,21 +1,14 @@
 package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.DAO.interf.IUsersDao;
-import com.example.ecommerce.Database.JDBIConnect;
-import com.example.ecommerce.InsertData;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class UserDao extends ImplementBase implements IUsersDao {
-    List<User> users;
-    JDBIConnect db = JDBIConnect.getInstance();
-
-    public UserDao(JDBIConnect db, List<User> users) {
-        this.users = new ArrayList<>();
-        this.db = db;
-    }
+    List<User> allUser = new ArrayList<>();
 
     public UserDao() {
         super();
@@ -23,7 +16,26 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public List<User> getAllUsers() {
-        return db.jdbi.withHandle(handle -> handle.createQuery("select * from users")).mapToBean(User.class).list();
+
+        if (allUser.isEmpty()) {
+            allUser = handle.createQuery("SELECT * FROM users")
+                    .mapToBean(User.class)
+                    .list();
+        }
+        return allUser;
+    }
+
+    public List<User> getAllUsers(boolean forced) {
+        log.info("Query all user with force: " + forced);
+        if (forced) {
+            allUser = handle.createQuery("SELECT * FROM users")
+                    .mapToBean(User.class)
+                    .list();
+        } else {
+            allUser = getAllUsers();
+        }
+        return allUser;
+
     }
 
     @Override
@@ -89,6 +101,51 @@ public class UserDao extends ImplementBase implements IUsersDao {
                         .mapToBean(User.class).findOne().orElse(null));
     }
 
+    public int getTotalUsers(boolean force) {
+        log.info("Query total user with force: " + force);
+        getAllUsers(force);
+        return allUser.size();
+    }
+
+    @Override
+    public int getTotalEmployee(boolean force) {
+        log.info("Query total employee with force: " + force);
+        var users = getAllUsers(force);
+
+        int count = 0;
+        for (User user : users)
+            if (user.getRoleID() == RolePermission.EMPLOYEE.getValue())
+                count++;
+
+        return count;
+    }
+
+    @Override
+    public int getTotalAdmin(boolean force) {
+        log.info("Query total admin with force: " + force);
+        var users = getAllUsers(force);
+
+        int count = 0;
+        for (User user : users)
+            if (user.getRoleID() == RolePermission.ADMINISTRATOR.getValue())
+                count++;
+
+        return count;
+    }
+
+    @Override
+    public List<User> getAllAdmin(boolean forceUpdate) {
+        log.info("Query all admin with force: " + forceUpdate);
+        var users = getAllUsers(forceUpdate);
+
+        List<User> userList = new ArrayList<>();
+
+        for (User user : users)
+            if (user.getRoleID() == RolePermission.ADMINISTRATOR.getValue())
+                userList.add(user);
+
+        return userList;
+    }
 
     public static void main(String[] args) {
         UserDao dao = new UserDao();

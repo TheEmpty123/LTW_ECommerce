@@ -3,6 +3,7 @@ package com.example.ecommerce.controller2;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.LogObj;
 import com.example.ecommerce.Database.JDBIConnect;
+import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.ServiceBase;
 import com.example.ecommerce.service.UserService;
@@ -13,6 +14,7 @@ public class MC {
 
     public ProductService productService;
     public UserService userService;
+    public OrderService orderService;
     public LogObj log = new LogObj();
 
     private boolean initialized;
@@ -31,10 +33,12 @@ public class MC {
 
     public MC() {
         initialized = false;
+        log.info("logging");
         conn = JDBIConnect.getInstance();
         serviceList = new ArrayList<>();
         serviceList.add(productService = ProductService.getInstance());
         serviceList.add(userService = UserService.getInstance());
+        serviceList.add(orderService = OrderService.getInstance());
     }
 
     private void init() {

@@ -1,8 +1,9 @@
 package com.example.ecommerce.controller2.adm;
 
 import java.io.*;
+import java.text.NumberFormat;
+import java.util.Locale;
 
-import com.example.ecommerce.Common.Enum.Accessibility;
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -18,57 +19,36 @@ public class Dashboard extends HttpServlet implements ControllerBase {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        HttpSession session = request.getSession();
-
-        Accessibility isAccessible = null;
-
         try {
-            // get user INFO through session
-            isAccessible = MC.instance.userService.isAccessible(session);
+            NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
+
+            log.info("Getting 5 recent orders...");
+            var orders = MC.instance.orderService.get5RecentOrders(false);
+            request.setAttribute("recentOrders", orders);
+
+            log.info("Getting total revenue...");
+            double totalRevenue = MC.instance.orderService.getTotalRevenue(false);
+            request.setAttribute("totalRevenue", formatter.format(totalRevenue));
+
+            log.info("Getting total processing..");
+            double totalProcessing = MC.instance.orderService.getTotalProcessing(false);
+            request.setAttribute("totalProcessing", formatter.format(totalProcessing));
+
+            log.info("Getting total shipped order...");
+            double totalShipped = MC.instance.orderService.getTotalShipped(false);
+            request.setAttribute("totalShipped", formatter.format(totalShipped));
+
+            log.info("Getting total employee...");
+            int totalEmployee = MC.instance.userService.getTotalEmployee(false);
+            request.setAttribute("totalEmployee", totalEmployee);
+
         } catch (ConnectionException e) {
-            MC.instance.log.error("Error connecting to server");
-            MC.instance.log.error(e.getMessage());
+            log.error("Error connecting to the database");
         }
 
-        // Temporary
-        isAccessible = Accessibility.ADMINISTRATOR;
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/dashboard.jsp");
+        dispatcher.forward(request, response);
 
-        if (isAccessible == Accessibility.NOT_LOGGED_IN) {
-            MC.instance.log.warn(getClass().getName(), "Access denied");
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/auth/Login.jsp");
-            dispatcher.forward(request, response);
-        } else if (isAccessible == Accessibility.CLIENT)
-        {
-            MC.instance.log.error(getClass().getName(), "Access denied");
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/web/common/404.jsp");
-            dispatcher.forward(request, response);
-        }
-        else if (isAccessible == Accessibility.EMPLOYEE)
-        {
-            MC.instance.log.info(getClass().getName(), "Access control allowed");
-            // request.setAttribute("listContact",listContact);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/dashboard.jsp");
-            dispatcher.forward(request, response);
-        }
-        else if (isAccessible == Accessibility.MANAGER)
-        {
-            MC.instance.log.info(getClass().getName(), "Access control allowed");
-            // request.setAttribute("listContact",listContact);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/dashboard.jsp");
-            dispatcher.forward(request, response);
-        }
-        else if (isAccessible == Accessibility.ADMINISTRATOR)
-        {
-            MC.instance.log.info(getClass().getName(), "Access control allowed");
-            // request.setAttribute("listContact",listContact);
-
-            RequestDispatcher dispatcher = request.getRequestDispatcher("/views/admin/dashboard.jsp");
-            dispatcher.forward(request, response);
-        }
     }
 
     public void destroy() {
