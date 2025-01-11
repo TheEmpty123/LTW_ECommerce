@@ -13,5 +13,4 @@ public class MailProperties {
 
     public static final String APP_PASSWORD = "aszl izuy zfne sobh";
 
-//    public static final String RECEIVE_EMAIL = "gpcodervn@gmail.com";
 }

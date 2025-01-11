@@ -46,7 +46,7 @@ public class EmailService implements IJavaMail {
     public static void main(String[] args) {
         String to = "22130158@st.hcmuaf.edu.vn";
         String subject = "hello";
-        String message = "ohayo";
+        String message =  "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp";
         IJavaMail emailService = new EmailService();
         System.out.println(emailService.send(to, subject, message));
     }

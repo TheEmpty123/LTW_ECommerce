@@ -81,23 +81,27 @@ public class UserService extends ServiceBase {
         return null;
     }
 
-    public void verifyAccount(String email, String hash) {
+    public void verifyAccount(String email) {
         IJavaMail emailService = new EmailService();
+        boolean emailFound = false;
         var listUser = userDao.getAllUsers();
         for (var list : listUser) {
             if (list.getEmail().equals(email)) {
-                log.warn("Email does not exist!");
+                emailFound = true;
+                try {
+//                    String to = String.valueOf(new InternetAddress(MailProperties.APP_EMAIL));
+                    String subject = "Xac thuc tai khoan. Thoi han 30 phut.";
+                    String messageContent = "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp";
+                    log.info("Password reset email send to " + email);
+                    emailService.send(email, subject, messageContent);
+                } catch (Exception e) {
+                    log.error("Error! Can not send email");
+                    e.printStackTrace();
+                }
             }
-            try {
-                String to = String.valueOf(new InternetAddress(MailProperties.APP_EMAIL));
-                String subject = "Xac thuc tai khoan. Thoi han 30 phut.";
-                String messageContent = "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp"
-                        + email + "&key2=" + hash;
-                emailService.send(to, subject, messageContent);
-            } catch (Exception e) {
-                log.error("Error! Can not send email");
-                e.printStackTrace();
-            }
+        }
+        if (emailFound) {
+            log.warn("Email does not exist in the system!" + email);
         }
     }
 }
