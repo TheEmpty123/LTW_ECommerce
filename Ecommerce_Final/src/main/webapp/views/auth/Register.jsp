@@ -39,19 +39,21 @@
                     String uname = request.getParameter("uname");
                     if (error == null) error = "";
                     if (uname == null) uname = "";
+
                 %>
                 <%= error  %>
             </p>
-            <form method="post" action="/login" style="height: 90%">
-                <label for="username-r">Tên người dùng hoặc địa chỉ email:</label>
-                <input type="text" id="username-r" class="styled-input">
-                <label for="password-r">Mật khẩu:</label>
-                <input type="text" id="password-r" class="styled-input">
-                <label for="password-rr">Nhập lại mật khẩu:</label>
-                <input type="text" id="password-rr" class="styled-input">
-                <div for="register" class="register-button">
-                    <a href="${pageContext.request.contextPath}/views/auth/Success-register.jsp">Đăng ký</a>
-                </div>
+            <form method="post" action="/register" style="height: 90%">
+                <label for="username-r" style="margin-top: 10px; margin-bottom: 3px">Tên người dùng hoặc địa chỉ email:</label>
+                <input type="text" id="username-r" class="styled-input" name="uname" value="<%=uname%>" required>
+                <label for="password-r" style="margin-top: 10px; margin-bottom: 3px">Mật khẩu:</label>
+                <input type="text" id="password-r" class="styled-input" name="pass" required>
+                <label for="password-rr" style="margin-top: 10px; margin-bottom: 3px">Nhập lại mật khẩu:</label>
+                <input type="text" id="password-rr" class="styled-input" name="pass" required>
+                <%--                <div class="register-button">--%>
+                <%--                    <a href="${pageContext.request.contextPath}/views/auth/Success-register.jsp">Đăng ký</a>--%>
+                <button type="submit" class="register-button">Đăng ký</button>
+                <%--                </div>--%>
             </form>
         </div>
     </div>

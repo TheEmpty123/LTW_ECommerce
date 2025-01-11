@@ -3,6 +3,7 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.DAO.interf.IUsersDao;
 import com.example.ecommerce.Database.JDBIConnect;
+import com.example.ecommerce.InsertData;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +40,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
                     .bind("username", user.getUsername())
                     .bind("fullname", user.getFullName())
                     .bind("gender", user.getGender())
-                    .bind("pass", user.getPass())
+                    .bind("pass", InsertData.hashPassword(user.getPass()))
                     .bind("email", user.getEmail())
                     .bind("phoneNum", user.getPhoneNum())
                     .bind("statusUser", user.getStatusUser())
