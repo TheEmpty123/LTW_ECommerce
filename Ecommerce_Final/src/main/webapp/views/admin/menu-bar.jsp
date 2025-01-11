@@ -43,7 +43,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="admin-management.jsp">
+                    <a href="/admin/ad-mana">
                         <span class="ti-wheelchair"></span>
                         <span>Admins</span>
                     </a>

@@ -123,6 +123,33 @@ public class UserDao extends ImplementBase implements IUsersDao {
         return count;
     }
 
+    @Override
+    public int getTotalAdmin(boolean force) {
+        log.info("Query total admin with force: " + force);
+        var users = getAllUsers(force);
+
+        int count = 0;
+        for (User user : users)
+            if (user.getRoleID() == Role.ADMINISTRATOR.getValue())
+                count++;
+
+        return count;
+    }
+
+    @Override
+    public List<User> getAllAdmin(boolean forceUpdate) {
+        log.info("Query all admin with force: " + forceUpdate);
+        var users = getAllUsers(forceUpdate);
+
+        List<User> userList = new ArrayList<>();
+
+        for (User user : users)
+            if (user.getRoleID() == Role.ADMINISTRATOR.getValue())
+                userList.add(user);
+
+        return userList;
+    }
+
     public static void main(String[] args) {
         UserDao dao = new UserDao();
         dao.log.info("test");

@@ -3,10 +3,12 @@ package com.example.ecommerce.DAO.interf;
 import com.example.ecommerce.Bean.Role;
 
 import java.util.List;
+import java.util.Map;
 
 public interface IRoleDao {
 // Lay tat ca ca role
-    List<Role> getAllRoles();
+    Map<Integer, Role> getAllRoles();
+    Map<Integer, Role> getAllRoles(boolean force);
 // Lay role theo id
     Role getRoleById(int id);
 // Them mot role moi

@@ -1,15 +1,19 @@
 package com.example.ecommerce.service;
 
+import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
+import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
+import java.util.Map;
 
 public class UserService extends ServiceBase {
 
     private UserDao userDao = new UserDao();
+    private RoleDao roleDao = new RoleDao();
 
     public static UserService Instance;
 
@@ -21,6 +25,7 @@ public class UserService extends ServiceBase {
         if (Instance == null) {
             Instance = new UserService();
             Instance.userDao = new UserDao();
+            Instance.roleDao = new RoleDao();
         }
         return Instance;
     }
@@ -30,6 +35,7 @@ public class UserService extends ServiceBase {
         log.info("UserService init...");
         if (userDao == null) {
             userDao = new UserDao();
+            roleDao = new RoleDao();
         }
     }
 
@@ -112,5 +118,17 @@ public class UserService extends ServiceBase {
     public int getTotalEmployee(boolean forceUpdate) {
         log.info("UserService getTotalEmployee...");
         return userDao.getTotalEmployee(forceUpdate);
+    }
+
+    public int getTotalAdmin(boolean forceUpdate) {
+        return userDao.getTotalAdmin(forceUpdate);
+    }
+
+    public List<User> getAllAdmin(boolean forceUpdate) {
+        return userDao.getAllAdmin(forceUpdate);
+    }
+
+    public Map<Integer, Role> getRolesMap(boolean forceUpdate){
+        return  roleDao.getAllRoles(forceUpdate);
     }
 }

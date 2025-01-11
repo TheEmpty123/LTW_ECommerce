@@ -2,7 +2,6 @@ package com.example.ecommerce.Filters;
 
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.Common.LogObj;
-import com.example.ecommerce.service.UserService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;

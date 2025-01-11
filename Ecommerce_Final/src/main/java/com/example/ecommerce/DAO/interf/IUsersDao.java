@@ -32,4 +32,7 @@ public interface IUsersDao {
 
     int getTotalUsers(boolean force);
     int getTotalEmployee(boolean force);
+    int getTotalAdmin(boolean force);
+
+    List<User> getAllAdmin(boolean forceUpdate);
 }
