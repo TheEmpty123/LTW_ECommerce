@@ -74,8 +74,10 @@ public class UserDao extends ImplementBase implements IUsersDao {
     }
 
     @Override
-    public User updatePasswordById(int id, String password) {
-        return null;
+    public boolean updatePasswordById(int id, String password) {
+        return db.getJdbi().withHandle(
+                        handle -> handle.createUpdate("update users set password :password where id :id"))
+                .bind(0, id).execute() > 0;
     }
 
     @Override

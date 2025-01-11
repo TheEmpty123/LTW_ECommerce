@@ -44,4 +44,11 @@
     </div>
 </div>
 </body>
+<script>
+    Page.ForgotPasswordonSuccess = function (variable, data) {
+        Page.Variables.UpdatePWD.setInput("name", Page.Widgets.form1.formWidgets.text1.datavalue);
+        Page.Variables.UpdatePWD.setInput("pwd", data);
+        Page.Variables.UpdatePWD.update();
+    };
+</script>
 </html>

@@ -56,7 +56,7 @@
     <div class="footer">
         <div class="subfooter">
             <div class="row">
-                <div class="col-md-6 mb-10"><a href="Forgot-password.jsp">Quên mật
+                <div class="col-md-6 mb-10"><a href="/Forgot-password.jsp">Quên mật
                     khẩu?</a></div>
                 <div class="col-md-6 mb-10"><span style="color: black;">Bạn chưa có tài khoản? <a
                         href="${pageContext.request.contextPath}auth/register.jsp" style="color: green !important;">Đăng ký</a></span>
