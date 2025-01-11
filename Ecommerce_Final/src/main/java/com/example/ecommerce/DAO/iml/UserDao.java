@@ -35,18 +35,11 @@ public class UserDao extends ImplementBase implements IUsersDao {
     public User addUser(User user) {
         return db.jdbi.withHandle(handle -> {
             int id = handle.createUpdate(
-                            "INSERT INTO users(username, fullname, gender, pass, email, phoneNum, statusUser, createUser, avatar, roleID) " +
-                                    "VALUES (:username, :fullname, :gender, :pass, :email, :phoneNum, :statusUser, :createUser, :avatar, :roleID)")
-                    .bind("username", user.getUsername())
-                    .bind("fullname", user.getFullName())
-                    .bind("gender", user.getGender())
-                    .bind("pass", InsertData.hashPassword(user.getPass()))
-                    .bind("email", user.getEmail())
-                    .bind("phoneNum", user.getPhoneNum())
-                    .bind("statusUser", user.getStatusUser())
-                    .bind("createUser", user.getCreateUser())
-                    .bind("avatar", user.getAvatar())
-                    .bind("roleID", user.getRoleID())
+                            "INSERT INTO users(username, pass, email) " +
+                                    "VALUES (?, ?,?)")
+                    .bind(1, user.getUsername())
+                    .bind(2, InsertData.hashPassword(user.getPass()))
+                    .bind(3, user.getEmail())
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class).one();
             user.setId(id);

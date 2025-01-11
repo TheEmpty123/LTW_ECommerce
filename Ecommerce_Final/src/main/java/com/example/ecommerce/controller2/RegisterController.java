@@ -1,6 +1,8 @@
 package com.example.ecommerce.controller2;
 
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.DAO.iml.UserDao;
+import com.example.ecommerce.InsertData;
 import com.example.ecommerce.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -12,6 +14,7 @@ import java.io.IOException;
 
 @WebServlet(name = "register", value = "/register")
 public class RegisterController extends HttpServlet {
+    private UserDao userDao;
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/views/auth/Register.jsp").forward(req, resp);
@@ -26,6 +29,8 @@ public class RegisterController extends HttpServlet {
         String email = req.getParameter("email");
         String name = req.getParameter("uname");
         String pass = req.getParameter("pass");
+        String hash = InsertData.hashPassword(pass);
+//        this.userDao.addUser(email)
     }
 
 }
