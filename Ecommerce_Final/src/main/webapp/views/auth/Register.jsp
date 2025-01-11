@@ -20,10 +20,17 @@
         .styled-input {
             margin-top: 0;
             margin-bottom: 0;
+            height: 12%;
         }
 
         .box p {
             margin-top: 0;
+        }
+        .register{
+            height: 380px;
+        }
+        .footer{
+            height: 8%;
         }
     </style>
 </head>
@@ -32,19 +39,23 @@
     <div class="logo">
         <div class="logobox"></div>
     </div>
-    <div class="content-register">
+    <div class="content-register" style="height: 70%">
         <div class="box register">
             <p style="margin-top: -20px; color: red">
                 <% String error = (String) request.getAttribute("error");
                     String uname = request.getParameter("uname");
+                    String email = request.getParameter("email");
                     if (error == null) error = "";
                     if (uname == null) uname = "";
+                    if (email == null) email = "";
 
                 %>
                 <%= error  %>
             </p>
             <form method="post" action="/register" style="height: 90%">
-                <label for="username-r" style="margin-top: 10px; margin-bottom: 3px">Tên người dùng hoặc địa chỉ email:</label>
+                <label for="email-r" style="margin-top: 10px; margin-bottom: 3px">Địa chỉ email:</label>
+                <input type="text" id="email-r" class="styled-input" name="email" value="<%=email%>" required>
+                <label for="username-r" style="margin-top: 10px; margin-bottom: 3px">Tên người dùng:</label>
                 <input type="text" id="username-r" class="styled-input" name="uname" value="<%=uname%>" required>
                 <label for="password-r" style="margin-top: 10px; margin-bottom: 3px">Mật khẩu:</label>
                 <input type="text" id="password-r" class="styled-input" name="pass" required>
