@@ -13,10 +13,10 @@ import java.security.NoSuchAlgorithmException;
 
 
 public class InsertData {
-    static String p = "D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
+    static String p = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
 
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        String jsonFilePath = "D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
+        String jsonFilePath = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
 
         try {
             // Read the JSON file
