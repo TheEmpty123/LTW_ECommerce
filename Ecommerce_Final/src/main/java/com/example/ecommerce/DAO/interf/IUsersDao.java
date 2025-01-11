@@ -22,7 +22,7 @@ public interface IUsersDao {
     User updateAvatarById(int id, String avatar);
 
     //Cap nhat mat khau cho user theo id
-    User updatePasswordById(int id, String password);
+    boolean updatePasswordById(int id, String password);
 
     //Xoa users theo id
     boolean deleteUserById(int id);

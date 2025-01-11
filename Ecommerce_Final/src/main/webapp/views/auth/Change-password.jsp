@@ -13,7 +13,7 @@
 <head>
     <title>Thay đổi mật khẩu</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public\css\password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -37,11 +37,11 @@
                     <label  class="register-button">Tôi không phải là người máy</label>
                 </div>
                 <div class="image-box">
-                    <img src="${pageContext.request.contextPath}public/images/captcha.png" alt="" class="image-capcha">
+                    <img src="${pageContext.request.contextPath}/public/images/captcha.png" alt="" class="image-capcha">
                 </div>
             </div>
             <div class="next submit2">
-                <a href="${pageContext.request.contextPath}notification-success.html" class="btn">Xác nhận</a>
+                <a href="${pageContext.request.contextPath}/views/auth/Notificaiton-success.jsp" class="btn">Xác nhận</a>
             </div>
         </div>
     </div>

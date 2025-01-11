@@ -12,7 +12,7 @@
 <html>
 <head>
     <title>Quên mật khẩu</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">

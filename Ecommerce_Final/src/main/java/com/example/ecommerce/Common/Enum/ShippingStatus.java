@@ -1,6 +1,7 @@
 package com.example.ecommerce.Common.Enum;
 
 public enum ShippingStatus {
+
     Packaging("packaging"),
     Delivering("delivering"),
     Completed("completed"),
@@ -26,4 +27,5 @@ public enum ShippingStatus {
     public String toString() {
         return this.status;
     }
+
 }

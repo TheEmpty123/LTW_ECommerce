@@ -14,7 +14,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Header</title>
-    <link rel="stylesheet" href="../../../public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -40,7 +40,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -90,7 +90,7 @@
 
                 <a href="tel:0906904114">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../ecommerce/src/webapp/about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}/webapp/views/web/about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -101,14 +101,14 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../auth/login.html">Đăng nhập</a></h4>
+                        href="${pageContext.request.contextPath}/views/auth/Login.jsp">Đăng nhập</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="menu-icon-hd">
-                <img src="../../../public/images/menu-bar/menu-bar.png" alt="Menu Icon" onclick="openNav()">
+                <img src="${pageContext.request.contextPath}/public/images/menu-bar/menu-bar.png" alt="Menu Icon" onclick="openNav()">
                 <div id="myNav" class="menu-overlay">
                     <a href="javascript:void(0)" class="menu-closebtn" style="border-bottom: none; font-size: 40px;"
                        onclick="closeNav()">&times;</a>
@@ -303,7 +303,7 @@
                 </div>
             </div>
             <div class="logo-hd">
-                <img src="../../../public/images/logos/logo3.png"
+                <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                      alt="Logo">
             </div>
             <nav class="main-nav">
@@ -488,7 +488,7 @@
         </div>
     </header>
 </div>
-<script src="../../../../public/js/curtainmenu.js"></script>
-<script src="../../../../public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 </body>
 </html>

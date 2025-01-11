@@ -5,11 +5,22 @@ import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
+
+import com.example.ecommerce.DAO.interf.IJavaMail;
+import com.example.ecommerce.mail.MailProperties;
+import jakarta.servlet.http.HttpSession;
+
+import javax.mail.internet.InternetAddress;
+import java.util.List;
+import java.util.Objects;
+import java.util.Properties;
+
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 import java.util.Map;
+
 
 public class UserService extends ServiceBase {
 
@@ -90,7 +101,14 @@ public class UserService extends ServiceBase {
         } else return Accessible.NOT_LOGGED_IN;
     }
 
-    // Login
+
+    public void addUser(User user) {
+        log.info("UserService adding user...");
+        userDao.addUser(user);
+
+    }
+
+
     public User checkLogin(String username, String pass) {
         User u = userDao.findUser(username);
         if (u != null && pass != null && pass.equals(u.getPass())) {
@@ -99,6 +117,30 @@ public class UserService extends ServiceBase {
         }
         return null;
     }
+
+
+    public void verifyAccount(String email) {
+        IJavaMail emailService = new EmailService();
+        boolean emailFound = false;
+        var listUser = userDao.getAllUsers();
+        for (var list : listUser) {
+            if (list.getEmail().equals(email)) {
+                emailFound = true;
+                try {
+//                    String to = String.valueOf(new InternetAddress(MailProperties.APP_EMAIL));
+                    String subject = "Xac thuc tai khoan. Thoi han 30 phut.";
+                    String messageContent = "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp";
+                    log.info("Password reset email send to " + email);
+                    emailService.send(email, subject, messageContent);
+                } catch (Exception e) {
+                    log.error("Error! Can not send email");
+                    e.printStackTrace();
+                }
+            }
+        }
+        if (emailFound) {
+            log.warn("Email does not exist in the system!" + email);
+        }
 
     // Get all user
     // @param : forceUpdate -> force update query
@@ -145,5 +187,6 @@ public class UserService extends ServiceBase {
         Role userRole = roles.get(user.getRoleID());
 
         return  userRole.equals(permission);
+
     }
 }

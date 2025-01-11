@@ -274,7 +274,7 @@
                         </div>
                         <h5>Bạn chắc chắn muốn đăng xuất?</h5>
                         <div class="buttons-box">
-                            <a href="${pageContext.request.contextPath}common/home.jsp">
+                            <a href="${pageContext.request.contextPath}/logout">
                                 <button class="btns">Đăng xuất</button>
                             </a>
                         </div>

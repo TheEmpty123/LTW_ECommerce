@@ -22,6 +22,7 @@ public class Order implements Serializable {
     private double total;
     private String totalS;
 
+
     public Order() {
     }
 
