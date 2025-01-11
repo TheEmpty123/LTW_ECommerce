@@ -35,17 +35,18 @@ public class UserDao extends ImplementBase implements IUsersDao {
     public User addUser(User user) {
         return db.jdbi.withHandle(handle -> {
             int id = handle.createUpdate(
-                            "INSERT INTO users(username, pass, email) " +
-                                    "VALUES (?, ?,?)")
-                    .bind(1, user.getUsername())
-                    .bind(2, InsertData.hashPassword(user.getPass()))
-                    .bind(3, user.getEmail())
+                            "INSERT INTO users(username, pass, email, roleID) " +
+                                    "VALUES (?, ?, ?,1)")
+                    .bind(0, user.getUsername())
+                    .bind(1, InsertData.hashPassword(user.getPass()))
+                    .bind(2, user.getEmail())
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class).one();
             user.setId(id);
             return user;
         });
     }
+
 
     @Override
     public User updateInfoUserNameById(int id, String userName, String fullName, String gender, String

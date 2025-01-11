@@ -25,6 +25,7 @@ public class RegisterController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("utf-8");
         resp.setCharacterEncoding("utf-8");
+        userDao = new UserDao();
         UserService userService = new UserService();
         String email = req.getParameter("email");
         String name = req.getParameter("uname");
@@ -34,7 +35,7 @@ public class RegisterController extends HttpServlet {
         this.userDao.addUser(user);
 
         req.setAttribute("success", "Register successfully!");
-        req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);
+        req.getRequestDispatcher("/views/auth/Success-register.jsp").forward(req,resp);
     }
 
 }
