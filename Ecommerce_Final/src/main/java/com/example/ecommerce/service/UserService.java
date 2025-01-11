@@ -82,6 +82,7 @@ public class UserService extends ServiceBase {
             return Accessible.ADMINISTRATOR;
         } else return Accessible.NOT_LOGGED_IN;
     }
+
     public Accessible isAccessible(User user) {
         if (user == null) {
             log.warn("User not logged in");
@@ -141,17 +142,18 @@ public class UserService extends ServiceBase {
         if (emailFound) {
             log.warn("Email does not exist in the system!" + email);
         }
+    }
 
     // Get all user
     // @param : forceUpdate -> force update query
-    public List<User> getAllUser(boolean forceUpdate){
+    public List<User> getAllUser(boolean forceUpdate) {
         log.info("UserService getAllUser...");
         return userDao.getAllUsers(forceUpdate);
     }
 
     // Get total user count
     // @param : forceUpdate -> force update query
-    public int getTotalUsers(boolean forceUpdate){
+    public int getTotalUsers(boolean forceUpdate) {
         log.info("UserService getTotalUsers...");
         return userDao.getTotalUsers(forceUpdate);
     }
@@ -173,12 +175,12 @@ public class UserService extends ServiceBase {
         return userDao.getAllAdmin(forceUpdate);
     }
 
-    public Map<Integer, Role> getRolesMap(boolean forceUpdate){
+    public Map<Integer, Role> getRolesMap(boolean forceUpdate) {
         log.info("UserService getRolesMap...");
-        return  roleDao.getAllRoles(forceUpdate);
+        return roleDao.getAllRoles(forceUpdate);
     }
 
-    public boolean hasPermission(User user, String permission){
+    public boolean hasPermission(User user, String permission) {
         log.info("UserService hasPermission...");
 
         if (user == null || permission.equals("")) return false;
@@ -186,7 +188,7 @@ public class UserService extends ServiceBase {
         var roles = MC.instance.userService.getRolesMap(true);
         Role userRole = roles.get(user.getRoleID());
 
-        return  userRole.equals(permission);
+        return userRole.equals(permission);
 
     }
 }

@@ -3,6 +3,7 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.DAO.interf.IUsersDao;
+import com.example.ecommerce.InsertData;
 
 import java.util.ArrayList;
 import java.util.List;
