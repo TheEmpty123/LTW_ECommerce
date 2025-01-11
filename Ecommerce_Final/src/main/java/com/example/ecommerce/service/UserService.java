@@ -58,6 +58,11 @@ public class UserService extends ServiceBase {
             return Accessibility.ADMINISTRATOR;
         } else return Accessibility.NOT_LOGGED_IN;
     }
+    public void addUser(User user) {
+        log.info("UserService adding user...");
+        userDao.addUser(user);
+
+    }
 
     public User checkLogin(String username, String pass) {
         User u = userDao.findUser(username);
