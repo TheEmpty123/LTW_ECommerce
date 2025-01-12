@@ -336,6 +336,11 @@
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
 
             </div>
+<%--            <script>--%>
+<%--                const searchInput = document.querySelector(".search-bar-hd")--%>
+<%--                const searchValue = searchInput.value;--%>
+<%--                console.log(searchValue)--%>
+<%--            </script>--%>
         </div>
     </header>
 </div>
