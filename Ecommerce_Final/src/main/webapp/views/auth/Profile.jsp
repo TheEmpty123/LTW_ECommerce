@@ -5,8 +5,8 @@
   Time: 1:59 PM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -28,13 +28,14 @@
     <title>Tài khoản của tôi</title>
     <style>
 
-        .scroll-cart{
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -43,10 +44,11 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -60,8 +62,9 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <c:forEach items="${sessionScope.cart.list}" var="cp">
-            <div class="list-product-cart">
+
+        <div id="list-product-cart" class="scroll-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
@@ -83,9 +86,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </c:forEach>
-        <div id="pay-pal">
+            </c:forEach>
+        </div>
+
+        <div id="pay-pal" class="cart-actions">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
@@ -137,7 +141,7 @@
                 </h4>
             </div>
         </div>
-<%--    create mobile menu--%>
+        <%--    create mobile menu--%>
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
@@ -196,7 +200,7 @@
 
             </div>
         </div>
-<%--    Chứa các thông tin của người dùng--%>
+        <%--    Chứa các thông tin của người dùng--%>
         <div id="sub-content">
             <div id="information" class="show">
                 <div class="row" style="height: 170px;">
@@ -209,7 +213,7 @@
                         <input type="text" class="input-text">
                     </div>
                     <div class="col-md-12 flex-column">
-                        <label  class="pb-10">Tên hiển thị: </label>
+                        <label class="pb-10">Tên hiển thị: </label>
                         <input type="text" class="input-text" value="${sessionScope.auth.username}">
                     </div>
                 </div>
@@ -228,18 +232,18 @@
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-12 flex-column">
-                            <label  class="pb-10">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
+                            <label class="pb-10">Mật khẩu hiện tại (để trống nếu không có thay đổi)</label>
                             <input type="text" class="input-text">
                         </div>
                     </div>
                     <div class="col-md-12">
                         <div class="col-md-12 flex-column">
-                            <label  class="pb-10">Mật khẩu mới (để trống nếu không có thay đổi) </label>
+                            <label class="pb-10">Mật khẩu mới (để trống nếu không có thay đổi) </label>
                             <input type="text" class="input-text">
                         </div>
                     </div>
                     <div class="col-md-12 flex-column">
-                        <label  class="pb-10">Xác nhận mật khẩu mới </label>
+                        <label class="pb-10">Xác nhận mật khẩu mới </label>
                         <input type="text" class="input-text">
                     </div>
                     <div class="col-sm-3 col-md-3 flex-column">
@@ -258,7 +262,8 @@
                     </div>
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Tỉnh / Thành phố: <abbr class="p-red">*</abbr></label>
-                        <input type="text" class="input-text" placeholder="Tỉnh / Thành phố" value="${address.princible}">
+                        <input type="text" class="input-text" placeholder="Tỉnh / Thành phố"
+                               value="${address.princible}">
                     </div>
                     <div class="col-md-12 flex-column">
                         <label class="pb-10">Số điện thoại <abbr class="p-red">*</abbr></label>
@@ -306,7 +311,7 @@
                 </div>
             </div>
         </div>
-<%--        <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->--%>
+        <%--        <!-- Phần chứa các sản phẩm ưu thích của người dùng và những sản phẩm người dùng vừa xem trong thời gian cụ thể -->--%>
         <div id="reminds-products">
             <div class="wish-list">
                 <div class="wish-list-title margin-lr-20">
@@ -369,7 +374,7 @@
 <%--<!-- <iframe src="../common/footer.jsp" frameborder="0" id="footer"></iframe> -->--%>
 <footer class="footer">
     <div class="footer-container">
-<%--        <!-- Left Column -->--%>
+        <%--        <!-- Left Column -->--%>
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
             <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo" class="footer-logo">

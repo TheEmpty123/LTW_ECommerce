@@ -173,7 +173,7 @@
         </div>
 
 
-        <div id="list-product-cart" style="max-height: 70%">
+        <div id="list-product-cart" class="scroll-cart">
             <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
                     <div class="col-md-12 col-12 order">
@@ -197,7 +197,7 @@
             </c:forEach>
         </div>
 
-        <div id="pay-pal">
+        <div id="pay-pal" class="cart-actions">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
