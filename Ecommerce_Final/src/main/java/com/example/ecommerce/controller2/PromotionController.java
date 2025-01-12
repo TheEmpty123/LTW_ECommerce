@@ -35,10 +35,10 @@ public class PromotionController extends HttpServlet {
         System.out.println(json);
         CodeString code = gson.fromJson(json, CodeString.class);
 
-        Promotion promotion = service.getPromotionByCode(code.getCode());
         double value;
         String notification = "";
         if (u != null){
+            Promotion promotion = service.getPromotionByCode(code.getCode());
             if (promotion != null){
                 value = promotion.getValueOfPro();
                 notification = "Đã áp dụng mã giảm giá.";
@@ -59,10 +59,10 @@ public class PromotionController extends HttpServlet {
     }
     private static class PromotionResponse{
         private final double valueAfterPromotion;
-        private final String notification;
+        private final String notificationOfPromotion;
         public PromotionResponse(double valueAfterPromotion, String notification){
             this.valueAfterPromotion = valueAfterPromotion;
-            this.notification = notification;
+            this.notificationOfPromotion = notification;
         }
     }
 }

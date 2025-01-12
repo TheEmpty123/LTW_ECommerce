@@ -60,6 +60,9 @@
         .red {
             background-color: red;
         }
+        .green{
+            color: darkgreen;
+        }
     </style>
 </head>
 <body>
@@ -260,7 +263,7 @@
                         </tr>
                         </tbody>
                     </table>
-                    <div class="row sale-buy">
+                    <div class="row sale-buy" style="row-gap: 5px">
                         <div class="col-sm-6 col-md-6 sale-input">
                             <input type="text" placeholder="Mã giảm giá" value="" id="promotion-code">
                         </div>
@@ -272,6 +275,7 @@
                                 </button>
                             </div>
                         </div>
+                        <div class="col-sm-12 col-md-12" id="notification-promotion"></div>
                         <div class="col-sm-6 col-md-6 text-total">
                             <p>Tổng cộng</p>
                         </div>

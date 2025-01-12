@@ -2,10 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('submit-promotion-btn').addEventListener("click", function () {
         const code = document.getElementById('promotion-code').value.trim()
 
-        if (!code) {
-            alert('Vui lòng nhập mã khuyến mãi.');
-            return;
-        }
         fetch("/PromotionController", {
             method: "POST",
             headers: {
@@ -27,5 +23,11 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: 'VND',
         });
         totalOutput.textContent = formatter.format(promotion.valueAfterPromotion)
+
+        const parentNotification = document.getElementById('notification-promotion')
+        parentNotification.classList.add('green')
+        parentNotification.innerHTML = `
+            <p style="margin-bottom: 0">${promotion.notificationOfPromotion}</p>
+            `
     }
 })

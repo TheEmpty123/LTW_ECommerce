@@ -94,7 +94,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Tạo HTML cho từng sản phẩm
             const cartItem = document.createElement('div');
             cartItem.classList.add('row');
-            cartItem.innerHTML = `
+            cartItem.innerHTML = `        
                     <div class="col-md-12 col-12 order">
                         <div class="image center-items">
                             <img src="${item.img}" alt="">
