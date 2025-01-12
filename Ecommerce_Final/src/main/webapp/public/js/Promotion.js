@@ -1,7 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
     document.getElementById('submit-promotion-btn').addEventListener("click", function () {
-        const code = document.getElementById('promotion-code').value.trim()
+        let code = document.getElementById('promotion-code').value.trim()
 
+        if (code === ""){
+            code = "null";
+        }
         fetch("/PromotionController", {
             method: "POST",
             headers: {

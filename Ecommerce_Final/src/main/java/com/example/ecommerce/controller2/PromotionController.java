@@ -35,32 +35,43 @@ public class PromotionController extends HttpServlet {
         System.out.println(json);
         CodeString code = gson.fromJson(json, CodeString.class);
 
-        double value;
+        double value = 0;
         String notification = "";
-        if (u != null){
-            Promotion promotion = service.getPromotionByCode(code.getCode());
-            if (promotion != null){
-                value = promotion.getValueOfPro();
-                notification = "Đã áp dụng mã giảm giá.";
+        System.out.println(u);
+
+        if (u != null) {
+            if (!cart.getList().isEmpty()) {
+                if (!code.getCode().equals("null")) {
+                    Promotion promotion = service.getPromotionByCode(code.getCode());
+                    if (promotion != null) {
+                        value = promotion.getValueOfPro();
+                        notification = "Đã áp dụng mã giảm giá.";
+                    } else {
+                        value = 0;
+                        notification = "Mã giảm giá không hợp lệ.";
+                    }
+                } else {
+                    value = 0;
+                    notification = "Vui lòng nhập mã giảm giá.";
+                }
             }else {
                 value = 0;
-                notification = "Mã giảm giá không hợp lệ.";
+                notification = "Giỏ hàng của bạn đang trống.";
             }
-        }else{
-            value = 0;
-            notification = "Vui lòng đăng nhập trước.";
         }
+
         double result = cart.getTotal() - value;
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(gson.toJson(new PromotionResponse(result, notification)));
-
     }
-    private static class PromotionResponse{
+
+    private static class PromotionResponse {
         private final double valueAfterPromotion;
         private final String notificationOfPromotion;
-        public PromotionResponse(double valueAfterPromotion, String notification){
+
+        public PromotionResponse(double valueAfterPromotion, String notification) {
             this.valueAfterPromotion = valueAfterPromotion;
             this.notificationOfPromotion = notification;
         }

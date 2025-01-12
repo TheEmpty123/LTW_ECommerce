@@ -71,7 +71,7 @@ document.addEventListener("DOMContentLoaded", function () {
     function updateCartUI(cart) {
         // Lấy container hiển thị giỏ hàng
         const cartContainer = document.getElementById('list-product-cart');
-        const totalCart = document.getElementById('total-cart')
+        const totalCart = document.querySelectorAll('.total-cart')
         const countProduct = document.querySelectorAll('.total-count')
 
         // Xóa nội dung cũ của giỏ hàng
@@ -82,8 +82,9 @@ document.addEventListener("DOMContentLoaded", function () {
             style: 'currency',
             currency: 'VND',
         });
-
-        totalCart.textContent = formatter.format(cart.totalPrice)
+        totalCart.forEach(item =>{
+            item.textContent = formatter.format(cart.totalPrice)
+        })
 
         // Duyệt qua từng sản phẩm trong giỏ hàng (cart là một mảng JSON)
         cart.lists.forEach((item) => {

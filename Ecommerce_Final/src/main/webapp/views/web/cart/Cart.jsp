@@ -183,7 +183,7 @@
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p id="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
                                                        value="${sessionScope.cart.total}"/></p>
                 </div>
 
@@ -256,8 +256,9 @@
                                     <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
-                                    <f:formatNumber type="currency" currencySymbol="đ"
-                                                    value="${sessionScope.cart.total}"/>
+                                    <p class="total-cart">
+                                        <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
+                                    </p>
                                 </c:if>
                             </td>
                         </tr>
@@ -280,7 +281,7 @@
                             <p>Tổng cộng</p>
                         </div>
                         <div class="col-sm-6 col-md-6 t-bold total-price">
-                            <p id="total-after-promotion">
+                            <p id="total-after-promotion" class="total-cart">
                                 <c:if test="${sessionScope.auth == null}">
                                     <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
