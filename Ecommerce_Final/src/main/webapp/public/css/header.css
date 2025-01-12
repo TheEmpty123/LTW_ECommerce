@@ -332,9 +332,9 @@ header {
 .watch-cart,
 .check-out{
     width: 100%;
-    padding: 10px 20px;
+    padding: 5px 20px;
     border: solid 1px black;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     cursor: pointer;
 }
 .watch-cart{

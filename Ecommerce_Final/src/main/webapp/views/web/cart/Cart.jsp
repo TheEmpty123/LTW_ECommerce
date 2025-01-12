@@ -63,6 +63,26 @@
         .green{
             color: darkgreen;
         }
+        .scroll-cart{
+            max-height: 65%;
+            height: 65% !important;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding-right: 10px;
+        }
+        .cart-actions {
+            position: sticky; /* Giữ cố định trong container */
+            height: 150px !important;
+            bottom: 0; /* Đặt vị trí tại đáy của container */
+            background-color: #fff; /* Nền trắng để nổi bật */
+            padding: 10px;
+            z-index: 10; /* Đảm bảo không bị che bởi phần khác */
+        }
+        .watch-cart,
+        .check-out{
+            padding: 5px 20px ;
+            margin-bottom: 10px ;
+        }
     </style>
 </head>
 <body>
