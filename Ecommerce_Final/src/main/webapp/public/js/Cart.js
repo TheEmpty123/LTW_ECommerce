@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", function () {
         const totalCart = document.getElementById('total-cart')
         const countProduct = document.querySelectorAll('.total-count')
 
-
         // Xóa nội dung cũ của giỏ hàng
         cartContainer.innerHTML = '';
 

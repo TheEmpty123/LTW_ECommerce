@@ -80,7 +80,6 @@ public class CartController extends HttpServlet {
         if (u == null) uName = null;
         else uName = u.getUsername();
 
-
         // Nhận dữ liệu từ AJAX
         String json = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
         Gson gson = new Gson();

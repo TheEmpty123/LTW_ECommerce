@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.ecommerce.Bean.Cart.Cart" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/14/2024
@@ -27,6 +27,7 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Promotion.js"></script>
     <style>
         /* Kiểu thông báo */
         .notification {
@@ -247,7 +248,7 @@
                         <tbody>
                         <tr class="cart-subtotal">
                             <th>Thành tiền</th>
-                            <td data-title="Thành tiền" class="t-bold">
+                            <td data-title="Thành tiền" class="t-bold" id="old-total">
                                 <c:if test="${sessionScope.auth == null}">
                                     <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
                                 </c:if>
@@ -259,47 +260,33 @@
                         </tr>
                         </tbody>
                     </table>
-                    <p style="color: red">
-                        <% String error = (String) request.getAttribute("error");
-                            String code = request.getParameter("codePro");
-                            double value = 0;
-                            if (error == null) error = "";
-                            if (code == null){
-                                code = "";
-                            }else{
-                                value = (double) request.getAttribute("valueOfPro");
-                            }
-                        %>
-                        <%= error  %>
-                    </p>
-                    <form method="post" action="/promotion">
-                        <div class="row sale-buy">
-                            <this class="col-sm-6 col-md-6 sale-input">
-                                <input type="text" placeholder="Mã giảm giá" name="promotion" value="<%=code%>">
-                            </this>
-                            <this class="col-sm-6 col-md-6">
-                                <div class="use-button fake-btn">
-                                    <button type="submit" style="background-color: black; color: white; border:none">SỬ
-                                        DỤNG
-                                    </button>
-                                </div>
-                            </this>
-
-                            <this class="col-sm-6 col-md-6 text-total">
-                                <p>Tổng cộng</p>
-                            </this>
-                            <this class="col-sm-6 col-md-6 t-bold total-price">
-                                <p>
-                                    <c:if test="${sessionScope.auth == null}">
-                                        <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
-                                    </c:if>
-                                    <c:if test="${sessionScope.auth != null}">
-                                        <f:formatNumber type="currency" currencySymbol="đ"
-                                                        value="${sessionScope.cart.total}"/>
-                                    </c:if>
-                            </this>
+                    <div class="row sale-buy">
+                        <div class="col-sm-6 col-md-6 sale-input">
+                            <input type="text" placeholder="Mã giảm giá" value="" id="promotion-code">
                         </div>
-                    </form>
+                        <div class="col-sm-6 col-md-6">
+                            <div class="use-button fake-btn">
+                                <button id="submit-promotion-btn" type="submit"
+                                        style="background-color: black; color: white; border:none; padding: 5px 0">SỬ
+                                    DỤNG
+                                </button>
+                            </div>
+                        </div>
+                        <div class="col-sm-6 col-md-6 text-total">
+                            <p>Tổng cộng</p>
+                        </div>
+                        <div class="col-sm-6 col-md-6 t-bold total-price">
+                            <p id="total-after-promotion">
+                                <c:if test="${sessionScope.auth == null}">
+                                    <f:formatNumber type="currency" currencySymbol="đ" value="0.0"/>
+                                </c:if>
+                                <c:if test="${sessionScope.auth != null}">
+                                    <f:formatNumber type="currency" currencySymbol="đ"
+                                                    value="${sessionScope.cart.total}"/>
+                                </c:if>
+                            </p>
+                        </div>
+                    </div>
                     <div class="shipping-infor">
                         <h5>Thông tin giao hàng</h5>
                         <p>Đối với những sản phẩm có sẵn tại khu vực, chúng tôi sẽ giao hàng
@@ -424,6 +411,7 @@
 
     document.getElementById('mask-cart').addEventListener('click', hiddenCart)
     document.getElementById('close-pop-up').addEventListener('click', hiddenCart)
+
 </script>
 
 </body>

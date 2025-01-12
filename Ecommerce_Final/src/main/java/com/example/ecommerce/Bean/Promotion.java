@@ -18,6 +18,7 @@ public class Promotion implements Serializable {
     private LocalDateTime endDate;
     private String fullValueOfPro;
 
+    public Promotion() {}
     public Promotion(int id, String codes, String type, int limitePro, double valueOfPro, String status, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.codes = codes;
