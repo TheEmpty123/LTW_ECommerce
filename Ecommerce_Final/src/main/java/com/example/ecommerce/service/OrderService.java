@@ -6,14 +6,14 @@ import com.example.ecommerce.DAO.iml.OrderDao;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OrderService extends ServiceBase{
+public class OrderService extends ServiceBase {
 
-    OrderDao orderDao;
+    OrderDao orderDao  =new OrderDao();
 
     private static OrderService instance;
 
-    public static OrderService getInstance(){
-        if(instance == null){
+    public static OrderService getInstance() {
+        if (instance == null) {
             instance = new OrderService();
         }
         return instance;
@@ -27,15 +27,21 @@ public class OrderService extends ServiceBase{
         }
     }
 
-    OrderService(){
+    OrderService() {
         super();
     }
 
     // Get 5 recent orders
     // @param : forceUpdate -> force update query
-    public List<Order> get5RecentOrders(boolean forceUpdate){
+    public List<Order> get5RecentOrders(boolean forceUpdate) {
         log.info("UserService get5RecentOrders...");
         return orderDao.get5Order(forceUpdate);
+    }
+
+    public List<Order> getAllOrder() {
+
+        log.info("User Service getAllOrder...");
+        return orderDao.getAllOrders();
     }
 
     // Get total revenue
@@ -57,5 +63,11 @@ public class OrderService extends ServiceBase{
     public double getTotalShipped(boolean forceUpdate) {
         log.info("UserService getTotalShipped...");
         return orderDao.getTotalShipped(forceUpdate);
+    }
+
+    public static void main(String[] args) {
+        OrderService service = new OrderService();
+        System.out.println(service.getAllOrder());
+
     }
 }

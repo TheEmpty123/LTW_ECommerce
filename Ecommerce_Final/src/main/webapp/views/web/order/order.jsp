@@ -299,10 +299,51 @@
 
 <div class="container" style="margin-top: 2%;">
     <div class="shipping-address" , style="border: none;">
-        <h2>Địa Chỉ Giao Hàng</h2>
+        <h2>Tóm tắt đơn hàng</h2>
         <form>
+            <div class="summary-item">
+                <p>Thành tiền</p>
+                <p>13,900,000₫</p>
+            </div>
+
+            <h3>Sản phẩm</h3>
+            <div class="product">
+                <img src="${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="Armchair">
+                <div class="product-details">
+                    <p>Armchair Hùng King + Gối</p>
+                    <p>VACT3231 × 1</p>
+                    <p>13,900,000₫</p>
+                </div>
+            </div>
+
+
+            <h3>THÔNG TIN THÊM</h3>
+            <label>Lưu ý cho đơn hàng (tùy chọn)</label>
+            <textarea
+                    placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."></textarea>
+
+            <h3>PHƯƠNG THỨC THANH TOÁN</h3>
+            <div class="payment-method">
+                <button class="pay-bank">Chuyển khoản ngân hàng</button>
+                <button class="cod">Thanh toán khi nhận hàng</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="order-summary" , style="border: none;">
+        <h2>Địa chỉ giao hàng</h2>
+        <div class="shipping-address-container">
+            <div>Đặng Trần Tấn Lực (+84) 386101695</div>
+            <div>101/2a khu phố 3 đường số 4, Phường Linh Xuân, Thành Phố Thủ Đức, TP. Hồ Chí Minh</div>
+            <div class="actions">
+                <%--                <span class="edit-link" onclick="openModal()">Thay Đổi</span>--%>
+                <p5>Địa chỉ mới</p5>
+            </div>
+        </div>
+
+        <form id="abc">
             <label>Họ và tên *</label>
-            <input type="text" value="PKDuy" readonly>
+            <input type="text" value="Harvey" readonly>
 
             <label>Số điện thoại *</label>
             <input type="text" placeholder="Nhập số điện thoại của bạn">
@@ -324,36 +365,13 @@
                 <input type="checkbox">
                 Create an account?
             </label>
-
-            <h3>THÔNG TIN THÊM</h3>
-            <label>Lưu ý cho đơn hàng (tùy chọn)</label>
-            <textarea
-                    placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."></textarea>
-
-            <h3>PHƯƠNG THỨC THANH TOÁN</h3>
-            <div class="payment-method">
-                <button class="pay-bank">Chuyển khoản ngân hàng</button>
-                <button class="cod">Thanh toán khi nhận hàng</button>
+            <div class="modal-footer" style=" padding: 5px">
+                <button style="background: orangered; color: white;margin-right: 10px" class="btn btn-cancel"
+                        onclick="closeModal()">Hủy
+                </button>
+                <button style="background: orangered; color: white" class="btn btn-confirm">Xác nhận</button>
             </div>
         </form>
-    </div>
-
-    <div class="order-summary" , style="border: none;">
-        <h2>Tóm tắt đơn hàng</h2>
-        <div class="summary-item">
-            <p>Thành tiền</p>
-            <p>13,900,000₫</p>
-        </div>
-
-        <h3>Sản phẩm</h3>
-        <div class="product">
-            <img src="${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="Armchair">
-            <div class="product-details">
-                <p>Armchair Hùng King + Gối</p>
-                <p>VACT3231 × 1</p>
-                <p>13,900,000₫</p>
-            </div>
-        </div>
 
         <h3>CHÍNH SÁCH BÁN HÀNG</h3>
         <div class="policy">
@@ -671,6 +689,14 @@
 
 
 </script>
+<script>
+    function openModal() {
+        document.getElementById('addressModal').style.display = 'flex';
+    }
 
+    function closeModal() {
+        document.getElementById('addressModal').style.display = 'none';
+    }
+</script>
 </body>
 </html>
