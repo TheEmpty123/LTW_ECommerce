@@ -1,4 +1,25 @@
 package com.example.ecommerce.service;
 
-public class OrderItemService {
+import com.example.ecommerce.Bean.OrderItem;
+import com.example.ecommerce.DAO.iml.OrderDao;
+import com.example.ecommerce.DAO.iml.OrderItemDao;
+
+import java.util.List;
+
+public class OrderItemService extends ServiceBase {
+    private OrderItemDao dao = new OrderItemDao();
+    private static OrderItemService instance;
+
+    @Override
+    public void init() {
+        log.info("UserService init...");
+        if (dao == null) {
+            dao = new OrderItemDao();
+        }
+    }
+
+    public List<OrderItem> getOrderItem() {
+        log.info("getOrderItem...");
+        return dao.getOrderItem();
+    }
 }

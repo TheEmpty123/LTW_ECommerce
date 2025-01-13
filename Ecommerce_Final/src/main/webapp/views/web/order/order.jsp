@@ -103,7 +103,7 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../../auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}/auth/profile.jsp">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
@@ -308,12 +308,12 @@
 
             <h3>Sản phẩm</h3>
             <div class="product">
-                <c:forEach var="order" items="${orders}">
-                <img src="${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="Armchair">
+                <c:forEach var="order" items="${orderitems}">
+                <img src="${pageContext.request.contextPath}/${order.thumb}" alt="${order.name}">
                 <div class="product-details">
-                    <p>Armchair Hùng King + Gối</p>
+                    <p>${order.name}</p>
                     <p>VACT3231 × 1</p>
-                    <p>13,900,000₫</p>
+                    <p>${order.price}</p>
                 </div>
                 </c:forEach>
             </div>

@@ -7,16 +7,10 @@ public class OrderItem implements Serializable {
     private int orderID;
     private int productID;
     private int amount;
-
-    public OrderItem(int id, int orderID, int productID, int amount) {
-        this.id = id;
-        this.orderID = orderID;
-        this.productID = productID;
-        this.amount = amount;
-    }
-
-    public OrderItem() {
-    }
+    // Các thuộc tính mới
+    private String proName;
+    private double price;
+    private String thumb;
 
     public int getId() {
         return id;
@@ -50,6 +44,31 @@ public class OrderItem implements Serializable {
         this.amount = amount;
     }
 
+    public String getProName() {
+        return proName;
+    }
+
+    public void setProName(String proName) {
+        this.proName = proName;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public String getThumb() {
+        return thumb;
+    }
+
+    public void setThumb(String thumb) {
+        this.thumb = thumb;
+    }
+
+    // Phương thức toString
     @Override
     public String toString() {
         return "OrderItem{" +
@@ -57,6 +76,10 @@ public class OrderItem implements Serializable {
                 ", orderID=" + orderID +
                 ", productID=" + productID +
                 ", amount=" + amount +
+                ", proName='" + proName + '\'' +
+                ", price=" + price +
+                ", thumb='" + thumb + '\'' +
                 '}';
     }
 }
+
