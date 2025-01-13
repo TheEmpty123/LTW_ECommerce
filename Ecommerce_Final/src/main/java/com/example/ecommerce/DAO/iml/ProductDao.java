@@ -68,9 +68,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     }
 
     @Override
-    public List<Product> search(String txt) {
-        return db.getJdbi().withHandle(handle1 -> handle.createQuery("select * from products where name like :txt%")
-                .bind("name", "%" + txt)
+    public List<Product> search(String name) {
+        return db.getJdbi().withHandle(handle1 -> handle.createQuery("SELECT * FROM products WHERE proName LIKE :name")
+                .bind("name",  "%" + name + "%")
                 .mapToBean(Product.class).list());
     }
 
@@ -89,7 +89,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
 
     public static void main(String[] args) {
         ProductDao dao = new ProductDao();
-        System.out.println(dao.getProductById(1));
+        System.out.println(dao.search("Kệ"));
     }
 
 }

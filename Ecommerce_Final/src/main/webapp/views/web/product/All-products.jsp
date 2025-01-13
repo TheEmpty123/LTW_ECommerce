@@ -106,7 +106,7 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                       value="${sessionScope.cart.total}"/>
+                                                          value="${sessionScope.cart.total}"/>
                     </p>
                 </div>
             </div>
@@ -187,11 +187,21 @@
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
             </nav>
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-
-            </div>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button onclick="getValue()">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+            <script>
+                function getValue() {
+                    const searchInput = document.getElementById("search-input");
+                    const inputValue = searchInput.value;
+                    console.log("Giá trị tìm kiếm:", inputValue);
+                }
+            </script>
         </div>
     </header>
 </div>
@@ -208,6 +218,7 @@
                 <a href="" style="font-weight: normal;">Trang chủ</a> / <a
                     href="../product/All-products.jsp" style="font-weight: bold;">Sản phẩm</a>
             </div>
+
         </div>
         <div class="mask"></div>
     </div>
