@@ -139,7 +139,7 @@ public class    OrderDao extends ImplementBase implements IOrderDao {
                 .mapTo(Double.class)
                 .first();
 
-        return totalRevenue;
+        return totalRevenue == null ? 0 : totalRevenue;
     }
 
     @Override
@@ -151,7 +151,7 @@ public class    OrderDao extends ImplementBase implements IOrderDao {
                 .mapTo(Double.class)
                 .first();
 
-        return totalProcessing;
+        return totalProcessing == null ? 0 : totalProcessing;
     }
 
     @Override
@@ -164,7 +164,7 @@ public class    OrderDao extends ImplementBase implements IOrderDao {
                 .mapTo(Double.class)
                 .first();
 
-        return totalShipped;
+        return totalShipped == null ? 0 : totalShipped;
     }
 
     public static void main(String[] args) {

@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/admin/user-management">
+                    <a href="/admin/users">
                         <span class="ti-user"></span>
                         <span>Người dùng</span>
                     </a>

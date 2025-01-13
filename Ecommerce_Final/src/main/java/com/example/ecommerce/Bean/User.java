@@ -2,8 +2,11 @@ package com.example.ecommerce.Bean;
 
 import com.example.ecommerce.Common.Enum.Gender;
 import com.example.ecommerce.Common.Enum.StatusUser;
+import com.example.ecommerce.InsertData;
 
 import java.io.Serializable;
+import java.sql.Connection;
+import java.sql.DriverManager;
 import java.time.LocalDateTime;
 
 public class User implements Serializable {
@@ -142,5 +145,28 @@ public class User implements Serializable {
                 ", createUser=" + createUser +
                 ", avatar=" + avatar +
                 ", roleID=" + roleID + "}";
+    }
+
+    public static void main(String[] args) {
+        String username = "empty";
+        String fullname = "the empty";
+        String gender = "male";
+        String email = "empty@gmail.com";
+        String phone = "0933718070";
+        String pass = "empty";
+        String statusUser = "enable";
+        String createDate = "2025-12-11 10:00:00";
+        String avatar = "avatar1.png";
+        int role = 2;
+
+        String url = "jdbc:mysql://127.0.0.1:3306/ltw?useUnicode=true&characterEncoding=utf-8";
+        String user = "root";
+        String password = "";
+
+        try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            InsertData.insertUsers(conn, username, fullname, gender, pass, email, phone, statusUser, createDate, avatar, role);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
