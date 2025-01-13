@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-public class OrderDao extends ImplementBase implements IOrderDao {
+public class    OrderDao extends ImplementBase implements IOrderDao {
 
     List<Order> allOrders = new ArrayList<>();
 
@@ -85,7 +85,6 @@ public class OrderDao extends ImplementBase implements IOrderDao {
                         .execute() > 0
         );
     }
-
     @Override
     public Order getOrderById(int id) {
         return db.getJdbi().withHandle(handle ->

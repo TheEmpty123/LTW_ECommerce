@@ -27,7 +27,7 @@ public class JDBIConnect extends ManagerBase {
         return Instance;
     }
 
-    JDBIConnect() {
+    public JDBIConnect() {
         primaryManager = new IInitializable[]{
                 properties
         };

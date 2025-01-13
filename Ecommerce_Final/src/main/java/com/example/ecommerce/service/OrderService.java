@@ -27,7 +27,7 @@ public class OrderService extends ServiceBase {
         }
     }
 
-    OrderService() {
+    public OrderService() {
         super();
     }
 
@@ -43,6 +43,7 @@ public class OrderService extends ServiceBase {
         log.info("User Service getAllOrder...");
         return orderDao.getAllOrders();
     }
+
 
     // Get total revenue
     // @param : forceUpdate -> force update query

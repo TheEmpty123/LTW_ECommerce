@@ -5,12 +5,14 @@ import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.DAO.interf.IOrderItemDao;
 import com.example.ecommerce.Database.JDBIConnect;
 
-public class OrderItemDao extends ImplementBase implements IOrderItemDao {
-    JDBIConnect db;
+import java.util.List;
 
-    public OrderItemDao(JDBIConnect db) {
-        this.db = db;
-    }
+public class OrderItemDao extends ImplementBase implements IOrderItemDao {
+//    JDBIConnect db;
+//
+//    public OrderItemDao(JDBIConnect db) {
+//        this.db = db;
+//    }
 
     public OrderItemDao() {
     }
@@ -26,9 +28,23 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
                 .mapTo(Integer.class).one();
     }
 
+    @Override
+    public List<OrderItem> getOrderItem() {
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT order_item.id AS order_item_id, order_item.orderID, order_item.productID AS order_item_productID, " +
+                                "order_item.amount, products.id AS product_id, products.proName, products.description, " +
+                                "products.price, products.thumb, products.created_at, products.atributeID, products.cateID " +
+                                "FROM order_item " +
+                                "JOIN products ON order_item.productID = products.id")
+                        .mapToBean(OrderItem.class)
+                        .list());
+    }
+
+
     public static void main(String[] args) {
         OrderItemDao dao = new OrderItemDao();
         dao.log.info("test");
+        System.out.println(dao.getOrderItem());
     }
 
 }

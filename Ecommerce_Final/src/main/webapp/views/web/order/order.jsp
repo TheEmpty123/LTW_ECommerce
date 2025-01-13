@@ -308,12 +308,14 @@
 
             <h3>Sản phẩm</h3>
             <div class="product">
+                <c:forEach var="order" items="${orders}">
                 <img src="${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="Armchair">
                 <div class="product-details">
                     <p>Armchair Hùng King + Gối</p>
                     <p>VACT3231 × 1</p>
                     <p>13,900,000₫</p>
                 </div>
+                </c:forEach>
             </div>
 
 
