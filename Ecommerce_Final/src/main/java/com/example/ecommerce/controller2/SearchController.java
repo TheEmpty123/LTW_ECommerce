@@ -17,28 +17,27 @@ import java.io.IOException;
 
 @WebServlet(name = "search", value = "/search")
 public class SearchController extends HttpServlet {
-    private ProductService productService = new ProductService();
-    private CategoryService categoryService = new CategoryService();
-    private List<Product> list;
-    private List<Category> categoryList;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        HttpSession session = req.getSession(true);
+        ProductService service = new ProductService();
+        CategoryService cateService = new CategoryService();
+        List<Product> data;
+        List<Category> categories;
+
         try {
             String value = req.getParameter("search-input");
-            System.out.println(value);
-            if (value == null || value.isEmpty()) {
-                System.out.println(" ");
-            }
-//            list = dao.search(value);
-            if (list == null) {
-                System.out.println("ncc");
-            }
+            data = service.getSearch(value);
+            categories = cateService.getAllCategory();
         } catch (Exception e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
-        req.setAttribute("products", list);
+        int itemsPerPage = 32;
+        int currentPage = 1;
+
+        int catePerCol = 5;
+        HashMap<Integer, List<Category>> mapCate = new HashMap<>();
+
         req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
 
     }
