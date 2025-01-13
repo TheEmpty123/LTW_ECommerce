@@ -9,6 +9,8 @@ import java.util.ArrayList;
 
 public class MC {
 
+    public Integer savedID = null;
+
     public ProductService productService;
     public UserService userService;
     public OrderService orderService;

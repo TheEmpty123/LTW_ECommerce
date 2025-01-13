@@ -209,4 +209,8 @@ public class UserService extends ServiceBase {
 
         return list.size();
     }
+
+    public User getUserByID(Integer savedID) {
+        return userDao.getUserById(savedID);
+    }
 }

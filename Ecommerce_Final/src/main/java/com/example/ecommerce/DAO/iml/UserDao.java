@@ -42,7 +42,9 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public User getUserById(int id) {
-        return db.jdbi.withHandle(handle -> handle.createQuery("select * from users where id = " + id).mapToBean(User.class).first());
+        return handle.createQuery("select * from users where id = " + id)
+                .mapToBean(User.class)
+                .first();
     }
 
     @Override
@@ -156,8 +158,8 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
         allUser = getAllUsers(forceUpdate);
 
-        allUser.forEach(u ->{
-            if(u.getStatusUser().equals(StatusUser.ENABLE)){
+        allUser.forEach(u -> {
+            if (u.getStatusUser().equals(StatusUser.ENABLE)) {
                 availableUsers.add(u);
             }
         });

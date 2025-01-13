@@ -50,6 +50,7 @@ public class AdminManager extends HttpServlet implements ControllerBase{
             int totalAdmin = MC.instance.userService.getTotalAdmin(false);
             request.setAttribute("totalAdmin", totalAdmin);
 
+            log.info("Ready for admin management page");
         }
         catch (ConnectionException e){
             log.error("Error connecting to the database");

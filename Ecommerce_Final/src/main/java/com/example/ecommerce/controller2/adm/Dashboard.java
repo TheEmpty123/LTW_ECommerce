@@ -19,6 +19,8 @@ public class Dashboard extends HttpServlet implements ControllerBase {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        log.info("Loading dashboard page");
+
         try {
             NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
 
@@ -42,6 +44,7 @@ public class Dashboard extends HttpServlet implements ControllerBase {
             int totalEmployee = MC.instance.userService.getTotalEmployee(false);
             request.setAttribute("totalEmployee", totalEmployee);
 
+            log.info("Ready for dashboard page");
         } catch (ConnectionException e) {
             log.error("Error connecting to the database");
         }

@@ -30,7 +30,6 @@ public class UserManager extends HttpServlet implements ControllerBase {
         }
 
         log.info("User has access to this resource");
-        request.setAttribute("CMD", RolePermission.USER_MANAGEMENT);
 
         try{
             log.info("Getting user list...");

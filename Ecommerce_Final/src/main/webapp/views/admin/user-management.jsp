@@ -1,7 +1,8 @@
 <%@ page import="com.example.ecommerce.Bean.User" %>
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
-<%@ page import="com.example.ecommerce.Bean.Role" %><%--
+<%@ page import="com.example.ecommerce.Bean.Role" %>
+<%@ page import="java.sql.Timestamp" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -151,7 +152,7 @@
                                     </td>
                                     <td><%=roles.get(u.getRoleID()).getNameRole()%>
                                     </td>
-                                    <td><%=u.getCreateUser()%>
+                                    <td><%=Timestamp.valueOf(u.getCreateUser())%>
                                     </td>
                                     <td>
                                         <%
@@ -173,7 +174,7 @@
                                         %>
                                     </td>
                                     <td>
-                                        <a href="">
+                                        <a href="edit-user?id=<%=u.getId()%>">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
                                         <a href="">
@@ -222,7 +223,7 @@
                             }
                         %>
                         <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
-                        <a href="#" class="add-user-btn">Add user</a>
+                        <a href="add-user" class="add-user-btn">Add user</a>
                     </div>
 
                 </div>
