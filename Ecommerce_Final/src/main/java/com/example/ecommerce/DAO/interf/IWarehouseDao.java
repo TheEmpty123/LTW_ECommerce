@@ -7,6 +7,7 @@ import java.util.List;
 public interface IWarehouseDao {
     //Lay tat ca cac warehouse
     List<Warehouse> getAllWarehouse();
+    List<Warehouse> getAllWarehouse(boolean force);
     //Lay warehoust theo id
     Warehouse getWarehouseById(int id);
     //Them mot warehouse moi

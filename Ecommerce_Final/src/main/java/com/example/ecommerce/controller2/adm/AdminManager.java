@@ -33,13 +33,13 @@ public class AdminManager extends HttpServlet implements ControllerBase{
 
         // !
         // Supreme permission only
-        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME)){
+        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)){
             log.warn("User does not have access to this resource");
             response.sendRedirect("/404");
             return;
         }
 
-        log.info("User has access this resource");
+        log.info("User has access to this resource");
 
         try {
             log.info("Getting admin list...");

@@ -2,6 +2,7 @@ package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.RolePermission;
+import com.example.ecommerce.Common.Enum.StatusUser;
 import com.example.ecommerce.DAO.interf.IUsersDao;
 import com.example.ecommerce.InsertData;
 
@@ -146,6 +147,22 @@ public class UserDao extends ImplementBase implements IUsersDao {
                 userList.add(user);
 
         return userList;
+    }
+
+    @Override
+    public List<User> getAvailableUsers(boolean forceUpdate) {
+        log.info("Querying available users with force: " + forceUpdate);
+        List<User> availableUsers = new ArrayList<>();
+
+        allUser = getAllUsers(forceUpdate);
+
+        allUser.forEach(u ->{
+            if(u.getStatusUser().equals(StatusUser.ENABLE)){
+                availableUsers.add(u);
+            }
+        });
+
+        return availableUsers;
     }
 
     public static void main(String[] args) {
