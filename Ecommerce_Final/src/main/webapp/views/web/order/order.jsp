@@ -6,17 +6,18 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/order.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/order.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -41,7 +42,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -67,10 +68,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/cart/cart.jsp">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="../order/order.html">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/order/order.jsp">THANH TOÁN</a>
             </div>
 
         </div>
@@ -89,9 +90,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="../../../contact.html">0906 904 114</a>
+                <a href="${pageContext.request.contextPath}/contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../../about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}/about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -109,12 +110,12 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="../../../../webapp/views/common/home.html"><img
-                        src="../../../public/images/logos/logo3.png" alt="Logo"></a>
+                <a href="${pageContext.request.contextPath}/index.jsp"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo"></a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="../product/all-product.html">SẢN PHẨM</a>
+                   href="${pageContext.request.contextPath}/product/all-product.jsp">SẢN PHẨM</a>
 
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
@@ -256,7 +257,8 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../product/products.html">
+                                        <a class="ux-menu-link__link flex"
+                                           href="${pageContext.request.contextPath}/product/products.jsp">
                                                 <span class="ux-menu-link__text">
                                                     Đồng hồ </span>
                                         </a>
@@ -305,18 +307,18 @@
             <label>Số điện thoại *</label>
             <input type="text" placeholder="Nhập số điện thoại của bạn">
 
-            <label>Tỉnh / Thành phố *</label>
-            <select>
+            <label for="province-select">Tỉnh / Thành phố *</label>
+            <select id="province-select">
                 <option>Chọn tỉnh / thành phố</option>
             </select>
 
-            <label>Quận / Huyện *</label>
-            <select>
+            <label for="district-select">Quận / Huyện *</label>
+            <select id="district-select">
                 <option>Chọn quận / huyện</option>
             </select>
 
-            <label>Địa chỉ *</label>
-            <input type="text" placeholder="Nhập địa chỉ">
+            <label for="address">Địa chỉ *</label>
+            <input type="text" id="address" placeholder="Nhập địa chỉ">
 
             <label class="checkbox-label">
                 <input type="checkbox">
@@ -343,18 +345,9 @@
             <p>13,900,000₫</p>
         </div>
 
-        <!-- <h3>VẬN CHUYỂN</h3>
-        <label><input type="radio" name="shipping"> Liên hệ phí vận chuyển sau</label>
-        <label><input type="radio" name="shipping"> Phí vận chuyển</label> -->
-
-        <!-- <div class="summary-item">
-            <p>TỔNG CỘNG</p>
-            <p>13,900,000₫</p>
-        </div> -->
-
         <h3>Sản phẩm</h3>
         <div class="product">
-            <img src="../../../public/images/all-products/52.jpg" alt="Armchair">
+            <img src="${pageContext.request.contextPath}/public/images/all-products/52.jpg" alt="Armchair">
             <div class="product-details">
                 <p>Armchair Hùng King + Gối</p>
                 <p>VACT3231 × 1</p>
@@ -514,7 +507,7 @@
                             <p>• Hotline: 1800 7200</p>
                             <p>• Email: <a
                                     href="mailto:nhaxinhcare@akacompany.com.vn">kanescare@akacompany.com.vn</a></p>
-                            <p>• Website: <a href="../../common/home.html">www.nhaxinh.com</a></p>
+                            <p>• Website: <a href="${pageContext.request.contextPath}/index.jsp">www.kanes.com</a></p>
                             <!-- </div> -->
                             <p><strong>CHÍNH SÁCH BẢO MẬT THANH TOÁN</strong></p>
                             <p><strong>1. CAM KẾT BẢO MẬT.</strong></p>
@@ -583,7 +576,8 @@
             <!-- Left Column -->
             <div class="footer-column">
                 <h3>KẾT NỐI VỚI KANE'S</h3>
-                <img src="../../../public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
+                <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
+                     class="footer-logo">
                 <p>FOLLOW US</p>
                 <p>Instagram – Youtube – Facebook</p>
                 <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
@@ -627,7 +621,56 @@
 
     </footer>
 </div>
-<script src="../../../public/js/curtainmenu.js"></script>
-<script src="../../../public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
+<script>
+    fetch('/locations')
+        .then(response => response.json())
+        .then(data => {
+            const provinces = data.province;
+            const districts = data.district;
+            console.log("districts data:", districts)
+            if (!provinces || !districts) {
+                console.error('Invalid data from server.');
+                return;
+            }
+
+            const provinceSelect = document.getElementById('province-select');
+            const districtSelect = document.getElementById('district-select');
+
+            districtSelect.disabled = true;
+
+            provinces.forEach(province => {
+                const option = document.createElement('option');
+                option.value = province.idProvince;
+                option.textContent = province.name;
+                provinceSelect.appendChild(option);
+            });
+
+            provinceSelect.addEventListener('change', function () {
+                const selectedProvinceId = provinceSelect.value;
+                console.log("seleted provinec ID", selectedProvinceId)
+                districtSelect.innerHTML = '<option disabled selected>Chọn quận / huyện</option>';
+                districtSelect.disabled = !selectedProvinceId;
+
+                if (selectedProvinceId) {
+                    const filteredDistricts = districts.filter(district =>
+                        district.idProvince === Number(selectedProvinceId));
+                    console.log('Filtered Districts:', filteredDistricts);
+
+                    filteredDistricts.forEach(district => {
+                        const option = document.createElement('option');
+                        option.value = district.idDistrict;
+                        option.textContent = district.name;
+                        districtSelect.appendChild(option);
+                    });
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching location data:', error));
+
+
+</script>
+
 </body>
 </html>

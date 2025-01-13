@@ -2,8 +2,8 @@ package com.example.ecommerce.Location;
 
 public class District {
     private int idDistrict;
-    private int idProvince;
     private String name;
+    private int idProvince; // Province ID to filter districts
 
     public int getIdDistrict() {
         return idDistrict;
@@ -13,19 +13,19 @@ public class District {
         this.idDistrict = idDistrict;
     }
 
-    public int getIdProvince() {
-        return idProvince;
-    }
-
-    public void setIdProvince(int idProvince) {
-        this.idProvince = idProvince;
-    }
-
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getIdProvince() {
+        return idProvince;
+    }
+
+    public void setIdProvince(int idProvince) {
+        this.idProvince = idProvince;
     }
 }
