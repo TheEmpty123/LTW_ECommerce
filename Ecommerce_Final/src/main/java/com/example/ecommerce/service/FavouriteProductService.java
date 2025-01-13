@@ -13,16 +13,28 @@ public class FavouriteProductService extends ServiceBase {
     public void init() {
         log.info("FavouriteProductService init...");
     }
+
     public static FavouriteProductService getInstance() {
         if (instance == null) {
             instance = new FavouriteProductService();
+            instance.favouriteProductDao = new FavouriteProductDao();
         }
         return instance;
     }
+
     public List<FavouriteProduct> getAllFavouriteProducts() {
-        return favouriteProductDao.getAll();
+        return favouriteProductDao.getAllProduct();
     }
-    public List<FavouriteProduct> getFavouriteProductByUserId(int id){
+
+    public List<FavouriteProduct> getFavouriteProductByUserId(int id) {
         return favouriteProductDao.getByUserId(id);
+    }
+
+    public boolean addFavouriteProduct(int productID, int userID) {
+        return favouriteProductDao.addFavouriteProduct(productID, userID);
+    }
+
+    public boolean deleteFavouriteProduct(int productID, int userID) {
+        return favouriteProductDao.deleteFavouriteProduct(productID, userID);
     }
 }

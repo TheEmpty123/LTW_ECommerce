@@ -1,7 +1,6 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.Bean.Promotion;
-import com.example.ecommerce.DAO.iml.ProductDao;
 import com.example.ecommerce.DAO.iml.PromotionDao;
 
 import java.util.List;

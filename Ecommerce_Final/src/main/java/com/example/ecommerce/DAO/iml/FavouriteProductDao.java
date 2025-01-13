@@ -11,8 +11,7 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
     public static FavouriteProductDao instance;
 
     public FavouriteProductDao(){
-        super();
-        favouriteProductList = getAll();
+        favouriteProductList = getAllProduct();
 
     }
     public static FavouriteProductDao getInstance(){
@@ -25,7 +24,7 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
         return favouriteProductList;
     }
     @Override
-    public List<FavouriteProduct> getAll() {
+    public List<FavouriteProduct> getAllProduct() {
         return db.jdbi.withHandle(handle ->
                 handle.createQuery("select * from favourite_products")
                         .mapToBean(FavouriteProduct.class)
@@ -43,11 +42,23 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
 
     @Override
     public boolean addFavouriteProduct(int productId, int userId) {
-        return false;
+        int rowsAffected = db.jdbi.withHandle(handle ->
+                handle.createUpdate("INSERT INTO favourite_products (productID, userID) VALUES (:productId, :userId)")
+                        .bind("productId", productId)
+                        .bind("userId", userId)
+                        .execute()
+        );
+        return rowsAffected > 0; // Trả về true nếu thêm thành công.
     }
 
     @Override
     public boolean deleteFavouriteProduct(int productId, int userId) {
-        return false;
+        int rowsAffected = db.jdbi.withHandle(handle ->
+                handle.createUpdate("DELETE FROM favourite_products WHERE productID = ? AND userID = ?")
+                        .bind(1, productId)
+                        .bind(2, userId)
+                        .execute()
+        );
+        return rowsAffected > 0; // Trả về true nếu có ít nhất một dòng bị xóa
     }
 }

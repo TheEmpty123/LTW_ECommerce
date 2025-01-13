@@ -1,13 +1,10 @@
 package com.example.ecommerce.Bean;
 
-import java.io.Serializable;
-
-public class FavouriteProduct implements Serializable {
+public class FavouriteProductJson {
     private int productID;
     private int userID;
 
-    public FavouriteProduct() {}
-    public FavouriteProduct(int productID, int userID) {
+    public FavouriteProductJson(int productID, int userID) {
         this.productID = productID;
         this.userID = userID;
     }

@@ -27,6 +27,7 @@
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
     <title>Tất cả sản phẩm</title>
     <style>
         /* Kiểu thông báo */
@@ -308,7 +309,7 @@
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
-                             data-img="${p.thumb}" data-price="${p.price}" data-user="${sessionScope.auth.id}">
+                             data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
@@ -317,7 +318,7 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product">
+                                <div class="like-price-product favourite-product" data-id = "${p.id}" data-user= "${sessionScope.auth.id}">
                                         <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                     value="${p.price}"/></span>
                                     <button class="wishlist-button">
