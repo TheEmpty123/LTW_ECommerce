@@ -43,12 +43,17 @@ public class ProductService extends ServiceBase {
     public Product getProductById(int id) {
         return productDao.getProductById(id);
     }
-    public List<Product> getProductByCategory(int cateID){
+
+    public List<Product> getProductByCategory(int cateID) {
         return productDao.getProductByCategory(cateID);
     }
 
     public List<Product> getNew4Products() {
         return productDao.get4NewProducts();
+    }
+
+    public List<Product> getSearch(String name) {
+        return productDao.search(name);
     }
 //    public void
 }

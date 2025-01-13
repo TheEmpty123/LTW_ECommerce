@@ -25,7 +25,7 @@ public interface IProductDAO {
     List<Product> getProductByCategory(int cateId);
 
     // Get product using Search
-    List<Product> Search(String txt);
+    List<Product> search(String name);
 
     // get about 8 new products
     List<Product> get4NewProducts();
