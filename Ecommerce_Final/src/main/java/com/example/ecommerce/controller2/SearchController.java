@@ -1,5 +1,6 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.DAO.iml.ProductDao;
@@ -38,6 +39,43 @@ public class SearchController extends HttpServlet {
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
 
+        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
+
+        for (int i = 0; i < countCol; i++) {
+            int index = i * catePerCol;
+            for (int j = index; j < index + catePerCol; j++) {
+                if (!mapCate.containsKey(i)) {
+                    List<Category> list = new ArrayList<>();
+                    list.add(categories.get(j));
+                    mapCate.put(i, list);
+                } else {
+                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    else break;
+                }
+            }
+        }
+        String pageParam = req.getParameter("page");
+        if (pageParam != null) {
+            currentPage = Integer.parseInt(pageParam);
+
+        }
+        int start = (currentPage - 1) * itemsPerPage;
+        int end = Math.min(start + itemsPerPage, data.size());
+        List<Product> pageProducts = data.subList(start, end);
+
+        int totalPages = (int) Math.ceil((double) data.size() / itemsPerPage);
+
+        HttpSession session = req.getSession(true);
+        Cart c = (Cart) session.getAttribute("cart");
+        if ((c == null)) {
+            c = new Cart();
+            session.setAttribute("cart", c);
+        }
+        session.setAttribute("cart", c);
+        req.setAttribute("products", pageProducts);
+        req.setAttribute("currentPage", (Integer) currentPage);
+        req.setAttribute("totalPages", (Integer) totalPages);
+        req.setAttribute("mapCate", mapCate);
         req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
 
     }
