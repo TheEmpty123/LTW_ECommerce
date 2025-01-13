@@ -26,6 +26,7 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
     <title>Tất cả sản phẩm</title>
     <style>
         /* Kiểu thông báo */
@@ -287,7 +288,7 @@
                                 <input type="checkbox" id="kimloai" onchange="updateSelection()">
                                 <label for="kimloai">Kim loại (387)</label>
                             </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
+                            <div class="dropdown-footer" onclick="showMore()">Xem thêm</div>
                         </div>
                     </div>
                 </div>
@@ -307,7 +308,7 @@
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
-                             data-img="${p.thumb}" data-price="${p.price}">
+                             data-img="${p.thumb}" data-price="${p.price}" data-user="${sessionScope.auth.id}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
@@ -770,22 +771,22 @@
     //hiển thị thêm các lựa chọn trong phần lọc theo vật liệu
     function showMore() {
         const textFooter = document.querySelector('.dropdown-footer').textContent
-        if (textFooter === "Show more") {
+        if (textFooter === "Xem thêm") {
             document.querySelectorAll('.dropdown-item-material').forEach(e => {
                 if (e.classList.contains('hidden')) {
                     e.classList.remove('hidden')
                     e.classList.add('show')
                 }
             })
-            document.querySelector('.dropdown-footer').textContent = "Hide less"
-        } else if (textFooter === "Hide less") {
+            document.querySelector('.dropdown-footer').textContent = "Ẩn bớt"
+        } else if (textFooter === "Ẩn bớt") {
             document.querySelectorAll('.dropdown-item-material').forEach(e => {
                 if (e.classList.contains('show')) {
                     e.classList.remove('show')
                     e.classList.add('hidden')
                 }
             })
-            document.querySelector('.dropdown-footer').textContent = "Show more"
+            document.querySelector('.dropdown-footer').textContent = "Xem thêm"
         }
 
     }
