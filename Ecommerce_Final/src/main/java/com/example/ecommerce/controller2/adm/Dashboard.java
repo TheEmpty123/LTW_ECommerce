@@ -19,7 +19,8 @@ public class Dashboard extends HttpServlet implements ControllerBase {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log.info("Loading dashboard page");
+        initialize();
+        log.warn("Loading dashboard page");
 
         try {
             NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);

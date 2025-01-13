@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.ecommerce.Bean.User" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -67,43 +67,41 @@
                 <div class="activity-card">
                     <div class="form-container">
                         <h2>User Information</h2>
-                        <form>
-                            <c:if test="${method eq 'edit'}">
+                        <c:if test="${method eq 'edit'}">
+                            <form method="post" action="/admin/edit-user">
                                 <div class="form-group">
                                     <label for="fullName">Full Name</label>
-                                    <input type="text" id="fullName" name="fullName" placeholder="Enter full name"
-                                           required>
+                                    <input type="text" id="fullName" name="fullName" placeholder="${user.fullName}">
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Username</label>
-                                    <input type="text" id="username" name="username" placeholder="${user.username}"
-                                           required>
+                                    <input type="text" id="username" name="username" placeholder="${user.username}">
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" id="email" name="email" placeholder="Enter email" required>
+                                    <input type="email" id="email" name="email" placeholder="${user.email}">
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone No.</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="${user.phoneNum}">
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
                                     <select type="role" id="role" name="role">
                                         <option value="CLIENT">Client</option>
-                                        <option value="VIP_CLIENT">VIP client</option>
                                         <option value="MANAGER">Manager</option>
                                         <option value="EMPLOYEE">Employee</option>
                                         <option value="ADMINISTRATOR">Administrator</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="submit-btn">Submit</button>
-                            </c:if>
-                            <c:if test="${method eq 'add'}">
+                            </form>
+                        </c:if>
+                        <c:if test="${method eq 'add'}">
+                            <form method="post" action="/admin/add-user">
                                 <div class="form-group">
                                     <label for="fullName">Full Name</label>
-                                    <input type="text" id="fullName" name="fullName" placeholder="Enter full name"
-                                           required>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter full name">
                                 </div>
                                 <div class="form-group">
                                     <label for="username">Username</label>
@@ -116,21 +114,20 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Phone No.</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
+                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
                                     <select type="role" id="role" name="role">
                                         <option value="CLIENT">Client</option>
-                                        <option value="VIP_CLIENT">VIP client</option>
                                         <option value="MANAGER">Manager</option>
                                         <option value="EMPLOYEE">Employee</option>
                                         <option value="ADMINISTRATOR">Administrator</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="submit-btn">Submit</button>
-                            </c:if>
-                        </form>
+                            </form>
+                        </c:if>
                     </div>
                 </div>
             </div>

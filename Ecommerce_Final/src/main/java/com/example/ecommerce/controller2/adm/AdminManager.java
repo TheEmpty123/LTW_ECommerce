@@ -23,7 +23,8 @@ public class AdminManager extends HttpServlet implements ControllerBase{
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log.info("Loading admin management page");
+        initialize();
+        log.warn("Loading admin management page");
 
         HttpSession session = request.getSession();
         User user = session == null ? null : (User) session.getAttribute("auth");

@@ -183,7 +183,6 @@ public class UserService extends ServiceBase {
         var roles = getRolesMap(forceUpdate);
         Role userRole = roles.get(user.getRoleID());
 
-        log.info(userRole.getPermission());
         if (userRole.getPermission() == null) return false;
 
         return userRole.getPermission().contains(permission);

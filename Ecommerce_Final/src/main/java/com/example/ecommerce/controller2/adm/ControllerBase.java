@@ -6,7 +6,7 @@ import com.example.ecommerce.controller2.MC;
 public interface ControllerBase {
     public LogObj log = new LogObj();
     default void initialize(){
-        log.setName(getClass().getSimpleName());
         MC.createInstance();
+        log.setName(getClass().getSimpleName());
     }
 }

@@ -14,7 +14,8 @@ public class UserHandler extends HttpServlet implements ControllerBase{
     public void init() {initialize();}
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log.info("Loading add/edit user form");
+        initialize();
+        log.warn("Loading add/edit user form");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
@@ -59,8 +60,33 @@ public class UserHandler extends HttpServlet implements ControllerBase{
             MC.instance.savedID = null;
         }
 
+        log.info("Form is ready");
         request.getRequestDispatcher("/views/admin/add-user.jsp")
                 .forward(request, response);
+    }
+
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
+        log.info("Request to update user received");
+
+        String uri = request.getRequestURI();
+        boolean flag = false;
+
+        if(uri.endsWith("add-user")) {
+            flag = false;
+        }
+        else if(uri.endsWith("edit-user")) {
+            flag = true;
+        }
+
+        if (flag){
+            log.info("Performing edit user action");
+        }
+        else {
+            log.info("Performing add user action");
+        }
+
+        resp.sendRedirect("/admin/users");
     }
 
     public void destroy() {
