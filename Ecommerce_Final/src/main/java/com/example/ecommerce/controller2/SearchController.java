@@ -28,7 +28,9 @@ public class SearchController extends HttpServlet {
 
         try {
             String value = req.getParameter("search-input");
+            System.out.println("Finding value: " + value);
             data = service.getSearch(value);
+            System.out.println(data);
             categories = cateService.getAllCategory();
         } catch (Exception e) {
             throw new RuntimeException(e);
@@ -76,7 +78,7 @@ public class SearchController extends HttpServlet {
         req.setAttribute("currentPage", (Integer) currentPage);
         req.setAttribute("totalPages", (Integer) totalPages);
         req.setAttribute("mapCate", mapCate);
-        req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
+        req.getRequestDispatcher("/views/web/product/search-products.jsp").forward(req, resp);
 
     }
 

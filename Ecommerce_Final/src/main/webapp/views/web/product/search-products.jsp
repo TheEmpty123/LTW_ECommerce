@@ -189,12 +189,13 @@
             </nav>
             <form action="/search" method="get">
                 <div class="search-bar-hd">
-                    <input id="search-input" type="text" placeholder="Tìm sản phẩm">
-                    <button onclick="getValue()">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
             </form>
+
             <script>
                 function getValue() {
                     const searchInput = document.getElementById("search-input");
