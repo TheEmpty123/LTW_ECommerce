@@ -49,7 +49,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user-management.jsp">
+                    <a href="/admin/user-management">
                         <span class="ti-user"></span>
                         <span>Người dùng</span>
                     </a>

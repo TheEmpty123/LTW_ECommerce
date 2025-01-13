@@ -15,6 +15,7 @@ public class RoleDao extends ImplementBase implements IRoleDao {
     }
 
     void init(){
+
         log.info("Initializing...");
         try {
             roles = getAllRoles();

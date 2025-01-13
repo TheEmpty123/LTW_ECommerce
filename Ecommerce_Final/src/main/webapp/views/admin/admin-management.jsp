@@ -54,7 +54,7 @@
 
         <h2 class="dash-title">Overview</h2>
         <h3 class="dash-address">
-            <a href="admin/dashboard">Home</a>/<a href="#">admins</a>
+            <a href="/admin/dashboard">Home</a>/<a href="#">admins</a>
         </h3>
 
         <div class="dash-cards">
@@ -70,7 +70,6 @@
             </div>
 
         </div>
-
 
         <section class="recent">
             <div class="activity-grid-alt">
@@ -132,8 +131,7 @@
                     <div class="pagination">
                         <h6 class="show-entries">
                             <%
-                                List<User> users = (List<User>) request.getAttribute("adminList");
-                                int size = users.size();
+                                Integer size = (Integer) request.getAttribute("totalAdmin");
                                 int showMax = 5;
                                 int totalPages = (int) Math.ceil((double) size / showMax);
                                 int currentPage = 1;
@@ -146,13 +144,17 @@
                             %>
                             *Showing <%= startIndex + 1 %> to <%= endIndex %> of <%= size %> entries
                         </h6>
+                        <a href="?page=<%= currentPage > 1 ? currentPage - 1 : 1 %>">«</a>
                         <%
-
+                            for (int i = 1; i <= totalPages; i++) {
+                                String activeClass = (i == currentPage) ? "active" : "";
                         %>
-                        <a href="#">&laquo;</a>
-                        <a href="#" class="active">1</a>
-                        <a href="#">&raquo;</a>
-                        <a href="add-user.jsp" class="add-user-btn">Add user</a>
+                        <a href="?page=<%= i %>" class="<%= activeClass %>"><%= i %></a>
+                        <%
+                            }
+                        %>
+                        <a href="?page=<%= currentPage < totalPages ? currentPage + 1 : totalPages %>">»</a>
+                        <a href="#add-user" class="add-user-btn">Add user</a>
                     </div>
 
                 </div>

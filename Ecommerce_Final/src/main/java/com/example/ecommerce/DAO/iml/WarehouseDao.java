@@ -12,9 +12,29 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
     public WarehouseDao() {
         super();
     }
+
     @Override
     public List<Warehouse> getAllWarehouse() {
-        return List.of();
+
+        if (warehouses.isEmpty()) {
+            warehouses = handle.createQuery("SELECT * FROM warehouse")
+                                .mapToBean(Warehouse.class)
+                                .list();
+        }
+
+        return warehouses;
+    }
+
+    @Override
+    public List<Warehouse> getAllWarehouse(boolean force) {
+        log.info("Querying all warehouses with force: " + force);
+
+        if (force) {
+            warehouses.clear();
+        }
+        warehouses = getAllWarehouse();
+
+        return warehouses;
     }
 
     @Override

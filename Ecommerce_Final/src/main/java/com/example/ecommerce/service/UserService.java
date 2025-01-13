@@ -11,15 +11,12 @@ import com.example.ecommerce.mail.MailProperties;
 import jakarta.servlet.http.HttpSession;
 
 import javax.mail.internet.InternetAddress;
-import java.util.List;
-import java.util.Objects;
-import java.util.Properties;
+import java.util.*;
 
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
-import java.util.Map;
 
 
 public class UserService extends ServiceBase {
@@ -36,8 +33,6 @@ public class UserService extends ServiceBase {
     public static UserService getInstance() {
         if (Instance == null) {
             Instance = new UserService();
-            Instance.userDao = new UserDao();
-            Instance.roleDao = new RoleDao();
         }
         return Instance;
     }
@@ -45,7 +40,7 @@ public class UserService extends ServiceBase {
     @Override
     public void init() {
         log.info("UserService init...");
-        if (userDao == null) {
+        if (userDao == null || roleDao == null) {
             userDao = new UserDao();
             roleDao = new RoleDao();
         }
@@ -180,15 +175,38 @@ public class UserService extends ServiceBase {
         return roleDao.getAllRoles(forceUpdate);
     }
 
-    public boolean hasPermission(User user, String permission) {
+    public boolean hasPermission(User user, String permission, boolean forceUpdate) {
         log.info("UserService hasPermission...");
 
         if (user == null || permission.equals("")) return false;
 
-        var roles = MC.instance.userService.getRolesMap(true);
+        var roles = getRolesMap(forceUpdate);
         Role userRole = roles.get(user.getRoleID());
 
-        return userRole.equals(permission);
+        log.info(userRole.getPermission());
+        if (userRole.getPermission() == null) return false;
 
+        return userRole.getPermission().contains(permission);
+    }
+
+    public int getTotalAvailableUsers(boolean forceUpdate) {
+        log.info("UserService getTotalAvailableUsers...");
+        return userDao.getAvailableUsers(forceUpdate).size();
+    }
+
+    public int getTotalUsersWithModerator(boolean forceUpdate, String permission) {
+        log.info("UserService getTotalUsersWithModerator...");
+
+        var userList = userDao.getAllUsers(forceUpdate);
+        var roles = getRolesMap(forceUpdate);
+        List<User> list = new ArrayList<>();
+
+        userList.forEach(u -> {
+            if(hasPermission(u, permission, false)) {
+                list.add(u);
+            }
+        });
+
+        return list.size();
     }
 }

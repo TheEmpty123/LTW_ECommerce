@@ -3,10 +3,7 @@ package com.example.ecommerce.controller2;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.LogObj;
 import com.example.ecommerce.Database.JDBIConnect;
-import com.example.ecommerce.service.OrderService;
-import com.example.ecommerce.service.ProductService;
-import com.example.ecommerce.service.ServiceBase;
-import com.example.ecommerce.service.UserService;
+import com.example.ecommerce.service.*;
 
 import java.util.ArrayList;
 
@@ -15,6 +12,7 @@ public class MC {
     public ProductService productService;
     public UserService userService;
     public OrderService orderService;
+    public WarehouseService warehouseService;
     public LogObj log = new LogObj();
 
     private boolean initialized;
@@ -33,23 +31,28 @@ public class MC {
 
     public MC() {
         initialized = false;
-        log.info("logging");
         conn = JDBIConnect.getInstance();
         serviceList = new ArrayList<>();
         serviceList.add(productService = ProductService.getInstance());
         serviceList.add(userService = UserService.getInstance());
         serviceList.add(orderService = OrderService.getInstance());
+        serviceList.add(warehouseService = WarehouseService.getInstance());
     }
 
     private void init() {
-        if (initialized) return;
+        if (initialized) {
+            log.info("Manager initialized");
+            return;
+        }
 
         log.setName(getClass().getName());
+        log.info("Initializing commerce...");
 
         conn.Initialize();
         serviceList.forEach(ServiceBase::init);
 
         initialized = true;
+        log.info("Initialized with status: " + initialized);
     }
 
     public static void main(String[] args) {

@@ -35,4 +35,6 @@ public interface IUsersDao {
     int getTotalAdmin(boolean force);
 
     List<User> getAllAdmin(boolean forceUpdate);
+
+    List<User> getAvailableUsers(boolean forceUpdate);
 }
