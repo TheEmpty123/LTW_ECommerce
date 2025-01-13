@@ -10,7 +10,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(name = "UserManagerServlet", value = "/admin/user-management")
+@WebServlet(name = "UserManagerServlet", value = "/admin/users")
 public class UserManager extends HttpServlet implements ControllerBase {
 
     public void init() {
@@ -37,6 +37,9 @@ public class UserManager extends HttpServlet implements ControllerBase {
             List<User> allUserList = MC.instance.userService.getAllUser(true);
             request.setAttribute("users", allUserList);
 
+            var roles = MC.instance.userService.getRolesMap(false);
+            request.setAttribute("roles", roles);
+
             int totalUserWithModerator = MC.instance.userService.getTotalUsersWithModerator(false, RolePermission.USER_MANAGEMENT);
             request.setAttribute("totalUserWithModerator", totalUserWithModerator);
 
@@ -53,8 +56,6 @@ public class UserManager extends HttpServlet implements ControllerBase {
             request.setAttribute("agencies", totalWarehouse);
 
             log.info("Ready for user management page");
-            log.warn(totalUserWithModerator);
-            log.warn("Result: " + allUserList + " " + totalUserWithModerator + " " + totalUsers + " " + availableUsers + " " + disabledUsers + " " + totalWarehouse);
         }
         catch (Exception e){
             log.error("Error getting resource");

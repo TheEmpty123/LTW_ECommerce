@@ -13,10 +13,10 @@ import java.security.NoSuchAlgorithmException;
 
 
 public class InsertData {
-    static String p = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
+    static String p = "E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
 
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        String jsonFilePath = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
+        String jsonFilePath = "E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
 
         try {
             // Read the JSON file
@@ -437,7 +437,7 @@ public class InsertData {
         }
     }
 
-    private static void insertUsers(Connection conn, String username, String fullname, String gender, String pass, String email, String phone, String statusUser, String createDate, String avatar, int role) {
+    public static void insertUsers(Connection conn, String username, String fullname, String gender, String pass, String email, String phone, String statusUser, String createDate, String avatar, int role) {
         pass = hashPassword(pass);
         String sql = "INSERT INTO users" +
                 "(username, fullName, gender, pass, email, phoneNum, statusUser, createUser, avatar, roleID) " +
