@@ -7,10 +7,7 @@ public class OrderItem implements Serializable {
     private int orderID;
     private int productID;
     private int amount;
-    // Các thuộc tính mới
-    private String proName;
-    private double price;
-    private String thumb;
+    private Product product;
 
     public int getId() {
         return id;
@@ -44,31 +41,14 @@ public class OrderItem implements Serializable {
         this.amount = amount;
     }
 
-    public String getProName() {
-        return proName;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setProName(String proName) {
-        this.proName = proName;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public String getThumb() {
-        return thumb;
-    }
-
-    public void setThumb(String thumb) {
-        this.thumb = thumb;
-    }
-
-    // Phương thức toString
     @Override
     public String toString() {
         return "OrderItem{" +
@@ -76,9 +56,7 @@ public class OrderItem implements Serializable {
                 ", orderID=" + orderID +
                 ", productID=" + productID +
                 ", amount=" + amount +
-                ", proName='" + proName + '\'' +
-                ", price=" + price +
-                ", thumb='" + thumb + '\'' +
+                ", product=" + product +
                 '}';
     }
 }

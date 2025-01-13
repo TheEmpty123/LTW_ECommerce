@@ -32,23 +32,14 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     public List<OrderItem> getOrderItem() {
         return db.getJdbi().withHandle(handle ->
                 handle.createQuery("SELECT order_item.id AS order_item_id, order_item.orderID, order_item.productID AS order_item_productID, " +
-                                "order_item.amount, products.proName, products.price, products.thumb " +
+                                "order_item.amount, products.id AS product_id, products.proName, products.description, " +
+                                "products.price, products.thumb, products.created_at, products.atributeID, products.cateID " +
                                 "FROM order_item " +
                                 "JOIN products ON order_item.productID = products.id")
-                        .map((rs, ctx) -> {
-                            OrderItem orderItem = new OrderItem();
-                            orderItem.setId(rs.getInt("order_item_id"));
-                            orderItem.setOrderID(rs.getInt("orderID"));
-                            orderItem.setProductID(rs.getInt("order_item_productID"));
-                            orderItem.setAmount(rs.getInt("amount"));
-                            // Gán các thuộc tính từ bảng `products` vào OrderItem
-                            orderItem.setProName(rs.getString("proName"));
-                            orderItem.setPrice(rs.getDouble("price"));
-                            orderItem.setThumb(rs.getString("thumb"));
-                            return orderItem;
-                        })
+                        .mapToBean(OrderItem.class)  // Make sure it maps to OrderItem
                         .list());
     }
+
 
 
 

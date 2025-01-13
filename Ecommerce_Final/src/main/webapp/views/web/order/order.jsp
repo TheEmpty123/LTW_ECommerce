@@ -309,14 +309,15 @@
             <h3>Sản phẩm</h3>
             <div class="product">
                 <c:forEach var="order" items="${orderitems}">
-                <img src="${pageContext.request.contextPath}/${order.thumb}" alt="${order.name}">
-                <div class="product-details">
-                    <p>${order.name}</p>
-                    <p>VACT3231 × 1</p>
-                    <p>${order.price}</p>
-                </div>
+                    <img src="${pageContext.request.contextPath}/${order.product.thumb}" alt="${order.product.proName}">
+                    <div class="product-details">
+                        <p>${order.product.proName}</p>
+                        <p>VACT3231 × 1</p>
+                        <p>${order.product.price}</p>
+                    </div>
                 </c:forEach>
             </div>
+
 
 
             <h3>THÔNG TIN THÊM</h3>

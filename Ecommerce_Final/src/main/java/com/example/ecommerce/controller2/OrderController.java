@@ -22,12 +22,19 @@ public class OrderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-       OrderItemService orderItemService = new OrderItemService();
-        List<OrderItem> orderitems = orderItemService.getOrderItem();
+        try {
+            OrderItemService orderItemService = new OrderItemService();
+            List<OrderItem> orderitems = orderItemService.getOrderItem();
+            System.out.println("Fetched order items: " + orderitems);
+            req.setAttribute("orderitems", orderitems);
 
-        req.setAttribute("orderitems", orderitems);
+            req.getRequestDispatcher("/views/web/order/order.jsp").forward(req, resp);
+        } catch (Exception e) {
+            e.printStackTrace();
+            req.setAttribute("error", "An error occurred while processing the order.");
+            req.getRequestDispatcher("/views/web/error.jsp").forward(req, resp);
+        }
 
-        req.getRequestDispatcher("/views/web/order/order.jsp").forward(req, resp);
     }
 
     @Override
