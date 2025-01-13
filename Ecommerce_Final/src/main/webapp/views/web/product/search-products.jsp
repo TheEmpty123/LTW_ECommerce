@@ -187,6 +187,7 @@
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
             </nav>
+<%--            //search--%>
             <form action="/search" method="get">
                 <div class="search-bar-hd">
                     <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
