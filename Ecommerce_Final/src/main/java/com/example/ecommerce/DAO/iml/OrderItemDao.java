@@ -3,8 +3,9 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.Order;
 import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Bean.Product;
+import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderItemDao;
-
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -33,25 +34,38 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     @Override
     public List<OrderItem> getOrderItem() {
         return db.getJdbi().withHandle(handle ->
-                handle.createQuery("SELECT \n" +
-                                "    order_item.id AS order_item_id,\n" +
-                                "    order_item.orderID AS order_item_orderID,\n" +
-                                "    order_item.productID AS order_item_productID,\n" +
-                                "    order_item.amount AS order_item_amount,\n" +
-                                "    products.id AS product_id,\n" +
-                                "    products.proName AS product_proName,\n" +
-                                "    products.description AS product_description,\n" +
-                                "    products.price AS product_price,\n" +
-                                "    products.thumb AS product_thumb,\n" +
-                                "    products.created_at AS product_created_at,\n" +
-                                "    products.atributeID AS product_atributeID,\n" +
-                                "    products.cateID AS product_cateID\n" +
-                                "FROM \n" +
-                                "    order_item\n" +
-                                "JOIN \n" +
-                                "    products \n" +
-                                "ON \n" +
-                                "    order_item.productID = products.id\n")
+                handle.createQuery(
+                                "SELECT \n" +
+                                        "    order_item.id AS order_item_id,\n" +
+                                        "    order_item.orderID AS order_item_orderID,\n" +
+                                        "    order_item.productID AS order_item_productID,\n" +
+                                        "    order_item.amount AS order_item_amount,\n" +
+                                        "    products.id AS product_id,\n" +
+                                        "    products.proName AS product_proName,\n" +
+                                        "    products.description AS product_description,\n" +
+                                        "    products.price AS product_price,\n" +
+                                        "    products.thumb AS product_thumb,\n" +
+                                        "    products.created_at AS product_created_at,\n" +
+                                        "    products.atributeID AS product_atributeID,\n" +
+                                        "    products.cateID AS product_cateID,\n" +
+                                        "    orders.id AS order_id,\n" +
+                                        "    orders.userID AS order_userID,\n" +
+                                        "    orders.paymentID AS order_paymentID,\n" +
+                                        "    orders.shippingStatus AS order_shippingStatus,\n" +
+                                        "    orders.createDate AS order_createDate,\n" +
+                                        "    orders.promotion_id AS order_promotion_id,\n" +
+                                        "    orders.sdt AS order_sdt\n" +
+                                        "FROM \n" +
+                                        "    order_item\n" +
+                                        "JOIN \n" +
+                                        "    products \n" +
+                                        "ON \n" +
+                                        "    order_item.productID = products.id\n" +
+                                        "JOIN \n" +
+                                        "    orders \n" +
+                                        "ON \n" +
+                                        "    order_item.orderID = orders.id"
+                        )
                         .reduceRows(new LinkedHashMap<Integer, OrderItem>(), (map, rowView) -> {
                             int orderId = rowView.getColumn("order_item_id", Integer.class);
                             OrderItem orderItem = map.computeIfAbsent(orderId, id -> {
@@ -61,6 +75,7 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
                                 item.setProductID(rowView.getColumn("order_item_productID", Integer.class));
                                 item.setAmount(rowView.getColumn("order_item_amount", Integer.class));
 
+                                // Ánh xạ thông tin sản phẩm
                                 Product product = new Product();
                                 product.setId(rowView.getColumn("product_id", Integer.class));
                                 product.setProName(rowView.getColumn("product_proName", String.class));
@@ -72,6 +87,18 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
                                 product.setCateID(rowView.getColumn("product_cateID", Integer.class));
 
                                 item.setProduct(product);
+
+                                // Ánh xạ thông tin đơn hàng
+                                Order order = new Order();
+                                order.setId(rowView.getColumn("order_id", Integer.class));
+                                order.setUserID(rowView.getColumn("order_userID", Integer.class));
+                                order.setPaymentID(rowView.getColumn("order_paymentID", Integer.class));
+                                order.setShippingStatus(rowView.getColumn("order_shippingStatus", ShippingStatus.class));
+                                order.setCreateDate(rowView.getColumn("order_createDate", LocalDateTime.class));
+                                order.setPromotion_id(rowView.getColumn("order_promotion_id", String.class));
+                                order.setSdt(rowView.getColumn("order_sdt", String.class));
+
+                                item.setOrder(order);
                                 return item;
                             });
 
@@ -81,6 +108,7 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
                         .stream()
                         .toList());
     }
+
 
 
     public static void main(String[] args) {

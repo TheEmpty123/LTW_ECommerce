@@ -8,6 +8,7 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <html>
@@ -303,33 +304,36 @@
         <form>
             <div class="summary-item">
                 <p>Thành tiền</p>
-                <p>13,900,000₫</p>
+                <p style="font-weight: bold; white-space: nowrap;">
+                    <fmt:formatNumber value="${total}" type="number"
+                                      groupingUsed="true"/> đ
             </div>
 
             <h3>Sản phẩm</h3>
-            <div class="product-list" style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
-                <c:forEach var="orderlist" items="${orderlist}">
-                    <c:forEach var="order" items="${orderitems}">
-                        <div class="product" style="margin-bottom: 20px;">
-                            <img src="${pageContext.request.contextPath}/${order.product.thumb}"
-                                 alt="${order.product.proName}"
-                                 style="width: 100px; height: auto; object-fit: cover;">
+            <div class="product-list"
+                 style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
+                <%--                <c:forEach var="orderlist" items="${orderlist}">--%>
+                <c:forEach var="order" items="${orderitems}">
+                    <div class="product" style="margin-bottom: 20px;">
+                        <img src="${pageContext.request.contextPath}/${order.product.thumb}"
+                             alt="${order.product.proName}"
+                             style="width: 100px; height: auto; object-fit: cover;">
 
-                            <div class="product-details" style="display: flex; align-items: center; gap: 200px;">
-                                <div class="product-column" style="flex: 1;">
-                                    <p><strong style="width: 150px">${order.product.proName}</strong></p>
-                                    <p>VACT3231 × 1</p>
-                                    <p style="width: 150px">Giá gốc: ${order.product.price} đ</p>
-                                    <p>
-                                        <fmt:formatNumber value="${order.product.price}" type="currency" currencySymbol="đ"/>
-                                    </p>
-                                </div>
-                                <div class="product-column" style="flex: 1; text-align: right;">
-                                    <h6 style="color: #007bff;">${orderlist.shippingStatus}</h6>
-                                </div>
+                        <div class="product-details" style="display: flex; align-items: center; gap: 200px;">
+                            <div class="product-column" style="flex: 1;">
+                                <p><strong style="width: 150px">${order.product.proName}</strong></p>
+                                <p>VACT3231 × 1</p>
+                                <p style="font-weight: bold; white-space: nowrap;">
+                                    Giá gốc: <fmt:formatNumber value="${order.product.price}" type="number"
+                                                               groupingUsed="true"/> đ
+                                </p>
+
                             </div>
+<%--                            <div class="product-column" style="flex: 1; text-align: right;">--%>
+<%--                                <h6 style="color: #007bff;">${order.order.shippingStatus}</h6>--%>
+<%--                            </div>--%>
                         </div>
-                    </c:forEach>
+                    </div>
                 </c:forEach>
             </div>
 

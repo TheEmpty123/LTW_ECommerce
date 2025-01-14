@@ -8,6 +8,15 @@ public class OrderItem implements Serializable {
     private int productID;
     private int amount;
     private Product product;
+    private Order order;
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
+    }
 
     public int getId() {
         return id;
