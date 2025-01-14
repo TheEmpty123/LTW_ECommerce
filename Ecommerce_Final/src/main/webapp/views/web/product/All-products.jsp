@@ -61,13 +61,15 @@
         .red {
             background-color: red;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -76,10 +78,11 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -128,7 +131,7 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                       value="${sessionScope.cart.total}"/>
+                                                          value="${sessionScope.cart.total}"/>
                     </p>
                 </div>
             </div>
@@ -179,7 +182,8 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -241,15 +245,14 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến
+                        <div id="sort-filter" class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả
                         </div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ
-                                biến
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả
                             </div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -259,37 +262,16 @@
                 <div class="row">
                     <h6>Chất liệu</h6>
                     <div class="dropdown-material">
-                        <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="ceramic" onchange="updateSelection()">
-                                <label for="ceramic">Ceramic (42)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da2" onchange="updateSelection()">
-                                <label for="da2">Đá (2)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="da181" onchange="updateSelection()">
-                                <label for="da181">Đá (181)</label>
-                            </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="da_vai" onchange="updateSelection()">
-                                <label for="da_vai">Da và vải (6)</label>
-                            </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="go" onchange="updateSelection()">
-                                <label for="go">Gỗ (383)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="gom" onchange="updateSelection()">
-                                <label for="gom">Gốm (113)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
-                            </div>
-                            <div class="dropdown-footer" onclick="showMore()">Xem thêm</div>
                         </div>
                     </div>
                 </div>
@@ -297,7 +279,7 @@
 
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -318,7 +300,8 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product favourite-product" data-id = "${p.id}" data-user= "${sessionScope.auth.id}">
+                                <div class="like-price-product favourite-product" data-id="${p.id}"
+                                     data-user="${sessionScope.auth.id}">
                                         <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                     value="${p.price}"/></span>
                                     <button class="wishlist-button">
@@ -356,12 +339,6 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center"
                     style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
-                    <!-- Trang hiện tại -->
-                    <%--                    <li class="page-item active" aria-current="page">--%>
-                    <%--                            <span class="page-link"--%>
-                    <%--                                  style="background-color: black; font-weight: bold; border-color: black;">1</span>--%>
-                    <%--                    </li>--%>
-
                     <c:if test="${currentPage > 1}">
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>

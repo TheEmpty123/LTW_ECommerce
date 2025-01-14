@@ -80,13 +80,22 @@ public class ProductDao extends ImplementBase implements IProductDAO {
                         .mapToBean(Product.class).list());
     }
 
+
     @Override
-    public List<Product> getProductByFilter(ProductFilter filter) {
-        return null;
+    public List<Product> getProductByFilter(String sort, String material) {
+        return db.jdbi.withHandle(handle1 ->
+                handle1.createQuery("select p.id, p.proName,p.price,p.description, p.thumb,p.created_at,p.cateID,p.atributeID " +
+                                         "from products p join product_atribute pa on p.cateID = pa.id " +
+                                         "where (:material IS NULL OR pa.material like :material) " +
+                                         "order by " +
+                                         "case when :sort = 'Thấp đến cao' then p.price end asc , " +
+                                         "case when :sort = 'Cao đến thấp' then p.price end desc, " +
+                                         "case when :sort = 'Mới nhất' then p.created_at end desc ")
+                        .mapToBean(Product.class).list());
     }
 
     public static void main(String[] args) {
-    ProductDao dao  =new ProductDao();
+        ProductDao dao = new ProductDao();
         System.out.println(dao.getProductById(1));
     }
 

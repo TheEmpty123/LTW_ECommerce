@@ -50,6 +50,8 @@ public class ProductService extends ServiceBase {
     public List<Product> getNew4Products() {
         return productDao.get4NewProducts();
     }
-//    public void
+    public List<Product> getProductByFilter(String sort, String material){
+        return productDao.getProductByFilter(sort, material);
+    }
 }
 
