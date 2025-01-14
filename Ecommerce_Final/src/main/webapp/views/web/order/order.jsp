@@ -354,10 +354,9 @@
     <div class="order-summary" , style="border: none;">
         <h2>Địa chỉ giao hàng</h2>
         <div class="shipping-address-container">
-            <div>Đặng Trần Tấn Lực (+84) 386101695</div>
-            <div>101/2a khu phố 3 đường số 4, Phường Linh Xuân, Thành Phố Thủ Đức, TP. Hồ Chí Minh</div>
+            <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
+            <div>${address[0].address.fullAddress}</div>
             <div class="actions">
-                <%--                <span class="edit-link" onclick="openModal()">Thay Đổi</span>--%>
                 <p5>Địa chỉ mới</p5>
             </div>
         </div>
