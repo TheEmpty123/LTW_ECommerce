@@ -91,7 +91,16 @@ public class CartController extends HttpServlet {
             String action = req.getParameter("action");
             if ("remove".equals(action)) {
                 cart.remove(newItem.getId());
-            } else {
+            }else if ("plus".equals(action)) {
+                // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
+                for (CartProduct item : cart.getList()) {
+                    if (item.getId() == (newItem.getId())) {
+                        cart.update(item.getId(), item.getQuantity() - 1);
+                        break;
+                    }
+                }
+
+            }else {
                 // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
                 boolean exists = false;
                 for (CartProduct item : cart.getList()) {

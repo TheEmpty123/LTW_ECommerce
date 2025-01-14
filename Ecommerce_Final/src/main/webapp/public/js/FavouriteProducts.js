@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             const productId = parseInt(productElement.dataset.id);
             const userId = parseInt(productElement.dataset.user);
-
+            console.log(userId)
             fetch("/favouriteProducts", {
                 method: "POST",
                 headers: {
@@ -21,12 +21,8 @@ document.addEventListener("DOMContentLoaded", function () {
             })
                 .then((response) => response.json())
                 .then(
-                    list => {
-                    // if (list.listProduct.includes(productId)){
-                    //     button.classList.toggle("clicked")
-                    // }else{
+                    (list) => {
                         button.classList.toggle("clicked")
-                    // }
                 }
                 )
                 .catch((error) => console.error("Lỗi:", error));
@@ -53,6 +49,7 @@ function updateFavoriteDisplay(favoritesList) {
             heartIcon.classList.add("clicked")
         } else {
             heartIcon.classList.remove("clicked")
+
         }
     })
 }

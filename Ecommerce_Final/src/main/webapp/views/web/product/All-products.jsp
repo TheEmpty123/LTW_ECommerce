@@ -179,7 +179,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">

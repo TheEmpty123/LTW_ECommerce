@@ -27,6 +27,9 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
+
     <style>
         /* Kiểu thông báo */
         .notification {
@@ -119,9 +122,8 @@
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
-
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                 alt="Logo">
                 </a>
             </div>
