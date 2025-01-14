@@ -355,35 +355,37 @@
         <div class="shipping-address-container">
             <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
             <div>${address[0].address.fullAddress}</div>
-            <div class="actions">
-                <p5>Địa chỉ mới</p5>
-            </div>
+
         </div>
 
 
-        <form id="abc" method="POST" action="/order">
+        <form id="abc" method="POST" style="margin-top: 20px;padding:10px" action="/order">
+            <div class="actions">
+                <p4><strong>Địa chỉ mới</strong></p4>
+            </div>
             <label>Họ và tên *</label>
             <input style="width: 400px;height: 50px" type="text" name="name" value="${address[0].user.fullName}"
-                   readonly>
+                   readonly required>
 
             <label>Số điện thoại *</label>
             <input type="text" style="width: 400px;height: 50px" name="phone" placeholder="Nhập số điện thoại của bạn">
 
             <label for="province-select">Tỉnh / Thành phố *</label>
-            <select name="city" id="province-select" style="width: 400px;height: 50px">
+            <select name="city" id="province-select" style="width: 400px;height: 50px" required>
                 <option value="">Chọn tỉnh / thành phố</option>
             </select>
 
             <label for="district-select">Quận / Huyện *</label>
-            <select name="district" id="district-select" style="width: 400px;height: 50px">
+            <select name="district" id="district-select" style="width: 400px;height: 50px" required>
                 <option value="">Chọn quận / huyện</option>
             </select>
 
             <label for="address">Địa chỉ *</label>
-            <input type="text" id="address" name="address" style="width: 400px;height: 50px" placeholder="Nhập địa chỉ">
+            <input type="text" id="address" name="address" style="width: 400px;height: 50px" placeholder="Nhập địa chỉ"
+                   required>
 
             <label class="checkbox-label">
-                <input type="checkbox"> Create an account?
+                <input type="checkbox" name="createAccount"> Create an account?
             </label>
 
             <div class="modal-footer" style="padding: 5px">
@@ -597,14 +599,28 @@
                             <p></p>
                         </div>
                     </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
-                        dịch vụ mua hàng online *
-                    </label>
+                    <form id="orderForm">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
+                            dịch vụ mua hàng online *
+                        </label>
+                        <%--                        <button type="submit">Xác nhận</button>--%>
+
                 </div>
 
-                <button class="order-button">ĐẶT MUA</button>
+                <button type="submit" class="order-button">ĐẶT MUA</button>
+                </form>
+                <script>
+                    document.getElementById('orderForm').addEventListener('submit', function (event) {
+                        const checkbox = document.getElementById('terms');
+                        if (!checkbox.checked) {
+                            event.preventDefault();
+                            alert('Bạn cần đồng ý với các điều khoản để tiếp tục.');
+                        }
+                    });
+
+                </script>
             </div>
         </div>
     </div>
@@ -711,46 +727,8 @@
         .catch(error => console.error('Error fetching location data:', error));
 
 </script>
-<%--<script>--%>
-<%--    document.getElementById('abc').addEventListener('submit', function (event) {--%>
-<%--        // event.preventDefault();--%>
+<script>
 
-<%--        const name = document.querySelector('input[name="name"]');--%>
-<%--        const phone = document.querySelector('input[name="phone"]');--%>
-<%--        const address = document.querySelector('input[name="address"]');--%>
-<%--        const city = document.querySelector('select[name="city"]');--%>
-<%--        const district = document.querySelector('select[name="district"]');--%>
-
-<%--        console.log(name.value, phone.value, address.value, city.value, district.value);--%>
-
-
-<%--        const formData = new FormData(document.getElementById("abc"));--%>
-<%--        console.log('FormData:', formData);--%>
-<%--        if (formData.entries().next().done) {--%>
-<%--            console.log('FormData không có dữ liệu');--%>
-<%--        } else {--%>
-<%--            console.log('FormData có dữ liệu');--%>
-<%--        }--%>
-<%--        for (let pair of formData.entries()) {--%>
-<%--            console.log(pair[0] + ': ' + pair[1]);--%>
-<%--        }--%>
-<%--        fetch('/order', {--%>
-<%--            method: 'POST',--%>
-<%--            body: formData--%>
-<%--        })--%>
-<%--            .then(response => response.json())--%>
-<%--            .then(data => {--%>
-<%--                if (data.success) {--%>
-<%--                    alert('Địa chỉ đã được lưu thành công!');--%>
-<%--                } else {--%>
-<%--                    alert(data.error || 'Có lỗi xảy ra!');--%>
-<%--                }--%>
-<%--            })--%>
-<%--            .catch(error => {--%>
-<%--                console.error('Error:', error);--%>
-<%--                alert('Có lỗi xảy ra trong quá trình gửi yêu cầu.');--%>
-<%--            });--%>
-<%--    });--%>
-<%--</script>--%>
+</script>
 </body>
 </html>

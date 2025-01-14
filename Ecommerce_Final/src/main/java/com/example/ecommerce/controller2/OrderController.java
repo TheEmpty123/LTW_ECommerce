@@ -33,13 +33,8 @@ public class OrderController extends HttpServlet {
 
             if (user != null) {
                 int idUser = user.getId();
-//                OrderItemService orderItemService = new OrderItemService();
-//                OwnAddressService ownAddressService = new OwnAddressService();
-//                OrderService service = new OrderService();
-
                 List<OrderItem> orderitems = orderItemService.getOrderItem(idUser);
                 List<OwnAddress> address = ownAddressService.getOwnAddress(idUser);
-
 
                 System.out.println("Fetched order items: " + orderitems);
 
@@ -98,7 +93,7 @@ public class OrderController extends HttpServlet {
                     ownAddressService.updateOwnAddress(name, phone, city, address, idUser, idUser);
 
                     resp.getWriter().write("{\"success\": true}");
-//                    req.getRequestDispatcher("/views/web/order.jsp").forward(req,resp);
+                    resp.sendRedirect(req.getContextPath() + "/order");
                 } else {
                     resp.getWriter().write("{\"success\": false, \"error\": \"Vui lòng điền đầy đủ thông tin.\"}");
                 }
