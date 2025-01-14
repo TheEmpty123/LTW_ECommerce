@@ -67,6 +67,14 @@
                 <div class="activity-card">
                     <div class="form-container">
                         <h2>User Information</h2>
+
+                        <!-- Display error message -->
+                        <c:if test="${not empty errorMessage}">
+                            <div style="color: red;">
+                                    ${errorMessage}
+                            </div>
+                        </c:if>
+
                         <c:if test="${method eq 'edit'}">
                             <form method="post" action="/admin/edit-user">
                                 <div class="form-group">
@@ -90,12 +98,19 @@
                                     <input type="tel" id="phone" name="phone" placeholder="${user.phoneNum}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select type="role" id="gender" name="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="role">Role</label>
                                     <select type="role" id="role" name="role">
-                                        <option value="CLIENT">Client</option>
-                                        <option value="MANAGER">Manager</option>
-                                        <option value="EMPLOYEE">Employee</option>
-                                        <option value="ADMINISTRATOR">Administrator</option>
+                                        <option value="1">Client</option>
+                                        <option value="2">Manager</option>
+                                        <option value="3">Employee</option>
+                                        <option value="4">Administrator</option>
                                     </select>
                                 </div>
                                 <div class="form-group">
@@ -125,15 +140,22 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    <input type="password" id="password" name="password" placeholder="Enter new password">
+                                    <input type="password" id="password" name="password" placeholder="Enter new password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select type="role" id="gender" name="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>
                                     <select type="role" id="role" name="role">
-                                        <option value="CLIENT">Client</option>
-                                        <option value="MANAGER">Manager</option>
-                                        <option value="EMPLOYEE">Employee</option>
-                                        <option value="ADMINISTRATOR">Administrator</option>
+                                        <option value="1">Client</option>
+                                        <option value="2">Manager</option>
+                                        <option value="3">Employee</option>
+                                        <option value="4">Administrator</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="submit-btn">Submit</button>

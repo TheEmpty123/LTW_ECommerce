@@ -3,6 +3,7 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
+import com.example.ecommerce.Common.UserNotFoundException;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
 
@@ -101,7 +102,6 @@ public class UserService extends ServiceBase {
     public void addUser(User user) {
         log.info("UserService adding user...");
         userDao.addUser(user);
-
     }
 
 
@@ -193,6 +193,8 @@ public class UserService extends ServiceBase {
         return userDao.getAvailableUsers(forceUpdate).size();
     }
 
+    // get user list whose has "permission"
+    // @param : forceUpdate -> force update query
     public int getTotalUsersWithModerator(boolean forceUpdate, String permission) {
         log.info("UserService getTotalUsersWithModerator...");
 
@@ -201,7 +203,7 @@ public class UserService extends ServiceBase {
         List<User> list = new ArrayList<>();
 
         userList.forEach(u -> {
-            if(hasPermission(u, permission, false)) {
+            if (hasPermission(u, permission, false)) {
                 list.add(u);
             }
         });
@@ -212,4 +214,16 @@ public class UserService extends ServiceBase {
     public User getUserByID(Integer savedID) {
         return userDao.getUserById(savedID);
     }
+
+    public boolean checkUserExists(String username) {
+        log.info("UserService checkUserExists...");
+
+        try {
+            return userDao.checkUsername(username);
+        }
+        catch (Exception e) {
+            return false;
+        }
+    }
+
 }

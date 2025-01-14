@@ -42,6 +42,27 @@ public class User implements Serializable {
         this.username = username;
         this.pass = pass;
         this.email = email;
+
+        this.roleID = 1;
+        this.createUser = LocalDateTime.now();
+        this.statusUser = StatusUser.ENABLE;
+        this.gender = Gender.MALE;
+        this.fullName = "";
+        this.phoneNum = "";
+        this.avatar = "";
+    }
+    public User(String username, String fullName, String email, String password, int roleID, Gender gender){
+        this.username = username;
+        this.fullName = fullName;
+        this.email = email;
+        this.pass = password;
+        this.roleID = roleID;
+        this.gender = gender;
+
+        this.createUser = LocalDateTime.now();
+        this.statusUser = StatusUser.ENABLE;
+        this.phoneNum = "";
+        this.avatar = "";
     }
 
     public int getId() {
