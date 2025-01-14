@@ -307,7 +307,6 @@
                                         <strong>${p.proName}</strong>
                                     </div>
                                 </div>
-
                             </div>
                         </c:forEach>
                     </div>
