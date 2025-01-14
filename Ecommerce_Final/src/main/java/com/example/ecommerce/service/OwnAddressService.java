@@ -24,8 +24,8 @@ public class OwnAddressService extends ServiceBase {
         }
     }
 
-    public List<OwnAddress> getOwnAddress() {
+    public List<OwnAddress> getOwnAddress(int id) {
         log.info("OwnAddressService getOwnAddress...");
-        return ownAddressDao.getOwnAddress();
+        return ownAddressDao.getOwnAddress(id);
     }
 }

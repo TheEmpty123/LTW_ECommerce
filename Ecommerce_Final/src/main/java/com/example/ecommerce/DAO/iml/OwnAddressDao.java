@@ -23,10 +23,10 @@ public class OwnAddressDao extends ImplementBase implements IOwnAddressDao {
     }
 
     @Override
-    public List<OwnAddress> getOwnAddress() {
+    public List<OwnAddress> getOwnAddress(int id) {
         return db.getJdbi().withHandle(handle ->
                 handle.createQuery(
-                                "SELECT " +
+                                "SELECT DISTINCT " +
                                         "own_address.userID AS own_userID, " +
                                         "own_address.addressID AS own_addressID, " +
                                         "users.id AS user_id, " +
@@ -46,10 +46,15 @@ public class OwnAddressDao extends ImplementBase implements IOwnAddressDao {
                                         "address.fullAddress AS address_fullAddress " +
                                         "FROM own_address " +
                                         "JOIN users ON own_address.userID = users.id " +
-                                        "JOIN address ON own_address.addressID = address.id")
-                        .reduceRows(new LinkedHashMap<Integer, OwnAddress>(), (map, rowView) -> {
-                            int ownAddressId = rowView.getColumn("own_userID", Integer.class);
-                            OwnAddress ownAddress = map.computeIfAbsent(ownAddressId, id -> {
+                                        "JOIN address ON own_address.addressID = address.id " +
+                                        "WHERE users.id = :userId")
+                        .bind("userId", id) // Bind the userId to the query
+                        .reduceRows(new LinkedHashMap<String, OwnAddress>(), (map, rowView) -> {
+                            // Create a composite key based on userID and addressID
+                            String ownAddressKey = rowView.getColumn("own_userID", Integer.class) + "-" +
+                                    rowView.getColumn("own_addressID", Integer.class);
+
+                            OwnAddress ownAddress = map.computeIfAbsent(ownAddressKey, key -> {
                                 OwnAddress oa = new OwnAddress();
                                 oa.setUserID(rowView.getColumn("own_userID", Integer.class));
                                 oa.setAddressID(rowView.getColumn("own_addressID", Integer.class));
@@ -78,6 +83,7 @@ public class OwnAddressDao extends ImplementBase implements IOwnAddressDao {
                                 address.setFullAddress(rowView.getColumn("address_fullAddress", String.class));
 
                                 oa.setAddress(address);
+
                                 return oa;
                             });
 
@@ -89,9 +95,10 @@ public class OwnAddressDao extends ImplementBase implements IOwnAddressDao {
         );
     }
 
+
     public static void main(String[] args) {
         IOwnAddressDao dao = new OwnAddressDao();
-        System.out.println(dao.getOwnAddress());
+        System.out.println(dao.getOwnAddress(1));
     }
 
 }

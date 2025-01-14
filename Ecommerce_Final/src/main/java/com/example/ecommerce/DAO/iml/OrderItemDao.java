@@ -5,6 +5,7 @@ import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderItemDao;
+
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.LinkedHashMap;
@@ -32,10 +33,10 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     }
 
     @Override
-    public List<OrderItem> getOrderItem() {
+    public List<OrderItem> getOrderItem(int userId) {
         return db.getJdbi().withHandle(handle ->
                 handle.createQuery(
-                                "SELECT \n" +
+                                "SELECT DISTINCT\n" +
                                         "    order_item.id AS order_item_id,\n" +
                                         "    order_item.orderID AS order_item_orderID,\n" +
                                         "    order_item.productID AS order_item_productID,\n" +
@@ -58,24 +59,23 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
                                         "FROM \n" +
                                         "    order_item\n" +
                                         "JOIN \n" +
-                                        "    products \n" +
-                                        "ON \n" +
-                                        "    order_item.productID = products.id\n" +
+                                        "    products ON order_item.productID = products.id\n" +
                                         "JOIN \n" +
-                                        "    orders \n" +
-                                        "ON \n" +
-                                        "    order_item.orderID = orders.id"
-                        )
-                        .reduceRows(new LinkedHashMap<Integer, OrderItem>(), (map, rowView) -> {
-                            int orderId = rowView.getColumn("order_item_id", Integer.class);
-                            OrderItem orderItem = map.computeIfAbsent(orderId, id -> {
+                                        "    orders ON order_item.orderID = orders.id " +
+                                        "WHERE orders.userID = :userId") // Corrected WHERE condition to use orders.userID
+                        .bind("userId", userId) // Bind the userId to the query
+                        .reduceRows(new LinkedHashMap<String, OrderItem>(), (map, rowView) -> {
+                            String orderItemKey = rowView.getColumn("order_item_orderID", Integer.class) + "-" +
+                                    rowView.getColumn("order_item_productID", Integer.class);
+
+                            OrderItem orderItem = map.computeIfAbsent(orderItemKey, key -> {
                                 OrderItem item = new OrderItem();
                                 item.setId(rowView.getColumn("order_item_id", Integer.class));
                                 item.setOrderID(rowView.getColumn("order_item_orderID", Integer.class));
                                 item.setProductID(rowView.getColumn("order_item_productID", Integer.class));
                                 item.setAmount(rowView.getColumn("order_item_amount", Integer.class));
 
-                                // Ánh xạ thông tin sản phẩm
+                                // Mapping Product details
                                 Product product = new Product();
                                 product.setId(rowView.getColumn("product_id", Integer.class));
                                 product.setProName(rowView.getColumn("product_proName", String.class));
@@ -88,7 +88,7 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
 
                                 item.setProduct(product);
 
-                                // Ánh xạ thông tin đơn hàng
+                                // Mapping Order details
                                 Order order = new Order();
                                 order.setId(rowView.getColumn("order_id", Integer.class));
                                 order.setUserID(rowView.getColumn("order_userID", Integer.class));
@@ -104,17 +104,17 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
 
                             return map;
                         })
+
                         .values()
                         .stream()
                         .toList());
     }
 
 
-
     public static void main(String[] args) {
         OrderItemDao dao = new OrderItemDao();
         dao.log.info("test");
-        System.out.println(dao.getOrderItem());
+        System.out.println(dao.getOrderItem(1));
     }
 
 }

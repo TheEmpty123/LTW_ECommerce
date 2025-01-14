@@ -6,5 +6,6 @@ import java.util.List;
 
 public interface IOwnAddressDao {
     public int recordSize();
-    public List<OwnAddress> getOwnAddress();
+
+    public List<OwnAddress> getOwnAddress(int id);
 }
