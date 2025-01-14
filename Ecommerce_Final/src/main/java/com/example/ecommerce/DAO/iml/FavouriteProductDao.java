@@ -11,7 +11,7 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
     public static FavouriteProductDao instance;
 
     public FavouriteProductDao(){
-        favouriteProductList = getAllProduct();
+//        favouriteProductList = getAllProduct();
 
     }
     public static FavouriteProductDao getInstance(){
@@ -32,10 +32,16 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
     }
 
     @Override
-    public List<FavouriteProduct> getByUserId(int id) {
-        List<FavouriteProduct> rs = new ArrayList<>();
-        for (FavouriteProduct favouriteProduct : favouriteProductList) {
-            if (favouriteProduct.getUserID() == id) rs.add(favouriteProduct);
+    public List<Integer> getByUserId(int id) {
+        List<Integer> rs = new ArrayList<>();
+        List<FavouriteProduct> list;
+        list = db.jdbi.withHandle(handle ->
+                handle.createQuery("select * from favourite_products where userID = :userId")
+                        .bind("userId", id)
+                        .mapToBean(FavouriteProduct.class)
+                        .list());
+        for (FavouriteProduct favouriteProduct : list) {
+           rs.add(favouriteProduct.getProductID());
         }
         return rs;
     }
@@ -48,17 +54,19 @@ public class FavouriteProductDao extends ImplementBase implements IFavouriteProd
                         .bind("userId", userId)
                         .execute()
         );
+        handle.close();
         return rowsAffected > 0; // Trả về true nếu thêm thành công.
     }
 
     @Override
     public boolean deleteFavouriteProduct(int productId, int userId) {
         int rowsAffected = db.jdbi.withHandle(handle ->
-                handle.createUpdate("DELETE FROM favourite_products WHERE productID = ? AND userID = ?")
-                        .bind(1, productId)
-                        .bind(2, userId)
+                handle.createUpdate("DELETE FROM favourite_products WHERE productID = :productId AND userID = :userId")
+                        .bind("productId", productId)
+                        .bind("userId", userId)
                         .execute()
         );
+        handle.close();
         return rowsAffected > 0; // Trả về true nếu có ít nhất một dòng bị xóa
     }
 }

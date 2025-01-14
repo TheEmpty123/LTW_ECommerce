@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IFavouriteProductDao {
     List<FavouriteProduct> getAllProduct();
-    List<FavouriteProduct> getByUserId(int id);
+    List<Integer> getByUserId(int id);
     boolean addFavouriteProduct(int productId, int userId);
     boolean deleteFavouriteProduct(int productId, int userId);
 }

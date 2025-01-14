@@ -799,12 +799,12 @@
         }
     });
 
-    // Xử lí sự kiện bấm hình trái tim để thêm sản phẩm vào danh sách yêu thích
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked');
-        });
-    });
+    // // Xử lí sự kiện bấm hình trái tim để thêm sản phẩm vào danh sách yêu thích
+    // document.querySelectorAll('.wishlist-button').forEach(function (heart) {
+    //     heart.addEventListener('click', function () {
+    //         heart.classList.toggle('clicked');
+    //     });
+    // });
     const dots = document.querySelectorAll('.nav-box');
 
     //Xử lí sự kiện thanh navigation cho phần sản phẩm vừa xem

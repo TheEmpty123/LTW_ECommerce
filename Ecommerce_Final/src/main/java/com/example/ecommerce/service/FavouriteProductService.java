@@ -26,7 +26,7 @@ public class FavouriteProductService extends ServiceBase {
         return favouriteProductDao.getAllProduct();
     }
 
-    public List<FavouriteProduct> getFavouriteProductByUserId(int id) {
+    public List<Integer> getFavouriteProductByUserId(int id) {
         return favouriteProductDao.getByUserId(id);
     }
 

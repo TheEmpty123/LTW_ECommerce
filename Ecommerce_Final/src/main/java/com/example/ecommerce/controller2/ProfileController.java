@@ -1,12 +1,10 @@
 package com.example.ecommerce.controller2;
 
-import com.example.ecommerce.Bean.Address;
+import com.example.ecommerce.Bean.*;
 import com.example.ecommerce.Bean.Cart.Cart;
-import com.example.ecommerce.Bean.Category;
-import com.example.ecommerce.Bean.Product;
-import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.service.AddressService;
 import com.example.ecommerce.service.CategoryService;
+import com.example.ecommerce.service.FavouriteProductService;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -26,6 +24,7 @@ public class ProfileController extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         HttpSession session = req.getSession(true);
         Cart c = (Cart) session.getAttribute("cart");
+        User u = (User) session.getAttribute("auth");
         if(c == null) {
             c = new Cart();
             session.setAttribute("cart", c);
@@ -36,6 +35,8 @@ public class ProfileController extends HttpServlet {
         ProductService service = new ProductService();
         AddressService addService = new AddressService();
         CategoryService cateService = new CategoryService();
+        FavouriteProductService favouriteProductService = FavouriteProductService.getInstance();
+
         List<Product> data;
         List<Category> categories;
         try{
@@ -44,6 +45,17 @@ public class ProfileController extends HttpServlet {
         }catch (Exception e){
             throw new RuntimeException(e);
         }
+
+        List<Product> favoriteProducts = new ArrayList<>();
+        List<Integer> favoriteProductIds = favouriteProductService.getFavouriteProductByUserId(u.getId());
+
+        for (Product pro : data){
+            if(favoriteProductIds.contains(pro.getId())){
+                favoriteProducts.add(pro);
+            }
+        }
+        req.setAttribute("favoriteProducts", favoriteProducts);
+
         //Lay du lieu category de hien thi len giao dien
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
@@ -65,7 +77,6 @@ public class ProfileController extends HttpServlet {
             }
         }
 
-        User u = (User) session.getAttribute("auth");
         Address address = addService.getAddressById(u.getId());
         System.out.println(u.getId()+ "hahahaa");
 
