@@ -28,4 +28,8 @@ public class OwnAddressService extends ServiceBase {
         log.info("OwnAddressService getOwnAddress...");
         return ownAddressDao.getOwnAddress(id);
     }
+
+    public void updateOwnAddress(String fullName, String phoneNum, String princible, String fullAddress, int userId, int addressId) {
+        this.ownAddressDao.update(fullName, phoneNum, princible, fullAddress, userId, addressId);
+    }
 }

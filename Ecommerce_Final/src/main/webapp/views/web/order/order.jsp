@@ -312,7 +312,6 @@
             <h3>Sản phẩm</h3>
             <div class="product-list"
                  style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
-                <%--                <c:forEach var="orderlist" items="${orderlist}">--%>
                 <c:forEach var="order" items="${orderitems}">
                     <div class="product" style="margin-bottom: 20px;">
                         <img src="${pageContext.request.contextPath}/${order.product.thumb}"
@@ -329,9 +328,9 @@
                                 </p>
 
                             </div>
-<%--                            <div class="product-column" style="flex: 1; text-align: right;">--%>
-<%--                                <h6 style="color: #007bff;">${order.order.shippingStatus}</h6>--%>
-<%--                            </div>--%>
+                                <%--                            <div class="product-column" style="flex: 1; text-align: right;">--%>
+                                <%--                                <h6 style="color: #007bff;">${order.order.shippingStatus}</h6>--%>
+                                <%--                            </div>--%>
                         </div>
                     </div>
                 </c:forEach>
@@ -351,7 +350,7 @@
         </form>
     </div>
 
-    <div class="order-summary" , style="border: none;">
+    <div class="order-summary" ; style="border: none;">
         <h2>Địa chỉ giao hàng</h2>
         <div class="shipping-address-container">
             <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
@@ -361,37 +360,41 @@
             </div>
         </div>
 
-        <form id="abc">
+
+        <form id="abc" method="POST" action="/order">
             <label>Họ và tên *</label>
-            <input type="text" value="Harvey" readonly>
+            <input style="width: 400px;height: 50px" type="text" name="name" value="${address[0].user.fullName}"
+                   readonly>
 
             <label>Số điện thoại *</label>
-            <input type="text" placeholder="Nhập số điện thoại của bạn">
+            <input type="text" style="width: 400px;height: 50px" name="phone" placeholder="Nhập số điện thoại của bạn">
 
             <label for="province-select">Tỉnh / Thành phố *</label>
-            <select id="province-select">
-                <option>Chọn tỉnh / thành phố</option>
+            <select name="city" id="province-select" style="width: 400px;height: 50px">
+                <option value="">Chọn tỉnh / thành phố</option>
             </select>
 
             <label for="district-select">Quận / Huyện *</label>
-            <select id="district-select">
-                <option>Chọn quận / huyện</option>
+            <select name="district" id="district-select" style="width: 400px;height: 50px">
+                <option value="">Chọn quận / huyện</option>
             </select>
 
             <label for="address">Địa chỉ *</label>
-            <input type="text" id="address" placeholder="Nhập địa chỉ">
+            <input type="text" id="address" name="address" style="width: 400px;height: 50px" placeholder="Nhập địa chỉ">
 
             <label class="checkbox-label">
-                <input type="checkbox">
-                Create an account?
+                <input type="checkbox"> Create an account?
             </label>
-            <div class="modal-footer" style=" padding: 5px">
-                <button style="background: orangered; color: white;margin-right: 10px" class="btn btn-cancel"
-                        onclick="closeModal()">Hủy
+
+            <div class="modal-footer" style="padding: 5px">
+                <button type="button" style="background: orangered; color: white; margin-right: 10px"
+                        class="btn btn-cancel">Hủy
                 </button>
-                <button style="background: orangered; color: white" class="btn btn-confirm">Xác nhận</button>
+                <button type="submit" style="background: orangered; color: white" class="btn btn-confirm">Xác nhận
+                </button>
             </div>
         </form>
+
 
         <h3>CHÍNH SÁCH BÁN HÀNG</h3>
         <div class="policy">
@@ -707,16 +710,47 @@
         })
         .catch(error => console.error('Error fetching location data:', error));
 
-
 </script>
-<script>
-    function openModal() {
-        document.getElementById('addressModal').style.display = 'flex';
-    }
+<%--<script>--%>
+<%--    document.getElementById('abc').addEventListener('submit', function (event) {--%>
+<%--        // event.preventDefault();--%>
 
-    function closeModal() {
-        document.getElementById('addressModal').style.display = 'none';
-    }
-</script>
+<%--        const name = document.querySelector('input[name="name"]');--%>
+<%--        const phone = document.querySelector('input[name="phone"]');--%>
+<%--        const address = document.querySelector('input[name="address"]');--%>
+<%--        const city = document.querySelector('select[name="city"]');--%>
+<%--        const district = document.querySelector('select[name="district"]');--%>
+
+<%--        console.log(name.value, phone.value, address.value, city.value, district.value);--%>
+
+
+<%--        const formData = new FormData(document.getElementById("abc"));--%>
+<%--        console.log('FormData:', formData);--%>
+<%--        if (formData.entries().next().done) {--%>
+<%--            console.log('FormData không có dữ liệu');--%>
+<%--        } else {--%>
+<%--            console.log('FormData có dữ liệu');--%>
+<%--        }--%>
+<%--        for (let pair of formData.entries()) {--%>
+<%--            console.log(pair[0] + ': ' + pair[1]);--%>
+<%--        }--%>
+<%--        fetch('/order', {--%>
+<%--            method: 'POST',--%>
+<%--            body: formData--%>
+<%--        })--%>
+<%--            .then(response => response.json())--%>
+<%--            .then(data => {--%>
+<%--                if (data.success) {--%>
+<%--                    alert('Địa chỉ đã được lưu thành công!');--%>
+<%--                } else {--%>
+<%--                    alert(data.error || 'Có lỗi xảy ra!');--%>
+<%--                }--%>
+<%--            })--%>
+<%--            .catch(error => {--%>
+<%--                console.error('Error:', error);--%>
+<%--                alert('Có lỗi xảy ra trong quá trình gửi yêu cầu.');--%>
+<%--            });--%>
+<%--    });--%>
+<%--</script>--%>
 </body>
 </html>

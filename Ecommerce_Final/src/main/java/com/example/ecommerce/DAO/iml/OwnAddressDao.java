@@ -95,6 +95,26 @@ public class OwnAddressDao extends ImplementBase implements IOwnAddressDao {
         );
     }
 
+    @Override
+    public void update(String fullName, String phoneNum, String princible, String fullAddress, int userId, int addressId) {
+        db.getJdbi().useTransaction(handle -> {
+            // Cập nhật thông tin người dùng
+            handle.createUpdate("UPDATE users SET fullName = :fullName, phoneNum = :phoneNum WHERE id = :userId")
+                    .bind("fullName", fullName)
+                    .bind("phoneNum", phoneNum)
+                    .bind("userId", userId)
+                    .execute();
+
+            // Cập nhật thông tin địa chỉ
+            handle.createUpdate("UPDATE address SET princible = :princible, fullAddress = :fullAddress WHERE id = :addressId")
+                    .bind("princible", princible)
+                    .bind("fullAddress", fullAddress)
+                    .bind("addressId", addressId)
+                    .execute();
+        });
+    }
+
+
 
     public static void main(String[] args) {
         IOwnAddressDao dao = new OwnAddressDao();

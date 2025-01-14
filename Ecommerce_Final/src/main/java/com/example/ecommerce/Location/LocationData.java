@@ -42,4 +42,20 @@ public class LocationData {
             return null;
         }
     }
+
+    public static String findProvine(String id) {
+        String content = readFile("D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\vietnam.json");
+        JSONObject jsonObject = new JSONObject(content);
+        JSONArray provinces = jsonObject.getJSONArray("province");
+
+        for (int i = 0; i < provinces.length(); i++) {
+            JSONObject province = provinces.getJSONObject(i);
+            String provinceId = String.valueOf(province.getInt("idProvince"));
+            if (provinceId.equals(id)) {
+                return province.getString("name");
+            }
+        }
+
+        return null;
+    }
 }
