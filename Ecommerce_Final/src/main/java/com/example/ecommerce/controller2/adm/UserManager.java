@@ -19,7 +19,7 @@ public class UserManager extends HttpServlet implements ControllerBase {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         initialize();
-        log.warn("Loading user management page");
+        log.warn("============ Loading user management page ============");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");

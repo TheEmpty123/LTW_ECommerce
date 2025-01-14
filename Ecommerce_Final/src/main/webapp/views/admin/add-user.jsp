@@ -82,6 +82,10 @@
                                     <input type="email" id="email" name="email" placeholder="${user.email}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter new password">
+                                </div>
+                                <div class="form-group">
                                     <label for="phone">Phone No.</label>
                                     <input type="tel" id="phone" name="phone" placeholder="${user.phoneNum}">
                                 </div>
@@ -92,6 +96,13 @@
                                         <option value="MANAGER">Manager</option>
                                         <option value="EMPLOYEE">Employee</option>
                                         <option value="ADMINISTRATOR">Administrator</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select type="role" id="status" name="status">
+                                        <option value="ENABLE">Enable</option>
+                                        <option value="DISABLE">Disable</option>
                                     </select>
                                 </div>
                                 <button type="submit" class="submit-btn">Submit</button>
@@ -113,8 +124,8 @@
                                     <input type="email" id="email" name="email" placeholder="Enter email" required>
                                 </div>
                                 <div class="form-group">
-                                    <label for="phone">Phone No.</label>
-                                    <input type="tel" id="phone" name="phone" placeholder="Enter phone number">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter new password">
                                 </div>
                                 <div class="form-group">
                                     <label for="role">Role</label>

@@ -50,7 +50,7 @@
 
 .sidebar li a:hover {
     color: var(--text-grey);
-    background: var(--main-color-hover);
+    background: var(--main-color);
 }
 
 .sidebar a {
@@ -605,6 +605,7 @@ h6.show-entries {
 input[type="text"],
 input[type="email"],
 input[type="tel"],
+input[type="password"],
 select[type="role"] {
     flex: 2;
     padding: 10px;
@@ -617,6 +618,7 @@ select[type="role"] {
 
 input[type="text"]:focus,
 input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="tel"]:focus {
     border-color: #007bff;
 }

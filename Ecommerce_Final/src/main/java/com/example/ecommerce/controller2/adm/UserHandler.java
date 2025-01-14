@@ -15,7 +15,7 @@ public class UserHandler extends HttpServlet implements ControllerBase{
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         initialize();
-        log.warn("Loading add/edit user form");
+        log.warn("============ Loading add/edit user form ============");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
@@ -67,7 +67,7 @@ public class UserHandler extends HttpServlet implements ControllerBase{
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
-        log.info("Request to update user received");
+        log.warn("============ Request to update user received ============");
 
         String uri = request.getRequestURI();
         boolean flag = false;
@@ -84,9 +84,11 @@ public class UserHandler extends HttpServlet implements ControllerBase{
         }
         else {
             log.info("Performing add user action");
+            String name = request.getParameter("username");
+            log.warn(name);
         }
 
-        resp.sendRedirect("/admin/users");
+//        resp.sendRedirect("/admin/users");
     }
 
     public void destroy() {
