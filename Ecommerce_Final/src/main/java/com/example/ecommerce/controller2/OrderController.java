@@ -24,9 +24,12 @@ public class OrderController extends HttpServlet {
 
         try {
             OrderItemService orderItemService = new OrderItemService();
+            OrderService service = new OrderService();
             List<OrderItem> orderitems = orderItemService.getOrderItem();
+            List<Order> orderList = service.getAllOrder();
             System.out.println("Fetched order items: " + orderitems);
             req.setAttribute("orderitems", orderitems);
+            req.setAttribute("orderlist", orderList);
 
             req.getRequestDispatcher("/views/web/order/order.jsp").forward(req, resp);
         } catch (Exception e) {
