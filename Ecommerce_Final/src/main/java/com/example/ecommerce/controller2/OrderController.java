@@ -1,9 +1,11 @@
 package com.example.ecommerce.controller2;
 
 import com.example.ecommerce.Bean.*;
+import com.example.ecommerce.Bean.Cart.Cart;
 import com.example.ecommerce.DAO.iml.OrderDao;
 import com.example.ecommerce.DAO.iml.OrderItemDao;
 import com.example.ecommerce.Location.LocationData;
+import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.OrderItemService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.OwnAddressService;
@@ -16,6 +18,7 @@ import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 @WebServlet(name = "Order", value = "/order")
@@ -39,7 +42,7 @@ public class OrderController extends HttpServlet {
                 System.out.println("Fetched order items: " + orderitems);
 
                 double totalMoney = service.getTotalRevenue(true);
-
+//                this.service.addOrder(idUser);
 
                 req.setAttribute("orderitems", orderitems);
                 req.setAttribute("total", totalMoney);
@@ -61,15 +64,42 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
+        CategoryService cateService = new CategoryService();
+        List<Category> categories;
 
+        categories = cateService.getAllCategory();
+        int catePerCol = 5;
+        HashMap<Integer, List<Category>> mapCate = new HashMap<>();
+
+        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
+
+        for (int i = 0; i < countCol; i++) {
+            int index = i * catePerCol;
+            for (int j = index; j < index + catePerCol; j++) {
+                if (!mapCate.containsKey(i)) {
+                    List<Category> list = new ArrayList<>();
+                    list.add(categories.get(j));
+                    mapCate.put(i, list);
+                } else {
+                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    else break;
+                }
+            }
+        }
         try {
             HttpSession session = req.getSession(true);
-            User user = (User) session.getAttribute("auth");
-            Address addres = new Address();
+            Cart cart = (Cart) session.getAttribute("cart");
 
+
+            User user = (User) session.getAttribute("auth");
+            if (cart == null) {
+                cart = new Cart();
+                session.setAttribute("cart", cart);
+            }
+            session.setAttribute("cart", cart);
             if (user != null) {
                 int idUser = user.getId();
-                int idadd = addres.getId();
+//                int idOrder = user.
                 String name = req.getParameter("name");
                 String phone = req.getParameter("phone");
                 String address = req.getParameter("address");
@@ -90,8 +120,10 @@ public class OrderController extends HttpServlet {
                         city != null && !city.isEmpty() &&
                         district != null && !district.isEmpty()) {
 
-                    ownAddressService.updateOwnAddress(name, phone, city, address, idUser, idUser);
-
+                    this.ownAddressService.updateOwnAddress(name, phone, city, address, idUser, idUser);
+//                    this.service.addOrder(idUser);
+//                    this.orderItemService.addOrderItem()
+                    req.setAttribute("mapCate", mapCate);
                     resp.getWriter().write("{\"success\": true}");
                     resp.sendRedirect(req.getContextPath() + "/order");
                 } else {

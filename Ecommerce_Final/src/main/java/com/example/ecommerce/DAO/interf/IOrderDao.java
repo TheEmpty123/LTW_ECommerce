@@ -11,7 +11,7 @@ public interface IOrderDao {
 
     List<Order> getAllOrders(boolean force);
 
-    public Order addOrder(int id, int orderID, int productID, int amount);
+    public Order addOrder(Order order);
 
     Order updateOrderByID(int id, int orderID, int productID, int amount);
 

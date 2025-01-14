@@ -27,6 +27,17 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     }
 
     @Override
+    public OrderItem addOrderItem(int orderID, int productID) {
+        return db.getJdbi().withHandle(handle -> handle.createUpdate("INSERT INTO order_item (order_id, product_id) values (:orderID, :productID)")
+                .bind("orderID", orderID)
+                .bind("productID", productID)
+                .executeAndReturnGeneratedKeys("id")
+                .mapTo(OrderItem.class)
+                .one());
+    }
+
+
+    @Override
     public int countAmount(Order order) {
         return db.getJdbi().withHandle(handle -> handle.createQuery("select sum(*) from orderItem"))
                 .mapTo(Integer.class).one();

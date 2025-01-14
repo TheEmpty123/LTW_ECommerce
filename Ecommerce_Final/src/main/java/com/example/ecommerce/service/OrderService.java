@@ -8,7 +8,7 @@ import java.util.List;
 
 public class OrderService extends ServiceBase {
 
-    OrderDao orderDao  =new OrderDao();
+    OrderDao orderDao = new OrderDao();
 
     private static OrderService instance;
 
@@ -36,6 +36,11 @@ public class OrderService extends ServiceBase {
     public List<Order> get5RecentOrders(boolean forceUpdate) {
         log.info("UserService get5RecentOrders...");
         return orderDao.get5Order(forceUpdate);
+    }
+
+    public Order addOrder(Order order) {
+        log.info("User Service add Order");
+        return orderDao.addOrder(order);
     }
 
     public List<Order> getAllOrder() {

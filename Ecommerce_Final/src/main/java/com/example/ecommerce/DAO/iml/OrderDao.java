@@ -7,13 +7,16 @@ import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderDao;
 import com.example.ecommerce.Database.JDBIConnect;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
-public class    OrderDao extends ImplementBase implements IOrderDao {
+public class OrderDao extends ImplementBase implements IOrderDao {
 
     List<Order> allOrders = new ArrayList<>();
 
@@ -49,15 +52,22 @@ public class    OrderDao extends ImplementBase implements IOrderDao {
     }
 
     @Override
-    public Order addOrder(int id, int orderID, int productID, int amount) {
+    public Order addOrder(Order order) {
         return db.getJdbi().withHandle(handle -> {
-            handle.createUpdate("INSERT INTO orderItem (orderID, productID, amount) " +
-                            "VALUES (:orderID, :productID, :amount)")
-                    .bind("orderID", orderID)
-                    .bind("productID", productID)
-                    .bind("amount", amount)
-                    .execute();
-            return getOrderById(orderID);
+            int id = handle.createUpdate("INSERT INTO orders (userID,paymentID, shippingStatus, createDate,timeStamp, promotion_id, sdt, total, totalS) " +
+                            "VALUES (?,?,?,?, ?,?,?,?,?)")
+                    .bind("userID", order.getUserID())
+                    .bind("shippingStatus", ShippingStatus.Packaging)
+                    .bind("createDate", LocalDateTime.now())
+                    .bind("promotion_id", Optional.ofNullable(null))
+                    .bind("sdt", Optional.ofNullable(null))
+                    .bind("total", 0.0)
+                    .bind("totalS", "0.00")
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
+            order.setId(id);
+            return order;
         });
     }
 
@@ -85,6 +95,7 @@ public class    OrderDao extends ImplementBase implements IOrderDao {
                         .execute() > 0
         );
     }
+
     @Override
     public Order getOrderById(int id) {
         return db.getJdbi().withHandle(handle ->
