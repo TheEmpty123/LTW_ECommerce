@@ -217,13 +217,16 @@ public class UserService extends ServiceBase {
 
     public boolean checkUserExists(String username) {
         log.info("UserService checkUserExists...");
+        User u = null;
 
-        try {
-            return userDao.checkUsername(username);
-        }
-        catch (Exception e) {
-            return false;
-        }
+        u = userDao.findUser(username);
+
+        if (u == null) return false;
+        else return true;
     }
 
+    public boolean updateUser(User user) {
+        log.info("UserService updateUser");
+        return userDao.updateUser(user);
+    }
 }

@@ -56,7 +56,7 @@
 
         <h2 class="dash-title">Overview</h2>
         <h3 class="dash-address">
-            <a href="/admin/dashboard">Home</a>/<a href="#">users</a>
+            <a href="/admin/dashboard">Home</a>/<a href="#">${CMD}</a>
         </h3>
 
         <div class="dash-cards">
@@ -66,7 +66,7 @@
                     <span class="ti-id-badge"></span>
                     <div>
                         <h5>Total Users</h5>
-                        <h4>${totalUsers}</h4>
+                        <h4>${totalUsers} accounts recorded</h4>
                     </div>
                 </div>
             </div>
@@ -76,7 +76,7 @@
                     <span class="ti-check-box"></span>
                     <div>
                         <h5>Current Available User</h5>
-                        <h4>${availableUsers}</h4>
+                        <h4>${availableUsers} accounts recorded</h4>
                     </div>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                     <span class="ti-alert"></span>
                     <div>
                         <h5>Current Disabled User</h5>
-                        <h4>${disabledUsers}</h4>
+                        <h4>${disabledUsers} accounts recorded</h4>
                     </div>
                 </div>
             </div>
@@ -95,86 +95,205 @@
 
 
         <section class="recent">
-            <div class="activity-grid">
-                <div class="activity-card">
 
-                    <%
-                        int size = (int) request.getAttribute("totalUsers");
-                        int startIndex = 0;
-                        int currentPages = 1;
-                        int showMax = 10;
-                        int totalPages = (int) Math.ceil((double) size / (double) showMax);
-                        String pageParam = request.getParameter("page");
+            <c:if test="${CMD eq 'users'}">
+                <div class="activity-grid">
+                    <div class="activity-card">
 
-                        if (pageParam != null) {
-                            currentPages = Integer.parseInt(pageParam);
-                        }
+                        <%
+                            int size = (int) request.getAttribute("totalUsers");
+                            int startIndex = 0;
+                            int currentPages = 1;
+                            int showMax = 10;
+                            int totalPages = (int) Math.ceil((double) size / (double) showMax);
+                            String pageParam = request.getParameter("page");
 
-                        startIndex = (currentPages - 1) * showMax;
-                        int endIndex = Math.min(startIndex + showMax, size);
-                    %>
+                            if (pageParam != null) {
+                                currentPages = Integer.parseInt(pageParam);
+                            }
 
-                    <div>
-                        <div class="search-wrapper">
-                            <h3>Users List</h3>
-                            <span class="ti-search"></span>
-                            <input type="search" placeholder="Search content here...">
+                            startIndex = (currentPages - 1) * showMax;
+                            int endIndex = Math.min(startIndex + showMax, size);
+                        %>
+
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>Users List</h3>
+                                <span class="ti-search"></span>
+                                <input type="search" placeholder="Search content here...">
+                            </div>
                         </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Username</th>
+                                    <th>Email Address</th>
+                                    <th>Role</th>
+                                    <th>Created</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:if test="${not empty users}">
+                                    <%
+                                        List<User> users = (List<User>) request.getAttribute("users");
+                                        var roles = (Map<Integer, Role>) request.getAttribute("roles");
+                                        for (int i = startIndex; i < endIndex; i++) {
+                                            User u = users.get(i);
+                                    %>
+                                    <tr>
+                                        <td><%=u.getId()%>
+                                        </td>
+                                        <td><%=u.getUsername()%>
+                                        </td>
+                                        <td><%=u.getEmail()%>
+                                        </td>
+                                        <td><%=roles.get(u.getRoleID()).getNameRole()%>
+                                        </td>
+                                        <td><%=Timestamp.valueOf(u.getCreateUser())%>
+                                        </td>
+                                        <td>
+                                            <%
+                                                var status = u.getStatusUser();
+                                                switch (status) {
+                                                    case ENABLE: {
+                                            %>
+                                            <span class="badge success">Available</span>
+                                            <%
+                                                    break;
+                                                }
+                                                case DISABLE: {
+
+                                            %>
+                                            <span class="badge alert">Disabled</span>
+                                            <%
+                                                    }
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <a href="edit-user?id=<%=u.getId()%>">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </c:if>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <h6 class="show-entries">
+                                *Showing <%=startIndex + 1%> to <%=endIndex%> of <%=size%> entries
+                            </h6>
+                            <a href="?page=<%=currentPages > 1 ? currentPages - 1 : 1 %>">&laquo;</a>
+                            <%
+                                boolean needDot = false;
+                                for (int i = 1; i <= totalPages; i++) {
+                                    String activeClass = (i == currentPages) ? "active" : "";
+                                    if (i == 1 || i == totalPages) {
+                                        needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (i < currentPages + 2 && i > currentPages - 2) {
+                                needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (needDot) {
+                                needDot = false;
+                            %>
+                            <a href="#" class="">...</a>
+                            <%
+                                    }
+                                }
+                            %>
+                            <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
+                            <a href="add-user" class="add-user-btn">Add user</a>
+                        </div>
+
+
                     </div>
 
-                    <div class="table-responsive">
-                        <table>
-                            <thead>
-                            <tr>
-                                <th>ID</th>
-                                <th>Username</th>
-                                <th>Email Address</th>
-                                <th>Role</th>
-                                <th>Created</th>
-                                <th>Status</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <c:if test="${not empty users}">
-                                <%
-                                    List<User> users = (List<User>) request.getAttribute("users");
-                                    var roles = (Map<Integer, Role>) request.getAttribute("roles");
-                                    for (int i = startIndex; i < endIndex; i++) {
-                                        User u = users.get(i);
-                                %>
-                                <tr>
-                                    <td><%=u.getId()%>
-                                    </td>
-                                    <td><%=u.getUsername()%>
-                                    </td>
-                                    <td><%=u.getEmail()%>
-                                    </td>
-                                    <td><%=roles.get(u.getRoleID()).getNameRole()%>
-                                    </td>
-                                    <td><%=Timestamp.valueOf(u.getCreateUser())%>
-                                    </td>
-                                    <td>
-                                        <%
-                                            var status = u.getStatusUser();
-                                            switch (status) {
-                                                case ENABLE : {
-                                        %>
-                                        <span class="badge success">Available</span>
-                                        <%
-                                                    break;
-                                            }
-                                            case DISABLE : {
+                    <div class="summary">
+                        <div class="summary-card">
+                            <div class="summary-single">
+                                <span class="ti-id-badge"></span>
+                                <div>
+                                    <h5>${totalUserWithModerator}</h5>
+                                    <small>Number of moderator</small>
+                                </div>
+                            </div>
+                            <div class="summary-single">
+                                <span class="ti-home"></span>
+                                <div>
+                                    <h5>${agencies}</h5>
+                                    <small>Number of agency</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                        %>
-                                        <span class="badge alert">Disabled</span>
-                                        <%
-                                                }
-                                            }
-                                        %>
-                                    </td>
+            </c:if>
+
+            <c:if test="${CMD eq 'permissions'}">
+
+                <!-- Error Message -->
+                <c:if test="${not empty errorMessage}">
+                    <div style="color: red;">
+                            ${errorMessage}
+                    </div>
+                </c:if>
+
+                <!-- Success Message -->
+                <c:if test="">
+                    <c:if test="${not empty successMessage}">
+                        <div style="color: greenyellow;">
+                                ${successMessage}
+                        </div>
+                    </c:if>
+                </c:if>
+
+                <div class="activity-grid-alt">
+                    <div class="activity-card">
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Assigned To</th>
+                                    <th>Created Date & Time</th>
+                                    <th>Last Update</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td>User Management</td>
                                     <td>
-                                        <a href="edit-user?id=<%=u.getId()%>">
+                                        <span class="badge warning">Manager</span>
+                                    </td>
+                                    <td>4 Mar 2023, 08:30 am</td>
+                                    <td>Today</td>
+                                    <td>
+                                        <a href="">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
                                         <a href="">
@@ -182,73 +301,64 @@
                                         </a>
                                     </td>
                                 </tr>
-                                <%
-                                    }
-                                %>
-                            </c:if>
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <div class="pagination">
-                        <h6 class="show-entries">
-                            *Showing <%=startIndex + 1%> to <%=endIndex%> of <%=size%> entries
-                        </h6>
-                        <a href="?page=<%=currentPages > 1 ? currentPages - 1 : 1 %>">&laquo;</a>
-                        <%
-                            boolean needDot = false;
-                            for (int i = 1; i <= totalPages; i++) {
-                                String activeClass = (i == currentPages) ? "active" : "";
-                                if (i == 1 || i == totalPages) {
-                                    needDot = true;
-                        %>
-                        <a href="?page=<%=i%>" class="<%=activeClass%>">
-                            <%=i%>
-                        </a>
-                        <%
-                        } else if (i < currentPages + 2 && i > currentPages - 2) {
-                            needDot = true;
-                        %>
-                        <a href="?page=<%=i%>" class="<%=activeClass%>">
-                            <%=i%>
-                        </a>
-                        <%
-                        } else if (needDot) {
-                            needDot = false;
-                        %>
-                        <a href="#" class="">...</a>
-                        <%
-                                }
-                            }
-                        %>
-                        <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
-                        <a href="add-user" class="add-user-btn">Add user</a>
-                    </div>
-
-                </div>
-
-                <div class="summary">
-                    <div class="summary-card">
-                        <div class="summary-single">
-                            <span class="ti-id-badge"></span>
-                            <div>
-                                <h5>${totalUserWithModerator}</h5>
-                                <small>Number of moderator</small>
-                            </div>
-                        </div>
-                        <div class="summary-single">
-                            <span class="ti-home"></span>
-                            <div>
-                                <h5>${agencies}</h5>
-                                <small>Number of agency</small>
-                            </div>
+                                <tr>
+                                    <td>Financial Management</td>
+                                    <td>
+                                        <span class="badge success">Administrator</span>
+                                        <span class="badge dev">Employee</span>
+                                    </td>
+                                    <td>4 Mar 2023, 08:30 am</td>
+                                    <td>06 Dec 2023</td>
+                                    <td>
+                                        <a href="">
+                                            <span class="ti-pencil-alt"></span>
+                                        </a>
+                                        <a href="">
+                                            <span class="ti-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Content Management</td>
+                                    <td>
+                                        <span class="badge warning">Manager</span>
+                                        <span class="badge success">Administrator</span>
+                                    </td>
+                                    <td>4 Mar 2023, 08:30 am</td>
+                                    <td>Yesterday</td>
+                                    <td>
+                                        <a href="">
+                                            <span class="ti-pencil-alt"></span>
+                                        </a>
+                                        <a href="">
+                                            <span class="ti-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Reporting</td>
+                                    <td>
+                                        <span class="badge warning">Manager</span>
+                                        <span class="badge dev">Employee</span>
+                                    </td>
+                                    <td>4 Mar 2023, 08:30 am</td>
+                                    <td>Yesterday</td>
+                                    <td>
+                                        <a href="">
+                                            <span class="ti-pencil-alt"></span>
+                                        </a>
+                                        <a href="">
+                                            <span class="ti-trash"></span>
+                                        </a>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
-
                 </div>
+            </c:if>
 
-            </div>
         </section>
 
     </main>

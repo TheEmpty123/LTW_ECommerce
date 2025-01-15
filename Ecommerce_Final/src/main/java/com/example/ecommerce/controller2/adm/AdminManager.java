@@ -35,7 +35,7 @@ public class AdminManager extends HttpServlet implements ControllerBase{
         // !
         // Supreme permission only
         if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)){
-            log.warn("User does not have access to this resource");
+            log.warn("User management not permitted, redirecting to 404 page");
             response.sendRedirect("/404");
             return;
         }

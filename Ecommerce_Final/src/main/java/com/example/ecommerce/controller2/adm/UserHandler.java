@@ -7,6 +7,7 @@ import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Gender;
 import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.Common.Enum.StatusUser;
+import com.example.ecommerce.Common.UserNotFoundException;
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -85,52 +86,88 @@ public class UserHandler extends HttpServlet implements ControllerBase {
             flag = true;
         }
 
-        if (flag) {
-            log.info("Performing edit user action");
+        try {
 
-            String username = request.getParameter("username");
-            String fullName = request.getParameter("fullName");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            String phoneNo = request.getParameter("phone");
-            int roleID = Integer.parseInt(request.getParameter("role"));
-            StatusUser status = request.getParameter("status").equalsIgnoreCase("enable") ? StatusUser.ENABLE : StatusUser.DISABLE;
-            int id = MC.instance.backupID;
-            User user = MC.instance.userService.getUserByID(id);
+            if (flag) {
+                log.info("Performing edit user action");
+                String username = request.getParameter("username");
+                String fullName = request.getParameter("fullName");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                String phoneNo = request.getParameter("phone");
+                int roleID = Integer.parseInt(request.getParameter("role"));
+                StatusUser status = request.getParameter("status").equalsIgnoreCase("enable") ? StatusUser.ENABLE : StatusUser.DISABLE;
+                int id = MC.instance.backupID;
+                User user = MC.instance.userService.getUserByID(id);
 
-            if (MC.instance.userService.checkUserExists(username)) {
-                request.setAttribute("errorMessage", "Username already exists. Please choose a different one.");
-                request.setAttribute("user", user);
-                request.setAttribute("method", "edit");
-                request.getRequestDispatcher("/views/admin/add-user.jsp")
-                        .forward(request, resp);
-                return;
+                if (MC.instance.userService.checkUserExists(username)) {
+                    request.setAttribute("errorMessage", "Username already exists. Please choose a different one.");
+                    request.setAttribute("user", user);
+                    request.setAttribute("method", "edit");
+                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                            .forward(request, resp);
+                    return;
+                }
+
+                {
+                    user.setUsername(username.equals("") ? user.getUsername() : username);
+                    user.setFullName(fullName.equals("") ? user.getFullName() : fullName);
+                    user.setEmail(email.equals("") ? user.getEmail() : email);
+                    user.setPass(password.equals("") ? user.getPass() : password);
+                    user.setPhoneNum(phoneNo.equals("") ? user.getPhoneNum() : phoneNo);
+                    user.setRoleID(roleID);
+                    user.setStatusUser(status);
+                }
+
+                boolean success = MC.instance.userService.updateUser(user);
+
+                if (success) {
+                    log.warn("Updated user successfully");
+
+                    request.setAttribute("successMessage", "User has been updated");
+                    request.setAttribute("user", user);
+                    request.setAttribute("method", "edit");
+                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                            .forward(request, resp);
+                    return;
+                } else {
+                    log.warn("Updated user failed");
+
+                    request.setAttribute("errorMessage", "Some error occurred. Please try again.");
+                    request.setAttribute("user", user);
+                    request.setAttribute("method", "edit");
+                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                            .forward(request, resp);
+                    return;
+                }
+            } else {
+                log.info("Performing add user action");
+
+                String username = request.getParameter("username");
+                String fullName = request.getParameter("fullName");
+                String email = request.getParameter("email");
+                String password = request.getParameter("password");
+                int roleID = Integer.parseInt(request.getParameter("role"));
+                Gender gender = request.getParameter("gender").equals("0") ? Gender.MALE : Gender.FEMALE;
+
+                if (MC.instance.userService.checkUserExists(username)) {
+                    request.setAttribute("errorMessage", "Username already exists. Please choose a different one.");
+                    request.setAttribute("method", "add");
+                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                            .forward(request, resp);
+                    return;
+                }
+
+                User user = new User(username, fullName, email, password, roleID, gender);
+
+                MC.instance.userService.addUser(user);
             }
 
-
-            log.warn(user);
-        } else {
-            log.info("Performing add user action");
-
-            String username = request.getParameter("username");
-            String fullName = request.getParameter("fullName");
-            String email = request.getParameter("email");
-            String password = request.getParameter("password");
-            int roleID = Integer.parseInt(request.getParameter("role"));
-            Gender gender = request.getParameter("gender").equals("0") ? Gender.MALE : Gender.FEMALE;
-
-            if (MC.instance.userService.checkUserExists(username)) {
-                request.setAttribute("errorMessage", "Username already exists. Please choose a different one.");
-                request.setAttribute("method", "add");
-                request.getRequestDispatcher("/views/admin/add-user.jsp")
-                        .forward(request, resp);
-                return;
-            }
-
-            User user = new User(username, fullName, email, password, roleID, gender);
-
-            MC.instance.userService.addUser(user);
+        } catch (Exception e) {
+            log.error("Unknown error occurred while performing add/edit user action");
+            e.printStackTrace();
         }
+
 
         resp.sendRedirect("/admin/users");
     }

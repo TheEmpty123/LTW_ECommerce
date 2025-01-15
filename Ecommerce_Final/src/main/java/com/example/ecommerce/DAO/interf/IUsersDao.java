@@ -38,5 +38,5 @@ public interface IUsersDao {
 
     List<User> getAvailableUsers(boolean forceUpdate);
 
-    boolean checkUsername(String username);
+    boolean updateUser(User user);
 }

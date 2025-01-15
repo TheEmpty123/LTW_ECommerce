@@ -75,6 +75,13 @@
                             </div>
                         </c:if>
 
+                        <!-- Display success message -->
+                        <c:if test="${not empty successMessage}">
+                            <div style="color: greenyellow;">
+                                    ${successMessage}
+                            </div>
+                        </c:if>
+
                         <c:if test="${method eq 'edit'}">
                             <form method="post" action="/admin/edit-user">
                                 <div class="form-group">
