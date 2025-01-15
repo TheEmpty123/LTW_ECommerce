@@ -10,7 +10,7 @@ import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
 @WebServlet(name = "PermissionManagerServlet", value = "/admin/permit")
-public class PermissionManager extends HttpServlet implements ControllerBase{
+public class PermissionManager extends HttpServlet implements ControllerBase {
     public void init() {
         initialize();
     }
@@ -32,6 +32,25 @@ public class PermissionManager extends HttpServlet implements ControllerBase{
         request.setAttribute("CMD", "permissions");
 
         try {
+            log.info("Preparing resource");
+
+            var rolesMap = MC.instance.userService.getRolesMap(true);
+            request.setAttribute("rolesMap", rolesMap);
+
+            var permissions = MC.instance.permissionService.getAllPermissions(false);
+            request.setAttribute("permissions", permissions);
+
+//            permissions.forEach(p -> {
+//                log.info(p.getPermissionName());
+//                rolesMap.forEach((k, v) -> {
+//                    if (v.getPermission() != null && v.getPermission().contains(p.getPermissionName())) {
+//                        log.info(v.getNameRole());
+//                    }
+//                });
+//                log.info(p.getCreateDate());
+//                log.info(p.getLastUpdate());
+//                log.info("===========");
+//            });
 
 
             int totalUsers = MC.instance.userService.getTotalUsers(false);
@@ -44,11 +63,10 @@ public class PermissionManager extends HttpServlet implements ControllerBase{
             request.setAttribute("disabledUsers", disabledUsers);
 
             log.info("Ready for permission management page");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             log.error("Unknown error occurred loading permission management page");
             e.printStackTrace();
-            request.setAttribute("errorMessage", "Unknown error occurred loading permission management page");
+            request.setAttribute("errorMessage", "Unknown error occurred while loading permission management page, please try again later");
         }
 
         request.getRequestDispatcher("/views/admin/user-management.jsp").forward(request, response);

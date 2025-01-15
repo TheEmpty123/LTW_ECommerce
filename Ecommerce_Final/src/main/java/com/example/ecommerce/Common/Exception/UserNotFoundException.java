@@ -1,4 +1,4 @@
-package com.example.ecommerce.Common;
+package com.example.ecommerce.Common.Exception;
 
 public class UserNotFoundException extends Exception {
 

@@ -22,6 +22,7 @@ public class WarehouseService extends ServiceBase{
 
     @Override
     public void init() {
+        log.info("WarehouseService init...");
         warehouseDao = new WarehouseDao();
     }
 

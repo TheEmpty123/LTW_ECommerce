@@ -2,7 +2,8 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.Map" %>
 <%@ page import="com.example.ecommerce.Bean.Role" %>
-<%@ page import="java.sql.Timestamp" %><%--
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="com.example.ecommerce.Bean.Permission" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -285,73 +286,57 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                <%
+                                    List<Permission> permissions = (List<Permission>) request.getAttribute("permissions");
+                                    Map<Integer, Role> rolesMap = (Map<Integer, Role>) request.getAttribute("rolesMap");
+                                    String badge = "sdf";
+
+                                    for (var p : permissions) {
+                                %>
                                 <tr>
-                                    <td>User Management</td>
+                                    <td><%=p.getPermissionName()%>
+                                    </td>
                                     <td>
+                                        <%
+                                            for (var r : rolesMap.values()) {
+                                                if (r.getPermission() != null && r.getPermission().contains(p.getPermissionName())) {
+                                                    switch (r.getNameRole()) {
+                                                        case "Manager":
+                                        %>
                                         <span class="badge warning">Manager</span>
-                                    </td>
-                                    <td>4 Mar 2023, 08:30 am</td>
-                                    <td>Today</td>
-                                    <td>
-                                        <a href="">
-                                            <span class="ti-pencil-alt"></span>
-                                        </a>
-                                        <a href="">
-                                            <span class="ti-trash"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Financial Management</td>
-                                    <td>
+                                        <%
+                                                break;
+                                            case "Administrator":
+                                        %>
                                         <span class="badge success">Administrator</span>
+                                        <%
+                                                break;
+                                            case "Employee":
+                                        %>
                                         <span class="badge dev">Employee</span>
+                                        <%
+                                                            break;
+                                                    }
+                                                }
+                                            }
+                                        %>
                                     </td>
-                                    <td>4 Mar 2023, 08:30 am</td>
-                                    <td>06 Dec 2023</td>
+                                    <td><%=Timestamp.valueOf(p.getCreateDate())%>
+                                    </td>
+                                    <td><%=Timestamp.valueOf(p.getLastUpdate())%>
+                                    </td>
                                     <td>
-                                        <a href="">
+                                        <a href="?id=<%=p.getId()%>" methods="post">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
-                                        <a href="">
+                                        <a href="?id=<%=p.getId()%>">
                                             <span class="ti-trash"></span>
                                         </a>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td>Content Management</td>
-                                    <td>
-                                        <span class="badge warning">Manager</span>
-                                        <span class="badge success">Administrator</span>
-                                    </td>
-                                    <td>4 Mar 2023, 08:30 am</td>
-                                    <td>Yesterday</td>
-                                    <td>
-                                        <a href="">
-                                            <span class="ti-pencil-alt"></span>
-                                        </a>
-                                        <a href="">
-                                            <span class="ti-trash"></span>
-                                        </a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>Reporting</td>
-                                    <td>
-                                        <span class="badge warning">Manager</span>
-                                        <span class="badge dev">Employee</span>
-                                    </td>
-                                    <td>4 Mar 2023, 08:30 am</td>
-                                    <td>Yesterday</td>
-                                    <td>
-                                        <a href="">
-                                            <span class="ti-pencil-alt"></span>
-                                        </a>
-                                        <a href="">
-                                            <span class="ti-trash"></span>
-                                        </a>
-                                    </td>
-                                </tr>
+                                <%
+                                    }
+                                %>
                                 </tbody>
                             </table>
                         </div>

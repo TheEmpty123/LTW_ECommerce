@@ -55,7 +55,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="role-permissions-management.jsp">
+                    <a href="/admin/permit">
                         <span class="ti-agenda"></span>
                         <span>Vai trò & Quyền hạn</span>
                     </a>

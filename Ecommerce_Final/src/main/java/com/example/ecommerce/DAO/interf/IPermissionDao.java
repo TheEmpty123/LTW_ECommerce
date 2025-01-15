@@ -5,14 +5,18 @@ import com.example.ecommerce.Bean.Permission;
 import java.util.List;
 
 public interface IPermissionDao {
-//    Lay tat ca cac permission
+    //    Lay tat ca cac permission
     List<Permission> getAllPermissions();
-//    Lay mot permission theo id
+
+    //    Lay mot permission theo id
     Permission getPermissionById(int id);
-//    Them mot permission
+
+    //    Them mot permission
     boolean addPermission(Permission permission);
-//    Cap nhat ten cua permission theo id
+
+    //    Cap nhat ten cua permission theo id
     boolean updateName(int id, String newName);
-//    Xoa mot permission
+
+    //    Xoa mot permission
     boolean deletePermission(int id);
 }

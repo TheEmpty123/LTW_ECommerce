@@ -3,19 +3,13 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
-import com.example.ecommerce.Common.UserNotFoundException;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
 
 import com.example.ecommerce.DAO.interf.IJavaMail;
-import com.example.ecommerce.mail.MailProperties;
 import jakarta.servlet.http.HttpSession;
 
-import javax.mail.internet.InternetAddress;
 import java.util.*;
-
-import com.example.ecommerce.controller2.MC;
-import jakarta.servlet.http.HttpSession;
 
 import java.util.List;
 

@@ -2,12 +2,10 @@ package com.example.ecommerce.controller2.adm;
 
 import java.io.*;
 
-import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Gender;
 import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.Common.Enum.StatusUser;
-import com.example.ecommerce.Common.UserNotFoundException;
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
