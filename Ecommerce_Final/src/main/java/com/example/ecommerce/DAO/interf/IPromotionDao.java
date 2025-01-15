@@ -8,6 +8,7 @@ import java.util.List;
 public interface IPromotionDao {
     // Lay ra tat ca cac promotion
     List<Promotion> getAll();
+    public List<Promotion> getAll(boolean force);
     //lay promotion theo id
     Promotion getById(int id);
     //lay promotion theo code

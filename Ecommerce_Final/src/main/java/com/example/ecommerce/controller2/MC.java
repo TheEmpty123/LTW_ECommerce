@@ -17,6 +17,7 @@ public class MC {
     public OrderService orderService;
     public WarehouseService warehouseService;
     public PermissionService permissionService;
+    public PromotionService promotionService;
     public LogObj log = new LogObj();
 
     private boolean initialized;
@@ -42,6 +43,7 @@ public class MC {
         serviceList.add(orderService = OrderService.getInstance());
         serviceList.add(warehouseService = WarehouseService.getInstance());
         serviceList.add(permissionService = PermissionService.getInstance());
+        serviceList.add(promotionService = PromotionService.getInstance());
     }
 
     private void init() {

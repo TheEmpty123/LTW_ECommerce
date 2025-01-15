@@ -85,7 +85,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="promotions-discounts.jsp">
+                    <a href="/admin/discount">
                         <span class="ti-ticket"></span>
                         <span>Giảm giá</span>
                     </a>

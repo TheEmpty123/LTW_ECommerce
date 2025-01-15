@@ -5,13 +5,16 @@ import com.example.ecommerce.DAO.iml.PromotionDao;
 
 import java.util.List;
 
-public class PromotionService extends ServiceBase{
+public class PromotionService extends ServiceBase {
     private static PromotionService instance;
+
     private PromotionDao promotionDao = new PromotionDao();
+
     @Override
     public void init() {
         log.info("PromotionService init...");
     }
+
     public static PromotionService getInstance() {
         if (instance == null) {
             instance = new PromotionService();
@@ -19,13 +22,17 @@ public class PromotionService extends ServiceBase{
         }
         return instance;
     }
-    public List<Promotion> getAllPromotion() {
-        return promotionDao.getList();
+
+    public List<Promotion> getAllPromotion(boolean force) {
+        log.info("PromotionService getAllPromotion...");
+        return promotionDao.getAll(force);
     }
+
     public Promotion getPromotionById(int id) {
         return promotionDao.getById(id);
     }
-    public Promotion getPromotionByCode(String  code) {
+
+    public Promotion getPromotionByCode(String code) {
         return promotionDao.getByCode(code);
     }
 

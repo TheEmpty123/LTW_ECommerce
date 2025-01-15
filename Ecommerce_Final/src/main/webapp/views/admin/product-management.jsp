@@ -1,5 +1,9 @@
 <%@ page import="com.example.ecommerce.Dto.OrderDto" %>
-<%@ page import="java.util.List" %><%--
+<%@ page import="java.util.List" %>
+<%@ page import="com.example.ecommerce.Bean.Promotion" %>
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.NumberFormat" %>
+<%@ page import="java.util.Locale" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -36,16 +40,18 @@
 
 <div class="main-content">
 
-    <!-- Pop up -->
+    <c:if test="${CMD eq 'products'}">
+        <!-- Pop up -->
 
-    <div id="iframePopup" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <iframe src="add-stock.jsp" frameborder="0"></iframe>
+        <div id="iframePopup" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <iframe src="add-stock.jsp" frameborder="0"></iframe>
+            </div>
         </div>
-    </div>
 
-    <!-- End pop up -->
+        <!-- End pop up -->
+    </c:if>
 
     <header>
         <div class="search-wrapper">
@@ -115,6 +121,31 @@
                         <div>
                             <h5>Refunded</h5>
                             <h4>${refunded}/h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </c:if>
+        <c:if test="${CMD eq 'discount'}">
+            <h2 class="dash-title">Overview</h2>
+
+            <div class="dash-cards-alt">
+                <div class="card-single-alt2">
+                    <div class="card-body">
+                        <span class="ti-check"></span>
+                        <div>
+                            <h5>Available</h5>
+                            <h4>${available}</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single-alt3">
+                    <div class="card-body">
+                        <span class="ti-close"></span>
+                        <div>
+                            <h5>Expired</h5>
+                            <h4>${expired}</h4>
                         </div>
                     </div>
                 </div>
@@ -577,75 +608,218 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                    <c:if test="${not empty orders}">
+                                <c:if test="${not empty orders}">
 
-                                        <%
-                                            List<OrderDto> orders = (List<OrderDto>) request.getAttribute("orders");
-                                            for (int i = startIndex; i < endIndex; i++) {
-                                                OrderDto u = orders.get(i);
-                                        %>
-                                        <tr>
-                                            <td><%=u.getId()%>
-                                            </td>
-                                            <td><%=u.getTimestamp()%>
-                                            </td>
-                                            <td><%=u.getCustomer()%>
-                                            </td>
-                                            <td><%=u.getTotalF()%>
-                                            </td>
-                                            <td>
-                                                <%
-                                                    var status = u.getStatus();
-                                                    switch (status) {
-                                                        case Completed: {
-                                                %>
-                                                <span class="badge success">
+                                    <%
+                                        List<OrderDto> orders = (List<OrderDto>) request.getAttribute("orders");
+                                        for (int i = startIndex; i < endIndex; i++) {
+                                            OrderDto u = orders.get(i);
+                                    %>
+                                    <tr>
+                                        <td><%=u.getId()%>
+                                        </td>
+                                        <td><%=u.getTimestamp()%>
+                                        </td>
+                                        <td><%=u.getCustomer()%>
+                                        </td>
+                                        <td><%=u.getTotalF()%>
+                                        </td>
+                                        <td>
+                                            <%
+                                                var status = u.getStatus();
+                                                switch (status) {
+                                                    case Completed: {
+                                            %>
+                                            <span class="badge success">
                                                     <span class="ti-check"></span>
                                                     Completed
                                                 </span>
-                                                <%
-                                                        break;
-                                                    }
-                                                    case Packaging: {
+                                            <%
+                                                    break;
+                                                }
+                                                case Packaging: {
 
-                                                %>
-                                                <span class="badge warning">
+                                            %>
+                                            <span class="badge warning">
                                                     <span class="ti-package"></span>
                                                     Packaging...
                                                 </span>
-                                                <%
-                                                            break;
-                                                        }
-                                                        case Delivering:{
-                                                %>
-                                                <span class="badge warning">
+                                            <%
+                                                    break;
+                                                }
+                                                case Delivering: {
+                                            %>
+                                            <span class="badge warning">
                                                     <span class="ti-truck"></span>
                                                     Delivering
                                                 </span>
-                                                <%
-                                                            break;
-                                                        }
-                                                        case Cancelled:{
-                                                %>
-                                                <span class="badge alert">
+                                            <%
+                                                    break;
+                                                }
+                                                case Cancelled: {
+                                            %>
+                                            <span class="badge alert">
                                                     <span class="ti-close"></span>
                                                     Cancelled
                                                 </span>
-                                                <%
-                                                        }
+                                            <%
                                                     }
-                                                %>
-                                            </td>
-                                            <td>
-                                                <a href="edit-order?id=<%=u.getId()%>">
-                                                    <span class="ti-pencil-alt"></span>
-                                                </a>
-                                            </td>
-                                        </tr>
-                                        <%
-                                            }
-                                        %>
-                                    </c:if>
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <a href="edit-order?id=<%=u.getId()%>">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </c:if>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <h6 class="show-entries">
+                                *Showing <%=startIndex + 1%> to <%=endIndex%> of <%=size%> entries
+                            </h6>
+                            <a href="?page=<%=currentPages > 1 ? currentPages - 1 : 1 %>">&laquo;</a>
+                            <%
+                                boolean needDot = false;
+                                for (int i = 1; i <= totalPages; i++) {
+                                    String activeClass = (i == currentPages) ? "active" : "";
+                                    if (i == 1 || i == totalPages) {
+                                        needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (i < currentPages + 2 && i > currentPages - 2) {
+                                needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (needDot) {
+                                needDot = false;
+                            %>
+                            <a href="#" class="">...</a>
+                            <%
+                                    }
+                                }
+                            %>
+                            <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
+                        </div>
+
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${CMD eq 'discount'}">
+                <div class="activity-grid-alt2">
+                    <div class="activity-card">
+
+                        <%
+                            int size = (int) request.getAttribute("total");
+                            int startIndex = 0;
+                            int currentPages = 1;
+                            int showMax = 5;
+                            int totalPages = (int) Math.ceil((double) size / (double) showMax);
+                            String pageParam = request.getParameter("page");
+
+                            if (pageParam != null) {
+                                currentPages = Integer.parseInt(pageParam);
+                            }
+
+                            startIndex = (currentPages - 1) * showMax;
+                            int endIndex = Math.min(startIndex + showMax, size);
+                        %>
+
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>All Discount List</h3>
+                                <span class="ti-search"></span>
+                                <input type="search" placeholder="Search content here...">
+                                <div class="pagination">
+                                    <a href="/admin/add-discount" class="add-product-btn">Create a discount plan</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Code</th>
+                                    <th>Discount</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:if test="${not empty discounts}">
+
+                                    <%
+                                        NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
+                                        List<Promotion> orders = (List<Promotion>) request.getAttribute("discounts");
+                                        for (int i = startIndex; i < endIndex; i++) {
+                                            Promotion u = orders.get(i);
+                                    %>
+                                    <tr>
+                                        <td><%=u.getCodes()%>
+                                        </td>
+                                        <td><%=u.getValueOfPro() < 101 ? u.getValueOfPro() + "%" : formater.format(u.getValueOfPro())%>
+                                        </td>
+                                        <td><%=Timestamp.valueOf(u.getStartDate())%>
+                                        </td>
+                                        <td><%=Timestamp.valueOf(u.getEndDate())%>
+                                        </td>
+                                        <td>
+                                            <%
+                                                var status = u.getStatusOfPro();
+                                                switch (status) {
+                                                    case "available": {
+                                            %>
+                                            <span class="badge success">
+                                                    <span class="ti-check"></span>
+                                                    Active
+                                                </span>
+                                            <%
+                                                    break;
+                                                }
+                                                case "expired": {
+
+                                            %>
+                                            <span class="badge warning">
+                                                    <span class="ti-close"></span>
+                                                    Expired
+                                                </span>
+                                            <%
+                                                        break;
+                                                    }
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <a href="edit-promo?id=<%=u.getId()%>">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                            <a href="#">
+                                                <span class="ti-trash"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </c:if>
 
                                 </tbody>
                             </table>

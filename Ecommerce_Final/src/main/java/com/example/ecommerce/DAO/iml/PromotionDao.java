@@ -28,9 +28,24 @@ public class PromotionDao extends ImplementBase implements IPromotionDao {
 
     @Override
     public List<Promotion> getAll() {
-        return db.jdbi.withHandle(handle1 ->
-                handle.createQuery("select * from promotions")
-                        .mapToBean(Promotion.class).list());
+        if (promotionList == null) {
+            promotionList = new ArrayList<>();
+        }
+
+        if (promotionList.isEmpty()) {
+            promotionList = handle.createQuery("select * from promotions")
+                            .mapToBean(Promotion.class).list();
+        }
+        return promotionList;
+    }
+
+    @Override
+    public List<Promotion> getAll(boolean force){
+        log.info("Querying all promotions with force: " + force);
+        if(force){
+            promotionList.clear();
+        }
+        return getAll();
     }
 
     @Override
