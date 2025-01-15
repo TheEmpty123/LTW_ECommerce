@@ -61,6 +61,9 @@ public class ProductService extends ServiceBase {
     public List<Product> getNew4Products() {
         return productDao.get4NewProducts();
     }
+    public List<Product> get4ProductOfCate(int cateID){
+        return productDao.get4ProductOfCate(cateID);
+    }
 
     public List<Product> getSearch(String name) {
         return productDao.search(name);
@@ -102,6 +105,10 @@ public class ProductService extends ServiceBase {
         var c = a.convertToJson(b);
 
         c.forEach(System.out::println);
+    }
+
+    public List<Product> getProductByFilter(String sort, String material){
+        return productDao.getProductByFilter(sort, material);
     }
 }
 

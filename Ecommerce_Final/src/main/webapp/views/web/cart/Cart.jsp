@@ -60,16 +60,19 @@
         .red {
             background-color: red;
         }
-        .green{
+
+        .green {
             color: darkgreen;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -78,10 +81,14 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
+        }
+        #input-quantity{
+            width: 55px;
         }
     </style>
 </head>
@@ -204,7 +211,7 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                       value="${sessionScope.cart.total}"/></p>
+                                                          value="${sessionScope.cart.total}"/></p>
                 </div>
 
             </div>
@@ -248,16 +255,18 @@
                                                                   value="${cp.price}"/></p>
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
-                        <div class="item-actions">
+                        <div class="item-actions item-product" data-id="${cp.id}" data-name="${cp.name}" data-img="${cp.img}" data-price="${cp.price}" >
                             <button class="remove-item" data-id="${cp.id}"
                                     style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                             <div class="quantity buttons-added left-btn">
-                                <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
-                                <input type="number" name="quatity" id="input-quantity" value="${cp.quantity}" min="1"
+
+                                <input type="button" value="-" class="minus-btn" id="button-minus-quantity">
+                                <input type="number" name="quatity" class="quantity-input" id="input-quantity" value="${cp.quantity}" min="1"
+
                                        inputmode="numeric" autocomplete="off">
-                                <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
+                                <input type="button" value="+" class="plus-btn" id="button-plus-quantity">
                             </div>
                         </div>
                     </div>
@@ -277,7 +286,8 @@
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
                                     <p class="total-cart">
-                                        <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
+                                        <f:formatNumber type="currency" currencySymbol="đ"
+                                                        value="${sessionScope.cart.total}"/>
                                     </p>
                                 </c:if>
                             </td>
@@ -291,7 +301,8 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="use-button fake-btn">
                                 <button id="submit-promotion-btn" type="submit"
-                                        style="background-color: black; color: white; border:none; padding: 5px 0">SỬ
+                                        style="background-color: black; color: white; border:none; padding: 5px 0">
+                                    SỬ
                                     DỤNG
                                 </button>
                             </div>
@@ -397,22 +408,27 @@
 </footer>
 
 <script>
-    function plusQuantity() {
-        const currQuan = document.getElementById("input-quantity")
-        const newQuan = parseInt(currQuan.getAttribute("value")) + 1
-        // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
-        currQuan.setAttribute("value", newQuan)
-    }
 
-    function minusQuantity() {
-        const currQuan = document.getElementById("input-quantity")
-        const newQuan = parseInt(currQuan.getAttribute("value")) - 1
-        // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
-        if (newQuan > 0) {
-            currQuan.setAttribute("value", newQuan)
-        }
+//    const items = document.querySelectorAll(".cart-item");
+//    items.forEach((product) =>{
+//        const plusBtn = product.querySelector(".plus-btn")
+//        const minusBtn = product.querySelector(".minus-btn")
+//        const quantityInput = product.querySelector(".quantity-input")
+//
+//        minusBtn.addEventListener('click', () => {
+//            let currentValue = parseInt(quantityInput.value)
+//            if (currentValue > 1) {
+//                quantityInput.value = currentValue - 1;
+//            }
+//        });
+//
+//        // Xử lý khi nhấn nút "+"
+//        plusBtn.addEventListener('click', () => {
+//            let currentValue = parseInt(quantityInput.value);
+//            quantityInput.value = currentValue + 1;
+//        });
+//    })
 
-    }
 
     // Xử lí phần ẩn hiện giỏ hàng
     const pop_up_cart = document.getElementById('mask-container')

@@ -13,9 +13,9 @@
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact</title>
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/footer.css">
-    <link rel="stylesheet" href="../../public/css/contact.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/contact.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -41,7 +41,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -67,12 +67,11 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../webapp/views/web/cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/views/web/cart/Cart.jsp">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="../webapp/views/web/order/order.html">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/views/web/order/order.jsp">THANH TOÁN</a>
             </div>
-
         </div>
     </div>
 </div>
@@ -89,9 +88,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="contact.html">0906 904 114</a>
+                <a href="${pageContext.request.contextPath}contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="about.html">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -102,52 +101,43 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="views/auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}/profile">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="views/common/home.html"><img src="../../public/images/logos/logo3.png"
-                                                      alt="Logo"></a>
+                <a href="${pageContext.request.contextPath}/kenes"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                        alt="Logo"></a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;"
-                   class="btn dropdown-toggle" href="views/web/product/all-product.html">SẢN PHẨM</a>
-
+                   class="btn dropdown-toggle" href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-
-
                         <div id="col-1465340020" class="col medium-2 small-6 large-2">
                             <div class="col-inner">
-
                                 <div class="ux-menu stack stack-col justify-start">
-
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Sofa			</span>
                                         </a>
                                     </div>
-
-
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Armchair			</span>
                                         </a>
                                     </div>
-
-
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Ghế dài &amp; đôn			</span>
                                         </a>
                                     </div>
-
 
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
@@ -167,7 +157,6 @@
                                         Tủ giày			</span>
                                         </a>
                                     </div>
-
                                 </div>
                             </div>
                         </div>
@@ -191,16 +180,12 @@
                                         </a>
                                     </div>
                                 </div>
-
                             </div>
                         </div>
 
                         <div id="col-306964646" class="col medium-2 small-6 large-2">
                             <div class="col-inner">
-
                                 <div class="ux-menu stack stack-col justify-start">
-
-
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
@@ -256,7 +241,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="views/web/product/products.html">
+                                        <a class="ux-menu-link__link flex" href="views/web/product/products.jsp">
                                                 <span class="ux-menu-link__text">
                                         Đồng hồ			</span>
                                         </a>
@@ -267,29 +252,24 @@
 
                         <div id="col-225901627" class="col medium-2 small-12 large-2">
                             <div class="col-inner">
-
-
                                 <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-
-
                                     <div class="ux-menu-link flex menu-item">
                                         <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Hàng trang trí khác			</span>
                                         </a>
                                     </div>
-
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
-
             </nav>
-
             <div class="search-bar-hd">
                 <input type="text" placeholder="Tìm sản phẩm">
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
-
             </div>
         </div>
     </header>
@@ -317,7 +297,7 @@
         </form>
     </div>
     <div class="contact-image">
-        <img src="../../public/images/contact/contact.png" alt="Contact Support">
+        <img src="${pageContext.request.contextPath}/public/images/contact/contact.png" alt="Contact Support">
         <div class="overlay-text">Chúng tôi đang chờ đợi phản hồi từ bạn!</div>
     </div>
 </div>
@@ -325,7 +305,7 @@
     <div class="footer-container">
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../public/images/logos/logo3.png"
+            <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                  alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
@@ -365,7 +345,7 @@
     </div>
 
 </footer>
-<script src="../../public/js/curtainmenu.js"></script>
-<script src="../../public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 </body>
 </html>

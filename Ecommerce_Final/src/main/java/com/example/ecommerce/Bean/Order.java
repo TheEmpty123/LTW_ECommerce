@@ -8,7 +8,9 @@ import java.sql.Timestamp;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class Order implements Serializable {
     private int id;
@@ -21,6 +23,7 @@ public class Order implements Serializable {
     private String sdt;
     private double total;
     private String totalS;
+    private List<OrderItem> listOrderItem;
 
 
     public Order() {
@@ -29,11 +32,21 @@ public class Order implements Serializable {
     public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, String sdt) {
         this.id = id;
         this.userID = userID;
+        this.paymentID = 0;
+        this.shippingStatus = ShippingStatus.Packaging;
+        this.createDate = LocalDateTime.now();
+        this.promotion_id = "";
+        this.sdt = "";
+    }
+
+    public Order(int userID) {
+        this.userID = userID;
         this.paymentID = paymentID;
         this.shippingStatus = shippingStatus;
         this.createDate = createDate;
         this.promotion_id = promotion_id;
         this.sdt = sdt;
+        this.listOrderItem = new ArrayList<>();
     }
 
     public Timestamp getTimeStamp() {
@@ -84,6 +97,14 @@ public class Order implements Serializable {
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
         this.timeStamp = Timestamp.valueOf(createDate);
+    }
+
+    public List<OrderItem> getListOrderItem() {
+        return listOrderItem;
+    }
+
+    public void setListOrderItem(List<OrderItem> listOrderItem) {
+        this.listOrderItem = listOrderItem;
     }
 
     public String getPromotion_id() {

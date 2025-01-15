@@ -9,14 +9,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About us</title>
-    <link rel="stylesheet" href="../../public/css/about.css">
-    <link rel="stylesheet" href="../../public/css/header.css">
-    <link rel="stylesheet" href="../../public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/about.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -42,7 +43,7 @@
             <div class="row">
                 <div class="col-md-12 col-12 order">
                     <div class="image center-items">
-                        <img src="../../public/images/all-products/53.jpg" alt="">
+                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
                     </div>
                     <div class="detail-order center-items" style="justify-content: left;">
                         <div>
@@ -68,10 +69,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="views/web/cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}//CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="views/web/order/order.html">THANH TOÁN</a>
+                <a href="">THANH TOÁN</a>
             </div>
 
         </div>
@@ -90,9 +91,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="contact.html">0906 904 114</a>
+                <a href="contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="about.html">Giới thiệu</a>
+                    <a href="about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -103,31 +104,27 @@
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="views/auth/profile.html">Tài khoản của tôi</a></h4>
+                        href="${pageContext.request.contextPath}/profile">Tài khoản của tôi</a></h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="views/common/home.html"> <img src="../../public/images/logos/logo3.png"
+                <a href="${pageContext.request.contextPath}/kenes"> <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                                        alt="Logo"></a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;"
-                   class="btn dropdown-toggle" href="views/web/product/all-product.html">SẢN PHẨM</a>
+                   class="btn dropdown-toggle" href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
 
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-
-
                         <div id="col-1465340020" class="col medium-2 small-6 large-2">
                             <div class="col-inner">
-
                                 <div class="ux-menu stack stack-col justify-start">
-
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
+                                        <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Sofa			</span>
                                         </a>
@@ -179,7 +176,7 @@
                                 <div class="ux-menu stack stack-col justify-start">
 
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
+                                        <a class="ux-menu-link__link flex" href="#">
                                                 <span class="ux-menu-link__text">
                                         Ghế Bar			</span>
                                         </a>
@@ -257,7 +254,7 @@
                                         </a>
                                     </div>
                                     <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="views/web/product/products.html">
+                                        <a class="ux-menu-link__link flex" href="views/web/product/products.jsp">
                                                 <span class="ux-menu-link__text">
                                         Đồng hồ			</span>
                                         </a>
@@ -279,8 +276,10 @@
                                         Hàng trang trí khác			</span>
                                         </a>
                                     </div>
-
-
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
@@ -301,7 +300,7 @@
 <div id="container">
     <div class="intro">
         <img class="img-intro"
-             src="../../public/images/banners/kanes_furniture_cover.png"
+             src="${pageContext.request.contextPath}/public/images/banners/kanes_furniture_cover.png"
              alt="historyofformation">
         <div class="page-title-inner container align-center flex-row medium-flex-wrap">
             <div class="title-wrapper is-xlarge flex-col text-left medium-text-center">
@@ -324,7 +323,7 @@
             <section class="des">
                 <div class="part1">
                     <div class="img-p1">
-                        <img src="../../public/images/products/bo-suu-tap-may-net-viet-duong-dai-3.jpg"
+                        <img src="${pageContext.request.contextPath}/public/images/products/bo-suu-tap-may-net-viet-duong-dai-3.jpg"
                              alt="">
                     </div>
                     <div class="des-p1" style="text-align: left;">
@@ -375,7 +374,7 @@
                         </p>
                     </div>
                     <div class="img-p2">
-                        <img src="../../public/images/products/bo-suu-tap-maxine-phong-an-600x899.jpg"
+                        <img src="${pageContext.request.contextPath}/public/images/products/bo-suu-tap-maxine-phong-an-600x899.jpg"
                              alt="">
                     </div>
                     <div class="des-p2" style="text-align: left;">
@@ -398,7 +397,7 @@
                 </div>
                 <div class="part2">
                     <div class="img-p3">
-                        <img src="../../public/images/products/nha-xinh-gioi-thieu-chat-luong-251121 (1).jpg"
+                        <img src="${pageContext.request.contextPath}/public/images/products/nha-xinh-gioi-thieu-chat-luong-251121 (1).jpg"
                              alt="">
                     </div>
 
@@ -419,7 +418,7 @@
                             giữa các sản phẩm nội thất và đồ trang trí.</p>
                     </div>
                     <div class="img-p4">
-                        <img src="../../public/images/products/nha-may-aa-tayninh-1400x786.jpg"
+                        <img src="${pageContext.request.contextPath}/public/images/products/nha-may-aa-tayninh-1400x786.jpg"
                              alt="">
                     </div>
                     <div class="des-p4" style="text-align: left;">
@@ -441,10 +440,10 @@
                 </div>
                 <div class="part3">
                     <div class="img-part3-1">
-                        <img src="../../public/images/products/nha-may-aa-tay-ninh-5-1200x800.jpg">
+                        <img src="${pageContext.request.contextPath}/public/images/products/nha-may-aa-tay-ninh-5-1200x800.jpg">
                     </div>
                     <div class="img-part3-2">
-                        <img src="../../public/images/products/nha-may-aa-tay-ninh-12-1200x800.jpg">
+                        <img src="${pageContext.request.contextPath}/public/images/products/nha-may-aa-tay-ninh-12-1200x800.jpg">
                     </div>
                 </div>
             </section>
@@ -456,7 +455,7 @@
             <!-- Left Column -->
             <div class="footer-column">
                 <h3>KẾT NỐI VỚI KANE'S</h3>
-                <img src="../../public/images/logos/logo3.png"
+                <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                      alt=" Logo" class="footer-logo">
                 <p>FOLLOW US</p>
                 <p>Instagram – Youtube – Facebook</p>
@@ -500,7 +499,7 @@
 
     </footer>
 </div>
-<script src="../../public/js/curtainmenu.js"></script>
-<script src="../../public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 </body>
 </html>

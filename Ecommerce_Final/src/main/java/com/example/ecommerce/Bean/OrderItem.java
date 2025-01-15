@@ -7,15 +7,37 @@ public class OrderItem implements Serializable {
     private int orderID;
     private int productID;
     private int amount;
+    private Product product;
+    private Order order;
 
-    public OrderItem(int id, int orderID, int productID, int amount) {
-        this.id = id;
+    public OrderItem(int orderID, int productID, int amount) {
         this.orderID = orderID;
         this.productID = productID;
         this.amount = amount;
     }
 
+//    public OrderItem(int id, int amount) {
+//        this.id = id;
+//        this.amount = amount;
+//    }
+
+    // Constructor for searching an existing OrderItem
+    public OrderItem(int orderID, int productID) {
+        this.orderID = orderID;
+        this.productID = productID;
+    }
+
+
     public OrderItem() {
+
+    }
+
+    public Order getOrder() {
+        return order;
+    }
+
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public int getId() {
@@ -50,6 +72,14 @@ public class OrderItem implements Serializable {
         this.amount = amount;
     }
 
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
     @Override
     public String toString() {
         return "OrderItem{" +
@@ -57,6 +87,8 @@ public class OrderItem implements Serializable {
                 ", orderID=" + orderID +
                 ", productID=" + productID +
                 ", amount=" + amount +
+                ", product=" + product +
                 '}';
     }
 }
+

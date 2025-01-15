@@ -26,6 +26,8 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
     <title>Tất cả sản phẩm</title>
     <style>
         /* Kiểu thông báo */
@@ -59,13 +61,15 @@
         .red {
             background-color: red;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -74,10 +78,26 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
+
+        }
+        button{
+            border: none;
+            background-color: white;
+        }
+        .disabled{
+            display: none;
+        }
+        li.page-item.page-link{
+            padding-left: 12px;
+        }
+        #p-pagination button.page-link{
+            background-color: white;
+            color: black;
         }
     </style>
 </head>
@@ -93,51 +113,59 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
+        <form id="cartt" method="post" action="/order">
 
-        <div id="list-product-cart" class="scroll-cart">
-            <c:forEach items="${sessionScope.cart.list}" var="cp">
-                <div class="row">
-                    <div class="col-md-12 col-12 order">
-                        <div class="image center-items">
-                            <img src="${cp.img}" alt="">
-                        </div>
-                        <div class="detail-order center-items" style="justify-content: left;">
-                            <div>
-                                <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
-                                                                                    value="${cp.price}"/></span>
+            <div id="list-product-cart" class="scroll-cart">
+                <c:forEach items="${sessionScope.cart.list}" var="cp">
+                    <div class="row">
+                        <div class="col-md-12 col-12 order">
+                            <div class="image center-items">
+                                <img src="${cp.img}" alt="">
+                            </div>
+                            <div class="detail-order center-items" style="justify-content: left;">
+                                <div>
+                                    <h6>${cp.name}</h6>
+                                    <span>${cp.quantity}</span> x
+                                    <span>
+                                <f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="close-orders center-items">
+                                <button class="remove-item" data-id="${cp.id}"
+                                        style="border: none; background-color: white;">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="close-orders center-items">
-                            <button class="remove-item" data-id="${cp.id}"
-                                    style="border: none; background-color: white;">
-                                <i class="bi bi-x-circle"></i>
-                            </button>
-                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div id="pay-pal" class="cart-actions">
+                <div class="total-price">
+                    <div class="money-text">
+                        <p>Thành tiền: </p>
+                    </div>
+                    <div class="money-number">
+                        <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                                                              value="${sessionScope.cart.total}"/>
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
-        </div>
-
-        <div id="pay-pal" class="cart-actions">
-            <div class="total-price">
-                <div class="money-text">
-                    <p>Thành tiền: </p>
+                <div class="watch-cart center-items">
+                    <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
+                            href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                    </button>
                 </div>
-                <div class="money-number">
-                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                          value="${sessionScope.cart.total}"/>
-                    </p>
+
+                <div class="check-out center-items">
+                    <button style="border-color: white;background: white"
+                            href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
+                    </button>
                 </div>
             </div>
-            <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
-            </div>
-            <div class="check-out center-items">
-                <a href="">THANH TOÁN</a>
-            </div>
-
-        </div>
+        </form>
     </div>
 </div>
 <div class="container-hd">
@@ -177,7 +205,8 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -236,8 +265,8 @@
         <div class="title-bg">
             <div class="title">
                 <Strong style="padding: 10px; font-size: 30px;">Sản Phẩm</Strong><br>
-                <a href="" style="font-weight: normal;">Trang chủ</a> / <a
-                    href="../product/All-products.jsp" style="font-weight: bold;">Sản phẩm</a>
+                <a href="${pageContext.request.contextPath}/kenes" style="font-weight: normal;">Trang chủ</a> / <a
+                    href="${pageContext.request.contextPath}/list-product" style="font-weight: bold;">Sản phẩm</a>
             </div>
 
         </div>
@@ -251,15 +280,13 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến
-                        </div>
+                        <div id="sort-filter" class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ
-                                biến
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả
                             </div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -269,37 +296,20 @@
                 <div class="row">
                     <h6>Chất liệu</h6>
                     <div class="dropdown-material">
-                        <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="ceramic" onchange="updateSelection()">
-                                <label for="ceramic">Ceramic (42)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da2" onchange="updateSelection()">
-                                <label for="da2">Đá (2)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da181" onchange="updateSelection()">
-                                <label for="da181">Đá (181)</label>
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
                             </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="da_vai" onchange="updateSelection()">
-                                <label for="da_vai">Da và vải (6)</label>
-                            </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="go" onchange="updateSelection()">
-                                <label for="go">Gỗ (383)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="gom" onchange="updateSelection()">
-                                <label for="gom">Gốm (113)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
-                            </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
                         </div>
                     </div>
                 </div>
@@ -307,7 +317,7 @@
 
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -315,7 +325,7 @@
     <!-- PRODUCTS -->
     <div id="p-product">
         <div class="container mt-5">
-            <div class="row">
+            <div id="product-area" class="row">
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
@@ -328,7 +338,8 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product">
+                                <div class="like-price-product favourite-product" data-id="${p.id}"
+                                     data-user="${sessionScope.auth.id}">
                                         <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                     value="${p.price}"/></span>
                                     <button class="wishlist-button">
@@ -366,31 +377,28 @@
             <nav aria-label="Page navigation">
                 <ul class="pagination justify-content-center"
                     style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
-                    <!-- Trang hiện tại -->
-                    <%--                    <li class="page-item active" aria-current="page">--%>
-                    <%--                            <span class="page-link"--%>
-                    <%--                                  style="background-color: black; font-weight: bold; border-color: black;">1</span>--%>
-                    <%--                    </li>--%>
-
                     <c:if test="${currentPage > 1}">
                         <li class="page-item">
-                            <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>
+                            <a class="page-link" href="list-product?page=${currentPage - 1}">
+                                    <button id="previous-btn">« Trước</button>
+                            </a>
                         </li>
                     </c:if>
                     <c:forEach begin="1" end="${totalPages}" var="page">
                         <!-- Các trang lân cận -->
-                        <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
-                                                 href="list-product?page=${page}">${page}</a></li>
+                        <li class="page-item">
+                            <a class="page-link ${page == currentPage ? 'active' : ''}" href="list-product?page=${page}">
+                                <button id="current-btn">${page}</button>
+                            </a>
+                        </li>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
-                        <%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
-                                <span aria-hidden="true">Tiếp »</span>
+                                <span aria-hidden="true"> <button id="next-btn">Tiếp »</button></span>
                             </a>
                         </li>
-
                     </c:if>
                 </ul>
             </nav>
@@ -782,22 +790,22 @@
     //hiển thị thêm các lựa chọn trong phần lọc theo vật liệu
     function showMore() {
         const textFooter = document.querySelector('.dropdown-footer').textContent
-        if (textFooter === "Show more") {
+        if (textFooter === "Xem thêm") {
             document.querySelectorAll('.dropdown-item-material').forEach(e => {
                 if (e.classList.contains('hidden')) {
                     e.classList.remove('hidden')
                     e.classList.add('show')
                 }
             })
-            document.querySelector('.dropdown-footer').textContent = "Hide less"
-        } else if (textFooter === "Hide less") {
+            document.querySelector('.dropdown-footer').textContent = "Ẩn bớt"
+        } else if (textFooter === "Ẩn bớt") {
             document.querySelectorAll('.dropdown-item-material').forEach(e => {
                 if (e.classList.contains('show')) {
                     e.classList.remove('show')
                     e.classList.add('hidden')
                 }
             })
-            document.querySelector('.dropdown-footer').textContent = "Show more"
+            document.querySelector('.dropdown-footer').textContent = "Xem thêm"
         }
 
     }
@@ -809,12 +817,12 @@
         }
     });
 
-    // Xử lí sự kiện bấm hình trái tim để thêm sản phẩm vào danh sách yêu thích
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked');
-        });
-    });
+    // // Xử lí sự kiện bấm hình trái tim để thêm sản phẩm vào danh sách yêu thích
+    // document.querySelectorAll('.wishlist-button').forEach(function (heart) {
+    //     heart.addEventListener('click', function () {
+    //         heart.classList.toggle('clicked');
+    //     });
+    // });
     const dots = document.querySelectorAll('.nav-box');
 
     //Xử lí sự kiện thanh navigation cho phần sản phẩm vừa xem

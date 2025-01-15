@@ -6,17 +6,19 @@
   To change this template use File | Settings | File Templates.
 --%>
 <!DOCTYPE html>
-<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %><html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Order</title>
-    <link rel="stylesheet" href="../../../public/css/header.css">
-    <link rel="stylesheet" href="../../../public/css/order.css">
-    <link rel="stylesheet" href="../../../public/css/footer.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/order.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -37,47 +39,53 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="../../../public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+
+        <div id="list-product-cart" class="scroll-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
+                        </div>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                    value="${cp.price}"/></span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <button class="remove-item" data-id="${cp.id}"
+                                    style="border: none; background-color: white;">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
-                    </div>
                 </div>
-            </div>
+            </c:forEach>
         </div>
-        <div id="pay-pal">
+
+        <div id="pay-pal" class="cart-actions">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                                                          value="${sessionScope.cart.total}"/>
+                    </p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="../cart/cart.html">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="../order/order.html">THANH TOÁN</a>
+                <a href="">THANH TOÁN</a>
             </div>
 
         </div>
     </div>
 </div>
-
-
 <div class="container-hd">
     <header>
         <div class="header-top-hd">
@@ -88,279 +96,207 @@
                 <div class="phone-hd">
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
-
-                <a href="../../../contact.html">0906 904 114</a>
+                <a href="">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="../../../about.html">Giới thiệu</a>
+                    <a href="">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
-
             <div class="header-icons-hd">
                 <a href="#" class="fas fa-map-marker-alt"></a>
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
                 <a href="#" class="fas fa-light fa-user"></a>
-                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="../../auth/profile.html">Tài khoản của tôi</a></h4>
+                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
+                    <c:if test="${sessionScope.auth != null}">
+                        <a href="${pageContext.request.contextPath}/profile">
+                                ${sessionScope.auth.username}
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.auth == null}">
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
+                    </c:if>
+                </h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="../../../../webapp/views/common/home.html"><img
-                        src="../../../public/images/logos/logo3.png" alt="Logo"></a>
+                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                </a>
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="../product/all-product.html">SẢN PHẨM</a>
-
+                   href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-
-
-                        <div id="col-1465340020" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
+                        <c:forEach var="cates" items="${mapCate}">
+                            <div class="col medium-2 small-6 large-2">
+                                <div class="col-inner">
+                                    <div class="ux-menu stack stack-col justify-start">
+                                            <%--cates.value là danh sách các danh mục trong map--%>
+                                        <c:forEach var="c" items="${cates.value}">
+                                            <div class="ux-menu-link flex menu-item">
+                                                <a class="ux-menu-link__link flex" href="products?cateID=${c.id}">
                                                 <span class="ux-menu-link__text">
-                                                    Sofa </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Armchair </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Ghế dài &amp; đôn </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn bên </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn nước </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ giày </span>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-668683791" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Ghế Bar </span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ ly </span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div id="col-306964646" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Giường ngủ </span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Tủ áo </span>
-                                        </a>
+                                                        ${c.cateName} </span>
+                                                </a>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div id="col-763303414" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bàn làm việc </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-2111288232" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Đèn trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Bình trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Gương </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../product/products.html">
-                                                <span class="ux-menu-link__text">
-                                                    Đồng hồ </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-225901627" class="col medium-2 small-12 large-2">
-                            <div class="col-inner">
-
-
-                                <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                                    Hàng trang trí khác </span>
-                                        </a>
-                                    </div>
-
-
+                        </c:forEach>
+                    </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
-
             </nav>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
 
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-
-            </div>
+            <script>
+                function getValue() {
+                    const searchInput = document.getElementById("search-input");
+                    const inputValue = searchInput.value;
+                    console.log("Giá trị tìm kiếm:", inputValue);
+                }
+            </script>
         </div>
     </header>
 </div>
 
+
 <div class="container" style="margin-top: 2%;">
     <div class="shipping-address" , style="border: none;">
-        <h2>Địa Chỉ Giao Hàng</h2>
+        <h2>Tóm tắt đơn hàng</h2>
         <form>
-            <label>Họ và tên *</label>
-            <input type="text" value="PKDuy" readonly>
 
-            <label>Số điện thoại *</label>
-            <input type="text" placeholder="Nhập số điện thoại của bạn">
 
-            <label>Tỉnh / Thành phố *</label>
-            <select>
-                <option>Chọn tỉnh / thành phố</option>
-            </select>
+            <h3>Sản phẩm</h3>
+            <div class="product-list"
+                 style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
+                <c:forEach var="order" items="${orderitems}">
+                    <div class="product" style="margin-bottom: 20px;">
+                        <img src="${pageContext.request.contextPath}/${order.product.thumb}"
+                             alt="${order.product.proName}"
+                             style="width: 100px; height: auto; object-fit: cover;">
 
-            <label>Quận / Huyện *</label>
-            <select>
-                <option>Chọn quận / huyện</option>
-            </select>
+                        <div class="product-details" style="display: flex; align-items: center; gap: 200px;">
+                            <div class="product-column" style="flex: 1;">
+                                <p><strong style="width: 150px">${order.product.proName}</strong></p>
+                                <p>Số lượng ${order.amount}</p>
+                                <p style="font-weight: bold; white-space: nowrap;">
+                                    Giá gốc: <fmt:formatNumber value="${order.product.price  *order.amount}"
+                                                               type="number"
+                                                               groupingUsed="true"/> đ
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </c:forEach>
+            </div>
 
-            <label>Địa chỉ *</label>
-            <input type="text" placeholder="Nhập địa chỉ">
-
-            <label class="checkbox-label">
-                <input type="checkbox">
-                Create an account?
-            </label>
-
+            <div class="summary-item">
+                <p>Thành tiền</p>
+                <p style="font-weight: bold; white-space: nowrap;">
+                    <fmt:formatNumber value="${total}" type="number"
+                                      groupingUsed="true"/> đ
+            </div>
             <h3>THÔNG TIN THÊM</h3>
             <label>Lưu ý cho đơn hàng (tùy chọn)</label>
             <textarea
                     placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."></textarea>
 
             <h3>PHƯƠNG THỨC THANH TOÁN</h3>
-            <div class="payment-method">
-                <button class="pay-bank">Chuyển khoản ngân hàng</button>
-                <button class="cod">Thanh toán khi nhận hàng</button>
-            </div>
+            <form id="payment">
+                <div class="payment-method">
+                    <button type="submit" class="pay-bank">Chuyển khoản ngân hàng</button>
+                    <button type="submit" class="cod">Thanh toán khi nhận hàng</button>
+                </div>
+            </form>
+            <script>
+                document.getElementById('payment').addEventListener('submit', function (event) {
+                    const selectedButton = document.querySelector('.payment-method button.selected');
+
+                    if (!selectedButton) {
+                        event.preventDefault();
+                        alert('Bạn cần chọn phương thức thanh toán');
+                    } else if (!checkbox.checked) {
+                        event.preventDefault();
+                    } else {
+                        alert("Thanh toán thành công!");
+                    }
+                });
+
+                document.querySelector('.pay-bank').addEventListener('click', function () {
+                    this.classList.add('selected');
+                    document.querySelector('.cod').classList.remove('selected');
+                });
+
+                document.querySelector('.cod').addEventListener('click', function () {
+                    this.classList.add('selected');
+                    document.querySelector('.pay-bank').classList.remove('selected');
+                });
+
+            </script>
         </form>
     </div>
 
-    <div class="order-summary" , style="border: none;">
-        <h2>Tóm tắt đơn hàng</h2>
-        <div class="summary-item">
-            <p>Thành tiền</p>
-            <p>13,900,000₫</p>
+    <div class="order-summary" ; style="border: none;">
+        <h2>Địa chỉ giao hàng</h2>
+        <div class="shipping-address-container">
+            <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
+            <div>${address[0].address.fullAddress}</div>
+
         </div>
 
-        <!-- <h3>VẬN CHUYỂN</h3>
-        <label><input type="radio" name="shipping"> Liên hệ phí vận chuyển sau</label>
-        <label><input type="radio" name="shipping"> Phí vận chuyển</label> -->
 
-        <!-- <div class="summary-item">
-            <p>TỔNG CỘNG</p>
-            <p>13,900,000₫</p>
-        </div> -->
-
-        <h3>Sản phẩm</h3>
-        <div class="product">
-            <img src="../../../public/images/all-products/52.jpg" alt="Armchair">
-            <div class="product-details">
-                <p>Armchair Hùng King + Gối</p>
-                <p>VACT3231 × 1</p>
-                <p>13,900,000₫</p>
+        <form id="abc" method="POST" style="margin-top: 20px;padding:10px" action="/order">
+            <div class="actions">
+                <p4><strong>Địa chỉ mới</strong></p4>
             </div>
-        </div>
+            <label>Họ và tên *</label>
+            <input style="width: 400px;height: 50px" type="text" name="name" value="${address[0].user.fullName}"
+                   readonly required>
+
+            <label>Số điện thoại *</label>
+            <input type="text" style="width: 400px;height: 50px" name="phone" placeholder="Nhập số điện thoại của bạn">
+
+            <label for="province-select">Tỉnh / Thành phố *</label>
+            <select name="city" id="province-select" style="width: 400px;height: 50px" required>
+                <option value="">Chọn tỉnh / thành phố</option>
+            </select>
+
+            <label for="district-select">Quận / Huyện *</label>
+            <select name="district" id="district-select" style="width: 400px;height: 50px" required>
+                <option value="">Chọn quận / huyện</option>
+            </select>
+
+            <label for="address">Địa chỉ *</label>
+            <input type="text" id="address" name="address" style="width: 400px;height: 50px" placeholder="Nhập địa chỉ"
+                   required>
+
+            <%--            <label class="checkbox-label">--%>
+            <%--                <input type="checkbox" name="createAccount"> Create an account?--%>
+            <%--            </label>--%>
+
+            <div class="modal-footer" style="padding: 5px;margin: auto">
+                <button type="button" style="background: orangered; color: white; margin-right: 10px"
+                        class="btn btn-cancel">Hủy
+                </button>
+                <button type="submit" style="background: orangered; color: white" class="btn btn-confirm">Xác nhận
+                </button>
+            </div>
+        </form>
+
 
         <h3>CHÍNH SÁCH BÁN HÀNG</h3>
         <div class="policy">
@@ -514,7 +450,7 @@
                             <p>• Hotline: 1800 7200</p>
                             <p>• Email: <a
                                     href="mailto:nhaxinhcare@akacompany.com.vn">kanescare@akacompany.com.vn</a></p>
-                            <p>• Website: <a href="../../common/home.html">www.nhaxinh.com</a></p>
+                            <p>• Website: <a href="${pageContext.request.contextPath}/index.jsp">www.kanes.com</a></p>
                             <!-- </div> -->
                             <p><strong>CHÍNH SÁCH BẢO MẬT THANH TOÁN</strong></p>
                             <p><strong>1. CAM KẾT BẢO MẬT.</strong></p>
@@ -563,14 +499,31 @@
                             <p></p>
                         </div>
                     </div>
-                    <label class="checkbox-label">
-                        <input type="checkbox">
-                        Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
-                        dịch vụ mua hàng online *
-                    </label>
+                    <form id="orderForm">
+                        <label class="checkbox-label">
+                            <input type="checkbox" id="terms" required>
+                            Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
+                            dịch vụ mua hàng online *
+                        </label>
+                        <%--                        <button type="submit">Xác nhận</button>--%>
+
                 </div>
 
-                <button class="order-button">ĐẶT MUA</button>
+                <button type="submit" class="order-button">ĐẶT MUA</button>
+                </form>
+                <script>
+                    document.getElementById('orderForm').addEventListener('submit', function (event) {
+                        const checkbox = document.getElementById('terms');
+                        if (!checkbox.checked) {
+                            event.preventDefault();
+                            alert('Bạn cần đồng ý với các điều khoản để tiếp tục.');
+                        }
+
+                        alert("Đặt hàng thành công!")
+                        this.submit();
+                    });
+
+                </script>
             </div>
         </div>
     </div>
@@ -583,7 +536,8 @@
             <!-- Left Column -->
             <div class="footer-column">
                 <h3>KẾT NỐI VỚI KANE'S</h3>
-                <img src="../../../public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
+                <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
+                     class="footer-logo">
                 <p>FOLLOW US</p>
                 <p>Instagram – Youtube – Facebook</p>
                 <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
@@ -627,7 +581,57 @@
 
     </footer>
 </div>
-<script src="../../../public/js/curtainmenu.js"></script>
-<script src="../../../public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
+<script>
+    fetch('/locations')
+        .then(response => response.json())
+        .then(data => {
+            const provinces = data.province;
+            const districts = data.district;
+            console.log("districts data:", districts)
+            if (!provinces || !districts) {
+                console.error('Invalid data from server.');
+                return;
+            }
+
+            const provinceSelect = document.getElementById('province-select');
+            const districtSelect = document.getElementById('district-select');
+
+            districtSelect.disabled = true;
+
+            provinces.forEach(province => {
+                const option = document.createElement('option');
+                option.value = province.idProvince;
+                option.textContent = province.name;
+                provinceSelect.appendChild(option);
+            });
+
+            provinceSelect.addEventListener('change', function () {
+                const selectedProvinceId = provinceSelect.value;
+                console.log("seleted provinec ID", selectedProvinceId)
+                districtSelect.innerHTML = '<option disabled selected>Chọn quận / huyện</option>';
+                districtSelect.disabled = !selectedProvinceId;
+
+                if (selectedProvinceId) {
+                    const filteredDistricts = districts.filter(district =>
+                        district.idProvince === Number(selectedProvinceId));
+                    console.log('Filtered Districts:', filteredDistricts);
+
+                    filteredDistricts.forEach(district => {
+                        const option = document.createElement('option');
+                        option.value = district.idDistrict;
+                        option.textContent = district.name;
+                        districtSelect.appendChild(option);
+                    });
+                }
+            });
+        })
+        .catch(error => console.error('Error fetching location data:', error));
+
+</script>
+<script>
+
+</script>
 </body>
 </html>

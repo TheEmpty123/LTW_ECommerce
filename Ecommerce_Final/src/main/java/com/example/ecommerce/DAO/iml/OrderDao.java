@@ -7,11 +7,15 @@ import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderDao;
 import com.example.ecommerce.Database.JDBIConnect;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 
+import java.sql.Timestamp;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Optional;
 
 public class OrderDao extends ImplementBase implements IOrderDao {
 
@@ -47,15 +51,22 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     }
 
     @Override
-    public Order addOrder(int id, int orderID, int productID, int amount) {
+    public Order addOrder(Order order) {
+        Payment payment = new Payment();
         return db.getJdbi().withHandle(handle -> {
-            handle.createUpdate("INSERT INTO orderItem (orderID, productID, amount) " +
-                            "VALUES (:orderID, :productID, :amount)")
-                    .bind("orderID", orderID)
-                    .bind("productID", productID)
-                    .bind("amount", amount)
-                    .execute();
-            return getOrderById(orderID);
+            int id = handle.createUpdate("INSERT INTO orders (userID, paymentID, shippingStatus, createDate, sdt, promotion_id) " +
+                            "VALUES (:userID, :paymentID, :shippingStatus, :createDate, :sdt, :promotion_id)")
+                    .bind("userID", order.getUserID())
+                    .bind("paymentID", 1)
+                    .bind("shippingStatus", ShippingStatus.Packaging)
+                    .bind("createDate", LocalDateTime.now())
+                    .bind("sdt", Optional.ofNullable(null))
+                    .bind("promotion_id", Optional.ofNullable(null))
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
+            order.setId(id);
+            return order;
         });
     }
 
@@ -169,6 +180,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     public static void main(String[] args) {
         OrderDao orderDao = new OrderDao();
         orderDao.log.info("test");
-        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;"));
+//        Order order = new Order(1);
+//        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;"));
+//        System.out.println(orderDao.addOrder(order));
     }
 }

@@ -25,10 +25,10 @@ public class ListProductController extends HttpServlet {
 
         List<Product> data;
         List<Category> categories;
-        try{
+        try {
             data = service.getAllProducts();
             categories = cateService.getAllCategory();
-        }catch (Exception e){
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         int itemsPerPage = 32;
@@ -38,18 +38,17 @@ public class ListProductController extends HttpServlet {
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
 
-        int countCol = categories.size()%catePerCol == 0 ?categories.size()/catePerCol : categories.size()/catePerCol+1;
+        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
 
-        for (int i =0; i< countCol; i++){
-            int index = i*catePerCol;
-            for (int j = index; j< index+catePerCol; j++){
-                if(!mapCate.containsKey(i)){
+        for (int i = 0; i < countCol; i++) {
+            int index = i * catePerCol;
+            for (int j = index; j < index + catePerCol; j++) {
+                if (!mapCate.containsKey(i)) {
                     List<Category> list = new ArrayList<>();
                     list.add(categories.get(j));
-                    mapCate.put(i,list);
-                }
-                else {
-                    if(j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    mapCate.put(i, list);
+                } else {
+                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
                     else break;
                 }
             }
@@ -73,7 +72,7 @@ public class ListProductController extends HttpServlet {
         // Gửi dữ liệu tới JSP
         HttpSession session = req.getSession(true);
         Cart c = (Cart) session.getAttribute("cart");
-        if(c == null) {
+        if (c == null) {
             c = new Cart();
             session.setAttribute("cart", c);
         }

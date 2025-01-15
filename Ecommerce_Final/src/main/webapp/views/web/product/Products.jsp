@@ -27,6 +27,9 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
+
     <style>
         /* Kiểu thông báo */
         .notification {
@@ -77,6 +80,20 @@
             padding: 5px 20px ;
             margin-bottom: 10px ;
         }
+        button{
+            border: none;
+            background-color: white;
+        }
+        .disabled{
+            display: none;
+        }
+        li.page-item.page-link{
+            padding-left: 12px;
+        }
+        #p-pagination button.page-link{
+            background-color: white;
+            color: black;
+        }
     </style>
 </head>
 <body>
@@ -106,7 +123,7 @@
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
-                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                        <a href="${pageContext.request.contextPath}/profile">
                                 ${sessionScope.auth.username}
                         </a>
                     </c:if>
@@ -119,9 +136,8 @@
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
-
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                 alt="Logo">
                 </a>
             </div>
@@ -242,13 +258,12 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến</div>
+                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ biến
-                            </div>
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả</div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -261,25 +276,24 @@
                         <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="thuytinh" onchange="updateSelection()">
-                                <label for="thuytinh">Thủy tinh (383)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="kinh" onchange="updateSelection()">
-                                <label for="kinh">Kính (7)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
                             <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
                             </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -293,12 +307,15 @@
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
                              data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                <img src="${p.thumb}"
+                                <img src="${p.thumb}" class="image-top"
+                                     alt="${p.proName}">
+                                <img src="${p.thumb}" class="image-back"
                                      alt="${p.proName}">
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product">
+                                <div class="like-price-product favourite-product" data-id="${p.id}"
+                                     data-user="${sessionScope.auth.id}">
                                     <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                 value="${p.price}"/></span>
                                     <button class="wishlist-button">
@@ -310,11 +327,9 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
-                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">THÊM
-                                                VÀO GIỎ
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                                THÊM VÀO GIỎ
                                             </button>
-                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
@@ -339,7 +354,7 @@
         <!-- Left Column -->
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../../public/images/logos/logo3.png"
+            <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                  alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
@@ -449,12 +464,6 @@
             document.querySelector('.dropdown-menu-material').classList.remove('active');
         }
     });
-
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked')
-        })
-    })
 
     // Xử lí phần ẩn hiện giỏ hàng
     const pop_up_cart = document.getElementById('mask-container')
