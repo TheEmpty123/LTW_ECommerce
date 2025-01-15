@@ -262,7 +262,9 @@
                 <div class="row">
                     <h6>Chất liệu</h6>
                     <div class="dropdown-material">
-                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">
+                            Tất cả
+                        </div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
                                 <input type="checkbox" id="metal" onchange="updateSelection()">
@@ -285,82 +287,85 @@
         </div>
     </div>
     <!-- PRODUCTS -->
-    <div id="p-product">
-        <div class="container mt-5">
-            <div class="row">
-                <c:forEach var="p" items="${products}">
-                    <div class="col-md-3">
-                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
-                             data-img="${p.thumb}" data-price="${p.price}">
-                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                <img src="${p.thumb}" class="image-top"
-                                     alt="${p.proName}">
-                                <img src="${p.thumb}" class="image-back"
-                                     alt="${p.proName}">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product favourite-product" data-id="${p.id}"
-                                     data-user="${sessionScope.auth.id}">
+    <div id="product-area">
+        <div>
+            <div id="p-product">
+                <div class="container mt-5">
+                    <div class="row">
+                        <c:forEach var="p" items="${products}">
+                            <div class="col-md-3">
+                                <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
+                                     data-img="${p.thumb}" data-price="${p.price}">
+                                    <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                        <img src="${p.thumb}" class="image-top"
+                                             alt="${p.proName}">
+                                        <img src="${p.thumb}" class="image-back"
+                                             alt="${p.proName}">
+                                    </a>
+                                    <div class="card-body">
+                                        <h6 class="product-name">${p.proName}</h6>
+                                        <div class="like-price-product favourite-product" data-id="${p.id}"
+                                             data-user="${sessionScope.auth.id}">
                                         <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                     value="${p.price}"/></span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn" style="border: none">
-                                            <button class="add-to-cart"
-                                                    style="font-size: 11px; font-weight: bold;padding: 10px 5px">
-                                                THÊM VÀO GIỎ
+                                            <button class="wishlist-button">
+                                                <i class="bi bi-heart"></i>
                                             </button>
                                         </div>
                                     </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                                <p>XEM THÊM</p></a>
+                                    <div class="cart-see-more-btns">
+                                        <div class="row">
+                                            <div class="col-sm-7 col-md-7">
+                                                <div class="cart-btn use-button fake-btn" style="border: none">
+                                                    <button class="add-to-cart"
+                                                            style="font-size: 11px; font-weight: bold;padding: 10px 5px">
+                                                        THÊM VÀO GIỎ
+                                                    </button>
+                                                </div>
+                                            </div>
+                                            <div class="col-sm-5 col-md-5">
+                                                <div class="use-button fake-btn">
+                                                    <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                        <p>XEM THÊM</p></a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </c:forEach>
                     </div>
-                </c:forEach>
+                </div>
             </div>
-        </div>
-    </div>
-    <!-- PAGINATION -->
-    <div id="p-pagination">
-        <div class="p-pagination-box">
-            <nav aria-label="Page navigation">
-                <ul class="pagination justify-content-center"
-                    style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
-                    <c:if test="${currentPage > 1}">
-                        <li class="page-item">
-                            <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>
-                        </li>
-                    </c:if>
-                    <c:forEach begin="1" end="${totalPages}" var="page">
-                        <!-- Các trang lân cận -->
-                        <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
-                                                 href="list-product?page=${page}">${page}</a></li>
-                    </c:forEach>
+            <!-- PAGINATION -->
+            <div id="p-pagination">
+                <div class="p-pagination-box">
+                    <nav aria-label="Page navigation">
+                        <ul class="pagination justify-content-center"
+                            style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
+                            <c:if test="${currentPage > 1}">
+                                <li class="page-item">
+                                    <a class="page-link" href="list-product?page=${currentPage - 1}">« Trước</a>
+                                </li>
+                            </c:if>
+                            <c:forEach begin="1" end="${totalPages}" var="page">
+                                <!-- Các trang lân cận -->
+                                <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
+                                                         href="list-product?page=${page}">${page}</a></li>
+                            </c:forEach>
 
-                    <c:if test="${currentPage < totalPages}">
-                        <%--                        <a href="products?page=${currentPage + 1}">Tiếp »</a>--%>
-                        <li class="page-item">
-                            <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
-                                <span aria-hidden="true">Tiếp »</span>
-                            </a>
-                        </li>
+                            <c:if test="${currentPage < totalPages}">
+                                <li class="page-item">
+                                    <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
+                                        <span aria-hidden="true">Tiếp »</span>
+                                    </a>
+                                </li>
 
-                    </c:if>
-                </ul>
-            </nav>
+                            </c:if>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
         </div>
     </div>
 </div>

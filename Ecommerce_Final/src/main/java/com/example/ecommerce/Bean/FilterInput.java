@@ -23,4 +23,5 @@ public class FilterInput {
     public void setMaterial(String material) {
         this.material = material;
     }
+
 }
