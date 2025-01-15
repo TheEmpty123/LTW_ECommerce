@@ -137,12 +137,15 @@
                     </div>
                 </div>
                 <div class="watch-cart center-items">
-                    <button type="submit"><a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                    <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
+                            href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
                     </button>
                 </div>
                 <div class="check-out center-items">
                     <%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
-                    <button href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN</button>
+                    <button style="border-color: white;background: white"
+                            href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
+                    </button>
                 </div>
 
             </div>

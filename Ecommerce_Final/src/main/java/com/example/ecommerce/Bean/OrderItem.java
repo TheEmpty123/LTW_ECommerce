@@ -16,6 +16,18 @@ public class OrderItem implements Serializable {
         this.amount = amount;
     }
 
+//    public OrderItem(int id, int amount) {
+//        this.id = id;
+//        this.amount = amount;
+//    }
+
+    // Constructor for searching an existing OrderItem
+    public OrderItem(int orderID, int productID) {
+        this.orderID = orderID;
+        this.productID = productID;
+    }
+
+
     public OrderItem() {
 
     }

@@ -10,8 +10,12 @@ public interface IOrderItemDao {
 
     OrderItem addOrderItem(OrderItem orderItem);
 
+    void updateOrderItem(int id, int productID, int amount);
+
     int countAmount(Order order);
 
     List<OrderItem> getOrderItem(int id);
+
+    OrderItem findByOrderAndProduct(OrderItem orderItem);
 
 }

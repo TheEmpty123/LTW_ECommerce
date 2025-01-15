@@ -27,4 +27,14 @@ public class OrderItemService extends ServiceBase {
         log.info("addOrderItem...");
         return dao.addOrderItem(orderItem);
     }
+
+    public void updateOrderItem(int id, int productID, int amount) {
+        log.info("update orderitem...");
+        this.dao.updateOrderItem(id, productID, amount);
+    }
+
+    public OrderItem findOrderItemByProductId(OrderItem orderItem) {
+        log.info("find orderitem...");
+        return this.dao.findByOrderAndProduct(orderItem);
+    }
 }

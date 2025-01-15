@@ -5,6 +5,7 @@ import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderItemDao;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
@@ -37,6 +38,54 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
         });
     }
 
+    //    @Override
+//    public void updateOrderItem(int orderID, int productID, int amount) {
+//        db.getJdbi().withHandle(handle ->
+//                handle.createUpdate("UPDATE order_item SET amount = :amount WHERE orderID = :orderID AND productID = :productID")
+//                        .bind("amount", amount)
+//                        .bind("orderID", orderID)
+//                        .bind("productID", productID)
+//                        .execute()
+//        );
+//        System.out.println("done");
+//    }
+    @Override
+    public void updateOrderItem(int orderID, int productID, int amount) {
+        db.getJdbi().withHandle(handle -> {
+            // Check if the OrderItem exists
+            int count = handle.createQuery("SELECT COUNT(*) FROM order_item WHERE orderID = :orderID AND productID = :productID")
+                    .bind("orderID", orderID)
+                    .bind("productID", productID)
+                    .mapTo(int.class)
+                    .first();
+
+            if (count > 0) {
+                // If it exists, update the amount
+                handle.createUpdate("UPDATE order_item SET amount = :amount WHERE orderID = :orderID AND productID = :productID")
+                        .bind("amount", amount)
+                        .bind("orderID", orderID)
+                        .bind("productID", productID)
+                        .execute();
+                System.out.println("OrderItem updated successfully.");
+            } else {
+                System.out.println("OrderItem not found. No update performed.");
+            }
+            return null;
+        });
+    }
+
+
+    @Override
+    public OrderItem findByOrderAndProduct(OrderItem orderItem) {
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM order_item WHERE orderID = :orderID AND productID = :productID")
+                        .bind("orderID", orderItem.getOrderID())
+                        .bind("productID", orderItem.getProductID())
+                        .mapToBean(OrderItem.class)
+                        .findOne()
+                        .orElse(null)
+        );
+    }
 
     @Override
     public int countAmount(Order order) {
@@ -126,7 +175,8 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     public static void main(String[] args) {
         OrderItemDao dao = new OrderItemDao();
         dao.log.info("test");
-        System.out.println(dao.getOrderItem(1));
+        OrderItem orderItem = new OrderItem(1, 45, 10);
+        dao.updateOrderItem(orderItem.getOrderID(), orderItem.getProductID(), orderItem.getAmount());
     }
 
 }

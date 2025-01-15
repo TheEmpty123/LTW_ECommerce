@@ -192,16 +192,13 @@
                         <div class="product-details" style="display: flex; align-items: center; gap: 200px;">
                             <div class="product-column" style="flex: 1;">
                                 <p><strong style="width: 150px">${order.product.proName}</strong></p>
-                                <p>VACT3231 × 1</p>
+                                <p>Số lượng ${order.amount}</p>
                                 <p style="font-weight: bold; white-space: nowrap;">
-                                    Giá gốc: <fmt:formatNumber value="${order.product.price}" type="number"
+                                    Giá gốc: <fmt:formatNumber value="${order.product.price  *order.amount}"
+                                                               type="number"
                                                                groupingUsed="true"/> đ
                                 </p>
-
                             </div>
-                                <%--                            <div class="product-column" style="flex: 1; text-align: right;">--%>
-                                <%--                                <h6 style="color: #007bff;">${order.order.shippingStatus}</h6>--%>
-                                <%--                            </div>--%>
                         </div>
                     </div>
                 </c:forEach>
@@ -521,6 +518,9 @@
                             event.preventDefault();
                             alert('Bạn cần đồng ý với các điều khoản để tiếp tục.');
                         }
+
+                        alert("Đặt hàng thành công!")
+                        this.submit();
                     });
 
                 </script>
