@@ -87,6 +87,9 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
+        #input-quantity{
+            width: 55px;
+        }
     </style>
 </head>
 <body>
@@ -252,17 +255,18 @@
                                                                   value="${cp.price}"/></p>
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
-                        <div class="item-actions">
+                        <div class="item-actions item-product" data-id="${cp.id}" data-name="${cp.name}" data-img="${cp.img}" data-price="${cp.price}" >
                             <button class="remove-item" data-id="${cp.id}"
                                     style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
                             </button>
                             <div class="quantity buttons-added left-btn">
-                                <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
-                                <input type="number" name="quatity" id="input-quantity" value="${cp.quantity}"
-                                       min="1"
+
+                                <input type="button" value="-" class="minus-btn" id="button-minus-quantity">
+                                <input type="number" name="quatity" class="quantity-input" id="input-quantity" value="${cp.quantity}" min="1"
+
                                        inputmode="numeric" autocomplete="off">
-                                <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
+                                <input type="button" value="+" class="plus-btn" id="button-plus-quantity">
                             </div>
                         </div>
                     </div>
@@ -404,22 +408,27 @@
 </footer>
 
 <script>
-    function plusQuantity() {
-        const currQuan = document.getElementById("input-quantity")
-        const newQuan = parseInt(currQuan.getAttribute("value")) + 1
-        // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
-        currQuan.setAttribute("value", newQuan)
-    }
 
-    function minusQuantity() {
-        const currQuan = document.getElementById("input-quantity")
-        const newQuan = parseInt(currQuan.getAttribute("value")) - 1
-        // document.getElementById("input-quantity").ariaValueNow   = currQuan+1 +""
-        if (newQuan > 0) {
-            currQuan.setAttribute("value", newQuan)
-        }
+//    const items = document.querySelectorAll(".cart-item");
+//    items.forEach((product) =>{
+//        const plusBtn = product.querySelector(".plus-btn")
+//        const minusBtn = product.querySelector(".minus-btn")
+//        const quantityInput = product.querySelector(".quantity-input")
+//
+//        minusBtn.addEventListener('click', () => {
+//            let currentValue = parseInt(quantityInput.value)
+//            if (currentValue > 1) {
+//                quantityInput.value = currentValue - 1;
+//            }
+//        });
+//
+//        // Xử lý khi nhấn nút "+"
+//        plusBtn.addEventListener('click', () => {
+//            let currentValue = parseInt(quantityInput.value);
+//            quantityInput.value = currentValue + 1;
+//        });
+//    })
 
-    }
 
     // Xử lí phần ẩn hiện giỏ hàng
     const pop_up_cart = document.getElementById('mask-container')

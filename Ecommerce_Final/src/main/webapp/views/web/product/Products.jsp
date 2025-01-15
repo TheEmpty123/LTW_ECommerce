@@ -27,6 +27,9 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
+
     <style>
         /* Kiểu thông báo */
         .notification {
@@ -106,7 +109,7 @@
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
-                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                        <a href="${pageContext.request.contextPath}/profile">
                                 ${sessionScope.auth.username}
                         </a>
                     </c:if>
@@ -119,9 +122,8 @@
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
-
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                                 alt="Logo">
                 </a>
             </div>
@@ -449,12 +451,6 @@
             document.querySelector('.dropdown-menu-material').classList.remove('active');
         }
     });
-
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked')
-        })
-    })
 
     // Xử lí phần ẩn hiện giỏ hàng
     const pop_up_cart = document.getElementById('mask-container')

@@ -52,9 +52,15 @@ public class ProductService extends ServiceBase {
         return productDao.get4NewProducts();
     }
 
+
     public List<Product> getSearch(String name) {
         return productDao.search(name);
     }
 //    public void
+
+    public List<Product> getProductByFilter(String sort, String material){
+        return productDao.getProductByFilter(sort, material);
+    }
+
 }
 

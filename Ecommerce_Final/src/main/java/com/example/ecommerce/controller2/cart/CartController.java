@@ -91,7 +91,16 @@ public class CartController extends HttpServlet {
             String action = req.getParameter("action");
             if ("remove".equals(action)) {
                 cart.remove(newItem.getId());
-            } else {
+            }else if ("plus".equals(action)) {
+                // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
+                for (CartProduct item : cart.getList()) {
+                    if (item.getId() == (newItem.getId())) {
+                        cart.update(item.getId(), item.getQuantity() - 1);
+                        break;
+                    }
+                }
+
+            }else {
                 // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
                 boolean exists = false;
                 for (CartProduct item : cart.getList()) {
@@ -117,7 +126,6 @@ public class CartController extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(gson.toJson(new CartResponse(cart.getList(), total, uName)));
-
     }
 
     private static class CartResponse {
@@ -129,6 +137,15 @@ public class CartController extends HttpServlet {
             this.lists = lists;
             this.totalPrice = totalPrice;
             this.userName = userName;
+        }
+        public List<CartProduct> getLists() {
+            return lists;
+        }
+        public double getTotalPrice() {
+            return totalPrice;
+        }
+        public String getUserName() {
+            return userName;
         }
     }
 }

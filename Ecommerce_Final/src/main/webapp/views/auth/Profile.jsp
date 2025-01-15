@@ -27,7 +27,6 @@
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <title>Tài khoản của tôi</title>
     <style>
-
         .scroll-cart {
             max-height: 65%;
             height: 65% !important;
@@ -145,7 +144,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/views/web/common/home.jsp">
+                <a href="${pageContext.request.contextPath}/kenes">
                     <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
@@ -294,6 +293,24 @@
                 <div class="box">
                     <h3>Danh sách yêu thích</h3>
                 </div>
+                <div class="list-products">
+                    <div class="row">
+                        <c:forEach var="p" items="${favoriteProducts}">
+                            <div class="col-sm-6 col-md-6 product-item">
+                                <div class="row">
+                                    <div class="col-md-6 col-6">
+                                        <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                            <img src="${p.thumb}" alt="${p.proName}">
+                                        </a>
+                                    </div>
+                                    <div class="col-md-6 col-6">
+                                        <strong>${p.proName}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
             <div id="log-out" class="hidden">
                 <div class="box-logout">
@@ -317,6 +334,17 @@
                 <div class="wish-list-title margin-lr-20">
                     <h5>Danh sách yêu thích</h5>
                 </div>
+                <div class="list-products">
+                    <div class="row">
+                        <c:forEach var="p" items="${favoriteProducts}">
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                    <img src="${p.thumb}" alt="${p.proName}">
+                                </a>
+                            </div>
+                        </c:forEach>
+                    </div>
+                </div>
             </div>
             <div class="product-viewed">
                 <div class="wish-list-viewed margin-lr-20">
@@ -324,46 +352,13 @@
                 </div>
                 <div class="list-products">
                     <div class="row">
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/1.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/77.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/44.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/33.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/55.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/134.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/100.jpg" alt="">
-                            </a>
-                        </div>
-                        <div class="col-sm-3 col-md-4 product-item">
-                            <a href="">
-                                <img src="${pageContext.request.contextPath}/public/images/all-products/13.jpg" alt="">
-                            </a>
-                        </div>
+                        <c:forEach var="rp" items="${sessionScope.recentlyView}">
+                            <div class="col-sm-3 col-md-4 product-item">
+                                <a href="product?id=${rp.id}&atributeID=${rp.atributeID}&cateID=${rp.cateID}">
+                                    <img src="${rp.thumb}" alt="${rp.proName}">
+                                </a>
+                            </div>
+                        </c:forEach>
                     </div>
                 </div>
             </div>
@@ -422,5 +417,6 @@
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/submenu.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
 </body>
 </html>
