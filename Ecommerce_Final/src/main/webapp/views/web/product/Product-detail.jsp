@@ -29,7 +29,7 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
-    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
+    <%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
     <style>
         .review-section {
             background: white;
@@ -176,20 +176,24 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
-        .remove-item{
+
+        .remove-item {
             border: none;
             background-color: white;
         }
-        .red{
+
+        .red {
             background-color: red;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -198,10 +202,15 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
+        }
+        button{
+            border: none;
+            background-color: white;
         }
     </style>
 </head>
@@ -247,14 +256,18 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                       value="${sessionScope.cart.total}"/></p>
+                                                          value="${sessionScope.cart.total}"/></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
+                        href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                </button>
             </div>
             <div class="check-out center-items">
-                <a href="">THANH TOÁN</a>
+                <button style="border-color: white;background: white"
+                        href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
+                </button>
             </div>
 
         </div>
@@ -286,7 +299,7 @@
                 <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
-                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                        <a href="${pageContext.request.contextPath}/profile">
                                 ${sessionScope.auth.username}
                         </a>
                     </c:if>
@@ -301,8 +314,9 @@
         <div class="header-bottom-hd">
 
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
-                                alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes">
+                    <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                         alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -335,11 +349,21 @@
 
             </nav>
 
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-
-            </div>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+            <script>
+                function getValue() {
+                    const searchInput = document.getElementById("search-input");
+                    const inputValue = searchInput.value;
+                    console.log("Giá trị tìm kiếm:", inputValue);
+                }
+            </script>
         </div>
     </header>
 </div>
@@ -372,12 +396,13 @@
         <!-- Mô tả sản phẩm -->
         <div class="product-describe">
             <h1 class="product-title">${p.proName}</h1>
-            <div class="wishlist-wrapper">
-                <div class="wishlist-icon">
+            <div class="wishlist-wrapper favourite-product" data-id="${p.id}"
+                 data-user="${sessionScope.auth.id}">
+<%--                <div class="wishlist-icon">--%>
                     <button class="wishlist-button">
                         <i class="bi bi-heart"></i>
                     </button>
-                </div>
+<%--                </div>--%>
             </div>
             <div class="price-wrapper">
                 <p class="product-page-price"><f:formatNumber type="currency" currencySymbol="đ"
@@ -400,7 +425,6 @@
                 </div>
             </div>
             <div class="product-meta margin-top-bottom-25">
-
                 <div class="category">
                     <span>Danh mục:</span>
                     <a href="#">Armchair,</a>
@@ -418,10 +442,8 @@
                 </div>
                 <div class="right-btn product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}"
                      data-price="${p.price}">
-                    <a href="../order/order.html" class="buy-button"> Mua ngay</a>
-                    <%--                    <a href="add-cart?pid=${p.id}">--%>
-                    <button type="submit" class="add-to-cart" style=" padding: 10px 5px">Thêm vào giỏ</button>
-                    <%--                    </a>--%>
+                    <a href="${pageContext.request.contextPath}/order" class="buy-button"> Mua ngay</a>
+                    <button class="add-to-cart" style=" padding: 10px 5px">Thêm vào giỏ</button>
                 </div>
             </div>
             <div class="hotline">
@@ -564,138 +586,45 @@
         </div>
         <div class="center-box">
             <div class="row">
-                <div class="col-sm-3 col-md-3 col-6">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/32.jpg" class="image-top"
-                                 alt="Bàn bên 3C-02">
-                            <img src="../../../public/images/all-products/32.1.jpg" class="image-back"
-                                 alt="Bàn bên 3C-02 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Bàn bên 3C-02</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">7,990,000đ</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn use-button fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="use-button fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
+                <c:forEach var="p" items="${productOfCate}">
+                    <div class="col-md-3">
+                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
+                             data-img="${p.thumb}" data-price="${p.price}">
+                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                <img src="${p.thumb}"
+                                     alt="${p.proName}">
+                            </a>
+                            <div class="card-body">
+                                <h6 class="product-name">${p.proName}</h6>
+                                <div class="like-price-product favourite-product" data-id="${p.id}"
+                                     data-user="${sessionScope.auth.id}">
+                                    <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                value="${p.price}"/></span>
+                                    <button class="wishlist-button">
+                                        <i class="bi bi-heart"></i>
+                                    </button>
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-6">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/34.jpg" class="image-top"
-                                 alt="Bàn bên 3C-02">
-                            <img src="../../../public/images/all-products/34.1.jpg" class="image-back"
-                                 alt="Bàn bên 3C-02 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Bàn bên 3C-02</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">7,990,000đ</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn use-button fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
+                            <div class="cart-see-more-btns">
+                                <div class="row">
+                                    <div class="col-sm-7 col-md-7">
+                                        <div class="cart-btn use-button fake-btn" style="border: none">
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                                THÊM VÀO GIỎ
+                                            </button>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="use-button fake-btn">
-                                        <p>XEM THÊM</p>
+                                    <div class="col-sm-5 col-md-5">
+                                        <div class="use-button fake-btn">
+                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                <p>XEM THÊM</p></a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-6">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/86.jpg" class="image-top"
-                                 alt="Bàn bên 3C-02">
-                            <img src="../../../public/images/all-products/86.1.jpg" class="image-back"
-                                 alt="Bàn bên 3C-02 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Bàn bên 3C-02</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">7,990,000đ</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn use-button fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="use-button fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-3 col-md-3 col-6">
-                    <div class="card product-card">
-                        <a href="">
-                            <img src="../../../public/images/all-products/56.jpg" class="image-top"
-                                 alt="Bàn bên 3C-02">
-                            <img src="../../../public/images/all-products/56.1.jpg" class="image-back"
-                                 alt="Bàn bên 3C-02 1">
-                        </a>
-                        <div class="card-body">
-                            <h6 class="product-name">Bàn bên 3C-02</h6>
-                            <div class="like-price-product">
-                                <span class="product-price">7,990,000đ</span>
-                                <button class="wishlist-button">
-                                    <i class="bi bi-heart"></i>
-                                </button>
-                            </div>
-                        </div>
-                        <div class="cart-see-more-btns">
-                            <div class="row">
-                                <div class="col-sm-7 col-md-7">
-                                    <div class="cart-btn use-button fake-btn">
-                                        <p>THÊM VÀO GIỎ</p>
-                                    </div>
-                                </div>
-                                <div class="col-sm-5 col-md-5">
-                                    <div class="use-button fake-btn">
-                                        <p>XEM THÊM</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>

@@ -33,7 +33,7 @@ public class ProductDetailController extends HttpServlet {
         String pid = req.getParameter("id");
         String pAttributeID = req.getParameter("atributeID");
         String categoryID = req.getParameter("cateID");
-
+        List<Product> list4Product;
         try{
             int id = Integer.parseInt(pid);
             int attributeID = Integer.parseInt(pAttributeID);
@@ -42,7 +42,9 @@ public class ProductDetailController extends HttpServlet {
             categories = cateService.getAllCategory();
             category = cateService.getCategoryById(cateID);
             ProductAttribute pat = productDetailServ.getProductAttributeById(attributeID);
+            list4Product  = service.get4ProductOfCate(cateID);;
 
+            req.setAttribute("productOfCate", list4Product);
             req.setAttribute("p", p);
             req.setAttribute("pat", pat);
         }catch (NumberFormatException e){
@@ -74,6 +76,10 @@ public class ProductDetailController extends HttpServlet {
             session.setAttribute("cart", cart);
         }
         session.setAttribute("cart", cart);
+
+
+
+
 
         req.setAttribute("mapCate", mapCate);
         req.setAttribute("categories", category);

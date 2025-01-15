@@ -312,7 +312,8 @@
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product">
+                                <div class="like-price-product favourite-product" data-id="${p.id}"
+                                     data-user="${sessionScope.auth.id}">
                                     <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                 value="${p.price}"/></span>
                                     <button class="wishlist-button">
@@ -324,8 +325,8 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">THÊM
-                                                VÀO GIỎ
+                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                                THÊM VÀO GIỎ
                                             </button>
                                         </div>
                                     </div>
@@ -351,7 +352,7 @@
         <!-- Left Column -->
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../../public/images/logos/logo3.png"
+            <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
                  alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>

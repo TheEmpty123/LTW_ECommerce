@@ -160,13 +160,10 @@
                 </div>
 
                 <div class="check-out center-items">
-                    <%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
                     <button style="border-color: white;background: white"
                             href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
                     </button>
-
                 </div>
-
             </div>
         </form>
     </div>
@@ -268,8 +265,8 @@
         <div class="title-bg">
             <div class="title">
                 <Strong style="padding: 10px; font-size: 30px;">Sản Phẩm</Strong><br>
-                <a href="" style="font-weight: normal;">Trang chủ</a> / <a
-                    href="../product/All-products.jsp" style="font-weight: bold;">Sản phẩm</a>
+                <a href="${pageContext.request.contextPath}/kenes" style="font-weight: normal;">Trang chủ</a> / <a
+                    href="${pageContext.request.contextPath}/list-product" style="font-weight: bold;">Sản phẩm</a>
             </div>
 
         </div>
