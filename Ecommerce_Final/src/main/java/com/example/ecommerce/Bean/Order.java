@@ -24,8 +24,7 @@ public class Order implements Serializable {
     private double total;
     private String totalS;
     private List<OrderItem> listOrderItem;
-
-
+    
     public Order() {
     }
 

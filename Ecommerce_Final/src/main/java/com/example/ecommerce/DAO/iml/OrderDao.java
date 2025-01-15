@@ -5,9 +5,11 @@ import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Bean.Payment;
 import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
+import com.example.ecommerce.Common.Enum.Statuss;
 import com.example.ecommerce.DAO.interf.IOrderDao;
 import com.example.ecommerce.Database.JDBIConnect;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
+import org.jdbi.v3.core.Jdbi;
 
 import java.sql.Timestamp;
 import java.text.NumberFormat;
@@ -23,6 +25,10 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
     public OrderDao() {
         super();
+    }
+
+    public Jdbi getJdbi(){
+        return db.jdbi;
     }
 
     public List<Order> getAllOrders() {
@@ -47,7 +53,7 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
     @Override
     public int recordSize() {
-        return 0;
+        return allOrders.size();
     }
 
     @Override
@@ -177,11 +183,40 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         return totalShipped == null ? 0 : totalShipped;
     }
 
+    @Override
+    public int getTotalOrderWithStatus(boolean force, ShippingStatus status){
+        log.info("Getting total order " + status + " with force: " + force);
+
+        allOrders = getAllOrders(force);
+        List<Order> orders = new ArrayList<>();
+
+        for (Order order : allOrders) {
+            if (order.getShippingStatus() == status) {
+                orders.add(order);
+            }
+        }
+
+        return orders.size();
+    }
+
+    @Override
+    public int getTotalOrdersWithPaymentStatus(boolean force, Statuss status){
+        log.info("Getting total order " + status + " with force: " + force);
+
+        List<Order> orders = new ArrayList<>();
+        var o = handle.createQuery("SELECT o.id FROM orders AS o JOIN payment AS p ON o.paymentID = p.id WHERE p.statuss = ?")
+                .bind(0, status)
+                .mapToBean(Order.class).list();
+
+        return o.size();
+    }
+
     public static void main(String[] args) {
         OrderDao orderDao = new OrderDao();
         orderDao.log.info("test");
-//        Order order = new Order(1);
-//        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;"));
-//        System.out.println(orderDao.addOrder(order));
+
+        var li = orderDao.getTotalOrdersWithPaymentStatus(false, Statuss.CANCELLED);
+
+        System.out.println(li);
     }
 }

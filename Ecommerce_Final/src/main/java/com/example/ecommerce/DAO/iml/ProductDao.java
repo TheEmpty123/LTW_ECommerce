@@ -90,6 +90,11 @@ public class ProductDao extends ImplementBase implements IProductDAO {
                         .mapToBean(Product.class).list());
     }
 
+    @Override
+    public List<Product> getProductByFilter(ProductFilter filter) {
+        return List.of();
+    }
+
     public List<Product> get4ProductOfCate(int cateID){
         return db.jdbi.withHandle(handle -> handle.createQuery("select * from products where cateID = :cateID limit 4")
                 .bind("cateID", cateID)

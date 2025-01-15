@@ -79,7 +79,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="order-management.jsp">
+                    <a href="/admin/orders">
                         <span class="ti-receipt"></span>
                         <span>Quản lý đơn</span>
                     </a>

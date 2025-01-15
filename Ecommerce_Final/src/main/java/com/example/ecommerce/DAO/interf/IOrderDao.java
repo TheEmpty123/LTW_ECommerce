@@ -3,6 +3,8 @@ package com.example.ecommerce.DAO.interf;
 import com.example.ecommerce.Bean.Order;
 import com.example.ecommerce.Bean.Payment;
 import com.example.ecommerce.Bean.Promotion;
+import com.example.ecommerce.Common.Enum.ShippingStatus;
+import com.example.ecommerce.Common.Enum.Statuss;
 
 import java.util.List;
 
@@ -31,4 +33,8 @@ public interface IOrderDao {
     public double getTotalProcessing(boolean force);
 
     public double getTotalShipped(boolean force);
+
+    public int getTotalOrderWithStatus(boolean force, ShippingStatus status);
+
+    public int getTotalOrdersWithPaymentStatus(boolean force, Statuss status);
 }
