@@ -6,9 +6,7 @@ public class Rating {
     private int stars;
     private String commentRate;
 
-    public Rating() {
-
-    }
+    public Rating() {}
 
     public Rating(int userID, int productID, int stars, String commentRate) {
         this.userID = userID;

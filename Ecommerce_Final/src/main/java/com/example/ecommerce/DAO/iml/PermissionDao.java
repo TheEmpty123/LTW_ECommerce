@@ -28,11 +28,21 @@ public class PermissionDao extends ImplementBase implements IPermissionDao {
     @Override
     public List<Permission> getAllPermissions() {
         if (permissions.isEmpty()) {
-            handle.createQuery("SELECT * FROM permission")
+            permissions = handle.createQuery("SELECT * FROM permission")
                     .mapToBean(Permission.class)
                     .list();
         }
 
+        return permissions;
+    }
+
+    public List<Permission> getAllPermissions(boolean force) {
+        log.info("Querying permissions with force: " + force);
+
+        if (force) {
+            permissions.clear();
+        }
+        permissions = getAllPermissions();
         return permissions;
     }
 
@@ -75,7 +85,7 @@ public class PermissionDao extends ImplementBase implements IPermissionDao {
 
     public static void main(String[] args) {
         var a = new PermissionDao();
-        var b = a.getAllPermissionsMap();
+        var b = a.getAllPermissions(true);
         System.out.println(b);
     }
 }

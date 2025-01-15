@@ -4,7 +4,11 @@ import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ProductFilter;
 import com.example.ecommerce.DAO.interf.IProductDAO;
 import com.example.ecommerce.Database.JDBIConnect;
+import com.example.ecommerce.Dto.ProductDto;
+import org.jdbi.v3.core.Handle;
+import org.jdbi.v3.core.Jdbi;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,10 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public int recordSize() {
         return 0;
+    }
+
+    public Jdbi getJdbi(){
+        return db.jdbi;
     }
 
     @Override
@@ -69,9 +77,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
 
     @Override
     public List<Product> search(String name) {
-        return db.getJdbi().withHandle(handle1 -> handle.createQuery("SELECT * FROM products WHERE proName LIKE :name")
+        return handle.createQuery("SELECT p.id, p .proName, p.description, p.price, p.thumb FROM products AS p JOIN product_atribute AS pa ON p.atributeID = pa.id WHERE pa.material LIKE :name")
                 .bind("name",  "%" + name + "%")
-                .mapToBean(Product.class).list());
+                .mapToBean(Product.class).list();
     }
 
     @Override
@@ -87,6 +95,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
                 .bind("cateID", cateID)
                 .mapToBean(Product.class).list());
     }
+
 
     @Override
     public List<Product> getProductByFilter(String sort, String material) {
@@ -115,7 +124,6 @@ public class ProductDao extends ImplementBase implements IProductDAO {
                 .mapToBean(Product.class).list());
     }
 
-
 //    public static void main(String[] args) {
 //        ProductDao dao = new ProductDao();
 //        System.out.println("running");
@@ -125,6 +133,4 @@ public class ProductDao extends ImplementBase implements IProductDAO {
 //            System.out.println(p);
 //        }
 //    }
-
-
 }

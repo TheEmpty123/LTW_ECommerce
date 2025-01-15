@@ -207,11 +207,6 @@
       <section class="recent">
         <div class="activity-grid-alt">
           <div class="activity-card">
-
-            <div>
-              <div class="search-wrapper"></div>
-            </div>
-
             <div class="table-responsive">
               <table>
                 <thead>

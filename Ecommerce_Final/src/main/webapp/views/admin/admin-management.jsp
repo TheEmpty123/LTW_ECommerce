@@ -129,31 +129,6 @@
                     </div>
 
                     <div class="pagination">
-                        <h6 class="show-entries">
-                            <%
-                                Integer size = (Integer) request.getAttribute("totalAdmin");
-                                int showMax = 5;
-                                int totalPages = (int) Math.ceil((double) size / showMax);
-                                int currentPage = 1;
-                                String pageParam = request.getParameter("page");
-                                if (pageParam != null) {
-                                    currentPage = Integer.parseInt(pageParam);
-                                }
-                                int startIndex = (currentPage - 1) * showMax;
-                                int endIndex = Math.min(startIndex + showMax, size);
-                            %>
-                            *Showing <%= startIndex + 1 %> to <%= endIndex %> of <%= size %> entries
-                        </h6>
-                        <a href="?page=<%= currentPage > 1 ? currentPage - 1 : 1 %>">«</a>
-                        <%
-                            for (int i = 1; i <= totalPages; i++) {
-                                String activeClass = (i == currentPage) ? "active" : "";
-                        %>
-                        <a href="?page=<%= i %>" class="<%= activeClass %>"><%= i %></a>
-                        <%
-                            }
-                        %>
-                        <a href="?page=<%= currentPage < totalPages ? currentPage + 1 : totalPages %>">»</a>
                         <a href="#add-user" class="add-user-btn">Add user</a>
                     </div>
 

@@ -1,4 +1,4 @@
-<%--
+<%@ page import="com.example.ecommerce.Bean.User" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -28,123 +28,7 @@
         <label for="sidebar-toggle" class="ti-menu-alt"></label>
     </div>
 
-    <div class="sidebar-menu">
-        <ul>
-            <!-- For management -->
-            <li>
-                <a class="separator">
-                    General
-                </a>
-            </li>
-            <li>
-                <a href="dashboard.jsp">
-                    <span class="ti-home"></span>
-                    <span>Trang chủ</span>
-                </a>
-            </li>
-            <li>
-                <a href="admin-management.jsp">
-                    <span class="ti-wheelchair"></span>
-                    <span>Admins</span>
-                </a>
-            </li>
-            <li>
-                <a href="user-management.jsp">
-                    <span class="ti-user"></span>
-                    <span>Người dùng</span>
-                </a>
-            </li>
-            <li>
-                <a href="role-permissions-management.jsp">
-                    <span class="ti-agenda"></span>
-                    <span>Vai trò & Quyền hạn</span>
-                </a>
-            </li>
-            <li>
-                <a href="product-management.jsp">
-                    <span class="ti-truck"></span>
-                    <span>Quản lý sản phẩm</span>
-                </a>
-            </li>
-            <li>
-                <a href="category-management.jsp">
-                    <span class="ti-menu"></span>
-                    <span>Quản lý danh mục</span>
-                </a>
-            </li>
-            <li>
-                <a href="inventory-management.jsp">
-                    <span class="ti-server"></span>
-                    <span>Quản lý hàng tồn</span>
-                </a>
-            </li>
-            <li>
-                <a href="order-management.jsp">
-                    <span class="ti-receipt"></span>
-                    <span>Quản lý đơn</span>
-                </a>
-            </li>
-            <li>
-                <a href="promotions-discounts.jsp">
-                    <span class="ti-ticket"></span>
-                    <span>Giảm giá</span>
-                </a>
-            </li>
-            <li>
-                <a href="purchases-management.jsp">
-                    <span class="ti-money"></span>
-                    <span>Thanh toán</span>
-                </a>
-            </li>
-            <li>
-                <a href="sales-reports.jsp">
-                    <span class="ti-bar-chart"></span>
-                    <span>Báo cáo doanh thu</span>
-                </a>
-            </li>
-
-            <!-- For user self -->
-
-            <li>
-                <a class="separator">Users</a>
-            </li>
-
-            <li>
-                <a href="profile-management.jsp">
-                    <span class="ti-user"></span>
-                    <span>Profile</span>
-                </a>
-            </li>
-
-            <!-- For support -->
-
-            <li>
-                <a class="separator">
-                    Support
-                </a>
-            </li>
-
-            <li>
-                <a href="privacy-policy.jsp">
-                    <span class="ti-info-alt"></span>
-                    <span>Privacy policy</span>
-                </a>
-            </li>
-            <li>
-                <a href="faqs.jsp">
-                    <span class="ti-help-alt"></span>
-                    <span>FAQs</span>
-                </a>
-            </li>
-            <li>
-                <a href="help-center.jsp">
-                    <span class="ti-headphone-alt"></span>
-                    <span>Help center</span>
-                </a>
-            </li>
-
-        </ul>
-    </div>
+    <jsp:include page="menu-bar.jsp"/>
 </div>
 
 
@@ -183,37 +67,107 @@
                 <div class="activity-card">
                     <div class="form-container">
                         <h2>User Information</h2>
-                        <form>
-                            <div class="form-group">
-                                <label for="fullName">Full Name</label>
-                                <input type="text" id="fullName" name="fullName" placeholder="Enter full name"
-                                       required>
+
+                        <!-- Display error message -->
+                        <c:if test="${not empty errorMessage}">
+                            <div style="color: red;">
+                                    ${errorMessage}
                             </div>
-                            <div class="form-group">
-                                <label for="username">Username</label>
-                                <input type="text" id="username" name="username" placeholder="Enter username"
-                                       required>
+                        </c:if>
+
+                        <!-- Display success message -->
+                        <c:if test="${not empty successMessage}">
+                            <div style="color: greenyellow;">
+                                    ${successMessage}
                             </div>
-                            <div class="form-group">
-                                <label for="email">Email</label>
-                                <input type="email" id="email" name="email" placeholder="Enter email" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Phone No.</label>
-                                <input type="tel" id="phone" name="phone" placeholder="Enter phone number" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="role">Role</label>
-                                <select type="role" id="role" name="role">
-                                    <option value="CLIENT">Client</option>
-                                    <option value="VIP_CLIENT">VIP client</option>
-                                    <option value="MANAGER">Manager</option>
-                                    <option value="EMPLOYEE">Employee</option>
-                                    <option value="ADMINISTRATOR">Administrator</option>
-                                </select>
-                            </div>
-                            <button type="submit" class="submit-btn">Submit</button>
-                        </form>
+                        </c:if>
+
+                        <c:if test="${method eq 'edit'}">
+                            <form method="post" action="/admin/edit-user">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="${user.fullName}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="${user.username}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="${user.email}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter new password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="phone">Phone No.</label>
+                                    <input type="tel" id="phone" name="phone" placeholder="${user.phoneNum}">
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select type="role" id="gender" name="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <select type="role" id="role" name="role">
+                                        <option value="1">Client</option>
+                                        <option value="2">Manager</option>
+                                        <option value="3">Employee</option>
+                                        <option value="4">Administrator</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status">Status</label>
+                                    <select type="role" id="status" name="status">
+                                        <option value="ENABLE">Enable</option>
+                                        <option value="DISABLE">Disable</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="submit-btn">Submit</button>
+                            </form>
+                        </c:if>
+                        <c:if test="${method eq 'add'}">
+                            <form method="post" action="/admin/add-user">
+                                <div class="form-group">
+                                    <label for="fullName">Full Name</label>
+                                    <input type="text" id="fullName" name="fullName" placeholder="Enter full name">
+                                </div>
+                                <div class="form-group">
+                                    <label for="username">Username</label>
+                                    <input type="text" id="username" name="username" placeholder="Enter username"
+                                           required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="Enter email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" placeholder="Enter new password" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="gender">Gender</label>
+                                    <select type="role" id="gender" name="gender">
+                                        <option value="0">Male</option>
+                                        <option value="1">Female</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <label for="role">Role</label>
+                                    <select type="role" id="role" name="role">
+                                        <option value="1">Client</option>
+                                        <option value="2">Manager</option>
+                                        <option value="3">Employee</option>
+                                        <option value="4">Administrator</option>
+                                    </select>
+                                </div>
+                                <button type="submit" class="submit-btn">Submit</button>
+                            </form>
+                        </c:if>
                     </div>
                 </div>
             </div>

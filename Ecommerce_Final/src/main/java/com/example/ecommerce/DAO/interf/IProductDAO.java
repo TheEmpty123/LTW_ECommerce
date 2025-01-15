@@ -32,8 +32,6 @@ public interface IProductDAO {
 
     //    Filter
 //    Sắp xếp theo điều kiện filter (option: tên, giá, ngày nhập khẩu, filter:asc,desc)
+    List<Product> getProductByFilter(ProductFilter filter);
     List<Product> getProductByFilter(String sort, String material);
-
-//   Admin page section
-
 }

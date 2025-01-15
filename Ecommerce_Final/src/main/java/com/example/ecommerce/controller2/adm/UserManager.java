@@ -18,7 +18,8 @@ public class UserManager extends HttpServlet implements ControllerBase {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log.info("Loading user management page");
+        initialize();
+        log.warn("============ Loading user management page ============");
 
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
@@ -30,7 +31,7 @@ public class UserManager extends HttpServlet implements ControllerBase {
         }
 
         log.info("User has access to this resource");
-        request.setAttribute("CMD", RolePermission.USER_MANAGEMENT);
+        request.setAttribute("CMD", "users");
 
         try{
             log.info("Getting user list...");

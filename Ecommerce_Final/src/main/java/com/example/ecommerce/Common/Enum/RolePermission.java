@@ -18,4 +18,6 @@ public enum RolePermission {
 
     public static String SUPREME = "Supreme";
     public static String USER_MANAGEMENT= "User Management";
+    public static String ORDER_MANAGEMENT= "Order Management";
+    public static String PRODUCT_MANAGEMENT= "Product Management";
 }

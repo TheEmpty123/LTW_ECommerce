@@ -23,7 +23,8 @@ public class AdminManager extends HttpServlet implements ControllerBase{
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        log.info("Loading admin management page");
+        initialize();
+        log.warn("============ Loading admin management page ============");
 
         HttpSession session = request.getSession();
         User user = session == null ? null : (User) session.getAttribute("auth");
@@ -34,7 +35,7 @@ public class AdminManager extends HttpServlet implements ControllerBase{
         // !
         // Supreme permission only
         if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)){
-            log.warn("User does not have access to this resource");
+            log.warn("User management not permitted, redirecting to 404 page");
             response.sendRedirect("/404");
             return;
         }
@@ -50,6 +51,7 @@ public class AdminManager extends HttpServlet implements ControllerBase{
             int totalAdmin = MC.instance.userService.getTotalAdmin(false);
             request.setAttribute("totalAdmin", totalAdmin);
 
+            log.info("Ready for admin management page");
         }
         catch (ConnectionException e){
             log.error("Error connecting to the database");

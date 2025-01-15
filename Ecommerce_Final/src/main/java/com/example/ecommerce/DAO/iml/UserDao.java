@@ -42,25 +42,35 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     @Override
     public User getUserById(int id) {
-        return db.jdbi.withHandle(handle -> handle.createQuery("select * from users where id = " + id).mapToBean(User.class).first());
+        var a = handle.createQuery("select * from users where id = " + id)
+                .mapToBean(User.class)
+                .first();
+
+        return a;
     }
 
     @Override
     public User addUser(User user) {
+        log.info("Add user: " + user);
         return db.jdbi.withHandle(handle -> {
-            int id = handle.createUpdate(
-                            "INSERT INTO users(username, pass, email, roleID) " +
-                                    "VALUES (?, ?, ?,1)")
+            int id = handle.createUpdate("INSERT INTO  users(username, fullName, gender, pass, email, phoneNum, statusUser, createUser, avatar, roleID) " +
+                            "VALUES (?,?,?,?,?,?,?,?,?,?)")
                     .bind(0, user.getUsername())
-                    .bind(1, InsertData.hashPassword(user.getPass()))
-                    .bind(2, user.getEmail())
+                    .bind(1, user.getFullName())
+                    .bind(2, user.getGender())
+                    .bind(3, InsertData.hashPassword(user.getPass()))
+                    .bind(4, user.getEmail())
+                    .bind(5, user.getPhoneNum())
+                    .bind(6, user.getStatusUser())
+                    .bind(7, user.getCreateUser())
+                    .bind(8, user.getAvatar())
+                    .bind(9, user.getRoleID())
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class).one();
             user.setId(id);
             return user;
         });
     }
-
 
     @Override
     public User updateInfoUserNameById(int id, String userName, String fullName, String gender, String
@@ -152,17 +162,39 @@ public class UserDao extends ImplementBase implements IUsersDao {
     @Override
     public List<User> getAvailableUsers(boolean forceUpdate) {
         log.info("Querying available users with force: " + forceUpdate);
+
         List<User> availableUsers = new ArrayList<>();
 
         allUser = getAllUsers(forceUpdate);
 
-        allUser.forEach(u ->{
-            if(u.getStatusUser().equals(StatusUser.ENABLE)){
+        allUser.forEach(u -> {
+            if (u.getStatusUser().equals(StatusUser.ENABLE)) {
                 availableUsers.add(u);
             }
         });
 
         return availableUsers;
+    }
+
+    @Override
+    public boolean updateUser(User user) {
+        log.info("Updating user: " + user);
+
+        int c = handle.createUpdate("UPDATE users SET " +
+                        "username = ?, fullName = ?, gender = ?, pass = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                .bind(0, user.getUsername())
+                .bind(1, user.getFullName())
+                .bind(2, user.getGender())
+                .bind(3, InsertData.hashPassword(user.getPass()))
+                .bind(4, user.getEmail())
+                .bind(5, user.getPhoneNum())
+                .bind(6, user.getStatusUser())
+                .bind(7, user.getAvatar())
+                .bind(8, user.getRoleID())
+                .bind(9, user.getId())
+                .execute();
+
+        return c > 0;
     }
 
     public static void main(String[] args) {

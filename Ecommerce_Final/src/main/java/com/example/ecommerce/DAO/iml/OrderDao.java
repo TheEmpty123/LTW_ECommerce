@@ -40,10 +40,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
         if (!force) allOrders = getAllOrders();
         else
-            allOrders = handle
-                    .createQuery("SELECT * FROM orders")
-                    .mapToBean(Order.class)
-                    .list();
+            allOrders.clear();
+
         return allOrders;
     }
 

@@ -9,10 +9,14 @@ import java.util.ArrayList;
 
 public class MC {
 
+    public Integer savedID = null;
+    public Integer backupID = null;
+
     public ProductService productService;
     public UserService userService;
     public OrderService orderService;
     public WarehouseService warehouseService;
+    public PermissionService permissionService;
     public LogObj log = new LogObj();
 
     private boolean initialized;
@@ -37,6 +41,7 @@ public class MC {
         serviceList.add(userService = UserService.getInstance());
         serviceList.add(orderService = OrderService.getInstance());
         serviceList.add(warehouseService = WarehouseService.getInstance());
+        serviceList.add(permissionService = PermissionService.getInstance());
     }
 
     private void init() {

@@ -37,4 +37,6 @@ public interface IUsersDao {
     List<User> getAllAdmin(boolean forceUpdate);
 
     List<User> getAvailableUsers(boolean forceUpdate);
+
+    boolean updateUser(User user);
 }
