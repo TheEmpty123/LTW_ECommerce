@@ -2,32 +2,25 @@ package com.example.ecommerce.Bean;
 
 import java.io.Serializable;
 import java.text.NumberFormat;
-import java.time.LocalDateTime;
 import java.util.Locale;
 
-
-public class Product implements Serializable {
-    private int id;
+public class ProductJson implements Serializable {
+    private int pid;
     private String proName;
     private String description;
     private double price;
     private String thumb;
-    private LocalDateTime created_at;
-    private int cateID;
     private int atributeID;
+    private int cateID;
 
     private String fullPrice;
 
-    public Product() {
-    }
-
-    public Product(int id, String proName, String description, double price, String thumb, LocalDateTime created_at, int cateID, int atributeID) {
-        this.id = id;
+    public ProductJson(int id, String proName, String description, double price, String thumb, int cateID, int atributeID) {
+        this.pid = id;
         this.proName = proName;
         this.description = description;
         this.price = price;
         this.thumb = thumb;
-        this.created_at = created_at;
         this.cateID = cateID;
         this.atributeID = atributeID;
         NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
@@ -35,7 +28,7 @@ public class Product implements Serializable {
     }
 
     public int getId() {
-        return id;
+        return pid;
     }
 
     public String getProName() {
@@ -54,9 +47,6 @@ public class Product implements Serializable {
         return thumb;
     }
 
-    public LocalDateTime getCreated_at() {
-        return created_at;
-    }
 
     public int getAtributeID() {
         return atributeID;
@@ -87,10 +77,6 @@ public class Product implements Serializable {
         this.thumb = thumb;
     }
 
-    public void setCreated_at(LocalDateTime created_at) {
-        this.created_at = created_at;
-    }
-
     public void setAtributeID(int attributeId) {
         this.atributeID = attributeId;
     }
@@ -100,20 +86,19 @@ public class Product implements Serializable {
     }
 
     public void setId(int id) {
-        this.id = id;
+        this.pid = id;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + pid +
                 ", proName=" + proName +
                 ", description=" + description +
                 ", price=" + fullPrice +
                 ", thumb=" + thumb +
-                ", created_at=" + created_at +
-                ",cateID=" + cateID +
-                ", atributeID=" + atributeID +
+                ", created_at=" +
                 "}";
     }
+
 }

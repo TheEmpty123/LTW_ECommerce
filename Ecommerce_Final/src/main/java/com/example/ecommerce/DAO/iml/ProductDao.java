@@ -84,35 +84,38 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public List<Product> getProductByFilter(String sort, String material) {
         String query = "select p.id, p.proName,p.price,p.description, p.thumb,p.created_at,p.cateID,p.atributeID " +
-                "from products p join product_atribute pa on p.cateID = pa.id " +
-                "where pa.material like :material ";
+                "from products p join product_atribute pa on p.atributeID = pa.id ";
+
+        if("Tất cả".equals(material)){
+            query += "where 1=1 or pa.material like ?";
+        }else {
+            query += "where pa.material like ? ";
+        }
         // Thêm điều kiện sắp xếp
         if ("Thấp đến cao".equals(sort)) {
-            query += "order by p.price asc ";
+            query += "order by p.price asc;";
         } else if ("Cao đến thấp".equals(sort)) {
-            query += "order by p.price desc ";
+            query += "order by p.price desc;";
         } else if ("Mới nhất".equals(sort)) {
-            query += "order by p.created_at desc ";
+            query += "order by p.created_at desc;";
         } else {
-            query += "order by p.id asc "; // Sắp xếp mặc định
+            query += "order by p.id asc;"; // Sắp xếp mặc định
         }
 
         String finalQuery = query;
-        return db.jdbi.withHandle(handle1 ->
-                handle1.createQuery(finalQuery)
-                        .bind("sort", sort)
-                        .bind("material", material)
-                        .mapToBean(Product.class).list());
+        return db.jdbi.withHandle(handle -> handle.createQuery(finalQuery)
+                .bind(0, '%'+material+'%')
+                .mapToBean(Product.class).list());
     }
 
-    public static void main(String[] args) {
+//    public static void main(String[] args) {
 //        ProductDao dao = new ProductDao();
 //        System.out.println("running");
-////        List<Product> list = dao.getProductByFilter("Thấp đến cao","%Gỗ%");
-//        List<Product> list = dao.getAllProducts();
+//        List<Product> list = dao.getProductByFilter("Thấp đến cao","Gỗ");
+////        List<Product> list = dao.getAllProducts();
 //        for(Product p : list) {
 //            System.out.println(p);
 //        }
-    }
+//    }
 
 }

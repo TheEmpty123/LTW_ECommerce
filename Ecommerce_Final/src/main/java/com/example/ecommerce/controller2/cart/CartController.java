@@ -125,7 +125,6 @@ public class CartController extends HttpServlet {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
         resp.getWriter().write(gson.toJson(new CartResponse(cart.getList(), total, uName)));
-
     }
 
     private static class CartResponse {
@@ -137,6 +136,15 @@ public class CartController extends HttpServlet {
             this.lists = lists;
             this.totalPrice = totalPrice;
             this.userName = userName;
+        }
+        public List<CartProduct> getLists() {
+            return lists;
+        }
+        public double getTotalPrice() {
+            return totalPrice;
+        }
+        public String getUserName() {
+            return userName;
         }
     }
 }

@@ -24,4 +24,8 @@ public class FilterInput {
         this.material = material;
     }
 
+    @Override
+    public String toString() {
+        return this.sort + " " + this.material;
+    }
 }

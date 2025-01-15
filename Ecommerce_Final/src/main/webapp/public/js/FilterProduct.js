@@ -1,115 +1,129 @@
 document.addEventListener("DOMContentLoaded", function () {
-    document.querySelectorAll(".filter").forEach(button =>{
-        button.addEventListener("click", function (){
-            const sort =  document.getElementById("sort-filter").textContent
+    document.querySelectorAll(".filter").forEach(button => {
+        button.addEventListener("click", function () {
+            const sort = document.getElementById("sort-filter").textContent
             const material = document.getElementById("material-filter").textContent
-            const makeMaterial = "%"+material+"%"
-            console.log(sort, makeMaterial)
+            console.log(sort, material)
             fetch("/FilterProduct", {
                 method: "POST",
                 headers: {
-                    "Content-Type": "application/json",
+                    "Content-Type": "application/json; charset=UTF-8",
                 },
                 body: JSON.stringify({
                     sort: sort,
-                    material: makeMaterial
+                    material: material
                 }),
             })
                 .then((response) => {
-                    response.json()
+                    // response.json()
+                    return response.json()
                 })
-                .then((result) =>{
-                    // console.log(result.userId)
-                    // updateUI(result)
+                .then(data => {
+                    updateUI(data)
+                    console.log(data)
+                    console.log(data.userId)
                 })
                 .catch((error) => console.error("Lỗi:", error));
-
         })
     })
-    function updateUI(result){
-        const products = result.pageProducts
+
+    function updateUI(result) {
+        //định dạng tiền tệ
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+        });
         const productArea = document.getElementById('product-area')
-        productArea.innerHTML= ''
-        const div = document.createElement('div')
-        div.innerHTML = `
-        <div id="p-product">
-                <div class="container mt-5">
-                    <div class="row">
-                        <c:forEach var="p" items="${products}">
-                            <div class="col-md-3">
-                                <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
-                                     data-img="${p.thumb}" data-price="${p.price}">
-                                    <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                        <img src="${p.thumb}" class="image-top"
-                                             alt="${p.proName}">
-                                        <img src="${p.thumb}" class="image-back"
-                                             alt="${p.proName}">
-                                    </a>
-                                    <div class="card-body">
-                                        <h6 class="product-name">${p.proName}</h6>
-                                        <div class="like-price-product favourite-product" data-id="${p.id}"
-                                             data-user="${result.userId}">
-                                        <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
-                                                                                    value="${p.price}"/></span>
-                                            <button class="wishlist-button">
-                                                <i class="bi bi-heart"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                    <div class="cart-see-more-btns">
-                                        <div class="row">
-                                            <div class="col-sm-7 col-md-7">
-                                                <div class="cart-btn use-button fake-btn" style="border: none">
-                                                    <button class="add-to-cart"
-                                                            style="font-size: 11px; font-weight: bold;padding: 10px 5px">
-                                                        THÊM VÀO GIỎ
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="col-sm-5 col-md-5">
-                                                <div class="use-button fake-btn">
-                                                    <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                                        <p>XEM THÊM</p></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+        productArea.innerHTML = ''
+        result.pageProducts.forEach((item)=>{
+            const column = document.createElement('div')
+            const formattedPrice = formatter.format(item.price);
+            column.classList.add("col-md-3")
+            column.innerHTML = `
+                <div class="card product-card product" data-id="${item.pid}" data-name="${item.proName}"
+                     data-img="${item.thumb}" data-price="${item.price}">
+                    <a href="product?id=${item.pid}&atributeID=${item.atributeID}&cateID=${item.cateID}">
+                        <img src="${item.thumb}" class="image-top"
+                             alt="${item.proName}">
+                        <img src="${item.thumb}" class="image-back"
+                             alt="${item.proName}">
+                    </a>
+                    <div class="card-body">
+                        <h6 class="product-name">${item.proName}</h6>
+                        <div class="like-price-product favourite-product" data-id="${item.pid}"
+                             data-user="${result.userId}">
+                        <span class="product-price">${formattedPrice}</span>
+                            <button class="wishlist-button">
+                                <i class="bi bi-heart"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="cart-see-more-btns">
+                        <div class="row">
+                            <div class="col-sm-7 col-md-7">
+                                <div class="cart-btn use-button fake-btn" style="border: none">
+                                    <button class="add-to-cart"
+                                            style="font-size: 11px; font-weight: bold;padding: 10px 5px">
+                                        THÊM VÀO GIỎ
+                                    </button>
                                 </div>
                             </div>
-                        </c:forEach>
+                            <div class="col-sm-5 col-md-5">
+                                <div class="use-button fake-btn">
+                                    <a href="product?id=${item.pid}&atributeID=${item.atributeID}&cateID=${item.cateID}">
+                                        <p>XEM THÊM</p></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <!-- PAGINATION -->
-            <div id="p-pagination">
-                <div class="p-pagination-box">
-                    <nav aria-label="Page navigation">
-                        <ul class="pagination justify-content-center"
-                            style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
-                            <c:if test="${result.currentPage > 1}">
-                                <li class="page-item">
-                                    <a class="page-link" href="list-product?page=${result.currentPage - 1}">« Trước</a>
-                                </li>
-                            </c:if>
-                            <c:forEach begin="1" end="${result.totalPages}" var="page">
-                                <!-- Các trang lân cận -->
-                                <li class="page-item"><a class="page-link ${page == result.currentPage ? 'active' : ''}"
-                                                         href="list-product?page=${page}">${page}</a></li>
-                            </c:forEach>
-
-                            <c:if test="${result.currentPage < result.totalPages}">
-                                <li class="page-item">
-                                    <a class="page-link" href="list-product?page=${result.currentPage + 1}" aria-label="Next">
-                                        <span aria-hidden="true">Tiếp »</span>
-                                    </a>
-                                </li>
-
-                            </c:if>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
         `
-        productArea.appendChild(div);
+            productArea.appendChild(column);
+        })
+        const pagination = document.getElementById("p-pagination")
+        pagination.innerHTML = ''
+
+        const currentPage= result.currentPage;
+        const totalPages = result.totalPages;
+        let nextPage = 0;
+        let previousPage = 0;
+        if (currentPage > 1){
+            previousPage = currentPage-1;
+        }
+        if(currentPage <totalPages){
+            nextPage = currentPage +1;
+        }
+        const newPaginationBox = document.createElement('div')
+        newPaginationBox.classList.add("p-pagination-box")
+
+        let paginationHTML = `
+             <nav aria-label="Page navigation">
+                    <ul class="pagination justify-content-center"
+                        style="--bs-pagination-focus-box-shadow: 0 0 0 0.25rem rgba(21, 21, 22, 0.25);">
+                            <li class="page-item ${currentPage === 1 ? 'disabled' : ''}">
+                                <a class="page-link" href=list-product?page=${previousPage}">
+                                    <button>« Trước</button>
+                                </a>
+                            </li>
+            `
+        for (let page = 1; page <= totalPages; page++) {
+            paginationHTML += `
+                    <li class="page-item">
+                        <a class="page-link ${page == currentPage ? 'active' : ''}"
+                                             href="list-product?page=${page}"><button>${page}</button></a>
+                    </li>
+            `
+        }
+        paginationHTML +=`
+                <li class="page-item">
+                        <a class="page-link" href="list-product?page=${nextPage}" aria-label="Next">
+                            <span aria-hidden="true"> <button>Tiếp »</button></span>
+                        </a>
+                </li>
+            </ul>
+        </nav>
+        `
+        newPaginationBox.innerHTML = paginationHTML
+        pagination.appendChild(newPaginationBox)
     }
 })
