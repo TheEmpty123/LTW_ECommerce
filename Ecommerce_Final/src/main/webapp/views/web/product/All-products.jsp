@@ -83,8 +83,7 @@
         .check-out {
             padding: 5px 20px;
             margin-bottom: 10px;
-<<<<<<< HEAD
-=======
+
         }
         button{
             border: none;
@@ -92,7 +91,14 @@
         }
         .disabled{
             display: none;
->>>>>>> origin/FilterProduct
+
+        }
+        li.page-item.page-link{
+            padding-left: 12px;
+        }
+        #p-pagination button.page-link{
+            background-color: white;
+            color: black;
         }
     </style>
 </head>
@@ -159,7 +165,7 @@
                     <button style="border-color: white;background: white"
                             href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
                     </button>
-                    
+
                 </div>
 
             </div>
@@ -361,7 +367,6 @@
                             </div>
                         </div>
                     </div>
-
                 </c:forEach>
             </div>
         </div>
@@ -375,20 +380,23 @@
                     <c:if test="${currentPage > 1}">
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage - 1}">
-                                    <button>« Trước</button>
+                                    <button id="previous-btn">« Trước</button>
                             </a>
                         </li>
                     </c:if>
                     <c:forEach begin="1" end="${totalPages}" var="page">
                         <!-- Các trang lân cận -->
-                        <li class="page-item"><a class="page-link ${page == currentPage ? 'active' : ''}"
-                                                 href="list-product?page=${page}"><button>${page}</button></a></li>
+                        <li class="page-item">
+                            <a class="page-link ${page == currentPage ? 'active' : ''}" href="list-product?page=${page}">
+                                <button id="current-btn">${page}</button>
+                            </a>
+                        </li>
                     </c:forEach>
 
                     <c:if test="${currentPage < totalPages}">
                         <li class="page-item">
                             <a class="page-link" href="list-product?page=${currentPage + 1}" aria-label="Next">
-                                <span aria-hidden="true"> <button>Tiếp »</button></span>
+                                <span aria-hidden="true"> <button id="next-btn">Tiếp »</button></span>
                             </a>
                         </li>
                     </c:if>

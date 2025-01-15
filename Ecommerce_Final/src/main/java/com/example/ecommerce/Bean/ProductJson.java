@@ -5,7 +5,7 @@ import java.text.NumberFormat;
 import java.util.Locale;
 
 public class ProductJson implements Serializable {
-    private int pid;
+    private int id;
     private String proName;
     private String description;
     private double price;
@@ -16,7 +16,7 @@ public class ProductJson implements Serializable {
     private String fullPrice;
 
     public ProductJson(int id, String proName, String description, double price, String thumb, int cateID, int atributeID) {
-        this.pid = id;
+        this.id = id;
         this.proName = proName;
         this.description = description;
         this.price = price;
@@ -28,7 +28,7 @@ public class ProductJson implements Serializable {
     }
 
     public int getId() {
-        return pid;
+        return id;
     }
 
     public String getProName() {
@@ -86,13 +86,13 @@ public class ProductJson implements Serializable {
     }
 
     public void setId(int id) {
-        this.pid = id;
+        this.id = id;
     }
 
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + pid +
+                "id=" + id +
                 ", proName=" + proName +
                 ", description=" + description +
                 ", price=" + fullPrice +

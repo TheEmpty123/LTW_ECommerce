@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
             const productName = productElement.dataset.name;
             const productImg = productElement.dataset.img;
             const productPrice = parseFloat(productElement.dataset.price);
-
+            console.log(productId)
             // Gửi yêu cầu AJAX tới servlet
             fetch("/CartController", {
                 method: "POST",
@@ -264,4 +264,5 @@ document.addEventListener("DOMContentLoaded", function () {
         }, 500); // 3000ms = 3 giây
     }
 });
+
 
