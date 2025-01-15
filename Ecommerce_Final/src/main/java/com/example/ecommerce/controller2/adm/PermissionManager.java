@@ -52,7 +52,6 @@ public class PermissionManager extends HttpServlet implements ControllerBase {
 //                log.info("===========");
 //            });
 
-
             int totalUsers = MC.instance.userService.getTotalUsers(false);
             request.setAttribute("totalUsers", totalUsers);
 
@@ -64,7 +63,7 @@ public class PermissionManager extends HttpServlet implements ControllerBase {
 
             log.info("Ready for permission management page");
         } catch (Exception e) {
-            log.error("Unknown error occurred loading permission management page");
+            log.error("Unknown error occurred while loading permission management page");
             e.printStackTrace();
             request.setAttribute("errorMessage", "Unknown error occurred while loading permission management page, please try again later");
         }

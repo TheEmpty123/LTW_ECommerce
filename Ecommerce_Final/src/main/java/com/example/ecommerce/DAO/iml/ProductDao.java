@@ -4,7 +4,11 @@ import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ProductFilter;
 import com.example.ecommerce.DAO.interf.IProductDAO;
 import com.example.ecommerce.Database.JDBIConnect;
+import com.example.ecommerce.Dto.ProductDto;
+import org.jdbi.v3.core.Handle;
+import org.jdbi.v3.core.Jdbi;
 
+import java.sql.ResultSet;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,6 +23,10 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public int recordSize() {
         return 0;
+    }
+
+    public Jdbi getJdbi(){
+        return db.jdbi;
     }
 
     @Override

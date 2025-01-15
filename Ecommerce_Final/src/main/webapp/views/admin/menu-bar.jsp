@@ -61,7 +61,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="product-management.jsp">
+                    <a href="/admin/products">
                         <span class="ti-truck"></span>
                         <span>Quản lý sản phẩm</span>
                     </a>

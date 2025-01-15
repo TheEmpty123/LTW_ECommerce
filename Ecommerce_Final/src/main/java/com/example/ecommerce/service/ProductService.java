@@ -2,11 +2,14 @@ package com.example.ecommerce.service;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.DAO.iml.ProductDao;
+import com.example.ecommerce.DAO.interf.IProductDTO;
+import com.example.ecommerce.Dto.ProductDto;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
+import org.json.JSONObject;
 
+import java.text.NumberFormat;
 import java.time.LocalDateTime;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class ProductService extends ServiceBase {
     private static ProductService instance;
@@ -22,6 +25,13 @@ public class ProductService extends ServiceBase {
     public void init() {
         log.info("ProductService init...");
         productDao = new ProductDao();
+        try {
+            var j = productDao.getJdbi();
+            j.installPlugin(new SqlObjectPlugin());
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
     }
 
     public List<Product> getAllProducts() {
@@ -55,6 +65,43 @@ public class ProductService extends ServiceBase {
     public List<Product> getSearch(String name) {
         return productDao.search(name);
     }
-//    public void
+
+    public List<ProductDto> getAllProductsDto() {
+        return productDao.getJdbi().withExtension(IProductDTO.class, IProductDTO::getAllProducts);
+    }
+
+    public List<JSONObject> convertToJson(List<ProductDto> products) {
+        List<JSONObject> li = new ArrayList<>();
+
+        NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
+
+
+        products.forEach(p -> {
+            JSONObject j = new JSONObject();
+            JSONObject product = new JSONObject();
+            product.put("id", p.getId());
+            product.put("name", p.getName());
+            var fullPrice = formater.format(p.getPrice());
+            product.put("price", fullPrice);
+            product.put("thumb", p.getThumb());
+            product.put("stock", p.getStock());
+            product.put("category", p.getCategory());
+            product.put("averageRating", p.getAverageRating());
+            product.put("totalReviews", p.getTotalReviews());
+            li.add(product);
+        });
+
+        return li;
+    }
+
+    public static void main(String[] args) {
+        var a = new ProductService();
+        a.init();
+
+        var b = a.getAllProductsDto();
+        var c = a.convertToJson(b);
+
+        c.forEach(System.out::println);
+    }
 }
 
