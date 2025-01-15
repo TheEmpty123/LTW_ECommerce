@@ -333,8 +333,8 @@
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
-<%--                                <img src="${p.thumb}" class="image-back"--%>
-<%--                                     alt="${p.proName}">--%>
+                                <img src="${p.thumb}" class="image-back"
+                                     alt="${p.proName}">
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>

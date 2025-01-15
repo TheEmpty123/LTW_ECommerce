@@ -307,7 +307,9 @@
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
                              data-img="${p.thumb}" data-price="${p.price}">
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                <img src="${p.thumb}"
+                                <img src="${p.thumb}" class="image-top"
+                                     alt="${p.proName}">
+                                <img src="${p.thumb}" class="image-back"
                                      alt="${p.proName}">
                             </a>
                             <div class="card-body">

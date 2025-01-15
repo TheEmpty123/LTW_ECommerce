@@ -437,7 +437,7 @@
                 <div class="quantity buttons-added left-btn">
                     <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
                     <input type="number" name="quatity" id="input-quantity" value="1" min="1" inputmode="numeric"
-                           autocomplete="off">
+                           autocomplete="off" style="width: 60px">
                     <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
                 </div>
                 <div class="right-btn product" data-id="${p.id}" data-name="${p.proName}" data-img="${p.thumb}"
@@ -461,34 +461,34 @@
                         <div id="content-baohanh" class="guarantee-panels-content">
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
-                                Các sản phẩm nội thất tại Nhà Xinh đa số đều được sản xuất tại nhà máy của
+                                Các sản phẩm nội thất tại KENES đa số đều được sản xuất tại nhà máy của
                                 công ty cổ phần xây dựng kiến trúc AA với đội ngũ nhân viên và công nhân ưu
                                 tú cùng cơ sở vật chất hiện đại
-                                <a href="${pageContext.request.contextPath}/public/images/cart/check.png"></a>. Nhà Xinh
+                                <a href="${pageContext.request.contextPath}/public/images/cart/check.png"></a>. KENES
                                 đã
                                 kiểm tra kỹ lưỡng từ nguồn nguyên liệu cho đến sản phẩm hoàn thiện cuối cùng.
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
-                                Nhà Xinh bảo hành một năm cho các trường hợp có lỗi về kỹ thuật trong quá trình sản xuất
+                                KENES bảo hành một năm cho các trường hợp có lỗi về kỹ thuật trong quá trình sản xuất
                                 hay lắp đặt.
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
-                                Quý khách không nên tự sửa chữa mà hãy báo ngay cho Nhà Xinh qua hotline:
+                                Quý khách không nên tự sửa chữa mà hãy báo ngay cho KENES qua hotline:
                                 <a href="">1800 7200.</a>
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sau thời gian hết hạn bảo hành, nếu quý khách có bất kỳ yêu cầu hay thắc mắc thì
-                                vui lòng liên hệ với Nhà Xinh để được hướng dẫn và giải quyết các vấn đề gặp phải.
+                                vui lòng liên hệ với KENES để được hướng dẫn và giải quyết các vấn đề gặp phải.
                             </p>
                             <p>
-                                <strong>TUY NHIÊN NHÀ XINH KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG HỢP SAU:</strong>
+                                <strong>TUY NHIÊN KENES KHÔNG BẢO HÀNH CHO CÁC TRƯỜNG HỢP SAU:</strong>
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
-                                Khách hàng tự ý sửa chữa khi sản phẩm bị trục trặc mà không báo cho Nhà Xinh.
+                                Khách hàng tự ý sửa chữa khi sản phẩm bị trục trặc mà không báo cho KENES.
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
@@ -496,7 +496,7 @@
                                 quý khách mua sản phẩm) gây nên trầy xước, móp, dơ bẩn hay mất màu.
                             </p>
                             <p>
-                                <img src="${pageContext.request.contextPath}/ublic/images/cart/check.png" alt="">
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 Sản phẩm bị biến dạng do môi trường bên ngoài bất bình thường (quá ẩm, quá khô,
                                 mối hay do tác động từ các thiết bị điện nước, các hóa chất hay dung môi khách hàng sử
                                 dụng không phù hợp).
@@ -507,7 +507,7 @@
                             </p>
                             <p>
                                 <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
-                                Sản phẩm không có phiếu bảo hành của Nhà Xinh.
+                                Sản phẩm không có phiếu bảo hành của KENES.
                             </p>
 
                         </div>
@@ -516,14 +516,17 @@
                         <div id="content-vanchuyen" class="delivery-panels-content">
                             <strong>Giao hàng tận nơi</strong>
                             <p>
-                                Nhà Xinh cung cấp dịch vụ giao hàng tận nơi, lắp ráp và sắp xếp vị trí theo đúng ý muốn
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
+                                KENES cung cấp dịch vụ giao hàng tận nơi, lắp ráp và sắp xếp vị trí theo đúng ý muốn
                                 của quý khách:
                             </p>
                             <p>
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 - MIỄN PHÍ giao hàng trong các Quận nội thành Tp.Hồ Chí Minh và Hà Nội, áp dụng cho các
                                 đơn hàng trị giá trên 10 triệu.
                             </p>
                             <p>
+                                <img src="${pageContext.request.contextPath}/public/images/cart/check.png" alt="">
                                 - Đối với khu vực các tỉnh lân cận: Tính phí hợp lý theo dựa trên quãng đường vận chuyển
                             </p>
                         </div>
@@ -745,11 +748,6 @@
         document.getElementById("background-trans").hidden = true;
     }
 
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked')
-        })
-    })
     // Ngăn cuộn
     const mask = document.getElementById('mask');
 
