@@ -27,8 +27,8 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
-    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
-    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
 
     <style>
         /* Kiểu thông báo */
@@ -79,6 +79,20 @@
         .check-out{
             padding: 5px 20px ;
             margin-bottom: 10px ;
+        }
+        button{
+            border: none;
+            background-color: white;
+        }
+        .disabled{
+            display: none;
+        }
+        li.page-item.page-link{
+            padding-left: 12px;
+        }
+        #p-pagination button.page-link{
+            background-color: white;
+            color: black;
         }
     </style>
 </head>
@@ -244,13 +258,12 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến</div>
+                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ biến
-                            </div>
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả</div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -263,25 +276,24 @@
                         <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="thuytinh" onchange="updateSelection()">
-                                <label for="thuytinh">Thủy tinh (383)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="kinh" onchange="updateSelection()">
-                                <label for="kinh">Kính (7)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
                             <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
                             </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -312,11 +324,9 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                                <%--                                            <a href="add-cart?pid=${p.id}" style="color: black">--%>
                                             <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">THÊM
                                                 VÀO GIỎ
                                             </button>
-                                                <%--                                            </a>--%>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">

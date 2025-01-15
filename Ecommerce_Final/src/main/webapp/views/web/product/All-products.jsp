@@ -26,8 +26,8 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
-    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>
-    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+<%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
     <title>Tất cả sản phẩm</title>
     <style>
         /* Kiểu thông báo */
@@ -91,7 +91,6 @@
         }
         .disabled{
             display: none;
-
         }
         li.page-item.page-link{
             padding-left: 12px;
@@ -310,6 +309,10 @@
                                 <input type="checkbox" id="wood" onchange="updateSelection()">
                                 <label for="wood">Gỗ</label>
                             </div>
+                            <div class="dropdown-item-material">
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -333,8 +336,8 @@
                             <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
                                 <img src="${p.thumb}" class="image-top"
                                      alt="${p.proName}">
-                                <img src="${p.thumb}" class="image-back"
-                                     alt="${p.proName}">
+<%--                                <img src="${p.thumb}" class="image-back"--%>
+<%--                                     alt="${p.proName}">--%>
                             </a>
                             <div class="card-body">
                                 <h6 class="product-name">${p.proName}</h6>
