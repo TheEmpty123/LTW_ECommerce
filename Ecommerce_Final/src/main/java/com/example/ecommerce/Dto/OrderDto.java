@@ -1,11 +1,12 @@
 package com.example.ecommerce.Dto;
 
+import com.example.ecommerce.Common.Enum.Method;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
+import com.example.ecommerce.Common.Enum.Statuss;
 
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
-import java.util.Formatter;
 import java.util.Locale;
 
 public class OrderDto {
@@ -14,8 +15,26 @@ public class OrderDto {
     private double total;
     private String totalF;
     private ShippingStatus status;
+    private Statuss statuss;
     private LocalDateTime createDate;
     private Timestamp timestamp;
+    private Method method;
+
+    public Statuss getStatuss() {
+        return statuss;
+    }
+
+    public void setStatuss(Statuss statuss) {
+        this.statuss = statuss;
+    }
+
+    public Method getMethod() {
+        return method;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
 
     public int getId() {
         return id;
@@ -84,8 +103,10 @@ public class OrderDto {
                ", total=" + total +
                ", totalF='" + totalF + '\'' +
                ", status=" + status +
+               ", statuss=" + statuss +
                ", createDate=" + createDate +
                ", timestamp=" + timestamp +
+               ", method=" + method +
                '}';
     }
 }

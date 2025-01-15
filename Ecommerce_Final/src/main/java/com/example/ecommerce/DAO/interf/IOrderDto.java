@@ -10,8 +10,9 @@ import java.util.List;
 public interface IOrderDto {
 
     @SqlQuery("""
-                        SELECT o.id, u.username as customer, SUM(oi.amount * p.price) as total, o.shippingStatus as status, o.createDate
+                        SELECT o.id, u.username as customer, SUM(oi.amount * p.price) as total, o.shippingStatus as status, pa.statuss, o.createDate, pa.method
                 FROM orders AS o
+                JOIN payment AS pa ON o.paymentID = pa.id
                 JOIN users AS u ON o.userID = u.ID
                 JOIN order_item AS oi ON o.id = oi.orderID
                 JOIN products AS p ON oi.productID = p.ID

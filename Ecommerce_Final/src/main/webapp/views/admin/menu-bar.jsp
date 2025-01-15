@@ -91,13 +91,13 @@
                     </a>
                 </li>
                 <li>
-                    <a href="purchases-management.jsp">
+                    <a href="/admin/payment">
                         <span class="ti-money"></span>
                         <span>Thanh toán</span>
                     </a>
                 </li>
                 <li>
-                    <a href="sales-reports.jsp">
+                    <a href="/admin/report">
                         <span class="ti-bar-chart"></span>
                         <span>Báo cáo doanh thu</span>
                     </a>

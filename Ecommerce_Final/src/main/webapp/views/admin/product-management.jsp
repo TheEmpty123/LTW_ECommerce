@@ -863,6 +863,153 @@
                 </div>
             </c:if>
 
+            <c:if test="${CMD eq 'payment'}">
+                <div class="activity-grid-alt2">
+                    <div class="activity-card">
+
+                        <%
+                            int size = (int) request.getAttribute("total");
+                            int startIndex = 0;
+                            int currentPages = 1;
+                            int showMax = 10;
+                            int totalPages = (int) Math.ceil((double) size / (double) showMax);
+                            String pageParam = request.getParameter("page");
+
+                            if (pageParam != null) {
+                                currentPages = Integer.parseInt(pageParam);
+                            }
+
+                            startIndex = (currentPages - 1) * showMax;
+                            int endIndex = Math.min(startIndex + showMax, size);
+                        %>
+
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>All Payment List</h3>
+                                <span class="ti-search"></span>
+                                <input type="search" placeholder="Search content here...">
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Customer ID</th>
+                                    <th>Order ID</th>
+                                    <th>Total</th>
+                                    <th>Payment Method</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:if test="${not empty payments}">
+
+                                    <%
+                                        NumberFormat formater = NumberFormat.getInstance(Locale.ENGLISH);
+                                        List<OrderDto> orders = (List<OrderDto>) request.getAttribute("payments");
+                                        for (int i = startIndex; i < endIndex; i++) {
+                                            OrderDto u = orders.get(i);
+                                    %>
+                                    <tr>
+                                        <td><%=u.getCustomer()%>
+                                        </td>
+                                        <td><%=u.getId()%>
+                                        </td>
+                                        <td><%=u.getTotalF()%>
+                                        </td>
+                                        <td><%=u.getMethod().equals("BANK") ? "BANK" : u.getMethod()%>
+                                        </td>
+                                        <td>
+                                            <%
+                                                var status = u.getStatuss();
+                                                switch (status) {
+                                                    case COMPLETED: {
+                                            %>
+                                            <span class="badge success">
+                                                    <span class="ti-check"></span>
+                                                    Completed
+                                                </span>
+                                            <%
+                                                    break;
+                                                }
+                                                case PENDING: {
+
+                                            %>
+                                            <span class="badge warning">
+                                                    <span class="ti-truck"></span>
+                                                    Pending...
+                                                </span>
+                                            <%
+                                                        break;
+                                                    }
+                                                case CANCELLED: {
+
+                                            %>
+                                            <span class="badge alert">
+                                                    <span class="ti-close"></span>
+                                                    Cancelled
+                                                </span>
+                                            <%
+                                                        break;
+                                                    }
+                                                }
+                                            %>
+                                        </td>
+                                        <td>
+                                            <a href="edit-payment?id=<%=u.getId()%>">
+                                                <span class="ti-pencil-alt"></span>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    <%
+                                        }
+                                    %>
+                                </c:if>
+
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div class="pagination">
+                            <h6 class="show-entries">
+                                *Showing <%=startIndex + 1%> to <%=endIndex%> of <%=size%> entries
+                            </h6>
+                            <a href="?page=<%=currentPages > 1 ? currentPages - 1 : 1 %>">&laquo;</a>
+                            <%
+                                boolean needDot = false;
+                                for (int i = 1; i <= totalPages; i++) {
+                                    String activeClass = (i == currentPages) ? "active" : "";
+                                    if (i == 1 || i == totalPages) {
+                                        needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (i < currentPages + 2 && i > currentPages - 2) {
+                                needDot = true;
+                            %>
+                            <a href="?page=<%=i%>" class="<%=activeClass%>">
+                                <%=i%>
+                            </a>
+                            <%
+                            } else if (needDot) {
+                                needDot = false;
+                            %>
+                            <a href="#" class="">...</a>
+                            <%
+                                    }
+                                }
+                            %>
+                            <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
+                        </div>
+
+                    </div>
+                </div>
+            </c:if>
+
         </section>
     </main>
 
