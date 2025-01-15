@@ -59,13 +59,15 @@
         .red {
             background-color: red;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -74,10 +76,11 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -93,51 +96,57 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
+        <form id="cartt" method="post" action="/order">
 
-        <div id="list-product-cart" class="scroll-cart">
-            <c:forEach items="${sessionScope.cart.list}" var="cp">
-                <div class="row">
-                    <div class="col-md-12 col-12 order">
-                        <div class="image center-items">
-                            <img src="${cp.img}" alt="">
-                        </div>
-                        <div class="detail-order center-items" style="justify-content: left;">
-                            <div>
-                                <h6>${cp.name}</h6>
-                                <span>${cp.quantity}</span> x <span><f:formatNumber type="currency" currencySymbol="đ"
-                                                                                    value="${cp.price}"/></span>
+            <div id="list-product-cart" class="scroll-cart">
+                <c:forEach items="${sessionScope.cart.list}" var="cp">
+                    <div class="row">
+                        <div class="col-md-12 col-12 order">
+                            <div class="image center-items">
+                                <img src="${cp.img}" alt="">
+                            </div>
+                            <div class="detail-order center-items" style="justify-content: left;">
+                                <div>
+                                    <h6>${cp.name}</h6>
+                                    <span>${cp.quantity}</span> x
+                                    <span>
+                                <f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/>
+                            </span>
+                                </div>
+                            </div>
+                            <div class="close-orders center-items">
+                                <button class="remove-item" data-id="${cp.id}"
+                                        style="border: none; background-color: white;">
+                                    <i class="bi bi-x-circle"></i>
+                                </button>
                             </div>
                         </div>
-                        <div class="close-orders center-items">
-                            <button class="remove-item" data-id="${cp.id}"
-                                    style="border: none; background-color: white;">
-                                <i class="bi bi-x-circle"></i>
-                            </button>
-                        </div>
+                    </div>
+                </c:forEach>
+            </div>
+
+            <div id="pay-pal" class="cart-actions">
+                <div class="total-price">
+                    <div class="money-text">
+                        <p>Thành tiền: </p>
+                    </div>
+                    <div class="money-number">
+                        <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                                                              value="${sessionScope.cart.total}"/>
+                        </p>
                     </div>
                 </div>
-            </c:forEach>
-        </div>
-
-        <div id="pay-pal" class="cart-actions">
-            <div class="total-price">
-                <div class="money-text">
-                    <p>Thành tiền: </p>
+                <div class="watch-cart center-items">
+                    <button type="submit"><a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                    </button>
                 </div>
-                <div class="money-number">
-                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                          value="${sessionScope.cart.total}"/>
-                    </p>
+                <div class="check-out center-items">
+                    <%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
+                    <button href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN</button>
                 </div>
-            </div>
-            <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
-            </div>
-            <div class="check-out center-items">
-                <a href="">THANH TOÁN</a>
-            </div>
 
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 <div class="container-hd">

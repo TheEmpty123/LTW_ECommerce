@@ -9,6 +9,7 @@ import com.example.ecommerce.DAO.interf.IOrderDao;
 import com.example.ecommerce.Database.JDBIConnect;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 
+import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -53,16 +54,16 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
     @Override
     public Order addOrder(Order order) {
+        Payment payment = new Payment();
         return db.getJdbi().withHandle(handle -> {
-            int id = handle.createUpdate("INSERT INTO orders (userID,paymentID, shippingStatus, createDate,timeStamp, promotion_id, sdt, total, totalS) " +
-                            "VALUES (?,?,?,?, ?,?,?,?,?)")
+            int id = handle.createUpdate("INSERT INTO orders (userID, paymentID, shippingStatus, createDate, sdt, promotion_id) " +
+                            "VALUES (:userID, :paymentID, :shippingStatus, :createDate, :sdt, :promotion_id)")
                     .bind("userID", order.getUserID())
+                    .bind("paymentID", 1)
                     .bind("shippingStatus", ShippingStatus.Packaging)
                     .bind("createDate", LocalDateTime.now())
-                    .bind("promotion_id", Optional.ofNullable(null))
                     .bind("sdt", Optional.ofNullable(null))
-                    .bind("total", 0.0)
-                    .bind("totalS", "0.00")
+                    .bind("promotion_id", Optional.ofNullable(null))
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
@@ -181,6 +182,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     public static void main(String[] args) {
         OrderDao orderDao = new OrderDao();
         orderDao.log.info("test");
-        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;"));
+//        Order order = new Order(1);
+//        System.out.println(orderDao.handle.createQuery("SELECT * FROM orders ORDER BY createDate DESC LIMIT ?;"));
+//        System.out.println(orderDao.addOrder(order));
     }
 }

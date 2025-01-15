@@ -23,8 +23,8 @@ public class OrderItemService extends ServiceBase {
         return dao.getOrderItem(id);
     }
 
-    public OrderItem addOrderItem(int orderID, int productID) {
+    public OrderItem addOrderItem(OrderItem orderItem) {
         log.info("addOrderItem...");
-        return dao.addOrderItem(orderID, productID);
+        return dao.addOrderItem(orderItem);
     }
 }

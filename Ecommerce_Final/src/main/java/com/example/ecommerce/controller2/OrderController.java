@@ -2,6 +2,7 @@ package com.example.ecommerce.controller2;
 
 import com.example.ecommerce.Bean.*;
 import com.example.ecommerce.Bean.Cart.Cart;
+import com.example.ecommerce.Bean.Cart.CartProduct;
 import com.example.ecommerce.DAO.iml.OrderDao;
 import com.example.ecommerce.DAO.iml.OrderItemDao;
 import com.example.ecommerce.Location.LocationData;
@@ -9,6 +10,7 @@ import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.OrderItemService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.OwnAddressService;
+import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -64,42 +66,49 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        CategoryService cateService = new CategoryService();
-        List<Category> categories;
-
-        categories = cateService.getAllCategory();
-        int catePerCol = 5;
-        HashMap<Integer, List<Category>> mapCate = new HashMap<>();
-
-        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
-
-        for (int i = 0; i < countCol; i++) {
-            int index = i * catePerCol;
-            for (int j = index; j < index + catePerCol; j++) {
-                if (!mapCate.containsKey(i)) {
-                    List<Category> list = new ArrayList<>();
-                    list.add(categories.get(j));
-                    mapCate.put(i, list);
-                } else {
-                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
-                    else break;
-                }
-            }
-        }
         try {
             HttpSession session = req.getSession(true);
             Cart cart = (Cart) session.getAttribute("cart");
-
-
             User user = (User) session.getAttribute("auth");
+
+//            String json = req.getReader().lines().reduce("", (accumulator, actual) -> accumulator + actual);
+//            Gson gson = new Gson();
+//            CartProduct newItem = gson.fromJson(json, CartProduct.class);
+
+
             if (cart == null) {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
-            session.setAttribute("cart", cart);
+
             if (user != null) {
                 int idUser = user.getId();
-//                int idOrder = user.
+                System.out.println("id" + idUser);
+
+
+                Order order = new Order(idUser);
+                System.out.println("inserting order with userid" + idUser);
+//                OrderItem orderItem = new OrderItem(order.getId(), idProduct, amount);
+//                System.out.println("Inserting OrderItem with orderId: " + order.getId() + ", productId: " + idProduct + ", amount: " + amount);
+
+//                this.service.addOrder(order);
+//                this.orderItemService.addOrderItem(orderItem);
+
+                int productId = 0;
+                int amount = 0;
+                OrderItem orderItem = new OrderItem();
+                for (CartProduct cartProduct : cart.getList()) {
+                    productId = cartProduct.getId();
+                    amount = cartProduct.getQuantity();
+                    System.out.println("abc" + productId);
+
+                    orderItem = new OrderItem(order.getId(), productId, amount);
+                    System.out.println("Inserting OrderItem with orderId: " + order.getId() + ", productId: " + productId + ", amount: " + amount);
+
+                }
+                this.service.addOrder(order);
+                this.orderItemService.addOrderItem(orderItem);
+
                 String name = req.getParameter("name");
                 String phone = req.getParameter("phone");
                 String address = req.getParameter("address");
@@ -112,7 +121,7 @@ public class OrderController extends HttpServlet {
                 System.out.println("Address: " + address);
                 System.out.println("City: " + city);
                 System.out.println("District: " + district);
-                System.out.println("id" + idUser);
+
 
                 if (name != null && !name.isEmpty() &&
                         phone != null && !phone.isEmpty() &&
@@ -121,13 +130,11 @@ public class OrderController extends HttpServlet {
                         district != null && !district.isEmpty()) {
 
                     this.ownAddressService.updateOwnAddress(name, phone, city, address, idUser, idUser);
-//                    this.service.addOrder(idUser);
-//                    this.orderItemService.addOrderItem()
-                    req.setAttribute("mapCate", mapCate);
-                    resp.getWriter().write("{\"success\": true}");
+
+                    System.out.println("Điền thông tin thành công!");
                     resp.sendRedirect(req.getContextPath() + "/order");
                 } else {
-                    resp.getWriter().write("{\"success\": false, \"error\": \"Vui lòng điền đầy đủ thông tin.\"}");
+                    System.out.println(" ");
                 }
             } else {
                 resp.getWriter().write("{\"success\": false, \"error\": \"Người dùng không hợp lệ.\"}");

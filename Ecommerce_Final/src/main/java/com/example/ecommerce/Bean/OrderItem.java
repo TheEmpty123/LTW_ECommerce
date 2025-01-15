@@ -10,6 +10,16 @@ public class OrderItem implements Serializable {
     private Product product;
     private Order order;
 
+    public OrderItem(int orderID, int productID, int amount) {
+        this.orderID = orderID;
+        this.productID = productID;
+        this.amount = amount;
+    }
+
+    public OrderItem() {
+
+    }
+
     public Order getOrder() {
         return order;
     }

@@ -60,16 +60,19 @@
         .red {
             background-color: red;
         }
-        .green{
+
+        .green {
             color: darkgreen;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -78,10 +81,11 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
         }
     </style>
 </head>
@@ -204,7 +208,7 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                       value="${sessionScope.cart.total}"/></p>
+                                                          value="${sessionScope.cart.total}"/></p>
                 </div>
 
             </div>
@@ -255,7 +259,8 @@
                             </button>
                             <div class="quantity buttons-added left-btn">
                                 <input type="button" value="-" id="button-minus-quantity" onclick="minusQuantity()">
-                                <input type="number" name="quatity" id="input-quantity" value="${cp.quantity}" min="1"
+                                <input type="number" name="quatity" id="input-quantity" value="${cp.quantity}"
+                                       min="1"
                                        inputmode="numeric" autocomplete="off">
                                 <input type="button" value="+" id="button-plus-quantity" onclick="plusQuantity()">
                             </div>
@@ -277,7 +282,8 @@
                                 </c:if>
                                 <c:if test="${sessionScope.auth != null}">
                                     <p class="total-cart">
-                                        <f:formatNumber type="currency" currencySymbol="đ" value="${sessionScope.cart.total}"/>
+                                        <f:formatNumber type="currency" currencySymbol="đ"
+                                                        value="${sessionScope.cart.total}"/>
                                     </p>
                                 </c:if>
                             </td>
@@ -291,7 +297,8 @@
                         <div class="col-sm-6 col-md-6">
                             <div class="use-button fake-btn">
                                 <button id="submit-promotion-btn" type="submit"
-                                        style="background-color: black; color: white; border:none; padding: 5px 0">SỬ
+                                        style="background-color: black; color: white; border:none; padding: 5px 0">
+                                    SỬ
                                     DỤNG
                                 </button>
                             </div>

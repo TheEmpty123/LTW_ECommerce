@@ -32,6 +32,15 @@ public class Order implements Serializable {
     public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, String sdt) {
         this.id = id;
         this.userID = userID;
+        this.paymentID = 0;
+        this.shippingStatus = ShippingStatus.Packaging;
+        this.createDate = LocalDateTime.now();
+        this.promotion_id = "";
+        this.sdt = "";
+    }
+
+    public Order(int userID) {
+        this.userID = userID;
         this.paymentID = paymentID;
         this.shippingStatus = shippingStatus;
         this.createDate = createDate;

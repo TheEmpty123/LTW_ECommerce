@@ -8,7 +8,7 @@ import java.util.List;
 public interface IOrderItemDao {
     int recordSize();
 
-    OrderItem addOrderItem(int orderID, int productID);
+    OrderItem addOrderItem(OrderItem orderItem);
 
     int countAmount(Order order);
 

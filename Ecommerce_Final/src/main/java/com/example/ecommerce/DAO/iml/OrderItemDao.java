@@ -12,11 +12,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 
 public class OrderItemDao extends ImplementBase implements IOrderItemDao {
-//    JDBIConnect db;
-//
-//    public OrderItemDao(JDBIConnect db) {
-//        this.db = db;
-//    }
 
     public OrderItemDao() {
     }
@@ -27,13 +22,19 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     }
 
     @Override
-    public OrderItem addOrderItem(int orderID, int productID) {
-        return db.getJdbi().withHandle(handle -> handle.createUpdate("INSERT INTO order_item (order_id, product_id) values (:orderID, :productID)")
-                .bind("orderID", orderID)
-                .bind("productID", productID)
-                .executeAndReturnGeneratedKeys("id")
-                .mapTo(OrderItem.class)
-                .one());
+    public OrderItem addOrderItem(OrderItem orderItem) {
+        return db.getJdbi().withHandle(handle -> {
+            int id = handle.createUpdate("INSERT INTO order_item (orderID, productID, amount) " +
+                            "VALUES (:orderID, :productID, :amount)")
+                    .bind("orderID", orderItem.getOrderID())
+                    .bind("productID", orderItem.getProductID())
+                    .bind("amount", orderItem.getAmount())
+                    .executeAndReturnGeneratedKeys("id")
+                    .mapTo(Integer.class)
+                    .one();
+            orderItem.setId(id);
+            return orderItem;
+        });
     }
 
 

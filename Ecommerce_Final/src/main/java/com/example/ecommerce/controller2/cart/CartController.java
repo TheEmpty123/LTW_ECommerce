@@ -97,6 +97,7 @@ public class CartController extends HttpServlet {
                 for (CartProduct item : cart.getList()) {
                     if (item.getId() == (newItem.getId())) {
                         cart.update(item.getId(), item.getQuantity() + 1);
+                        System.out.println(newItem.getId());
                         exists = true;
                         break;
                     }
