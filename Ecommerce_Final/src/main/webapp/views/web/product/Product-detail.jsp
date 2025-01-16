@@ -215,6 +215,9 @@
             border: none;
             background-color: white;
         }
+        .hidden-text{
+            display: block;
+        }
     </style>
 </head>
 <body>

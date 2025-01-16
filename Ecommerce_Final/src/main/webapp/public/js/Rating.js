@@ -61,6 +61,8 @@ function updateUI(response){
                     <button>1 Sao (${response.onestars})</button>
                 </div>
             </div>
+            
+            <strong class="${response.totalRate == 0 ? 'hidden-text' : ''}">Sản phẩm chưa có đánh giá nào</strong>
     `
     response.ratings.forEach(item =>{
         ratingHTML += `
