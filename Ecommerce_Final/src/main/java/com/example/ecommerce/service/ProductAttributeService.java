@@ -5,7 +5,7 @@ import com.example.ecommerce.DAO.iml.ProductAttributeDao;
 
 import java.util.List;
 
-public class ProductAttributeService extends ServiceBase{
+public class ProductAttributeService extends ServiceBase {
     private static ProductAttributeService instance;
     ProductAttributeDao productAttributeDao = new ProductAttributeDao();
 
@@ -13,11 +13,13 @@ public class ProductAttributeService extends ServiceBase{
         super();
         instance = this;
     }
+
     @Override
     public void init() {
         log.info("ProductDetailServ init... ");
         productAttributeDao = new ProductAttributeDao();
     }
+
     public static ProductAttributeService getInstance() {
         if (instance == null) {
             instance = new ProductAttributeService();
@@ -25,10 +27,12 @@ public class ProductAttributeService extends ServiceBase{
         }
         return instance;
     }
+
     public List<ProductAttribute> getAllProductAttribute() {
         return productAttributeDao.getAll();
     }
+
     public ProductAttribute getProductAttributeById(int id) {
         return productAttributeDao.getById(id);
     }
- }
+}

@@ -30,7 +30,17 @@ public class ProductAttributeDao extends ImplementBase implements IProductAttrib
 
     @Override
     public ProductAttribute addAttribute(ProductAttribute attribute) {
-        return null;
+        log.info("Adding attribute: " + attribute);
+        
+        int id = handle.createUpdate("INSERT INTO product_atribute(material, size) VALUES (?, ?)")
+                .bind(0, attribute.getMaterial())
+                .bind(1, attribute.getSize())
+                .executeAndReturnGeneratedKeys("id")
+                .mapTo(Integer.class)
+                .one();
+
+        attribute.setId(id);
+        return attribute;
     }
 
     @Override

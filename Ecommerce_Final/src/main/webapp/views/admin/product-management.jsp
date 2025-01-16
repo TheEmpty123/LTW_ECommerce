@@ -251,7 +251,7 @@
                                 <span class="ti-search"></span>
                                 <input type="search" placeholder="Search content here...">
                                 <div class="pagination">
-                                    <a href="add-product.jsp" class="add-product-btn">Add product</a>
+                                    <a href="/admin/add-product" class="add-product-btn">Add product</a>
                                 </div>
 
                             </div>

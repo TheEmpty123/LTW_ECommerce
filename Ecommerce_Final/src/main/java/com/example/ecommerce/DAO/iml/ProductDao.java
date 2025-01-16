@@ -2,6 +2,7 @@ package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ProductFilter;
+import com.example.ecommerce.Common.Exception.ProductNotFoundException;
 import com.example.ecommerce.DAO.interf.IProductDAO;
 import com.example.ecommerce.Database.JDBIConnect;
 import com.example.ecommerce.Dto.ProductDto;
@@ -30,21 +31,17 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     }
 
     @Override
-    public Product addNewProduct(int id, String name, int price, String description, String thumb, LocalDateTime create_at, int cateID, int attributeID) {
-        return db.getJdbi().withHandle(handle ->
-                handle.createUpdate("INSERT INTO products (id, name, price, description, thumb, create_at, cateID, attributeID) " +
-                                "VALUES (:id, :name, :price, :description, :thumb, :create_at, :cateID, :attributeID)")
-                        .bind("id", id)
-                        .bind("name", name)
-                        .bind("price", price)
-                        .bind("description", description)
-                        .bind("thumb", thumb)
-                        .bind("create_at", create_at)
-                        .bind("cateID", cateID)
-                        .bind("attributeID", attributeID)
-                        .executeAndReturnGeneratedKeys("id")
-                        .mapTo(Product.class).findOne().orElse(null));
-
+    public int addNewProduct(Product product) {
+        return handle.createUpdate("INSERT INTO products (proName, price, description, thumb, created_at, cateID, atributeID) " +
+                                "VALUES (:name, :price, :description, :thumb, :create_at, :cateID, :attributeID)")
+                        .bind("name", product.getProName())
+                        .bind("price", product.getPrice())
+                        .bind("description", product.getDescription())
+                        .bind("thumb", product.getThumb())
+                        .bind("create_at", product.getCreated_at())
+                        .bind("cateID", product.getCateID())
+                        .bind("attributeID", product.getAtributeID())
+                        .execute();
     }
 
     @Override
@@ -134,6 +131,23 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         return db.jdbi.withHandle(handle -> handle.createQuery(finalQuery)
                 .bind(0, '%' + material + '%')
                 .mapToBean(Product.class).list());
+    }
+
+    @Override
+    public Product getProductByName(String productName) throws ProductNotFoundException {
+        log.info("Querying product by name: " + productName);
+        Product p = null;
+
+        try {
+            p = handle.createQuery("SELECT * FROM products WHERE proName = ?")
+                    .bind(0, productName)
+                    .mapToBean(Product.class).first();
+        }
+        catch (IllegalStateException e) {
+            throw new ProductNotFoundException("Product not exits");
+        }
+
+        return p;
     }
 
 //    public static void main(String[] args) {
