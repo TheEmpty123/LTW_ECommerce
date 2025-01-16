@@ -142,10 +142,10 @@
                 </button>
             </div>
             <div class="check-out center-items">
-                <%--                    <button style="border-color: white;background: white"--%>
-                <%--                            href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN--%>
-                <%--                    </button>--%>
-                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
+                <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>
+                <%--                <button type="submit" style="border-color: white;background: white"--%>
+                <%--                        href="${pageContext.request.contextPath}/order">THANH TOÁN--%>
+                <%--                </button>--%>
             </div>
 
         </div>
@@ -189,8 +189,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/kenes">
-                    <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -436,6 +435,7 @@
                                         <div class="card-body">
                                             <h6 class="product-name">${product.proName}</h6>
                                             <div class="like-price-product">
+                                                    <%--                                                <span class="product-price">${product.price}</span>--%>
                                                 <span class="product-price">${product.price}</span>
                                                 <button class="wishlist-button">
                                                     <i class="bi bi-heart"></i>

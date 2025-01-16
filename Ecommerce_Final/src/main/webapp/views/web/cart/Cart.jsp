@@ -345,7 +345,7 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="use-button fake-btn">
-                                    <a href="" style="color: white; text-decoration: none;">
+                                    <a href="${pageContext.request.contextPath}/order" style="color: white; text-decoration: none;">
                                         <p>Đặt hàng</p>
                                     </a>
                                 </div>
