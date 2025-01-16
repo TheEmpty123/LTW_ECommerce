@@ -40,7 +40,7 @@
                 <input type="text" id="username-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"
                         name="uname" value="<%=uname%>" required>
                 <label for="password-l">Mật khẩu:</label>
-                <input type="text" id="password-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"
+                <input type="password" id="password-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"
                         name="pass" required>
                 <div class="rememberBox" style="margin-top: -3%">
                     <input type="checkbox" id="remember" name="remember">

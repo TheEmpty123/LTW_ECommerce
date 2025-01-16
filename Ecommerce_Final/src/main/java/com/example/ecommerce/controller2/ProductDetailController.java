@@ -1,12 +1,11 @@
 package com.example.ecommerce.controller2;
 
+import com.example.ecommerce.Bean.*;
 import com.example.ecommerce.Bean.Cart.Cart;
-import com.example.ecommerce.Bean.Category;
-import com.example.ecommerce.Bean.Product;
-import com.example.ecommerce.Bean.ProductAttribute;
 import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductAttributeService;
 import com.example.ecommerce.service.ProductService;
+import com.example.ecommerce.service.RatingService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -27,6 +26,7 @@ public class ProductDetailController extends HttpServlet {
         ProductService service = ProductService.getInstance();
         CategoryService cateService = CategoryService.getInstance();
         ProductAttributeService productDetailServ = ProductAttributeService.getInstance();
+        RatingService ratingService = RatingService.getInstance();
 
         Category category = null;
         List<Category> categories = new ArrayList<>();
@@ -34,6 +34,7 @@ public class ProductDetailController extends HttpServlet {
         String pAttributeID = req.getParameter("atributeID");
         String categoryID = req.getParameter("cateID");
         List<Product> list4Product;
+        List<Rating> listRatingOfProduct;
         try{
             int id = Integer.parseInt(pid);
             int attributeID = Integer.parseInt(pAttributeID);
@@ -43,7 +44,10 @@ public class ProductDetailController extends HttpServlet {
             category = cateService.getCategoryById(cateID);
             ProductAttribute pat = productDetailServ.getProductAttributeById(attributeID);
             list4Product  = service.get4ProductOfCate(cateID);;
+            listRatingOfProduct = ratingService.getRatingByProductID(id);
 
+            req.setAttribute("totalRatings", listRatingOfProduct.size());
+            req.setAttribute("ratings", listRatingOfProduct);
             req.setAttribute("productOfCate", list4Product);
             req.setAttribute("p", p);
             req.setAttribute("pat", pat);
@@ -70,16 +74,14 @@ public class ProductDetailController extends HttpServlet {
             }
         }
         HttpSession session = req.getSession(true);
+        User u = (User) session.getAttribute("auth");
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null){
             cart = new Cart();
             session.setAttribute("cart", cart);
         }
+
         session.setAttribute("cart", cart);
-
-
-
-
 
         req.setAttribute("mapCate", mapCate);
         req.setAttribute("categories", category);

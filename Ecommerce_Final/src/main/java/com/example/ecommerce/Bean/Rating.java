@@ -2,14 +2,16 @@ package com.example.ecommerce.Bean;
 
 public class Rating {
     private int userID;
+    private String username;
     private int productID;
     private int stars;
     private String commentRate;
 
     public Rating() {}
 
-    public Rating(int userID, int productID, int stars, String commentRate) {
+    public Rating(int userID,String username, int productID, int stars, String commentRate) {
         this.userID = userID;
+        this.username = username;
         this.productID = productID;
         this.stars = stars;
         this.commentRate = commentRate;
@@ -22,6 +24,8 @@ public class Rating {
     public void setUserID(int userID) {
         this.userID = userID;
     }
+    public String getUsername(){return username;}
+    public void setUsername(String username){this.username = username;}
 
     public int getProductID() {
         return productID;
@@ -51,6 +55,7 @@ public class Rating {
     public String toString() {
         return "Rating{" +
                 "userID=" + userID +
+                ", username=" + username +
                 ", productID=" + productID +
                 ", stars=" + stars +
                 ", commentRate='" + commentRate + '\'' +

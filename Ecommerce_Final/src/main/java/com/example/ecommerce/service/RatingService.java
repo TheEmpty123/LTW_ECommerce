@@ -22,14 +22,17 @@ public class RatingService extends ServiceBase {
     public List<Rating> getAllRating() {
         return ratingDao.getAllRating();
     }
-    public List<Rating> getRatingByUserID(int userID) {
-        return ratingDao.getRatingByUserId(userID);
+    public List<Rating> getRatingByProductID(int productID) {
+        return ratingDao.getRatingByProductId(productID);
     }
     public boolean addRating(int userId, int productId, int stars, String commentRate) {
-        return ratingDao.addRating(userId, productId, stars, commentRate);
+        return ratingDao.addRating(userId ,productId, stars, commentRate);
     }
     public boolean deleteRating(int userId, int productId){
         return ratingDao.deleteRating(userId, productId);
+    }
+    public int countStars(int numberStars, int productID){
+        return ratingDao.countStars(numberStars, productID);
     }
 
 }

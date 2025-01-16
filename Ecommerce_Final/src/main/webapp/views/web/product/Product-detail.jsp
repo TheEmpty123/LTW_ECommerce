@@ -27,8 +27,10 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Rating.js"></script>
     <%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
     <style>
         .review-section {
@@ -208,7 +210,8 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
-        button{
+
+        button {
             border: none;
             background-color: white;
         }
@@ -398,11 +401,11 @@
             <h1 class="product-title">${p.proName}</h1>
             <div class="wishlist-wrapper favourite-product" data-id="${p.id}"
                  data-user="${sessionScope.auth.id}">
-<%--                <div class="wishlist-icon">--%>
-                    <button class="wishlist-button">
-                        <i class="bi bi-heart"></i>
-                    </button>
-<%--                </div>--%>
+                <%--                <div class="wishlist-icon">--%>
+                <button class="wishlist-button">
+                    <i class="bi bi-heart"></i>
+                </button>
+                <%--                </div>--%>
             </div>
             <div class="price-wrapper">
                 <p class="product-page-price"><f:formatNumber type="currency" currencySymbol="đ"
@@ -536,7 +539,7 @@
         </div>
     </div>
 
-    <div class="review-section">
+    <div class="review-section" data-username="${sessionScope.auth.username}" data-pid="${p.id}"  data-user="${sessionScope.auth.id}">
         <h2>ĐÁNH GIÁ SẢN PHẨM</h2>
         <div class="rating-overview">
             <div class="rating-score">
@@ -553,33 +556,24 @@
                 <button>1 Sao (26)</button>
             </div>
         </div>
-
-        <div class="review">
-            <div class="review-header">
-                <strong>vu**trong</strong>
-                <span>5 ⭐</span>
-                <p>2024-07-28 00:19 | Số lượng: 2</p>
+        <c:if test="${totalRatings == 0}">
+            <strong>Sản phẩm chưa có đánh giá nào</strong>
+        </c:if>
+        <c:forEach var="r" items="${ratings}">
+            <div class="review">
+                <div class="review-header">
+                    <strong>${r.username}</strong>
+                    <span>${r.stars} ⭐</span>
+                    <p>2024-07-28 00:19</p>
+                </div>
+                <p>${r.commentRate}</p>
             </div>
-            <p>Ghế quá đẹp và chất lượng, đúng như hình. Giao hàng nhanh chóng, chuyên nghiệp 10đ. Đặt vào rất hợp với
-                nội thất của nhà mình.</p>
-        </div>
-
-        <div class="review">
-            <div class="review-header">
-                <strong>nt**ngoc</strong>
-                <span>5 ⭐</span>
-                <p>2024-11-29 12:21 | Số lượng: 1</p>
-            </div>
-            <p>
-                Nhân viên rất nhiệt tình có hỗ trợ trả hàng hoàn tiền khi khách không ưng, đầu tiên
-                mình định trả hàng rồi mà chả hiểu điều gì khiến mình giữ lại!ghế không có chỗ nào để chê, đẹp luôn.
-            </p>
-        </div>
-
+        </c:forEach>
         <div class="product-review">
-            <h3>Đánh giá sản phẩm</h3>
-            <textarea placeholder="Nhập đánh giá của bạn ở đây..." rows="1"></textarea>
-            <button type="submit">Gửi đánh giá</button>
+            <h3 style="margin-top: 4px;">Đánh giá sản phẩm</h3>
+            <input id="stars" placeholder="⭐" style="width: 30px; font-size: 14px; margin-right: 10px; padding: 11px 4px">
+            <textarea id="commentRate" placeholder="Nhập đánh giá của bạn ở đây..." rows="1"></textarea>
+            <button id="sendRating" type="submit">Gửi đánh giá</button>
         </div>
     </div>
 
@@ -612,7 +606,8 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                            <button class="add-to-cart"
+                                                    style="font-size: 11px; font-weight: bold; padding: 10px 5px">
                                                 THÊM VÀO GIỎ
                                             </button>
                                         </div>

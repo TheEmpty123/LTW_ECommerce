@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface IRatingDao {
     List<Rating> getAllRating();
-    List<Rating> getRatingByUserId(int id);
+    List<Rating> getRatingByProductId(int id);
     boolean addRating(int userId, int productId, int stars, String commentRate);
     boolean deleteRating(int userId, int productId);
 }

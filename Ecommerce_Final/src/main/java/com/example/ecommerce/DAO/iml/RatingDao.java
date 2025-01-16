@@ -19,26 +19,38 @@ public class RatingDao extends ImplementBase implements IRatingDao {
     @Override
     public List<Rating> getAllRating() {
         return db.jdbi.withHandle(handle ->
-                handle.createQuery("select * from ratings")
+                handle.createQuery("select r.*, u.username from ratings r join users u on r.userID = u.id")
                         .mapToBean(Rating.class).list());
     }
 
     @Override
-    public List<Rating> getRatingByUserId(int id) {
+    public List<Rating> getRatingByProductId(int id) {
         return db.jdbi.withHandle(handle ->
-                handle.createQuery("select * from rating where userID= ?")
+                handle.createQuery("select r.*, u.username from ratings r join users u on r.userID = u.id where productID= ?")
                         .bind(0, id)
                         .mapToBean(Rating.class).list());
+    }
+    public int countStars(int numberStars, int productID){
+        return db.jdbi.withHandle(handle ->
+                handle.createQuery("select count(r.userID) " +
+                                "from ratings r join users u on r.userID = u.id " +
+                                "where stars = ? and r.productID = ? " +
+                                "group by r.stars")
+                        .bind(0,numberStars)
+                        .bind(1, productID)
+                        .mapToBean(int.class)
+                        .findOne()
+                        .orElse(0));
     }
 
     @Override
     public boolean addRating(int userId, int productId, int stars, String commentRate) {
         int rowsAffected=  db.jdbi.withHandle(handle ->
-                handle.createUpdate("insert into rating values (?,?,?,?)")
+                handle.createUpdate("insert into ratings values (?,?,?,?)")
                         .bind(0, userId)
-                        .bind(1, productId)
-                        .bind(2,stars)
-                        .bind(3, commentRate)
+                        .bind(2,productId)
+                        .bind(3, stars)
+                        .bind(4, commentRate)
                         .execute());
         handle.close();
         return rowsAffected>0;
@@ -47,7 +59,7 @@ public class RatingDao extends ImplementBase implements IRatingDao {
     @Override
     public boolean deleteRating(int userId, int productId) {
         int rowsAffected = db.jdbi.withHandle(handle ->
-                handle.createUpdate("delete from rating where userID = ? AND productID = ?")
+                handle.createUpdate("delete from ratings where userID = ? AND productID = ?")
                         .bind(0, userId)
                         .bind(1, productId)
                         .execute());
