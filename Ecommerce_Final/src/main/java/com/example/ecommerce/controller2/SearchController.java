@@ -29,7 +29,7 @@ public class SearchController extends HttpServlet {
         try {
             String value = req.getParameter("search-input");
             System.out.println("Finding value: " + value);
-            data = service.getSearch(value);
+            data = service.getSearchProduct(value);
             System.out.println(data);
             categories = cateService.getAllCategory();
         } catch (Exception e) {

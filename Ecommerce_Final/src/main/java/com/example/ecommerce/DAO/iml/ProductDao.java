@@ -25,7 +25,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         return 0;
     }
 
-    public Jdbi getJdbi(){
+    public Jdbi getJdbi() {
         return db.jdbi;
     }
 
@@ -78,8 +78,15 @@ public class ProductDao extends ImplementBase implements IProductDAO {
     @Override
     public List<Product> search(String name) {
         return handle.createQuery("SELECT p.id, p .proName, p.description, p.price, p.thumb FROM products AS p JOIN product_atribute AS pa ON p.atributeID = pa.id WHERE pa.material LIKE :name")
-                .bind("name",  "%" + name + "%")
+                .bind("name", "%" + name + "%")
                 .mapToBean(Product.class).list();
+    }
+
+    @Override
+    public List<Product> searchProduct(String name) {
+        return db.getJdbi().withHandle(handle1 -> handle.createQuery("SELECT * FROM products WHERE proName LIKE :name")
+                .bind("name", "%" + name + "%")
+                .mapToBean(Product.class).list());
     }
 
     @Override
@@ -95,7 +102,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         return List.of();
     }
 
-    public List<Product> get4ProductOfCate(int cateID){
+    public List<Product> get4ProductOfCate(int cateID) {
         return db.jdbi.withHandle(handle -> handle.createQuery("select * from products where cateID = :cateID limit 4")
                 .bind("cateID", cateID)
                 .mapToBean(Product.class).list());
@@ -107,9 +114,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         String query = "select p.id, p.proName,p.price,p.description, p.thumb,p.created_at,p.cateID,p.atributeID " +
                 "from products p join product_atribute pa on p.atributeID = pa.id ";
 
-        if("Tất cả".equals(material)){
+        if ("Tất cả".equals(material)) {
             query += "where 1=1 or pa.material like ?";
-        }else {
+        } else {
             query += "where pa.material like ? ";
         }
         // Thêm điều kiện sắp xếp
@@ -125,7 +132,7 @@ public class ProductDao extends ImplementBase implements IProductDAO {
 
         String finalQuery = query;
         return db.jdbi.withHandle(handle -> handle.createQuery(finalQuery)
-                .bind(0, '%'+material+'%')
+                .bind(0, '%' + material + '%')
                 .mapToBean(Product.class).list());
     }
 
