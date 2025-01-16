@@ -336,11 +336,11 @@
                 <button><i class="fa-solid fa-magnifying-glass"></i></button>
 
             </div>
-<%--            <script>--%>
-<%--                const searchInput = document.querySelector(".search-bar-hd")--%>
-<%--                const searchValue = searchInput.value;--%>
-<%--                console.log(searchValue)--%>
-<%--            </script>--%>
+            <%--            <script>--%>
+            <%--                const searchInput = document.querySelector(".search-bar-hd")--%>
+            <%--                const searchValue = searchInput.value;--%>
+            <%--                console.log(searchValue)--%>
+            <%--            </script>--%>
         </div>
     </header>
 </div>
@@ -441,11 +441,9 @@
                 <c:forEach var="product" items="${list_product}">
                     <div class="card">
                         <div class="card-d">
-                                <%--                            <img src="${pageContext.request.contextPath}/public/images/all-products/${product.thumb}"--%>
                             <img src="${pageContext.request.contextPath}/${product.thumb}"
                                  class="card-img-top" alt="${product.proName}">
                             <img class="back"
-                                <%--                                 src="${pageContext.request.contextPath}/public/images/all-products/${product.thumb}"--%>
                                  src="${pageContext.request.contextPath}/${product.thumb}"
                                  alt="Back Image">
                         </div>
@@ -455,11 +453,16 @@
                                     value="${product.price}" type="currency" currencySymbol="đ"/>
                             </p>
                         </div>
-                        <div class="card-footer">
-                            <small class="text-muted">
-                                <button class="add-to-cart">Thêm vào giỏ</button>
-                                <button class="see-more">Xem thêm</button>
-                            </small>
+                        <div class="card-footer product" style="background: white" data-id="${product.id}"
+                             data-name="${product.proName}"
+                             data-img="${product.thumb}" data-price="${product.price}">
+                            <button style="width: 120px;margin-right:20px;height: 50px; " class="add-to-cart">Thêm vào
+                                giỏ
+                            </button>
+                            <button style="width: 100px;height: 50px;background: black;" class="see-more"><a
+                                    style="background: black;color: white;text-decoration: none"
+                                    href="/kenes?id=${product.id}&atributeID=${product.atributeID}&cateID=${product.cateID}">Xem
+                                thêm</a></button>
                         </div>
                     </div>
 
@@ -467,73 +470,73 @@
             </div>
         </section>
 
-        <div id="watched-product" style="margin-top:3%;">
-            <div class="title-watched">
-                <h3>Sản phẩm vừa xem</h3>
-            </div>
-            <div class="center-box">
-                <div class="carousel-container">
-                    <div class="carousel-prev-box">
-                        <button class="carousel-prev">&#10094;</button>
-                    </div>
-                    <div class="carousel-items">
-                        <div class="row">
-                            <c:if test=" ${not empty sessionScope.recentlyView}">
-                                <c:forEach var="product" items="${sessionScope.recentlyView}">
-                                    <div class="col-md-3 col-6">
-                                        <div class="card product-card">
-                                                <%--                                            xu li ow day--%>
-                                            <a href="${pageContext.request.contextPath}">
-                                                <img src="${pageContext.request.contextPath}/${product.thumb}"
-                                                     alt="${product.proName}">
-                                            </a>
-                                            <div class="card-body">
-                                                <h6 class="product-name">${product.proName}</h6>
-                                                <div class="like-price-product">
-                                                    <span class="product-price">${product.price}</span>
-                                                    <button class="wishlist-button">
-                                                        <i class="bi bi-heart"></i>
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <div class="cart-see-more-btns">
-                                                <div class="row">
-                                                    <div class="col-sm-7 col-md-7">
-                                                        <div class="cart-btn use-button fake-btn">
-                                                            <p>THÊM VÀO GIỎ</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-sm-5 col-md-5">
-                                                        <div class="use-button fake-btn">
-                                                            <p>XEM THÊM</p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </c:forEach>
-                            </c:if>
-                            <c:if test="${empty sessionScope.recentView}">
-                                <p>KHong co san pham xem gan day</p>
-                            </c:if>
-                        </div>
-                    </div>
+<%--        <c:if test="${not empty sessionScope.auth}">--%>
+<%--            <div id="watched-product" style="margin-top:3%;">--%>
+<%--                <div class="title-watched">--%>
+<%--                    <h3>Sản phẩm vừa xem</h3>--%>
+<%--                </div>--%>
+<%--                <div class="center-box">--%>
+<%--                    <div class="carousel-container">--%>
+<%--                        <div class="carousel-prev-box">--%>
+<%--                            <button class="carousel-prev">&#10094;</button>--%>
+<%--                        </div>--%>
+<%--                        <div class="carousel-items">--%>
+<%--                            <div class="row">--%>
+<%--                                <c:if test=" ${not empty sessionScope.recentlyView}">--%>
+<%--                                    <c:forEach var="product" items="${sessionScope.recentlyView}">--%>
+<%--                                        <div class="col-md-3 col-6">--%>
+<%--                                            <div class="card product-card">--%>
+<%--                                                <a href="${pageContext.request.contextPath}">--%>
+<%--                                                    <img src="${pageContext.request.contextPath}/${product.thumb}"--%>
+<%--                                                         alt="${product.proName}">--%>
+<%--                                                </a>--%>
+<%--                                                <div class="card-body">--%>
+<%--                                                    <h6 class="product-name">${product.proName}</h6>--%>
+<%--                                                    <div class="like-price-product">--%>
+<%--                                                        <span class="product-price">${product.price}</span>--%>
+<%--                                                        <button class="wishlist-button">--%>
+<%--                                                            <i class="bi bi-heart"></i>--%>
+<%--                                                        </button>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
+<%--                                                <div class="cart-see-more-btns">--%>
+<%--                                                    <div class="row">--%>
+<%--                                                        <div class="col-sm-7 col-md-7">--%>
+<%--                                                            <div class="cart-btn use-button fake-btn">--%>
+<%--                                                                <p>THÊM VÀO GIỎ</p>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="col-sm-5 col-md-5">--%>
+<%--                                                            <div class="use-button fake-btn">--%>
+<%--                                                                <p>XEM THÊM</p>--%>
+<%--                                                            </div>--%>
+<%--                                                        </div>--%>
+<%--                                                    </div>--%>
+<%--                                                </div>--%>
+<%--                                            </div>--%>
+<%--                                        </div>--%>
+<%--                                    </c:forEach>--%>
+<%--                                </c:if>--%>
+<%--                                <c:if test="${empty sessionScope.recentView}">--%>
+<%--                                    <p>Khong co san pham xem gan day</p>--%>
+<%--                                </c:if>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
 
-                    <div class="carousel-next-box">
-                        <button class="carousel-next">&#10095;</button>
-                    </div>
-                </div>
-            </div>
-            <div class="nav-watched">
-                <div class="nav-box fchild"></div>
-                <div class="nav-box"></div>
-                <div class="nav-box"></div>
-                <div class="nav-box"></div>
-                <div class="nav-box"></div>
-            </div>
-        </div>
-
+<%--                        <div class="carousel-next-box">--%>
+<%--                            <button class="carousel-next">&#10095;</button>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
+<%--                </div>--%>
+<%--                <div class="nav-watched">--%>
+<%--                    <div class="nav-box fchild"></div>--%>
+<%--                    <div class="nav-box"></div>--%>
+<%--                    <div class="nav-box"></div>--%>
+<%--                    <div class="nav-box"></div>--%>
+<%--                    <div class="nav-box"></div>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--        </c:if>--%>
 
         <section class="part3">
             <div class="content-wrapper">
@@ -633,5 +636,28 @@
 </script>
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
+<script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        // Lấy URL cần xử lý
+        const productUrl = new URL("http://localhost:8080/product?id=1&atributeID=1&cateID=1");
+
+        const productId = productUrl.searchParams.get("id");
+        console.log("Product ID:", productId);
+
+        if (productId) {
+            fetch("/kenes", {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({id: productId}),
+            }).then((response) => response.json())
+                .then((data) => console.log("Server response:", data))
+                .catch((error) => console.error("Error:", error));
+        }
+    });
+
+</script>
 </body>
 </html>

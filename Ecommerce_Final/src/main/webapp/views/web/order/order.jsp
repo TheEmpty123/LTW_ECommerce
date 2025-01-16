@@ -183,18 +183,18 @@
             <h3>Sản phẩm</h3>
             <div class="product-list"
                  style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
-                <c:forEach var="order" items="${orderitems}">
+                <c:forEach var="cp" items="${sessionScope.cart.list}">
                     <div class="product" style="margin-bottom: 20px;">
-                        <img src="${pageContext.request.contextPath}/${order.product.thumb}"
-                             alt="${order.product.proName}"
+                        <img src="${pageContext.request.contextPath}/${cp.img}"
+                             alt="${cp.name}"
                              style="width: 100px; height: auto; object-fit: cover;">
 
                         <div class="product-details" style="display: flex; align-items: center; gap: 200px;">
                             <div class="product-column" style="flex: 1;">
-                                <p><strong style="width: 150px">${order.product.proName}</strong></p>
-                                <p>Số lượng ${order.amount}</p>
+                                <p><strong style="width: 150px">${cp.name}</strong></p>
+                                <p>Số lượng ${cp.quantity}</p>
                                 <p style="font-weight: bold; white-space: nowrap;">
-                                    Giá gốc: <fmt:formatNumber value="${order.product.price  *order.amount}"
+                                    Giá gốc: <fmt:formatNumber value="${cp.price  *cp.quantity}"
                                                                type="number"
                                                                groupingUsed="true"/> đ
                                 </p>
@@ -202,12 +202,31 @@
                         </div>
                     </div>
                 </c:forEach>
+                <%--                <c:forEach var="order" items="${orderitems}">--%>
+                <%--                    <div class="product" style="margin-bottom: 20px;">--%>
+                <%--                        <img src="${pageContext.request.contextPath}/${order.product.thumb}"--%>
+                <%--                             alt="${order.product.proName}"--%>
+                <%--                             style="width: 100px; height: auto; object-fit: cover;">--%>
+
+                <%--                        <div class="product-details" style="display: flex; align-items: center; gap: 200px;">--%>
+                <%--                            <div class="product-column" style="flex: 1;">--%>
+                <%--                                <p><strong style="width: 150px">${order.product.proName}</strong></p>--%>
+                <%--                                <p>Số lượng ${order.amount}</p>--%>
+                <%--                                <p style="font-weight: bold; white-space: nowrap;">--%>
+                <%--                                    Giá gốc: <fmt:formatNumber value="${order.product.price  *order.amount}"--%>
+                <%--                                                               type="number"--%>
+                <%--                                                               groupingUsed="true"/> đ--%>
+                <%--                                </p>--%>
+                <%--                            </div>--%>
+                <%--                        </div>--%>
+                <%--                    </div>--%>
+                <%--                </c:forEach>--%>
             </div>
 
             <div class="summary-item">
                 <p>Thành tiền</p>
                 <p style="font-weight: bold; white-space: nowrap;">
-                    <fmt:formatNumber value="${total}" type="number"
+                    <fmt:formatNumber value="${sessionScope.cart.total}" type="number"
                                       groupingUsed="true"/> đ
             </div>
             <h3>THÔNG TIN THÊM</h3>
