@@ -149,7 +149,7 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
                 {
                     double priceDouble = 0;
                     if (!price.equals(""))
-                        priceDouble = Double.parseDouble(price.replace(",",""));
+                        priceDouble = Double.parseDouble(price.replace(",", ""));
                     p.setProName(productName.equals("") ? p.getProName() : productName);
                     p.setCateID(cateId);
                     p.setPrice(price.equals("") ? p.getPrice() : priceDouble);

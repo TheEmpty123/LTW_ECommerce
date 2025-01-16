@@ -211,6 +211,14 @@
                     </div>
                 </c:if>
 
+                <c:if test="${CMD eq 'add-category'}">
+
+                </c:if>
+
+                <c:if test="${CMD eq 'edit-category'}">
+
+                </c:if>
+
             </div>
         </section>
     </main>

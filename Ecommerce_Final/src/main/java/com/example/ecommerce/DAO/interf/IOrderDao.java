@@ -37,4 +37,7 @@ public interface IOrderDao {
     public int getTotalOrderWithStatus(boolean force, ShippingStatus status);
 
     public int getTotalOrdersWithPaymentStatus(boolean force, Statuss status);
+
+    int updateOrder(int id, String phone, ShippingStatus status);
+    int updatePayment(int id, Statuss statuss);
 }

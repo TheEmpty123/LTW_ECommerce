@@ -111,10 +111,51 @@ public class OrderService extends ServiceBase {
         return li;
     }
 
+    public OrderDto getOrderDtoById(int id) {
+        orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
+        var j = orderDao.getJdbi();
+        var a = j.onDemand(IOrderDto.class);
+        var o = a.getOrderById(id);
+
+        return o;
+    }
+
     public static void main(String[] args) {
         var a = OrderService.getInstance();
         a.init();
         var b = a.getAllOrderDto();
         b.forEach(System.out::println);
+    }
+
+    public Order getOrderById(int id) {
+        Order o = null;
+        try {
+            o = orderDao.getOrderById(id);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return o;
+    }
+
+    public boolean updateOrder(int id, int pId, String phone, ShippingStatus status, Statuss statuss) {
+        log.info("UserService updateOrder...");
+
+        if (status == ShippingStatus.Completed && statuss == Statuss.CANCELLED) {
+            return false;
+        }
+        if (status == ShippingStatus.Completed && statuss == Statuss.PENDING) {
+            return false;
+        }
+        if (status == ShippingStatus.Cancelled || statuss == Statuss.CANCELLED) {
+            statuss = Statuss.CANCELLED;
+            status = ShippingStatus.Cancelled;
+        }
+
+        int a = orderDao.updateOrder(id, phone, status);
+        int b = orderDao.updatePayment(pId, statuss);
+
+        return (a > 0) && (b > 0);
     }
 }
