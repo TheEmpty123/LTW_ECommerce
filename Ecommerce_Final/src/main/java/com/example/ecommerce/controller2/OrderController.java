@@ -44,7 +44,6 @@ public class OrderController extends HttpServlet {
                 System.out.println("Fetched order items: " + orderitems);
 
                 double totalMoney = service.getTotalRevenue(true);
-//                this.service.addOrder(idUser);
 
                 req.setAttribute("orderitems", orderitems);
                 req.setAttribute("total", totalMoney);
@@ -59,7 +58,6 @@ public class OrderController extends HttpServlet {
             req.setAttribute("error", "An error occurred while processing the order.");
             req.getRequestDispatcher("/views/web/error.jsp").forward(req, resp);
         }
-
     }
 
     @Override
@@ -76,29 +74,24 @@ public class OrderController extends HttpServlet {
                 cart = new Cart();
                 session.setAttribute("cart", cart);
             }
+            session.setAttribute("cart", cart);
 
-            if (user == null) {
-                resp.getWriter().write("{\"success\": false, \"error\": \"Người dùng không hợp lệ.\"}");
-                return;
+            if (user != null) {
+                int idUser = user.getId();
+                System.out.println("id " + idUser);
+
+                Order order = new Order(idUser);
+                this.service.addOrder(order);
+
+                processCartItems(cart, order);
+
+                handleShippingInfo(req, resp, idUser);
+
+                resp.sendRedirect(req.getContextPath() + "/order");
+
             }
-
-            int idUser = user.getId();
-            System.out.println("id " + idUser);
-
-            Order order = new Order(idUser);
-            this.service.addOrder(order);
-
-            // Process Cart Products
-            processCartItems(cart, order);
-
-            // Handle shipping information
-            handleShippingInfo(req, resp, idUser);
-
-            resp.sendRedirect(req.getContextPath() + "/order");
-
         } catch (Exception e) {
             e.printStackTrace();
-            resp.getWriter().write("{\"success\": false, \"error\": \"Có lỗi xảy ra khi xử lý yêu cầu.\"}");
         }
     }
 
@@ -122,6 +115,7 @@ public class OrderController extends HttpServlet {
     }
 
     private void handleShippingInfo(HttpServletRequest req, HttpServletResponse resp, int idUser) throws IOException {
+
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
         String address = req.getParameter("address");

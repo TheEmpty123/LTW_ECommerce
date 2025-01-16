@@ -32,6 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+
 </head>
 <body>
 <div id="mask-container">
@@ -444,10 +446,10 @@
                             <button style="width: 120px;margin-right:20px;height: 50px; " class="add-to-cart">Thêm vào
                                 giỏ
                             </button>
-                            <button style="width: 100px;height: 50px;background: black;" class="see-more"><a
-                                    style="background: black;color: white;text-decoration: none"
-                                    href="/kenes?id=${product.id}&atributeID=${product.atributeID}&cateID=${product.cateID}">Xem
-                                thêm</a></button>
+                            <button style="width: 100px;height: 50px;background: black;" class="see-more">
+                                <a href="javascript:void(0);"
+                                   onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
+                                    <p>XEM THÊM</p></a></button>
                         </div>
                     </div>
 
@@ -554,7 +556,7 @@
 </script>
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
-<script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+<%--<script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Lấy URL cần xử lý
@@ -577,5 +579,7 @@
     });
 
 </script>
+<script src="${pageContext.request.contextPath}/public/js/ProductDetail.js"></script>
+
 </body>
 </html>
