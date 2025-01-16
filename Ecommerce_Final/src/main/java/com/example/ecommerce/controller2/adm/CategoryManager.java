@@ -46,6 +46,8 @@ public class CategoryManager extends HttpServlet implements ControllerBase{
         try{
             log.info("Preparing for category management page");
 
+            var categories = MC.instance.categoryService.getAllCategoryDto();
+            request.setAttribute("categories", categories);
 
             log.info("Ready for category management page");
         }

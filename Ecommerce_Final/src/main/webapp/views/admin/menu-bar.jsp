@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="category-management.jsp">
+                    <a href="/admin/category">
                         <span class="ti-menu"></span>
                         <span>Quản lý danh mục</span>
                     </a>
