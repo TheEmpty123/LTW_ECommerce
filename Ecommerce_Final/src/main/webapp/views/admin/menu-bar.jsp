@@ -125,19 +125,19 @@
                 </li>
 
                 <li>
-                    <a href="privacy-policy.jsp">
+                    <a href="/views/admin/privacy-policy.jsp">
                         <span class="ti-info-alt"></span>
                         <span>Privacy policy</span>
                     </a>
                 </li>
                 <li>
-                    <a href="faqs.jsp">
+                    <a href="/views/admin/faqs.jsp">
                         <span class="ti-help-alt"></span>
                         <span>FAQs</span>
                     </a>
                 </li>
                 <li>
-                    <a href="help-center.jsp">
+                    <a href="/views/admin/help-center.jsp">
                         <span class="ti-headphone-alt"></span>
                         <span>Help center</span>
                     </a>
