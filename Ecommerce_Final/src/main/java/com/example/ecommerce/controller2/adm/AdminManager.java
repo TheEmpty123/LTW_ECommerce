@@ -29,18 +29,27 @@ public class AdminManager extends HttpServlet implements ControllerBase{
         HttpSession session = request.getSession();
         User user = session == null ? null : (User) session.getAttribute("auth");
 
-        log.info(session);
-        log.info(user);
-
         // !
         // Supreme permission only
-        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)){
+        if (!MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)){
             log.warn("User management not permitted, redirecting to 404 page");
             response.sendRedirect("/404");
             return;
         }
 
         log.info("User has access to this resource");
+        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
+            request.setAttribute("role", RolePermission.SUPREME);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.USER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.ORDER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.ORDER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.PRODUCT_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.PRODUCT_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.REPORTS_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+        } else
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
 
         try {
             log.info("Getting admin list...");

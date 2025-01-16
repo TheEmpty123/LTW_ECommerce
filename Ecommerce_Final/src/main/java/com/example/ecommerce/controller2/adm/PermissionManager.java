@@ -22,13 +22,25 @@ public class PermissionManager extends HttpServlet implements ControllerBase {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
 
-        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
+        if (!MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
             log.warn("User management not permitted, redirecting to 404 page");
             response.sendRedirect("/404");
             return;
         }
 
         log.info("User has access to this resource");
+        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
+            request.setAttribute("role", RolePermission.SUPREME);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.USER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.ORDER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.ORDER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.PRODUCT_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.PRODUCT_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.REPORTS_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+        } else
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
         request.setAttribute("CMD", "permissions");
 
         try {
@@ -39,18 +51,6 @@ public class PermissionManager extends HttpServlet implements ControllerBase {
 
             var permissions = MC.instance.permissionService.getAllPermissions(false);
             request.setAttribute("permissions", permissions);
-
-//            permissions.forEach(p -> {
-//                log.info(p.getPermissionName());
-//                rolesMap.forEach((k, v) -> {
-//                    if (v.getPermission() != null && v.getPermission().contains(p.getPermissionName())) {
-//                        log.info(v.getNameRole());
-//                    }
-//                });
-//                log.info(p.getCreateDate());
-//                log.info(p.getLastUpdate());
-//                log.info("===========");
-//            });
 
             int totalUsers = MC.instance.userService.getTotalUsers(false);
             request.setAttribute("totalUsers", totalUsers);

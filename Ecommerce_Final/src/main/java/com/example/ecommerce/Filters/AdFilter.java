@@ -2,6 +2,7 @@ package com.example.ecommerce.Filters;
 
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.Common.LogObj;
+import com.example.ecommerce.service.UserService;
 import jakarta.servlet.*;
 import jakarta.servlet.annotation.WebFilter;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,8 +31,8 @@ public class AdFilter implements Filter {
 
         HttpSession s = request.getSession(false);
 
-//        Accessible a = UserService.getInstance().isAccessible(s);
-        Accessible a = Accessible.ADMINISTRATOR;
+        Accessible a = UserService.getInstance().isAccessible(s);
+//        Accessible a = Accessible.ADMINISTRATOR;
 
         if (a == Accessible.CLIENT || a == Accessible.NOT_LOGGED_IN) {
             log.warn("User does not have access to this resource");
@@ -39,7 +40,7 @@ public class AdFilter implements Filter {
             return;
         } else {
             log.info("User logged in and accessible");
-            request.setAttribute("role", a);
+//            request.setAttribute("role", a);
             filterChain.doFilter(servletRequest, servletResponse);
         }
     }

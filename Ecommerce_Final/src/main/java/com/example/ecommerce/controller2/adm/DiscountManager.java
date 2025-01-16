@@ -22,13 +22,25 @@ public class DiscountManager extends HttpServlet implements ControllerBase {
         HttpSession session = request.getSession();
         User user = (User) session.getAttribute("auth");
 
-        if (MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, true)) {
+        if (!MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, true)) {
             log.warn("User management not permitted, redirecting to 404 page");
             response.sendRedirect("/404");
             return;
         }
 
         log.info("User has access to this resource");
+        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
+            request.setAttribute("role", RolePermission.SUPREME);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.USER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.ORDER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.ORDER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.PRODUCT_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.PRODUCT_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.REPORTS_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+        } else
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
         request.setAttribute("CMD", "discount");
 
         try {

@@ -4,6 +4,8 @@ import java.io.*;
 import java.text.NumberFormat;
 import java.util.Locale;
 
+import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -21,6 +23,23 @@ public class Dashboard extends HttpServlet implements ControllerBase {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         initialize();
         log.warn("============ Loading dashboard page ============");
+
+        HttpSession session = request.getSession();
+        User user = session == null ? null : (User) session.getAttribute("auth");
+
+        // Supreme permission only
+        if (MC.instance.userService.hasPermission(user, RolePermission.SUPREME, true)) {
+            request.setAttribute("role", RolePermission.SUPREME);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.USER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.USER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.ORDER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.ORDER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.PRODUCT_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.PRODUCT_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(user, RolePermission.REPORTS_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+        } else
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
 
         try {
             NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
