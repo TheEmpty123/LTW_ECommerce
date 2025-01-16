@@ -5,46 +5,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.example.ecommerce.Bean.Cart.Cart;
-import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
-import com.example.ecommerce.service.CategoryService;
+import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
-import org.jdbi.v3.core.ConnectionException;
 
 @WebServlet(name = "home", value = "/kenes")
 public class Home extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        MC.createInstance();
         List<Product> products = null;
         HttpSession session = request.getSession(true);
-//        ProductService service = new ProductService();
-//        CategoryService categoryService = new CategoryService();
-//        String categoryId = request.getParameter("cateID");
-//        List<Category> categories = new ArrayList<>();
-//        Category category = null;
 
-//        try {
-//            int cateID = Integer.parseInt(categoryId);
-//            products = service.getProductByCategory(cateID);
-//            categories = categoryService.getAllCategory();
-//            category = categoryService.getCategoryById(cateID);
-//        } catch (NumberFormatException e) {
-//            System.out.println("khong lay duoc id cua category");
-//            request.setAttribute("error", "khong lay duoc id cua category");
-//        }
         Cart c = (Cart) session.getAttribute("cart");
+        User user = (User) session.getAttribute("auth");
+
         if (c == null) {
             c = new Cart();
             session.setAttribute("cart", c);
         }
+
         try {
-//            List<Product> products = MC.instance.productService.getNew4Products();
             products = ProductService.getInstance().getNew4Products();
             if (products == null || products.isEmpty()) {
                 request.setAttribute("error", "No product found");
@@ -56,49 +41,52 @@ public class Home extends HttpServlet {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "failed to load product");
-
-//            MC.instance.log.error(this.getClass().getName(),"Error connecting to DB");
-//            MC.instance.log.error(this.getClass().getName(), new RuntimeException(e));
         }
-        int productId = 0;
-        try {
+
+        if (user != null) {
             String idParam = request.getParameter("id");
-            if (idParam != null && idParam.isEmpty()) {
-                productId = Integer.parseInt(idParam);
-            }
-            System.out.println(products);
-        } catch (NumberFormatException e) {
-            e.printStackTrace();
-            request.setAttribute("error", "Invalid product ID.");
-            RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
-            dispatcher.forward(request, response);
-            return;
-        }
-        Product product = ProductService.getInstance().getProductById(productId);
-        if (product != null) {
-            products = (List<Product>) session.getAttribute("recentlyView");
-            if (products == null) {
-                products = new ArrayList<>();
+            System.out.println("id cccccccc " + idParam);
+            if (idParam != null && !idParam.isEmpty()) {
+                try {
+                    int productId = Integer.parseInt(idParam);
+                    Product product = ProductService.getInstance().getProductById(productId);
+                    this.updateRecentlyViewedProducts(session, product);
+                } catch (NumberFormatException e) {
+                    log("Invalid product ID format", e);
+                    request.setAttribute("error", "Invalid product ID.");
+                }
+            }else {
+                System.out.println("Không có tham số 'id' được truyền.");
             }
 
-            boolean alreadyView = products.stream().anyMatch(p -> p.getId() == product.getId());
-            if (!alreadyView) {
-                products.add(0, product);
-                if (products.size() > 8) {
-                    products.remove(products.size() - 1);
+        }
+
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/index.jsp");
+        dispatcher.forward(request, response);
+    }
+
+    private void updateRecentlyViewedProducts(HttpSession session, Product product) {
+        System.out.println("dcccccc");
+        if (product != null) {
+            List<Product> recentlyViewed = (List<Product>) session.getAttribute("recentlyView");
+            System.out.println("recently view" + recentlyViewed);
+            if (recentlyViewed == null) {
+                recentlyViewed = new ArrayList<>();
+            }
+
+            if (recentlyViewed.stream().noneMatch(p -> p.getId() == product.getId())) {
+                recentlyViewed.add(0, product);
+                if (recentlyViewed.size() > 8) {
+                    recentlyViewed.remove(recentlyViewed.size() - 1);
                 }
             }
-            session.setAttribute("recentlyView", products);
+
+            session.setAttribute("recentlyView", recentlyViewed);
         }
-
-        String url = "/index.jsp";
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-        dispatcher.forward(request, response);
-
+        System.out.println("khong co san pham nao ow day");
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
     }
 }

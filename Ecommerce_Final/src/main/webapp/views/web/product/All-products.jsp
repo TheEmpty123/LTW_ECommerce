@@ -359,7 +359,9 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                <%--                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">--%>
+                                            <a href="javascript:void(0);"
+                                               onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
                                                 <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
@@ -406,295 +408,75 @@
     </div>
 </div>
 <!-- SẢN PHẨM VỪA XEM -->
-<div id="watched-product">
-    <div class="title-watched">
-        <h3>Sản phẩm vừa xem</h3>
-    </div>
-    <div class="center-box">
-        <div class="carousel-container">
-            <div class="carousel-prev-box">
-                <button class="carousel-prev">&#10094;</button>
-            </div>
-            <div class="carousel-items">
-                <div class="row">
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/45.jpg"
-                                     alt="Sofa 2 chỗ Ogami vải vact10504">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Sofa 2 chỗ Ogami vải vact10504</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">12,900,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
+<c:if test="${not empty sessionScope.auth}">
+    <div id="watched-product" style="margin-top:3%;">
+        <div class="title-watched">
+            <h3>Sản phẩm vừa xem</h3>
+        </div>
+        <div class="center-box">
+            <div class="carousel-container">
+                <div class="carousel-prev-box">
+<%--                    <button class="carousel-prev">&#10094;</button>--%>
+                </div>
+                <div class="carousel-items">
+                    <div class="row">
+                        <c:if test="${not empty sessionScope.recentlyView}">
+                            <c:forEach var="product" items="${sessionScope.recentlyView}">
+                                <div class="col-md-3 col-6">
+                                    <div class="card product-card">
+                                        <a href="${pageContext.request.contextPath}">
+                                            <img src="${pageContext.request.contextPath}/${product.thumb}"
+                                                 alt="${product.proName}">
+                                        </a>
+                                        <div class="card-body">
+                                            <h6 class="product-name">${product.proName}</h6>
+                                            <div class="like-price-product">
+                                                <span class="product-price">${product.price}</span>
+                                                <button class="wishlist-button">
+                                                    <i class="bi bi-heart"></i>
+                                                </button>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/61.jpg" class="image-top"
-                                     alt="Bàn bên 3C-02">
-                                <img src="../../../public/images/all-products/61.1.jpg" class="image-back"
-                                     alt="Bàn bên 3C-02 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bàn bên 3C-02</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">7,990,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
+                                        <div class="cart-see-more-btns">
+                                            <div class="row">
+                                                <div class="col-sm-7 col-md-7">
+                                                    <div class="cart-btn use-button fake-btn">
+                                                        <p>THÊM VÀO GIỎ</p>
+                                                    </div>
+                                                </div>
+                                                <div class="col-sm-5 col-md-5">
+                                                    <div class="use-button fake-btn">
+                                                        <p>XEM THÊM</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/62.jpg" class="image-top"
-                                     alt=" Bàn bên Bottiglia màu xanh 50cm">
-                                <img src="../../../public/images/all-products/62.1.jpg" class="image-back"
-                                     alt=" Bàn bên Bottiglia màu xanh 50cm 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name"> Bàn bên Bottiglia màu xanh 50cm</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">15,400,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/63.jpg" class="image-top"
-                                     alt="Bàn bên butterfly ginkgo 411510 MCA">
-                                <img src="../../../public/images/all-products/63.1.jpg" class="image-back"
-                                     alt="Bàn bên butterfly ginkgo 411510 MCA 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bàn bên butterfly ginkgo 411510 MCA</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">95,600,185đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/115.jpg" class="image-top"
-                                     alt="Bình Aila Turquoise">
-                                <img src="../../../public/images/all-products/115.1.jpg" class="image-back"
-                                     alt="Bình Aila Turquoise 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bình Aila Turquoise</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">12,420,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/116.jpg" class="image-top"
-                                     alt="Bình Aline đỏ XS 16x16x16 23102J">
-                                <img src="../../../public/images/all-products/116.1.jpg" class="image-back"
-                                     alt="Bình Aline đỏ XS 16x16x16 23102J 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bình Aline đỏ XS 16x16x16 23102J</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">660,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/117.jpg" class="image-top"
-                                     alt="Bình Anemone cỡ trung 175082MCA">
-                                <img src="../../../public/images/all-products/117.1.jpg" class="image-back"
-                                     alt="Bình Anemone cỡ trung 175082MCA 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bình Anemone cỡ trung 175082MCA</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">5,190,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-6">
-                        <div class="card product-card">
-                            <a href="">
-                                <img src="../../../public/images/all-products/118.jpg" class="image-top"
-                                     alt="Bình Bloom Green 820053Z">
-                                <img src="../../../public/images/all-products/118.1.jpg" class="image-back"
-                                     alt="Bình Bloom Green 820053Z 1">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">Bình Bloom Green 820053Z</h6>
-                                <div class="like-price-product">
-                                    <span class="product-price">1,750,000đ</span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn">
-                                            <p>THÊM VÀO GIỎ</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                            <p>XEM THÊM</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                            </c:forEach>
+                        </c:if>
+                        <c:if test="${empty sessionScope.recentlyView}">
+                            <p>Không có sản phẩm xem gần đây</p>
+                        </c:if>
                     </div>
                 </div>
-            </div>
 
-            <div class="carousel-next-box">
-                <button class="carousel-next">&#10095;</button>
+                <div class="carousel-next-box">
+<%--                    <button class="carousel-next">&#10095;</button>--%>
+                </div>
             </div>
         </div>
+        <div class="nav-watched">
+<%--            <div class="nav-box fchild"></div>--%>
+<%--            <div class="nav-box"></div>--%>
+<%--            <div class="nav-box"></div>--%>
+<%--            <div class="nav-box"></div>--%>
+<%--            <div class="nav-box"></div>--%>
+        </div>
     </div>
-    <div class="nav-watched">
-        <div class="nav-box fchild"></div>
-        <div class="nav-box"></div>
-        <div class="nav-box"></div>
-        <div class="nav-box"></div>
-        <div class="nav-box"></div>
-    </div>
-</div>
+</c:if>
+
+
 <!-- FOOTER -->
 <!-- <iframe src="../../common/footer.html" frameborder="0" class="footer"></iframe> -->
 <footer class="footer">
@@ -860,5 +642,6 @@
     document.getElementById('mask-cart').addEventListener('click', hiddenCart)
     document.getElementById('close-pop-up').addEventListener('click', hiddenCart)
 </script>
+<script src="${pageContext.request.contextPath}/public/js/ProductDetail.js"></script>
 </body>
 </html>
