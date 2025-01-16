@@ -33,7 +33,7 @@
             <!-- For management -->
             <li>
                 <a class="separator">
-                    General ${role}
+                    General
                 </a>
             </li>
 
@@ -88,18 +88,18 @@
                         <span>Quản lý hàng tồn</span>
                     </a>
                 </li>
+                <li>
+                    <a href="/admin/discount">
+                        <span class="ti-ticket"></span>
+                        <span>Giảm giá</span>
+                    </a>
+                </li>
             </c:if>
             <c:if test="${role eq 'Order Management' or role eq 'Supreme' or role eq 'User Management' or role eq 'Product Management'}">
                 <li>
                     <a href="/admin/orders">
                         <span class="ti-receipt"></span>
                         <span>Quản lý đơn</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="/admin/discount">
-                        <span class="ti-ticket"></span>
-                        <span>Giảm giá</span>
                     </a>
                 </li>
                 <li>
@@ -124,7 +124,7 @@
             </li>
 
             <li>
-                <a href="profile-management.jsp">
+                <a href="/admin/profile">
                     <span class="ti-user"></span>
                     <span>Profile</span>
                 </a>
@@ -156,7 +156,12 @@
                     <span>Help center</span>
                 </a>
             </li>
-
+            <li>
+                <a href="/logout">
+                    <span class="ti-shift-left"></span>
+                    <span>Log out</span>
+                </a>
+            </li>
         </ul>
     </div>
 </div>
