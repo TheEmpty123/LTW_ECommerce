@@ -43,12 +43,13 @@ public class RatingController extends HttpServlet {
         if (u != null) {
             try {
                 boolean rowAffected = service.addRating(rating.getUserID(), rating.getProductID(), rating.getStars(), rating.getCommentRate());
+                System.out.println(rowAffected);
                 ratings = service.getRatingByProductID(rating.getProductID());
                 onestars = service.countStars(1,rating.getProductID());
-                twostars = service.countStars(1,rating.getProductID());
-                threestars = service.countStars(1,rating.getProductID());
-                fourstars = service.countStars(1,rating.getProductID());
-                fivestars = service.countStars(1,rating.getProductID());
+                twostars = service.countStars(2,rating.getProductID());
+                threestars = service.countStars(3,rating.getProductID());
+                fourstars = service.countStars(4,rating.getProductID());
+                fivestars = service.countStars(5,rating.getProductID());
                 avgStars = (double) (onestars + twostars + threestars + fourstars + fivestars) /5;
                 System.out.println(rowAffected);
             } catch (Exception e) {
@@ -57,7 +58,7 @@ public class RatingController extends HttpServlet {
         }
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
-        resp.getWriter().write(gson.toJson(new MakeResult(ratings, avgStars,onestars,twostars,threestars,fourstars,fivestars)));
+        resp.getWriter().write(gson.toJson(new MakeResult(ratings, avgStars,onestars,twostars,threestars,fourstars,fivestars, ratings.size())));
     }
     private class MakeResult{
         private List<Rating> ratings;
@@ -67,8 +68,9 @@ public class RatingController extends HttpServlet {
         private int threestars;
         private int fourstars;
         private int fivestars;
+        private int totalRate;
 
-        public MakeResult(List<Rating> ratings, double avgStars, int onestars, int twostars, int threestars, int fourstars, int fivestars) {
+        public MakeResult(List<Rating> ratings, double avgStars, int onestars, int twostars, int threestars, int fourstars, int fivestars, int totalRate) {
             this.ratings = ratings;
             this.avgStars = avgStars;
             this.onestars = onestars;
@@ -76,6 +78,7 @@ public class RatingController extends HttpServlet {
             this.threestars = threestars;
             this.fourstars = fourstars;
             this.fivestars = fivestars;
+            this.totalRate = totalRate;
         }
 
         public List<Rating> getRatings() {
@@ -104,6 +107,9 @@ public class RatingController extends HttpServlet {
 
         public int getFivestars() {
             return fivestars;
+        }
+        public int getTotalRate() {
+            return totalRate;
         }
     }
 }

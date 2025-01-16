@@ -34,7 +34,7 @@ public class RatingDao extends ImplementBase implements IRatingDao {
         return db.jdbi.withHandle(handle ->
                 handle.createQuery("select count(r.userID) " +
                                 "from ratings r join users u on r.userID = u.id " +
-                                "where stars = ? and r.productID = ? " +
+                                "where r.stars = ? and r.productID = ? " +
                                 "group by r.stars")
                         .bind(0,numberStars)
                         .bind(1, productID)
@@ -48,11 +48,12 @@ public class RatingDao extends ImplementBase implements IRatingDao {
         int rowsAffected=  db.jdbi.withHandle(handle ->
                 handle.createUpdate("insert into ratings values (?,?,?,?)")
                         .bind(0, userId)
-                        .bind(2,productId)
-                        .bind(3, stars)
-                        .bind(4, commentRate)
+                        .bind(1,productId)
+                        .bind(2, stars)
+                        .bind(3, commentRate)
                         .execute());
         handle.close();
+        System.out.println(rowsAffected);
         return rowsAffected>0;
     }
 

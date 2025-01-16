@@ -37,18 +37,18 @@
             </p>
             <form method="post" action="/login" style="height: 90%">
                 <label for="username-l">Tên người dùng hoặc địa chỉ email:</label>
-                <input type="text" id="username-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"
-                        name="uname" value="<%=uname%>" required>
+                <input type="text" id="username-l" class="styled-input"
+                       style="margin-bottom: 20px; margin-top: 10px; height: 40px"
+                       name="uname" value="<%=uname%>" required>
                 <label for="password-l">Mật khẩu:</label>
-                <input type="password" id="password-l" class="styled-input" style="margin-bottom: 20px; margin-top: 10px; height: 40px"
-                        name="pass" required>
+                <input type="password" id="password-l" class="styled-input"
+                       style="margin-bottom: 20px; margin-top: 10px; height: 40px"
+                       name="pass" required>
                 <div class="rememberBox" style="margin-top: -3%">
                     <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Ghi nhớ tôi</label>
                 </div>
-<%--                <label class="loginButton" style="align-content: center">--%>
-                    <button type="submit" class="loginButton">Đăng nhập</button>
-<%--                </label>--%>
+                <button type="submit" class="loginButton">Đăng nhập</button>
             </form>
         </div>
 
@@ -56,10 +56,12 @@
     <div class="footer">
         <div class="subfooter">
             <div class="row">
-                <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}/views/auth/Forgot-password.jsp">Quên mật
+                <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}/views/auth/Forgot-password.jsp">Quên
+                    mật
                     khẩu?</a></div>
                 <div class="col-md-6 mb-10"><span style="color: black;">Bạn chưa có tài khoản? <a
-                        href="${pageContext.request.contextPath}/views/auth/Register.jsp" style="color: green !important;">Đăng ký</a></span>
+                        href="${pageContext.request.contextPath}/views/auth/Register.jsp"
+                        style="color: green !important;">Đăng ký</a></span>
                 </div>
                 <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}/kenes"><i
                         class="bi bi-arrow-left"></i>Đi đến cửa hàng</a></div>
