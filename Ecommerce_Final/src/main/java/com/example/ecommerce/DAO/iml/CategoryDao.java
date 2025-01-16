@@ -3,6 +3,7 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.DAO.interf.ICategoryDao;
 import com.example.ecommerce.Database.JDBIConnect;
+import org.jdbi.v3.core.Jdbi;
 
 import java.lang.ref.PhantomReference;
 import java.util.ArrayList;
@@ -14,6 +15,10 @@ public class CategoryDao extends ImplementBase implements ICategoryDao {
 
     public CategoryDao() {
         super();
+    }
+
+    public Jdbi getJdbi(){
+        return db.jdbi;
     }
 
     @Override

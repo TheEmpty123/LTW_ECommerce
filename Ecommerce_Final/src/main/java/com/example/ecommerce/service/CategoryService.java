@@ -3,6 +3,9 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.DAO.iml.CategoryDao;
 import com.example.ecommerce.DAO.iml.ProductAttributeDao;
+import com.example.ecommerce.DAO.interf.ICategoryDTO;
+import com.example.ecommerce.Dto.CategoryDto;
+import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 import java.util.List;
 
@@ -41,4 +44,17 @@ public class CategoryService extends ServiceBase{
         return categoryDao.deleteCategory(id);
     }
 
+    public List<CategoryDto> getAllCategoryDto(){
+        var j = categoryDao.getJdbi();
+        j.installPlugin(new SqlObjectPlugin());
+        var li = j.withExtension(ICategoryDTO.class, ICategoryDTO::getCategories);
+        return li;
+    }
+
+    public static void main(String[] args) {
+        var a = new CategoryService();
+        a.init();
+        var b = a.getAllCategoryDto();
+        b.forEach(System.out::println);
+    }
 }

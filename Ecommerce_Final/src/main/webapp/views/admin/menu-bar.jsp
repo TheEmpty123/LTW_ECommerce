@@ -75,7 +75,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="category-management.jsp">
+                    <a href="/admin/category">
                         <span class="ti-menu"></span>
                         <span>Quản lý danh mục</span>
                     </a>
@@ -83,7 +83,7 @@
             </c:if>
             <c:if test="${role eq 'Supreme' or role eq 'User Management'}">
                 <li>
-                    <a href="inventory-management.jsp">
+                    <a href="/admin/inv">
                         <span class="ti-server"></span>
                         <span>Quản lý hàng tồn</span>
                     </a>

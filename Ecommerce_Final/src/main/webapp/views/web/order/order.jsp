@@ -29,6 +29,8 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Promotion.js"></script>
+
 
 </head>
 <body>
@@ -125,7 +127,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -557,7 +559,7 @@
             <!-- Left Column -->
             <div class="footer-column">
                 <h3>KẾT NỐI VỚI KANE'S</h3>
-                <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
+                <img href="${pageContext.request.contextPath}/kenes" src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
                      class="footer-logo">
                 <p>FOLLOW US</p>
                 <p>Instagram – Youtube – Facebook</p>

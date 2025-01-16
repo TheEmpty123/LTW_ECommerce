@@ -24,4 +24,8 @@ public interface IWarehouseDao {
     boolean updateAvailableById(int id, String state);
     //xoa warehouse
     boolean deleteWarehouseById(int id);
+
+    int totalProductItems();
+    int totalInStock();
+    int totalOutOfStock();
 }

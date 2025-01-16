@@ -151,6 +151,40 @@
                 </div>
             </div>
         </c:if>
+        <c:if test="${CMD eq 'category'}">
+            <div class="dash-cards">
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="${pageContext.request.contextPath}/public/images/admin/category1-714x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Khách</h5>
+                            <h4>7,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="${pageContext.request.contextPath}/public/images/admin/category2-581x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Ăn</h5>
+                            <h4>2,306 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card-single">
+                    <div class="card-body">
+                        <img src="${pageContext.request.contextPath}/public/images/admin/category3-581x400.jpg" alt="">
+                        <div>
+                            <h5>Phòng Ngủ</h5>
+                            <h4>1,146 sản phẩm</h4>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </c:if>
 
         <section class="recent">
 
@@ -942,8 +976,8 @@
                                                     Pending...
                                                 </span>
                                             <%
-                                                        break;
-                                                    }
+                                                    break;
+                                                }
                                                 case CANCELLED: {
 
                                             %>
@@ -1006,6 +1040,55 @@
                             <a href="?page=<%=currentPages < totalPages ? currentPages + 1 : totalPages %>">&raquo;</a>
                         </div>
 
+                    </div>
+                </div>
+            </c:if>
+
+            <c:if test="${CMD eq 'category'}">
+                <div class="activity-grid-alt2">
+                    <div class="activity-card">
+                        <div>
+                            <div class="search-wrapper">
+                                <h3>All Category List</h3>
+                                <div class="pagination">
+                                    <a href="/admin/add-product" class="add-product-btn">Add product</a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table>
+                                <thead>
+                                <tr>
+                                    <th>Categories</th>
+                                    <th>Starting Price</th>
+                                    <th>ID</th>
+                                    <th>Product Stock</th>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <c:if test="${not empty categories}">
+                                    <c:forEach var="c" items="${categories}">
+                                        <tr>
+                                            <td class="td-product">
+                                                <img src="/${c.thumb}" alt="">
+                                                    ${c.category_name}
+                                            </td>
+                                            <td>${c.priceF}₫</td>
+                                            <td>${c.categoryid}</td>
+                                            <td>${c.product_stock}</td>
+                                            <td>
+                                                <a href="/admin/edit-category?id=${c.categoryid}">
+                                                    <span class="ti-pencil-alt"></span>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                </c:if>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </c:if>

@@ -2,6 +2,7 @@ package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Warehouse;
 import com.example.ecommerce.DAO.interf.IWarehouseDao;
+import org.jdbi.v3.core.Jdbi;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,11 +19,15 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
 
         if (warehouses.isEmpty()) {
             warehouses = handle.createQuery("SELECT * FROM warehouse")
-                                .mapToBean(Warehouse.class)
-                                .list();
+                    .mapToBean(Warehouse.class)
+                    .list();
         }
 
         return warehouses;
+    }
+
+    public Jdbi getJdbi() {
+        return db.jdbi;
     }
 
     @Override
@@ -75,5 +80,44 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
     @Override
     public boolean deleteWarehouseById(int id) {
         return false;
+    }
+
+    @Override
+    public int totalProductItems() {
+        log.info("Querying total product items");
+
+        String sql = "SELECT COUNT(*) FROM products";
+
+        // Use JDBI to execute the query and fetch the result
+        return handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one();
+    }
+
+    @Override
+    public int totalInStock() {
+        log.info("Querying total inStock");
+        String sql = "SELECT COALESCE(SUM(amount), 0) FROM having_product WHERE amount > 0";
+
+        return handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .one();
+    }
+
+    @Override
+    public int totalOutOfStock() {
+        log.info("Querying total outOfStock");
+        String sql = """
+        SELECT COUNT(DISTINCT p.id)
+        FROM products p
+        LEFT JOIN having_product hp ON p.id = hp.productID
+        GROUP BY p.id
+        HAVING COALESCE(SUM(hp.amount), 0) = 0
+    """;
+
+        return handle.createQuery(sql)
+                        .mapTo(Integer.class)
+                        .list()
+                        .size();
     }
 }

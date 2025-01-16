@@ -174,7 +174,7 @@
                 <a href="#" class="fas fa-map-marker-alt"></a>
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
-                <a href="#" class="fas fa-light fa-user"></a>
+                <a href="${pageContext.request.contextPath}/profile" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
                         <a href="${pageContext.request.contextPath}/profile">
