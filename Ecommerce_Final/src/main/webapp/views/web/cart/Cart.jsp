@@ -87,7 +87,8 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
-        #input-quantity{
+
+        #input-quantity {
             width: 55px;
         }
     </style>
@@ -132,7 +133,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -255,7 +256,8 @@
                                                                   value="${cp.price}"/></p>
                             <p class="wishlist"><span><i class="bi bi-heart"></i></span> Thêm vào Wishlist</p>
                         </div>
-                        <div class="item-actions item-product" data-id="${cp.id}" data-name="${cp.name}" data-img="${cp.img}" data-price="${cp.price}" >
+                        <div class="item-actions item-product" data-id="${cp.id}" data-name="${cp.name}"
+                             data-img="${cp.img}" data-price="${cp.price}">
                             <button class="remove-item" data-id="${cp.id}"
                                     style="border: none; background-color: white;">
                                 <i class="bi bi-x-circle"></i>
@@ -263,7 +265,8 @@
                             <div class="quantity buttons-added left-btn">
 
                                 <input type="button" value="-" class="minus-btn" id="button-minus-quantity">
-                                <input type="number" name="quatity" class="quantity-input" id="input-quantity" value="${cp.quantity}" min="1"
+                                <input type="number" name="quatity" class="quantity-input" id="input-quantity"
+                                       value="${cp.quantity}" min="1"
 
                                        inputmode="numeric" autocomplete="off">
                                 <input type="button" value="+" class="plus-btn" id="button-plus-quantity">
@@ -337,7 +340,8 @@
                         <div class="row">
                             <div class="col-sm-6 col-md-6">
                                 <div class="buy-button use-button fake-btn">
-                                    <a href="" style="color: white; text-decoration: none;">
+                                    <a href="${pageContext.request.contextPath}/list-product"
+                                       style="color: white; text-decoration: none;">
                                         <p>Tiếp tục mua hàng</p>
                                     </a>
 
@@ -345,7 +349,8 @@
                             </div>
                             <div class="col-sm-6 col-md-6">
                                 <div class="use-button fake-btn">
-                                    <a href="" style="color: white; text-decoration: none;">
+                                    <a href="${pageContext.request.contextPath}/order"
+                                       style="color: white; text-decoration: none;">
                                         <p>Đặt hàng</p>
                                     </a>
                                 </div>
@@ -364,7 +369,7 @@
         <!-- Left Column -->
         <div class="footer-column">
             <h3>KẾT NỐI VỚI KANE'S</h3>
-            <img src="../../../public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
+            <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo" class="footer-logo">
             <p>FOLLOW US</p>
             <p>Instagram – Youtube – Facebook</p>
             <button class="footer-button">HỆ THỐNG CỬA HÀNG</button>
@@ -409,25 +414,25 @@
 
 <script>
 
-//    const items = document.querySelectorAll(".cart-item");
-//    items.forEach((product) =>{
-//        const plusBtn = product.querySelector(".plus-btn")
-//        const minusBtn = product.querySelector(".minus-btn")
-//        const quantityInput = product.querySelector(".quantity-input")
-//
-//        minusBtn.addEventListener('click', () => {
-//            let currentValue = parseInt(quantityInput.value)
-//            if (currentValue > 1) {
-//                quantityInput.value = currentValue - 1;
-//            }
-//        });
-//
-//        // Xử lý khi nhấn nút "+"
-//        plusBtn.addEventListener('click', () => {
-//            let currentValue = parseInt(quantityInput.value);
-//            quantityInput.value = currentValue + 1;
-//        });
-//    })
+    //    const items = document.querySelectorAll(".cart-item");
+    //    items.forEach((product) =>{
+    //        const plusBtn = product.querySelector(".plus-btn")
+    //        const minusBtn = product.querySelector(".minus-btn")
+    //        const quantityInput = product.querySelector(".quantity-input")
+    //
+    //        minusBtn.addEventListener('click', () => {
+    //            let currentValue = parseInt(quantityInput.value)
+    //            if (currentValue > 1) {
+    //                quantityInput.value = currentValue - 1;
+    //            }
+    //        });
+    //
+    //        // Xử lý khi nhấn nút "+"
+    //        plusBtn.addEventListener('click', () => {
+    //            let currentValue = parseInt(quantityInput.value);
+    //            quantityInput.value = currentValue + 1;
+    //        });
+    //    })
 
 
     // Xử lí phần ẩn hiện giỏ hàng

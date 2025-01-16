@@ -28,8 +28,7 @@ public class ProductService extends ServiceBase {
         try {
             var j = productDao.getJdbi();
             j.installPlugin(new SqlObjectPlugin());
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -61,12 +60,17 @@ public class ProductService extends ServiceBase {
     public List<Product> getNew4Products() {
         return productDao.get4NewProducts();
     }
-    public List<Product> get4ProductOfCate(int cateID){
+
+    public List<Product> get4ProductOfCate(int cateID) {
         return productDao.get4ProductOfCate(cateID);
     }
 
     public List<Product> getSearch(String name) {
         return productDao.search(name);
+    }
+
+    public List<Product> getSearchProduct(String name) {
+        return productDao.searchProduct(name);
     }
 
     public List<ProductDto> getAllProductsDto() {
@@ -107,7 +111,7 @@ public class ProductService extends ServiceBase {
         c.forEach(System.out::println);
     }
 
-    public List<Product> getProductByFilter(String sort, String material){
+    public List<Product> getProductByFilter(String sort, String material) {
         return productDao.getProductByFilter(sort, material);
     }
 }

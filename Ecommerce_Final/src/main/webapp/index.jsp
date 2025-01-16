@@ -32,6 +32,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+
 </head>
 <body>
 <div id="mask-container">
@@ -101,9 +103,9 @@
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
 
-                <a href="${pageContext.request.contextPath}/contact.jsp">0906 904 114</a>
+                <a href="${pageContext.request.contextPath}/views/web/contact.jsp">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="${pageContext.request.contextPath}/about.jsp">Giới thiệu</a>
+                    <a href="${pageContext.request.contextPath}/views/web/about.jsp">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
@@ -112,10 +114,10 @@
                 <a href="#" class="fas fa-map-marker-alt"></a>
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
-                <a href="../admin/admin-management.html" class="fas fa-light fa-user"></a>
+                <a href="#" class="fas fa-light fa-user"></a>
                 <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
                     <c:if test="${sessionScope.auth != null}">
-                        <a href="${pageContext.request.contextPath}/views/auth/Profile.jsp">
+                        <a href="${pageContext.request.contextPath}/profile">
                                 ${sessionScope.auth.username}
                         </a>
                     </c:if>
@@ -138,172 +140,25 @@
                    href="${pageContext.request.contextPath}/web/product/all-product.jsp">SẢN
                     PHẨM</a>
 
-
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-
-
-                        <div id="col-1465340020" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Sofa </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Armchair </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#/">
-                                            <span class="ux-menu-link__text">
-                                              Ghế dài &amp; đôn </span>
-                                        </a>
-                                    </div>
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Bàn bên </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Bàn nước </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Tủ giày </span>
-                                        </a>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-668683791" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Ghế Bar </span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Tủ ly </span>
-                                        </a>
-                                    </div>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <div id="col-306964646" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Giường ngủ </span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Tủ áo </span>
-                                        </a>
+                        <c:forEach var="cates" items="${mapCate}">
+                            <div class="col medium-2 small-6 large-2">
+                                <div class="col-inner">
+                                    <div class="ux-menu stack stack-col justify-start">
+                                            <%--cates.value là danh sách các danh mục trong map--%>
+                                        <c:forEach var="c" items="${cates.value}">
+                                            <div class="ux-menu-link flex menu-item">
+                                                <a class="ux-menu-link__link flex" href="products?cateID=${c.id}">
+                                                <span class="ux-menu-link__text">
+                                                        ${c.cateName} </span>
+                                                </a>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div id="col-763303414" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Bàn làm việc </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-2111288232" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Đèn trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Bình trang trí </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Gương </span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="../web/product/products.html">
-                                            <span class="ux-menu-link__text">
-                                              Đồng hồ </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-225901627" class="col medium-2 small-12 large-2">
-                            <div class="col-inner">
-
-
-                                <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                            <span class="ux-menu-link__text">
-                                              Hàng trang trí khác </span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
@@ -444,17 +299,15 @@
                             <button style="width: 120px;margin-right:20px;height: 50px; " class="add-to-cart">Thêm vào
                                 giỏ
                             </button>
-                            <button style="width: 100px;height: 50px;background: black;" class="see-more"><a
-                                    style="background: black;color: white;text-decoration: none"
-                                    href="/kenes?id=${product.id}&atributeID=${product.atributeID}&cateID=${product.cateID}">Xem
-                                thêm</a></button>
+                            <button style="width: 100px;height: 50px;background: black;" class="see-more">
+                                <a href="javascript:void(0);"
+                                   onclick="showProductDetails(${product.id}, ${product.atributeID}, ${product.cateID})">
+                                    <p>XEM THÊM</p></a></button>
                         </div>
                     </div>
-
                 </c:forEach>
             </div>
         </section>
-
 
         <section class="part3">
             <div class="content-wrapper">
@@ -554,7 +407,7 @@
 </script>
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
-<script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+<%--<script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>--%>
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Lấy URL cần xử lý
@@ -577,5 +430,7 @@
     });
 
 </script>
+<script src="${pageContext.request.contextPath}/public/js/ProductDetail.js"></script>
+
 </body>
 </html>

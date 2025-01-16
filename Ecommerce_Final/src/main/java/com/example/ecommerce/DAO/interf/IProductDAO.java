@@ -30,8 +30,11 @@ public interface IProductDAO {
     // get about 8 new products
     List<Product> get4NewProducts();
 
+    public List<Product> searchProduct(String name);
+
     //    Filter
 //    Sắp xếp theo điều kiện filter (option: tên, giá, ngày nhập khẩu, filter:asc,desc)
     List<Product> getProductByFilter(ProductFilter filter);
+
     List<Product> getProductByFilter(String sort, String material);
 }
