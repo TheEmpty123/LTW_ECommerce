@@ -2,11 +2,14 @@ package com.example.ecommerce.controller2;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import com.example.ecommerce.Bean.Cart.Cart;
+import com.example.ecommerce.Bean.Category;
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
 import jakarta.servlet.RequestDispatcher;
 import jakarta.servlet.ServletException;
@@ -20,9 +23,12 @@ public class Home extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Product> products = null;
         HttpSession session = request.getSession(true);
+        CategoryService cateService = CategoryService.getInstance();
+        List<Category> categories = new ArrayList<>();
 
         Cart c = (Cart) session.getAttribute("cart");
         User user = (User) session.getAttribute("auth");
+
 
         if (c == null) {
             c = new Cart();
@@ -31,6 +37,7 @@ public class Home extends HttpServlet {
 
         try {
             products = ProductService.getInstance().getNew4Products();
+            categories = cateService.getAllCategory();
             if (products == null || products.isEmpty()) {
                 request.setAttribute("error", "No product found");
             } else {
@@ -43,9 +50,28 @@ public class Home extends HttpServlet {
             request.setAttribute("error", "failed to load product");
         }
 
+        int catePerCol = 5;
+        HashMap<Integer, List<Category>> mapCate = new HashMap<>();
+
+        int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
+
+        for (int i = 0; i < countCol; i++) {
+            int index = i * catePerCol;
+            for (int j = index; j < index + catePerCol; j++) {
+                if (!mapCate.containsKey(i)) {
+                    List<Category> list = new ArrayList<>();
+                    list.add(categories.get(j));
+                    mapCate.put(i, list);
+                } else {
+                    if (j < categories.size()) mapCate.get(i).add(categories.get(j));
+                    else break;
+                }
+            }
+        }
+        request.setAttribute("mapCate", mapCate);
+
         if (user != null) {
             String idParam = request.getParameter("id");
-            System.out.println("id cccccccc " + idParam);
             if (idParam != null && !idParam.isEmpty()) {
                 try {
                     int productId = Integer.parseInt(idParam);
@@ -66,7 +92,6 @@ public class Home extends HttpServlet {
     }
 
     private void updateRecentlyViewedProducts(HttpSession session, Product product) {
-        System.out.println("dcccccc");
         if (product != null) {
             List<Product> recentlyViewed = (List<Product>) session.getAttribute("recentlyView");
             System.out.println("recently view" + recentlyViewed);
