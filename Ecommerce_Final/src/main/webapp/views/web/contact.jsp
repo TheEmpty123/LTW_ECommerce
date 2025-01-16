@@ -28,6 +28,7 @@
             crossorigin="anonymous"></script>
 </head>
 <body>
+
 <div id="mask-container">
     <div id="mask-cart">
     </div>
@@ -37,46 +38,62 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <div class="list-product-cart">
-            <div class="row">
-                <div class="col-md-12 col-12 order">
-                    <div class="image center-items">
-                        <img src="${pageContext.request.contextPath}/public/images/all-products/53.jpg" alt="">
-                    </div>
-                    <div class="detail-order center-items" style="justify-content: left;">
-                        <div>
-                            <h6>Armchair mây mới</h6>
-                            <span>1</span> x <span>13,900,000đ</span>
+        <%--        <form id="cartt" method="post" action="/order">--%>
+
+        <div id="list-product-cart" class="scroll-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
+                        </div>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x
+                                <span>
+                                <f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/>
+                            </span>
+                            </div>
+                        </div>
+                        <div class="close-orders center-items">
+                            <button class="remove-item" data-id="${cp.id}"
+                                    style="border: none; background-color: white;">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
-                    <div class="close-orders center-items">
-                        <button class="close-btn">
-                            <i class="bi bi-x-circle"></i>
-                        </button>
-                    </div>
                 </div>
-            </div>
+            </c:forEach>
         </div>
-        <div id="pay-pal">
+
+        <div id="pay-pal" class="cart-actions">
             <div class="total-price">
                 <div class="money-text">
                     <p>Thành tiền: </p>
                 </div>
                 <div class="money-number">
-                    <p>13,900,000đ</p>
+                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                                                          value="${sessionScope.cart.total}"/>
+                    </p>
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/views/web/cart/Cart.jsp">XEM GIỎ HÀNG</a>
+                <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
+                        href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                </button>
             </div>
             <div class="check-out center-items">
-                <a href="${pageContext.request.contextPath}/views/web/order/order.jsp">THANH TOÁN</a>
+                <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>
+                <%--                <button type="submit" style="border-color: white;background: white"--%>
+                <%--                        href="${pageContext.request.contextPath}/order">THANH TOÁN--%>
+                <%--                </button>--%>
             </div>
+
         </div>
+        <%--        </form>--%>
     </div>
 </div>
-
-
 <div class="container-hd">
     <header>
         <div class="header-top-hd">
@@ -87,193 +104,83 @@
                 <div class="phone-hd">
                     <a class="fas fa-regular fa-phone"></a>
                 </div>
-
-                <a href="${pageContext.request.contextPath}contact.jsp">0906 904 114</a>
+                <a href="">0906 904 114</a>
                 <div class="about-hd">
-                    <a href="${pageContext.request.contextPath}about.jsp">Giới thiệu</a>
+                    <a href="">Giới thiệu</a>
                     <a href="#">Khuyến mãi </a>
                 </div>
             </div>
-
             <div class="header-icons-hd">
                 <a href="#" class="fas fa-map-marker-alt"></a>
                 <a href="#" class="fas fa-heart"></a>
                 <a href="#" class="fas fa-shopping-cart" onclick="showCart()"></a>
-                <a href="#" class="fas fa-light fa-user"></a>
-                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;"><a
-                        href="${pageContext.request.contextPath}/profile">Tài khoản của tôi</a></h4>
+                <a href="${pageContext.request.contextPath}/products" class="fas fa-light fa-user"></a>
+                <h4 style="font-weight: lighter; margin-left: -15px; font-size: large; margin-top: 10px;">
+                    <c:if test="${sessionScope.auth != null}">
+                        <a href="${pageContext.request.contextPath}/profile">
+                                ${sessionScope.auth.username}
+                        </a>
+                    </c:if>
+                    <c:if test="${sessionScope.auth == null}">
+                        <a href="${pageContext.request.contextPath}/login">Đăng nhập</a>
+                    </c:if>
+                </h4>
             </div>
         </div>
         <!-- create mobile menu -->
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/kenes"><img
-                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
-                        alt="Logo"></a>
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                </a>
             </div>
             <nav class="main-nav">
-                <a style="color: black; border: none;"
-                   class="btn dropdown-toggle" href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
+                <a style="color: black; border: none;" class="btn dropdown-toggle"
+                   href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
-                        <div id="col-1465340020" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
+                        <c:forEach var="cates" items="${mapCate}">
+                            <div class="col medium-2 small-6 large-2">
+                                <div class="col-inner">
+                                    <div class="ux-menu stack stack-col justify-start">
+                                            <%--cates.value là danh sách các danh mục trong map--%>
+                                        <c:forEach var="c" items="${cates.value}">
+                                            <div class="ux-menu-link flex menu-item">
+                                                <a class="ux-menu-link__link flex" href="products?cateID=${c.id}">
                                                 <span class="ux-menu-link__text">
-                                        Sofa			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Armchair			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Ghế dài &amp; đôn			</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Bàn bên			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Bàn nước			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Tủ giày			</span>
-                                        </a>
+                                                        ${c.cateName} </span>
+                                                </a>
+                                            </div>
+                                        </c:forEach>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-
-                        <div id="col-668683791" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Ghế Bar			</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Tủ ly			</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-306964646" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Giường ngủ			</span>
-                                        </a>
-                                    </div>
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Tủ áo			</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-763303414" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Bàn làm việc			</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-2111288232" class="col medium-2 small-6 large-2">
-                            <div class="col-inner">
-
-                                <div class="ux-menu stack stack-col justify-start">
-
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Đèn trang trí			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Bình trang trí			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Gương			</span>
-                                        </a>
-                                    </div>
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="views/web/product/products.jsp">
-                                                <span class="ux-menu-link__text">
-                                        Đồng hồ			</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div id="col-225901627" class="col medium-2 small-12 large-2">
-                            <div class="col-inner">
-                                <div class="ux-menu stack stack-col justify-start ux-menu--divider-solid">
-                                    <div class="ux-menu-link flex menu-item">
-                                        <a class="ux-menu-link__link flex" href="#">
-                                                <span class="ux-menu-link__text">
-                                        Hàng trang trí khác			</span>
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        </c:forEach>
                     </div>
                 </ul>
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
             </nav>
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
+
+            <script>
+                function getValue() {
+                    const searchInput = document.getElementById("search-input");
+                    const inputValue = searchInput.value;
+                    console.log("Giá trị tìm kiếm:", inputValue);
+                }
+            </script>
         </div>
     </header>
 </div>
+
 
 <div class="container">
     <div class="contact-form">
