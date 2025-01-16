@@ -539,41 +539,52 @@
         </div>
     </div>
 
-    <div class="review-section" data-username="${sessionScope.auth.username}" data-pid="${p.id}"  data-user="${sessionScope.auth.id}">
-        <h2>ĐÁNH GIÁ SẢN PHẨM</h2>
-        <div class="rating-overview">
-            <div class="rating-score">
-                <span>4.8</span>
-                <p>trên 5</p>
-                <p>⭐⭐⭐⭐⭐</p>
-            </div>
-            <div class="rating-filters">
-                <button>Tất Cả</button>
-                <button>5 Sao (2.5k)</button>
-                <button>4 Sao (176)</button>
-                <button>3 Sao (52)</button>
-                <button>2 Sao (10)</button>
-                <button>1 Sao (26)</button>
-            </div>
-        </div>
-        <c:if test="${totalRatings == 0}">
-            <strong>Sản phẩm chưa có đánh giá nào</strong>
-        </c:if>
-        <c:forEach var="r" items="${ratings}">
-            <div class="review">
-                <div class="review-header">
-                    <strong>${r.username}</strong>
-                    <span>${r.stars} ⭐</span>
-                    <p>2024-07-28 00:19</p>
+    <div id="rating-session" class="review-section" data-username="${sessionScope.auth.username}" data-pid="${p.id}"
+         data-user="${sessionScope.auth.id}">
+        <div class="rating-area">
+            <h2>ĐÁNH GIÁ SẢN PHẨM</h2>
+            <div class="rating-overview">
+                <div class="rating-score">
+                    <span>${avgstars}</span>
+                    <p>trên 5</p>
+                    <p>⭐⭐⭐⭐⭐</p>
                 </div>
-                <p>${r.commentRate}</p>
+                <div class="rating-filters">
+                    <button>Tất Cả</button>
+                    <button>5 Sao (${fivestars})</button>
+                    <button>4 Sao (${fourstars})</button>
+                    <button>3 Sao (${threestars})</button>
+                    <button>2 Sao (${twostars})</button>
+                    <button>1 Sao (${onestars})</button>
+                </div>
             </div>
-        </c:forEach>
-        <div class="product-review">
-            <h3 style="margin-top: 4px;">Đánh giá sản phẩm</h3>
-            <input id="stars" placeholder="⭐" style="width: 30px; font-size: 14px; margin-right: 10px; padding: 11px 4px">
-            <textarea id="commentRate" placeholder="Nhập đánh giá của bạn ở đây..." rows="1"></textarea>
-            <button id="sendRating" type="submit">Gửi đánh giá</button>
+            <c:if test="${totalRatings == 0}">
+                <strong>Sản phẩm chưa có đánh giá nào</strong>
+            </c:if>
+            <c:forEach var="r" items="${ratings}">
+                <div class="review">
+                    <div class="review-header">
+                        <strong>${r.username}</strong>
+                        <span>${r.stars} ⭐</span>
+                        <p>2024-07-28 00:19</p>
+                    </div>
+                    <p>${r.commentRate}</p>
+                </div>
+            </c:forEach>
+            <div class="product-review">
+                <h3 style="margin-top: 4px;">Đánh giá sản phẩm</h3>
+                <select id="rating"
+                        style="padding: 13px 0; margin-right: 10px; border-color: #c6c6c6; border-radius: 3px">
+                    <option value="1">1 ⭐</option>
+                    <option value="2">2 ⭐</option>
+                    <option value="3">3 ⭐</option>
+                    <option value="4">4 ⭐</option>
+                    <option value="5">5 ⭐</option>
+                </select>
+
+                <textarea id="commentRate" placeholder="Nhập đánh giá của bạn ở đây..." rows="1"></textarea>
+                <button id="sendRating" type="submit">Gửi đánh giá</button>
+            </div>
         </div>
     </div>
 

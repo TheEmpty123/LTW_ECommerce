@@ -35,6 +35,14 @@ public class ProductDetailController extends HttpServlet {
         String categoryID = req.getParameter("cateID");
         List<Product> list4Product;
         List<Rating> listRatingOfProduct;
+        double avgStars = 0;
+        int onestars = 0;
+        int twostars = 0;
+        int threestars = 0;
+        int fourstars = 0;
+        int fivestars = 0;
+
+
         try{
             int id = Integer.parseInt(pid);
             int attributeID = Integer.parseInt(pAttributeID);
@@ -43,8 +51,21 @@ public class ProductDetailController extends HttpServlet {
             categories = cateService.getAllCategory();
             category = cateService.getCategoryById(cateID);
             ProductAttribute pat = productDetailServ.getProductAttributeById(attributeID);
-            list4Product  = service.get4ProductOfCate(cateID);;
+            list4Product  = service.get4ProductOfCate(cateID);
             listRatingOfProduct = ratingService.getRatingByProductID(id);
+            onestars = ratingService.countStars(1,id);
+            twostars = ratingService.countStars(1,id);
+            threestars = ratingService.countStars(1,id);
+            fourstars = ratingService.countStars(1,id);
+            fivestars = ratingService.countStars(1,id);
+            avgStars = (double) (onestars + twostars + threestars + fourstars + fivestars) /5;
+
+            req.setAttribute("onestars", onestars);
+            req.setAttribute("twostars", twostars);
+            req.setAttribute("threestars", threestars);
+            req.setAttribute("fourstars", fourstars);
+            req.setAttribute("fivestars", fivestars);
+            req.setAttribute("avgstars", avgStars);
 
             req.setAttribute("totalRatings", listRatingOfProduct.size());
             req.setAttribute("ratings", listRatingOfProduct);

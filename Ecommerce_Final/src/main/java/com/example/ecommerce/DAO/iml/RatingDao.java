@@ -48,11 +48,12 @@ public class RatingDao extends ImplementBase implements IRatingDao {
         int rowsAffected=  db.jdbi.withHandle(handle ->
                 handle.createUpdate("insert into ratings values (?,?,?,?)")
                         .bind(0, userId)
-                        .bind(2,productId)
-                        .bind(3, stars)
-                        .bind(4, commentRate)
+                        .bind(1,productId)
+                        .bind(2, stars)
+                        .bind(3, commentRate)
                         .execute());
         handle.close();
+        System.out.println(rowsAffected);
         return rowsAffected>0;
     }
 

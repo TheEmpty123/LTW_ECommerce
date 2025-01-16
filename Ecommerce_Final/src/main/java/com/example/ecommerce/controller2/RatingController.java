@@ -43,6 +43,7 @@ public class RatingController extends HttpServlet {
         if (u != null) {
             try {
                 boolean rowAffected = service.addRating(rating.getUserID(), rating.getProductID(), rating.getStars(), rating.getCommentRate());
+                System.out.println(rowAffected);
                 ratings = service.getRatingByProductID(rating.getProductID());
                 onestars = service.countStars(1,rating.getProductID());
                 twostars = service.countStars(1,rating.getProductID());
