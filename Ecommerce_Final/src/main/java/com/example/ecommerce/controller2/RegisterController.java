@@ -30,7 +30,7 @@ public class RegisterController extends HttpServlet {
         String email = req.getParameter("email");
         String name = req.getParameter("uname");
         String pass = req.getParameter("pass");
-        String hash = InsertData.hashPassword(pass);
+//        String hash = InsertData.hashPassword(pass);
         User user = new User(name,pass,email);
         this.userDao.addUser(user);
 
