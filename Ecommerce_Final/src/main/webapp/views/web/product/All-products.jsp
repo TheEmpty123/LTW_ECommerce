@@ -96,60 +96,60 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-<%--        <form id="cartt" method="post" action="/order">--%>
+        <%--        <form id="cartt" method="post" action="/order">--%>
 
-            <div id="list-product-cart" class="scroll-cart">
-                <c:forEach items="${sessionScope.cart.list}" var="cp">
-                    <div class="row">
-                        <div class="col-md-12 col-12 order">
-                            <div class="image center-items">
-                                <img src="${cp.img}" alt="">
-                            </div>
-                            <div class="detail-order center-items" style="justify-content: left;">
-                                <div>
-                                    <h6>${cp.name}</h6>
-                                    <span>${cp.quantity}</span> x
-                                    <span>
+        <div id="list-product-cart" class="scroll-cart">
+            <c:forEach items="${sessionScope.cart.list}" var="cp">
+                <div class="row">
+                    <div class="col-md-12 col-12 order">
+                        <div class="image center-items">
+                            <img src="${cp.img}" alt="">
+                        </div>
+                        <div class="detail-order center-items" style="justify-content: left;">
+                            <div>
+                                <h6>${cp.name}</h6>
+                                <span>${cp.quantity}</span> x
+                                <span>
                                 <f:formatNumber type="currency" currencySymbol="đ" value="${cp.price}"/>
                             </span>
-                                </div>
-                            </div>
-                            <div class="close-orders center-items">
-                                <button class="remove-item"  data-id="${cp.id}"
-                                        style="border: none; background-color: white;">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
                             </div>
                         </div>
+                        <div class="close-orders center-items">
+                            <button class="remove-item" data-id="${cp.id}"
+                                    style="border: none; background-color: white;">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
+                        </div>
                     </div>
-                </c:forEach>
+                </div>
+            </c:forEach>
+        </div>
+
+        <div id="pay-pal" class="cart-actions">
+            <div class="total-price">
+                <div class="money-text">
+                    <p>Thành tiền: </p>
+                </div>
+                <div class="money-number">
+                    <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
+                                                          value="${sessionScope.cart.total}"/>
+                    </p>
+                </div>
+            </div>
+            <div class="watch-cart center-items">
+                <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
+                        href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
+                </button>
+            </div>
+            <div class="check-out center-items">
+                <%--                    <button style="border-color: white;background: white"--%>
+                <%--                            href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN--%>
+                <%--                    </button>--%>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
 
-            <div id="pay-pal" class="cart-actions">
-                <div class="total-price">
-                    <div class="money-text">
-                        <p>Thành tiền: </p>
-                    </div>
-                    <div class="money-number">
-                        <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                                              value="${sessionScope.cart.total}"/>
-                        </p>
-                    </div>
-                </div>
-                <div class="watch-cart center-items">
-                    <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
-                            href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
-                    </button>
-                </div>
-                <div class="check-out center-items">
-<%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
-                    <button style="border-color: white;background: white"
-                            href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
-                    </button>
-                </div>
-
-            </div>
-<%--        </form>--%>
+        </div>
+        <%--        </form>--%>
     </div>
 </div>
 <div class="container-hd">
@@ -189,7 +189,8 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes">
+                    <img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -420,7 +421,7 @@
         <div class="center-box">
             <div class="carousel-container">
                 <div class="carousel-prev-box">
-<%--                    <button class="carousel-prev">&#10094;</button>--%>
+                        <%--                    <button class="carousel-prev">&#10094;</button>--%>
                 </div>
                 <div class="carousel-items">
                     <div class="row">
@@ -466,16 +467,16 @@
                 </div>
 
                 <div class="carousel-next-box">
-<%--                    <button class="carousel-next">&#10095;</button>--%>
+                        <%--                    <button class="carousel-next">&#10095;</button>--%>
                 </div>
             </div>
         </div>
         <div class="nav-watched">
-<%--            <div class="nav-box fchild"></div>--%>
-<%--            <div class="nav-box"></div>--%>
-<%--            <div class="nav-box"></div>--%>
-<%--            <div class="nav-box"></div>--%>
-<%--            <div class="nav-box"></div>--%>
+                <%--            <div class="nav-box fchild"></div>--%>
+                <%--            <div class="nav-box"></div>--%>
+                <%--            <div class="nav-box"></div>--%>
+                <%--            <div class="nav-box"></div>--%>
+                <%--            <div class="nav-box"></div>--%>
         </div>
     </div>
 </c:if>
