@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 
 public class LocationData {
     public static void main(String[] args) {
-        String content = readFile("D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\vietnam.json");
+        String content = readFile("E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\vietnam.json");
 
         JSONObject jsonObject = new JSONObject(content);
         JSONArray provinces = jsonObject.getJSONArray("province");
@@ -44,7 +44,7 @@ public class LocationData {
     }
 
     public static String findProvine(String id) {
-        String content = readFile("D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\vietnam.json");
+        String content = readFile("E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\vietnam.json");
         JSONObject jsonObject = new JSONObject(content);
         JSONArray provinces = jsonObject.getJSONArray("province");
 

@@ -135,12 +135,18 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         NumberFormat formatter = NumberFormat.getInstance(Locale.ENGLISH);
 
         for (Order order : a) {
-            order.setTotal(handle
-                    .createQuery("SELECT SUM(p.price * oi.amount) FROM orders AS o JOIN order_item AS oi ON o.id = oi.orderID JOIN products AS p ON p.id = oi.productID WHERE o.id = ?; ")
-                    .bind(0, order.getId())
-                    .mapTo(Double.class)
-                    .first());
-            order.setTotalS(formatter.format(order.getTotal()));
+            try {
+                order.setTotal(handle
+                        .createQuery("SELECT SUM(p.price * oi.amount) FROM orders AS o JOIN order_item AS oi ON o.id = oi.orderID JOIN products AS p ON p.id = oi.productID WHERE o.id = ?; ")
+                        .bind(0, order.getId())
+                        .mapTo(Double.class)
+                        .first());
+                order.setTotalS(formatter.format(order.getTotal()));
+            }
+            catch (NullPointerException e) {
+                order.setTotal(0);
+                order.setTotalS(formatter.format(order.getTotal()));
+            }
         }
 
         return a;
