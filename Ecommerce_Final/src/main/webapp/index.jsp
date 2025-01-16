@@ -446,10 +446,18 @@
                             <button style="width: 120px;margin-right:20px;height: 50px; " class="add-to-cart">Thêm vào
                                 giỏ
                             </button>
-                            <button style="width: 100px;height: 50px;background: black;" class="see-more">
-                                <a href="javascript:void(0);"
-                                   onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
-                                    <p>XEM THÊM</p></a></button>
+<%--                            <button style="text-decoration: none;width: 90px;height: 50px;background: black;" class="see-more">--%>
+<%--                                <a href="javascript:void(0);"--%>
+<%--                                   onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">--%>
+<%--                                    <p>XEM THÊM</p></a></button>--%>
+                            <a
+                                    href="javascript:void(0);"
+                                    class="see-more"
+                                    style="display: inline-block; width: 90px; height: 50px; background: black; text-decoration: none; color: white; text-align: center; line-height: 50px;"
+                                    onclick="showProductDetails(${product.id}, ${product.atributeID}, ${product.cateID})">
+                                XEM THÊM
+                            </a>
+
                         </div>
                     </div>
 
