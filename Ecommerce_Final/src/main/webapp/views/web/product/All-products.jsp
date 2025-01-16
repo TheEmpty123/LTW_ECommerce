@@ -96,7 +96,7 @@
             <i class="bi bi-x-square" id="close-pop-up"></i>
             <div class="block"></div>
         </div>
-        <form id="cartt" method="post" action="/order">
+<%--        <form id="cartt" method="post" action="/order">--%>
 
             <div id="list-product-cart" class="scroll-cart">
                 <c:forEach items="${sessionScope.cart.list}" var="cp">
@@ -115,7 +115,7 @@
                                 </div>
                             </div>
                             <div class="close-orders center-items">
-                                <button class="remove-item" data-id="${cp.id}"
+                                <button class="remove-item"  data-id="${cp.id}"
                                         style="border: none; background-color: white;">
                                     <i class="bi bi-x-circle"></i>
                                 </button>
@@ -142,14 +142,14 @@
                     </button>
                 </div>
                 <div class="check-out center-items">
-                    <%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
+<%--                    <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>--%>
                     <button style="border-color: white;background: white"
                             href="${pageContext.request.contextPath}/order" type="submit">THANH TOÁN
                     </button>
                 </div>
 
             </div>
-        </form>
+<%--        </form>--%>
     </div>
 </div>
 <div class="container-hd">
