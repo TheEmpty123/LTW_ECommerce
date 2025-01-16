@@ -3,6 +3,7 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.Rating;
 import com.example.ecommerce.DAO.iml.RatingDao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class RatingService extends ServiceBase {
@@ -25,8 +26,8 @@ public class RatingService extends ServiceBase {
     public List<Rating> getRatingByProductID(int productID) {
         return ratingDao.getRatingByProductId(productID);
     }
-    public boolean addRating(int userId, int productId, int stars, String commentRate) {
-        return ratingDao.addRating(userId ,productId, stars, commentRate);
+    public boolean addRating(int userId, int productId, int stars, String commentRate, LocalDateTime dateRate) {
+        return ratingDao.addRating(userId ,productId, stars, commentRate,dateRate);
     }
     public boolean deleteRating(int userId, int productId){
         return ratingDao.deleteRating(userId, productId);

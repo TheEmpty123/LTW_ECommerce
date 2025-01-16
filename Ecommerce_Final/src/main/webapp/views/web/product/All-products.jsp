@@ -144,15 +144,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <button style="border-color: #0b0b0b;background: #0b0b0b" type="submit"><a
-                        href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
-                </button>
+                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <button type="submit"><a href="${pageContext.request.contextPath}/order">THANH TOÁN</a></button>
-                <%--                <button type="submit" style="border-color: white;background: white"--%>
-                <%--                        href="${pageContext.request.contextPath}/order">THANH TOÁN--%>
-                <%--                </button>--%>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
 
         </div>
@@ -196,7 +191,7 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href=""><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -358,7 +353,6 @@
                             </div>
                         </div>
                 </c:forEach>
-
             </div>
         </div>
     </div>
@@ -406,10 +400,10 @@
             <h3>Sản phẩm vừa xem</h3>
         </div>
         <div class="center-box">
-            <div class="carousel-container">
-                <div class="carousel-prev-box">
+<%--            <div class="carousel-container">--%>
+<%--                <div class="carousel-prev-box">--%>
                         <%--                    <button class="carousel-prev">&#10094;</button>--%>
-                </div>
+<%--                </div>--%>
                 <div class="carousel-items">
                     <div class="row">
                         <c:if test="${not empty sessionScope.recentlyView}">
@@ -424,7 +418,8 @@
                                             <h6 class="product-name">${product.proName}</h6>
                                             <div class="like-price-product">
                                                     <%--                                                <span class="product-price">${product.price}</span>--%>
-                                                <span class="product-price">${product.price}</span>
+                                                <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
+                                                                                            value="${product.price}"/></span>
                                                 <button class="wishlist-button">
                                                     <i class="bi bi-heart"></i>
                                                 </button>
@@ -433,39 +428,43 @@
                                         <div class="cart-see-more-btns">
                                             <div class="row">
                                                 <div class="col-sm-7 col-md-7">
-                                                    <div class="cart-btn use-button fake-btn">
-                                                        <p>THÊM VÀO GIỎ</p>
+                                                    <div class="cart-btn use-button fake-btn" style="border: none">
+                                                        <button class="add-to-cart"
+                                                                style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                                            THÊM VÀO GIỎ
+                                                        </button>
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-5 col-md-5">
                                                     <div class="use-button fake-btn">
-                                                        <p>XEM THÊM</p>
+                                                        <a href="product?id=${product.id}&atributeID=${product.atributeID}&cateID=${product.cateID}">--%>
+                                                            <p>XEM THÊM</p></a>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </c:forEach>
-                        </c:if>
-                        <c:if test="${empty sessionScope.recentlyView}">
-                            <p>Không có sản phẩm xem gần đây</p>
-                        </c:if>
-                    </div>
-                </div>
+                                    </c:forEach>
+                                </c:if>
+                                <c:if test="${empty sessionScope.recentlyView}">
+                                    <p>Không có sản phẩm xem gần đây</p>
+                                </c:if>
+                            </div>
+                        </div>
 
-                <div class="carousel-next-box">
-                        <%--                    <button class="carousel-next">&#10095;</button>--%>
-                </div>
-            </div>
+<%--                        <div class="carousel-next-box">--%>
+                                <%--                    <button class="carousel-next">&#10095;</button>--%>
+<%--                </div>--%>
+<%--            </div>--%>
         </div>
-        <div class="nav-watched">
+<%--        <div class="nav-watched">--%>
                 <%--            <div class="nav-box fchild"></div>--%>
                 <%--            <div class="nav-box"></div>--%>
                 <%--            <div class="nav-box"></div>--%>
                 <%--            <div class="nav-box"></div>--%>
                 <%--            <div class="nav-box"></div>--%>
-        </div>
+<%--        </div>--%>
     </div>
 </c:if>
 

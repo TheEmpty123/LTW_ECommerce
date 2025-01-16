@@ -32,7 +32,7 @@ public class LoginController extends HttpServlet {
             System.out.println("Login is successful");
             HttpSession session = req.getSession();
             session.setAttribute("auth",u);
-            resp.sendRedirect("list-product");
+            resp.sendRedirect("kenes");
         }else{
             req.setAttribute("error","Đăng nhập không thành công!!!");
             req.getRequestDispatcher("/views/auth/Login.jsp").forward(req,resp);

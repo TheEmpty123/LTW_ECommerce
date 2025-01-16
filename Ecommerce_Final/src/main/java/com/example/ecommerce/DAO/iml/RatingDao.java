@@ -3,6 +3,8 @@ package com.example.ecommerce.DAO.iml;
 import com.example.ecommerce.Bean.Rating;
 import com.example.ecommerce.DAO.interf.IRatingDao;
 
+import java.time.LocalDateTime;
+import java.util.Iterator;
 import java.util.List;
 
 public class RatingDao extends ImplementBase implements IRatingDao {
@@ -30,27 +32,29 @@ public class RatingDao extends ImplementBase implements IRatingDao {
                         .bind(0, id)
                         .mapToBean(Rating.class).list());
     }
+
+    @Override
     public int countStars(int numberStars, int productID){
         return db.jdbi.withHandle(handle ->
                 handle.createQuery("select count(r.userID) " +
                                 "from ratings r join users u on r.userID = u.id " +
-                                "where r.stars = ? and r.productID = ? " +
-                                "group by r.stars")
+                                "where r.stars = ? and r.productID = ? ")
                         .bind(0,numberStars)
                         .bind(1, productID)
-                        .mapToBean(int.class)
+                        .mapTo(Integer.class)
                         .findOne()
                         .orElse(0));
     }
 
     @Override
-    public boolean addRating(int userId, int productId, int stars, String commentRate) {
+    public boolean addRating(int userId, int productId, int stars, String commentRate, LocalDateTime dateRate) {
         int rowsAffected=  db.jdbi.withHandle(handle ->
-                handle.createUpdate("insert into ratings values (?,?,?,?)")
+                handle.createUpdate("insert into ratings values (?,?,?,?,?)")
                         .bind(0, userId)
                         .bind(1,productId)
                         .bind(2, stars)
                         .bind(3, commentRate)
+                        .bind(4, dateRate)
                         .execute());
         handle.close();
         System.out.println(rowsAffected);

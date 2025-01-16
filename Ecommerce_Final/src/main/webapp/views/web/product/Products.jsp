@@ -241,7 +241,7 @@
                 <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
         </div>
     </div>
@@ -352,8 +352,6 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                                <%--                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">--%>
-                                                <%--                                                <p>XEM THÊM</p></a>--%>
                                             <a href="javascript:void(0);"
                                                onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
                                                 <p>XEM THÊM</p></a>

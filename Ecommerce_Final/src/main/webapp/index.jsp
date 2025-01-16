@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
                 <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
@@ -137,9 +137,7 @@
             </div>
             <nav class="main-nav">
                 <a style="color: black; border: none;" class="btn dropdown-toggle"
-                   href="${pageContext.request.contextPath}/web/product/all-product.jsp">SẢN
-                    PHẨM</a>
-
+                   href="${pageContext.request.contextPath}/list-product">SẢN PHẨM</a>
                 <ul class="dropdown-menu">
                     <div class="row" id="row-873750177">
                         <c:forEach var="cates" items="${mapCate}">

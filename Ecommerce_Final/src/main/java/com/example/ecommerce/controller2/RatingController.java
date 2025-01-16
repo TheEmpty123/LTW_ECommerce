@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,7 +35,7 @@ public class RatingController extends HttpServlet {
         RatingService service = RatingService.getInstance();
         List<Rating> ratings = new ArrayList<>();
 
-        double avgStars = 0;
+        double avgStars = 0.0;
         int onestars = 0;
         int twostars = 0;
         int threestars = 0;
@@ -42,16 +43,18 @@ public class RatingController extends HttpServlet {
         int fivestars = 0;
         if (u != null) {
             try {
-                boolean rowAffected = service.addRating(rating.getUserID(), rating.getProductID(), rating.getStars(), rating.getCommentRate());
+                boolean rowAffected = service.addRating(rating.getUserID(), rating.getProductID(), rating.getStars(), rating.getCommentRate(), LocalDateTime.now());
                 System.out.println(rowAffected);
                 ratings = service.getRatingByProductID(rating.getProductID());
                 onestars = service.countStars(1,rating.getProductID());
+                System.out.println(onestars);
                 twostars = service.countStars(2,rating.getProductID());
+                System.out.println(twostars);
                 threestars = service.countStars(3,rating.getProductID());
                 fourstars = service.countStars(4,rating.getProductID());
                 fivestars = service.countStars(5,rating.getProductID());
-                avgStars = (double) (onestars + twostars + threestars + fourstars + fivestars) /5;
-                System.out.println(rowAffected);
+                avgStars = (double) (onestars + 2*twostars + 3*threestars + 4*fourstars + 5*fivestars) / (onestars + twostars + threestars + fourstars + fivestars);
+                System.out.println(onestars+ ","+twostars+","+threestars+","+fourstars+","+fivestars);
             } catch (Exception e) {
                 System.out.println("Không lấy được đánh giá.");
             }

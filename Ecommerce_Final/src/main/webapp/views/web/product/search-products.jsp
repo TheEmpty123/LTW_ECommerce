@@ -114,7 +114,7 @@
                 <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
 
         </div>

@@ -569,7 +569,7 @@
                     <div class="review-header">
                         <strong>${r.username}</strong>
                         <span>${r.stars} ⭐</span>
-                        <p>2024-07-28 00:19</p>
+                        <p>2025-01-17 10:10:59</p>
                     </div>
                     <p>${r.commentRate}</p>
                 </div>
