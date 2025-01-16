@@ -27,7 +27,7 @@
                 <p>Bạn đã đặt lại mật khẩu thành công. Hãy tiếp tục quá trình đăng nhập.</p>
             </div>
             <div class="next submit2">
-                <a href="Login.jsp" class="btn">Đăng nhập</a>
+                <a href="${pageContext.request.contextPath}/login" class="btn">Đăng nhập</a>
             </div>
         </div>
     </div>

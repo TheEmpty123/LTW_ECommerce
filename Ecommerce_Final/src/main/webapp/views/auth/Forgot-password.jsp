@@ -38,7 +38,7 @@
                         <button type="submit" class="btn">Tiếp tục</button>
                     </div>
                     <div class="comeback">
-                        <a href="${pageContext.request.contextPath}/views/auth/Login.jsp" class="btn">Quay lại đăng nhập</a>
+                        <a href="${pageContext.request.contextPath}/login" class="btn">Quay lại đăng nhập</a>
                     </div>
                 </div>
             </div>
