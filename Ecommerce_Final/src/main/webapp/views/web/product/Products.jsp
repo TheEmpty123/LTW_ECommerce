@@ -27,8 +27,8 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
-<%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
-<%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+    <%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
 
     <style>
         /* Kiểu thông báo */
@@ -53,20 +53,24 @@
             transform: translateY(-20px);
             pointer-events: none;
         }
-        .remove-item{
+
+        .remove-item {
             border: none;
             background-color: white;
         }
-        .red{
+
+        .red {
             background-color: red;
         }
-        .scroll-cart{
+
+        .scroll-cart {
             max-height: 65%;
             height: 65% !important;
             overflow-y: auto;
             overflow-x: hidden;
             padding-right: 10px;
         }
+
         .cart-actions {
             position: sticky; /* Giữ cố định trong container */
             height: 150px !important;
@@ -75,24 +79,33 @@
             padding: 10px;
             z-index: 10; /* Đảm bảo không bị che bởi phần khác */
         }
+
         .watch-cart,
-        .check-out{
-            padding: 5px 20px ;
-            margin-bottom: 10px ;
+        .check-out {
+            padding: 5px 20px;
+            margin-bottom: 10px;
         }
-        button{
+
+        button {
             border: none;
             background-color: white;
         }
-        .disabled{
+
+        .disabled {
             display: none;
         }
-        li.page-item.page-link{
+
+        li.page-item.page-link {
             padding-left: 12px;
         }
-        #p-pagination button.page-link{
+
+        #p-pagination button.page-link {
             background-color: white;
             color: black;
+        }
+
+        .disabled {
+            display: none;
         }
     </style>
 </head>
@@ -137,8 +150,9 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
-                                alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png"
+                        alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -220,7 +234,7 @@
                 </div>
                 <div class="money-number">
                     <p class="total-cart"><f:formatNumber type="currency" currencySymbol="đ"
-                                       value="${sessionScope.cart.total}"/></p>
+                                                          value="${sessionScope.cart.total}"/></p>
                 </div>
             </div>
             <div class="watch-cart center-items">
@@ -258,7 +272,7 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
+                        <div id="sort-filter" class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
                             <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả</div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
@@ -273,7 +287,9 @@
                 <div class="row">
                     <h6>Chât liệu</h6>
                     <div class="dropdown-material">
-                        <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">
+                            Tất cả
+                        </div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
                                 <input type="checkbox" id="metal" onchange="updateSelection()">
@@ -283,7 +299,7 @@
                                 <input type="checkbox" id="wood" onchange="updateSelection()">
                                 <label for="wood">Gỗ</label>
                             </div>
-                            <div class="dropdown-item-material hidden">
+                            <div class="dropdown-item-material">
                                 <input type="checkbox" id="glass" onchange="updateSelection()">
                                 <label for="glass">Thủy tinh</label>
                             </div>
@@ -301,7 +317,8 @@
     <!-- PRODUCTS -->
     <div id="p-product">
         <div class="container mt-5">
-            <div class="row">
+            <div id="product-area" class="row">
+
                 <c:forEach var="p" items="${productsForCate}">
                     <div class="col-md-3">
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
@@ -327,14 +344,18 @@
                                 <div class="row">
                                     <div class="col-sm-7 col-md-7">
                                         <div class="cart-btn use-button fake-btn" style="border: none">
-                                            <button class="add-to-cart" style="font-size: 11px; font-weight: bold; padding: 10px 5px">
+                                            <button class="add-to-cart"
+                                                    style="font-size: 11px; font-weight: bold; padding: 10px 5px">
                                                 THÊM VÀO GIỎ
                                             </button>
                                         </div>
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                                <%--                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">--%>
+                                                <%--                                                <p>XEM THÊM</p></a>--%>
+                                            <a href="javascript:void(0);"
+                                               onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
                                                 <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
@@ -343,6 +364,7 @@
                         </div>
                     </div>
                 </c:forEach>
+
             </div>
         </div>
     </div>

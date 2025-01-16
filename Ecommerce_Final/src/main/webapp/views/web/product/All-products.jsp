@@ -82,6 +82,13 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
+        #p-pagination button.page-link {
+            background-color: white;
+            color: black;
+        }
+        .disabled{
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -263,15 +270,12 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến
-                        </div>
+                        <div id="sort-filter" class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ
-                                biến
-                            </div>
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả</div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -279,47 +283,29 @@
 
             <div class="col-md-2">
                 <div class="row">
-                    <h6>Chất liệu</h6>
+                    <h6>Chât liệu</h6>
                     <div class="dropdown-material">
-                        <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="ceramic" onchange="updateSelection()">
-                                <label for="ceramic">Ceramic (42)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da2" onchange="updateSelection()">
-                                <label for="da2">Đá (2)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da181" onchange="updateSelection()">
-                                <label for="da181">Đá (181)</label>
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
                             </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="da_vai" onchange="updateSelection()">
-                                <label for="da_vai">Da và vải (6)</label>
-                            </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="go" onchange="updateSelection()">
-                                <label for="go">Gỗ (383)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="gom" onchange="updateSelection()">
-                                <label for="gom">Gốm (113)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
-                            </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -327,50 +313,52 @@
     <!-- PRODUCTS -->
     <div id="p-product">
         <div class="container mt-5">
-            <div class="row">
+            <div id="product-area" class="row">
                 <c:forEach var="p" items="${products}">
-                    <div class="col-md-3">
-                        <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
-                             data-img="${p.thumb}" data-price="${p.price}">
-                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
-                                <img src="${p.thumb}" class="image-top"
-                                     alt="${p.proName}">
-                                <img src="${p.thumb}" class="image-back"
-                                     alt="${p.proName}">
-                            </a>
-                            <div class="card-body">
-                                <h6 class="product-name">${p.proName}</h6>
-                                <div class="like-price-product">
+                        <div class="col-md-3">
+                            <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"
+                                 data-img="${p.thumb}" data-price="${p.price}">
+                                <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                    <img src="${p.thumb}" class="image-top"
+                                         alt="${p.proName}">
+                                    <img src="${p.thumb}" class="image-back"
+                                         alt="${p.proName}">
+                                </a>
+                                <div class="card-body">
+                                    <h6 class="product-name">${p.proName}</h6>
+                                    <div class="like-price-product favourite-product" data-id="${p.id}"
+                                         data-user="${sessionScope.auth.id}">
                                         <span class="product-price"><f:formatNumber type="currency" currencySymbol="đ"
                                                                                     value="${p.price}"/></span>
-                                    <button class="wishlist-button">
-                                        <i class="bi bi-heart"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="cart-see-more-btns">
-                                <div class="row">
-                                    <div class="col-sm-7 col-md-7">
-                                        <div class="cart-btn use-button fake-btn" style="border: none">
-                                            <button class="add-to-cart"
-                                                    style="font-size: 11px; font-weight: bold;padding: 10px 5px">
-                                                THÊM VÀO GIỎ
-                                            </button>
-                                        </div>
+                                        <button class="wishlist-button">
+                                            <i class="bi bi-heart"></i>
+                                        </button>
                                     </div>
-                                    <div class="col-sm-5 col-md-5">
-                                        <div class="use-button fake-btn">
-                                                <%--                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">--%>
-                                            <a href="javascript:void(0);"
-                                               onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
-                                                <p>XEM THÊM</p></a>
+                                </div>
+                                <div class="cart-see-more-btns">
+                                    <div class="row">
+                                        <div class="col-sm-7 col-md-7">
+                                            <div class="cart-btn use-button fake-btn" style="border: none">
+                                                <button class="add-to-cart"
+                                                        style="font-size: 11px; font-weight: bold;padding: 10px 5px">
+                                                    THÊM VÀO GIỎ
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-5 col-md-5">
+                                            <div class="use-button fake-btn">
+                                                    <%--                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">--%>
+                                                <a href="javascript:void(0);"
+                                                   onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
+                                                    <p>XEM THÊM</p></a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </c:forEach>
+
             </div>
         </div>
     </div>
@@ -604,12 +592,6 @@
         }
     });
 
-    // Xử lí sự kiện bấm hình trái tim để thêm sản phẩm vào danh sách yêu thích
-    document.querySelectorAll('.wishlist-button').forEach(function (heart) {
-        heart.addEventListener('click', function () {
-            heart.classList.toggle('clicked');
-        });
-    });
     const dots = document.querySelectorAll('.nav-box');
 
     //Xử lí sự kiện thanh navigation cho phần sản phẩm vừa xem

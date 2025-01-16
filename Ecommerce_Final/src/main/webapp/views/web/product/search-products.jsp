@@ -232,15 +232,12 @@
                 <div class="row">
                     <h6>Giá</h6>
                     <div class="dropdown-price">
-                        <div class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Theo mức độ phổ biến
-                        </div>
+                        <div id="sort-filter" class="dropdown-toggle-price" onclick="toggleDropdownPrice()">Tất cả</div>
                         <div class="dropdown-menu-price">
-                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Theo mức độ phổ
-                                biến
-                            </div>
+                            <div class="dropdown-item-price selected" onclick="selectItem(this)">Tất cả</div>
                             <div class="dropdown-item-price" onclick="selectItem(this)">Mới nhất</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Thấp đến cao</div>
-                            <div class="dropdown-item-price" onclick="selectItem(this)">Theo giá: Cao đến thấp</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Thấp đến cao</div>
+                            <div class="dropdown-item-price" onclick="selectItem(this)">Cao đến thấp</div>
                         </div>
                     </div>
                 </div>
@@ -248,47 +245,31 @@
 
             <div class="col-md-2">
                 <div class="row">
-                    <h6>Chất liệu</h6>
+                    <h6>Chât liệu</h6>
                     <div class="dropdown-material">
-                        <div class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">Tất cả</div>
+                        <div id="material-filter" class="dropdown-toggle-material" onclick="toggleDropdownmaterial()">
+                            Tất cả
+                        </div>
                         <div class="dropdown-menu-material">
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="ceramic" onchange="updateSelection()">
-                                <label for="ceramic">Ceramic (42)</label>
+                                <input type="checkbox" id="metal" onchange="updateSelection()">
+                                <label for="metal">Kim loại</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da2" onchange="updateSelection()">
-                                <label for="da2">Đá (2)</label>
+                                <input type="checkbox" id="wood" onchange="updateSelection()">
+                                <label for="wood">Gỗ</label>
                             </div>
                             <div class="dropdown-item-material">
-                                <input type="checkbox" id="da181" onchange="updateSelection()">
-                                <label for="da181">Đá (181)</label>
+                                <input type="checkbox" id="glass" onchange="updateSelection()">
+                                <label for="glass">Thủy tinh</label>
                             </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="da_vai" onchange="updateSelection()">
-                                <label for="da_vai">Da và vải (6)</label>
-                            </div>
-                            <div class="dropdown-item-material">
-                                <input type="checkbox" id="go" onchange="updateSelection()">
-                                <label for="go">Gỗ (383)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="gom" onchange="updateSelection()">
-                                <label for="gom">Gốm (113)</label>
-                            </div>
-                            <div class="dropdown-item-material hidden">
-                                <input type="checkbox" id="kimloai" onchange="updateSelection()">
-                                <label for="kimloai">Kim loại (387)</label>
-                            </div>
-                            <div class="dropdown-footer" onclick="showMore()">Show more</div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-2">
                 <div class="applyBtn">
-                    <button>Áp dụng</button>
+                    <button class="filter">Áp dụng</button>
                 </div>
             </div>
         </div>
@@ -329,7 +310,8 @@
                                     </div>
                                     <div class="col-sm-5 col-md-5">
                                         <div class="use-button fake-btn">
-                                            <a href="product?id=${p.id}&atributeID=${p.atributeID}&cateID=${p.cateID}">
+                                            <a href="javascript:void(0);"
+                                               onclick="showProductDetails(${p.id}, ${p.atributeID}, ${p.cateID})">
                                                 <p>XEM THÊM</p></a>
                                         </div>
                                     </div>
