@@ -31,7 +31,6 @@ public class OrderService extends ServiceBase {
         if (orderDao == null) {
             orderDao = new OrderDao();
         }
-        orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
     }
 
     public OrderService() {
@@ -82,6 +81,11 @@ public class OrderService extends ServiceBase {
         return orderDao.getTotalOrderWithStatus(forceUpdate, ShippingStatus.Completed);
     }
 
+    public int getTotalOrderWithStatus(boolean forceUpdate, ShippingStatus status) {
+        log.info("UserService getTotalOrderWithStatus...");
+        return orderDao.getTotalOrderWithStatus(forceUpdate, status);
+    }
+
     public int getTotalOnProgressOrder(boolean forceUpdate) {
         log.info("UserService getTotalDeliveringOrder...");
         return orderDao.getTotalOrderWithStatus(forceUpdate, ShippingStatus.Delivering) + orderDao.getTotalOrderWithStatus(forceUpdate, ShippingStatus.Packaging);
@@ -101,6 +105,7 @@ public class OrderService extends ServiceBase {
     }
 
     public List<OrderDto> getAllOrderDto(){
+        orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
         var j = orderDao.getJdbi();
         var li = j.withExtension(IOrderDto.class, IOrderDto::getAllOrders);
         return li;

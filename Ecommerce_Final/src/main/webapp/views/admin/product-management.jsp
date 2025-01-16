@@ -120,7 +120,7 @@
                         <span class="ti-package"></span>
                         <div>
                             <h5>Refunded</h5>
-                            <h4>${refunded}/h4>
+                            <h4>${refunded}</h4>
                         </div>
                     </div>
                 </div>

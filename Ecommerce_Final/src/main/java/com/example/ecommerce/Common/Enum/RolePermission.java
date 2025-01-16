@@ -20,4 +20,5 @@ public enum RolePermission {
     public static String USER_MANAGEMENT= "User Management";
     public static String ORDER_MANAGEMENT= "Order Management";
     public static String PRODUCT_MANAGEMENT= "Product Management";
+    public static String REPORTS_MANAGEMENT= "Reporting";
 }
