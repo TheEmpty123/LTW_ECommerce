@@ -53,12 +53,12 @@ public class ProductDetailController extends HttpServlet {
             ProductAttribute pat = productDetailServ.getProductAttributeById(attributeID);
             list4Product  = service.get4ProductOfCate(cateID);
             listRatingOfProduct = ratingService.getRatingByProductID(id);
-            onestars = ratingService.countStars(1,id);
-            twostars = ratingService.countStars(1,id);
-            threestars = ratingService.countStars(1,id);
-            fourstars = ratingService.countStars(1,id);
-            fivestars = ratingService.countStars(1,id);
-            avgStars = (double) (onestars + twostars + threestars + fourstars + fivestars) /5;
+//            onestars = ratingService.countStars(1,id);
+//            twostars = ratingService.countStars(2,id);
+//            threestars = ratingService.countStars(3,id);
+//            fourstars = ratingService.countStars(4,id);
+//            fivestars = ratingService.countStars(5,id);
+//            avgStars = (double) (onestars + twostars + threestars + fourstars + fivestars) /5;
 
             req.setAttribute("onestars", onestars);
             req.setAttribute("twostars", twostars);

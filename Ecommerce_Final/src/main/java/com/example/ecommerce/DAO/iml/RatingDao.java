@@ -34,7 +34,7 @@ public class RatingDao extends ImplementBase implements IRatingDao {
         return db.jdbi.withHandle(handle ->
                 handle.createQuery("select count(r.userID) " +
                                 "from ratings r join users u on r.userID = u.id " +
-                                "where stars = ? and r.productID = ? " +
+                                "where r.stars = ? and r.productID = ? " +
                                 "group by r.stars")
                         .bind(0,numberStars)
                         .bind(1, productID)
