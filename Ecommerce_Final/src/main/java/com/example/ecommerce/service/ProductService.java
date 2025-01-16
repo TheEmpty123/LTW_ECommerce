@@ -140,5 +140,20 @@ public class ProductService extends ServiceBase {
 
         c.forEach(System.out::println);
     }
+
+    public ProductAttribute getProductAttributeByID(int atributeID) {
+        log.info("ProductService getProductAttributeByID...");
+        return paDao.getById(atributeID);
+    }
+
+    public boolean updateProduct(Product p) {
+        log.info("ProductService updateProduct...");
+        return productDao.updateProduct(p);
+    }
+
+    public boolean updateAttribute(ProductAttribute a) {
+        log.info("ProductService updateAttribute...");
+        return paDao.updateMaterial(a.getId(), a.getMaterial()) && paDao.updateSize(a.getId(),a.getSize());
+    }
 }
 

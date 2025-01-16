@@ -22,16 +22,15 @@ public class ProductAttributeDao extends ImplementBase implements IProductAttrib
 
     @Override
     public ProductAttribute getById(int id) {
-        db  = JDBIConnect.getInstance();
-        return db.jdbi.withHandle(handle -> handle.createQuery("select * from product_atribute where id = :id")
+        return handle.createQuery("select * from product_atribute where id = :id")
                 .bind("id", id)
-                .mapToBean(ProductAttribute.class).findOne().orElse(null));
+                .mapToBean(ProductAttribute.class).findOne().orElse(null);
     }
 
     @Override
     public ProductAttribute addAttribute(ProductAttribute attribute) {
         log.info("Adding attribute: " + attribute);
-        
+
         int id = handle.createUpdate("INSERT INTO product_atribute(material, size) VALUES (?, ?)")
                 .bind(0, attribute.getMaterial())
                 .bind(1, attribute.getSize())
@@ -45,12 +44,24 @@ public class ProductAttributeDao extends ImplementBase implements IProductAttrib
 
     @Override
     public boolean updateMaterial(int id, String newMaterial) {
-        return false;
+        log.info("Updating material: " + newMaterial);
+        boolean s = handle.createUpdate("Update product_atribute set material = :material where id = :id")
+                .bind("id", id)
+                .bind("material", newMaterial)
+                .execute() > 0;
+
+        return s;
     }
 
     @Override
     public boolean updateSize(int id, String newSize) {
-        return false;
+        log.info("Updating size: " + newSize);
+        boolean s = handle.createUpdate("Update product_atribute set size = :material where id = :id")
+                            .bind("id", id)
+                            .bind("material", newSize)
+                            .execute() > 0;
+
+        return s;
     }
 
     @Override

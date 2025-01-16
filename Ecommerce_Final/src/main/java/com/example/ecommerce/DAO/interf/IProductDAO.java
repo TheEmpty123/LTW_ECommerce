@@ -42,4 +42,6 @@ public interface IProductDAO {
     List<Product> getProductByFilter(String sort, String material);
 
     Product getProductByName(String productName) throws ProductNotFoundException;
+
+    boolean updateProduct(Product p);
 }

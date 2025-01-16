@@ -64,7 +64,7 @@
 
                         <!-- Right section: Product details -->
                         <div class="right-section">
-                            
+
                             <!-- Display error message -->
                             <c:if test="${not empty errorMessage}">
                                 <div style="color: red;">
@@ -130,6 +130,87 @@
                         </div>
                     </div>
                 </c:if>
+
+                <c:if test="${CMD eq 'edit-product'}">
+                    <div class="form-container">
+                        <!-- Left section: Image upload and button -->
+                        <div class="left-section">
+                            <div class="img-upload">
+                                <label for="productImg">Product Image</label>
+                                <div class="img-preview">No Image</div>
+                                <input type="file" id="productImg" name="productImg" accept="image/*">
+                            </div>
+                        </div>
+
+                        <!-- Right section: Product details -->
+                        <div class="right-section">
+
+                            <!-- Display error message -->
+                            <c:if test="${not empty errorMessage}">
+                                <div style="color: red;">
+                                        ${errorMessage}
+                                </div>
+                            </c:if>
+
+                            <!-- Display success message -->
+                            <c:if test="${not empty successMessage}">
+                                <div style="color: greenyellow;">
+                                        ${successMessage}
+                                </div>
+                            </c:if>
+
+                            <h2>Update ${product.proName}</h2>
+                            <form method="post" action="/admin/edit-product">
+                                <!-- Name and Category on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="productName">Product Name</label>
+                                        <input type="text" id="productName" name="productName" placeholder="${product.proName}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="productCategory">Product Categories</label>
+                                        <select id="productCategory" name="productCategory" required>
+                                            <option value="">Select category</option>
+                                            <c:if test="${not empty cate}">
+                                                <c:forEach var="c" items="${cate}">
+                                                    <option value="${c.id}" <c:if test="${product.cateID eq c.id}">selected</c:if>>${c.cateName}</option>
+                                                </c:forEach>
+                                            </c:if>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <!-- Stock and Price on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="material">Material</label>
+                                        <input type="text" id="material" name="material" placeholder="${pa.material}">
+                                    </div>
+                                </div>
+
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="price">Price (vnđ)</label>
+                                        <input type="text" id="price" name="price" placeholder="<f:formatNumber type="currency" currencySymbol="đ" value="${product.price}"/>">
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="size">Size</label>
+                                        <input type="text" id="size" name="size" placeholder="${pa.size}">
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="des">Description</label>
+                                    <textarea id="des" name="des" placeholder="${product.description}"></textarea>
+                                </div>
+
+                                <button type="submit" class="create-btn">Update</button>
+                            </form>
+                        </div>
+                    </div>
+                </c:if>
+
             </div>
         </section>
     </main>

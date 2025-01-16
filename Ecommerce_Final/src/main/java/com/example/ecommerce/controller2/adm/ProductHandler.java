@@ -74,10 +74,12 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
             }
 
             int id = MC.instance.savedID;
-
             Product u = MC.instance.productService.getProductById(id);
-
             request.setAttribute("product", u);
+
+            ProductAttribute a = MC.instance.productService.getProductAttributeByID(u.getAtributeID());
+            request.setAttribute("pa", a);
+
             MC.instance.savedID = null;
         }
 
@@ -120,55 +122,67 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
         try {
             if (flag) {
                 log.info("Performing edit product action");
-                String username = request.getParameter("username");
-                String fullName = request.getParameter("fullName");
-                String email = request.getParameter("email");
-                String password = request.getParameter("password");
-                String phoneNo = request.getParameter("phone");
-                int roleID = Integer.parseInt(request.getParameter("role"));
-                StatusUser status = request.getParameter("status").equalsIgnoreCase("enable") ? StatusUser.ENABLE : StatusUser.DISABLE;
-                int id = MC.instance.backupID;
-                User user = MC.instance.userService.getUserByID(id);
+                String productName = request.getParameter("productName");
+                int cateId = Integer.parseInt(request.getParameter("productCategory"));
+                String material = request.getParameter("material");
+                String price = request.getParameter("price");
+                String size = request.getParameter("size");
+                String description = request.getParameter("des");
 
-                if (MC.instance.userService.checkUserExists(username)) {
-                    request.setAttribute("errorMessage", "Username already exists. Please choose a different one.");
+                int id = MC.instance.backupID;
+                Product p = MC.instance.productService.getProductById(id);
+                ProductAttribute a = MC.instance.productService.getProductAttributeByID(p.getAtributeID());
+
+                if ((!productName.equals("")) && MC.instance.productService.getProductByName(productName) != null) {
+                    request.setAttribute("errorMessage", "Product name already exists. Please choose a different one.");
                     var cate = MC.instance.categoryService.getAllCategory();
                     request.setAttribute("cate", cate);
-                    request.setAttribute("user", user);
-                    request.setAttribute("method", "edit");
-                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                    request.setAttribute("product", p);
+                    ProductAttribute aa = MC.instance.productService.getProductAttributeByID(p.getAtributeID());
+                    request.setAttribute("pa", aa);
+                    request.setAttribute("CMD", "edit-product");
+                    request.getRequestDispatcher("/views/admin/add-product.jsp")
                             .forward(request, resp);
                     return;
                 }
 
                 {
-                    user.setUsername(username.equals("") ? user.getUsername() : username);
-                    user.setFullName(fullName.equals("") ? user.getFullName() : fullName);
-                    user.setEmail(email.equals("") ? user.getEmail() : email);
-                    user.setPass(password.equals("") ? "" : password);
-                    user.setPhoneNum(phoneNo.equals("") ? user.getPhoneNum() : phoneNo);
-                    user.setRoleID(roleID);
-                    user.setStatusUser(status);
+                    double priceDouble = 0;
+                    if (!price.equals(""))
+                        priceDouble = Double.parseDouble(price.replace(",",""));
+                    p.setProName(productName.equals("") ? p.getProName() : productName);
+                    p.setCateID(cateId);
+                    p.setPrice(price.equals("") ? p.getPrice() : priceDouble);
+                    p.setDescription(description.equals("") ? p.getDescription() : description);
+                    a.setMaterial(material.equals("") ? a.getMaterial() : material);
+                    a.setSize(size.equals("") ? a.getSize() : size);
                 }
 
-                boolean success = MC.instance.userService.updateUser(user);
+                boolean pSuccess = MC.instance.productService.updateProduct(p);
+                boolean aSuccess = MC.instance.productService.updateAttribute(a);
 
-                if (success) {
+                if (pSuccess && aSuccess) {
                     log.warn("Updated product successfully");
 
                     request.setAttribute("successMessage", "Product has been updated");
-                    request.setAttribute("user", user);
-                    request.setAttribute("method", "edit");
-                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                    var cate = MC.instance.categoryService.getAllCategory();
+                    request.setAttribute("cate", cate);
+                    request.setAttribute("product", p);
+                    request.setAttribute("pa", a);
+                    request.setAttribute("CMD", "edit-product");
+                    request.getRequestDispatcher("/views/admin/add-product.jsp")
                             .forward(request, resp);
                     return;
                 } else {
                     log.warn("Updated product failed");
 
                     request.setAttribute("errorMessage", "Some error occurred. Please try again.");
-                    request.setAttribute("user", user);
-                    request.setAttribute("method", "edit");
-                    request.getRequestDispatcher("/views/admin/add-user.jsp")
+                    var cate = MC.instance.categoryService.getAllCategory();
+                    request.setAttribute("cate", cate);
+                    request.setAttribute("product", p);
+                    request.setAttribute("pa", a);
+                    request.setAttribute("CMD", "edit-product");
+                    request.getRequestDispatcher("/views/admin/add-product.jsp")
                             .forward(request, resp);
                     return;
                 }

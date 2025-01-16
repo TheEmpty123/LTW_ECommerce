@@ -150,6 +150,22 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         return p;
     }
 
+    @Override
+    public boolean updateProduct(Product p) {
+        log.info("Updating product: " + p);
+
+        boolean result = handle.createUpdate("UPDATE products SET proName = ?, price = ?, description = ?, cateID = ?, atributeID = ? WHERE id = ?")
+                .bind(0, p.getProName())
+                .bind(1, p.getPrice())
+                .bind(2, p.getDescription())
+                .bind(3, p.getCateID())
+                .bind(4, p.getAtributeID())
+                .bind(5, p.getId())
+                .execute() > 0;
+
+        return result;
+    }
+
 //    public static void main(String[] args) {
 //        ProductDao dao = new ProductDao();
 //        System.out.println("running");

@@ -29,7 +29,7 @@ $(document).ready(function () {
                                                                 <a href="#" class="openIframePopup">
                                             <span class="ti-plus"></span>
                                         </a>
-                                        <a href="edit-product.jsp">
+                                        <a href="/admin/edit-product?id=${product.id}">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
                                         <a href="#">
