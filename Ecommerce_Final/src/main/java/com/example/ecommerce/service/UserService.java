@@ -3,6 +3,7 @@ package com.example.ecommerce.service;
 import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
+import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
 
@@ -58,16 +59,16 @@ public class UserService extends ServiceBase {
         if (user == null) {
             log.warn("User not logged in");
             return Accessible.NOT_LOGGED_IN;
-        } else if (user.getRoleID() == 0) {
+        } else if (user.getRoleID() == RolePermission.CLIENT.getValue()) {
             log.info("A customer logged in!");
             return Accessible.CLIENT;
-        } else if (user.getRoleID() == 1) {
+        } else if (user.getRoleID() == RolePermission.EMPLOYEE.getValue()) {
             log.info("User: " + user.getUsername() + " logged in!");
             return Accessible.EMPLOYEE;
-        } else if (user.getRoleID() == 2) {
+        } else if (user.getRoleID() == RolePermission.MANAGER.getValue()) {
             log.info("Manager: " + user.getUsername() + " logged in!");
             return Accessible.MANAGER;
-        } else if (user.getRoleID() == 3) {
+        } else if (user.getRoleID() == RolePermission.ADMINISTRATOR.getValue()) {
             log.info("Administrator: " + user.getUsername() + " logged in!");
             return Accessible.ADMINISTRATOR;
         } else return Accessible.NOT_LOGGED_IN;
