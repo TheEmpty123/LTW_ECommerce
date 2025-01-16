@@ -87,6 +87,21 @@ public class UserHandler extends HttpServlet implements ControllerBase {
     protected void doPost(HttpServletRequest request, HttpServletResponse resp) throws ServletException, IOException {
         log.warn("============ Request to update user received ============");
 
+        HttpSession session = request.getSession();
+        User users = (User) session.getAttribute("auth");
+        if (MC.instance.userService.hasPermission(users, RolePermission.SUPREME, true)) {
+            request.setAttribute("role", RolePermission.SUPREME);
+        } else if (MC.instance.userService.hasPermission(users, RolePermission.USER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.USER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(users, RolePermission.ORDER_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.ORDER_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(users, RolePermission.PRODUCT_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.PRODUCT_MANAGEMENT);
+        } else if (MC.instance.userService.hasPermission(users, RolePermission.REPORTS_MANAGEMENT, false)) {
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+        } else
+            request.setAttribute("role", RolePermission.REPORTS_MANAGEMENT);
+
         String uri = request.getRequestURI();
         boolean flag = false;
 
@@ -123,7 +138,7 @@ public class UserHandler extends HttpServlet implements ControllerBase {
                     user.setUsername(username.equals("") ? user.getUsername() : username);
                     user.setFullName(fullName.equals("") ? user.getFullName() : fullName);
                     user.setEmail(email.equals("") ? user.getEmail() : email);
-                    user.setPass(password.equals("") ? user.getPass() : password);
+                    user.setPass(password.equals("") ? "" : password);
                     user.setPhoneNum(phoneNo.equals("") ? user.getPhoneNum() : phoneNo);
                     user.setRoleID(roleID);
                     user.setStatusUser(status);

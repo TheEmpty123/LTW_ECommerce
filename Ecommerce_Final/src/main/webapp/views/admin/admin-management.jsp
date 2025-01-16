@@ -113,7 +113,7 @@
                                             </c:choose>
                                         </td>
                                         <td>
-                                            <a href="">
+                                            <a href="/admin/edit-user?id=${user.id}">
                                                 <span class="ti-pencil-alt"></span>
                                             </a>
                                             <a href="">
@@ -129,7 +129,7 @@
                     </div>
 
                     <div class="pagination">
-                        <a href="#add-user" class="add-user-btn">Add user</a>
+                        <a href="/admin/add-user" class="add-user-btn">Add user</a>
                     </div>
 
                 </div>

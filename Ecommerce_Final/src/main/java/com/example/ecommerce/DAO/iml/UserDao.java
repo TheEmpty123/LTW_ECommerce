@@ -179,20 +179,36 @@ public class UserDao extends ImplementBase implements IUsersDao {
     @Override
     public boolean updateUser(User user) {
         log.info("Updating user: " + user);
-
-        int c = handle.createUpdate("UPDATE users SET " +
-                        "username = ?, fullName = ?, gender = ?, pass = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
-                .bind(0, user.getUsername())
-                .bind(1, user.getFullName())
-                .bind(2, user.getGender())
-                .bind(3, InsertData.hashPassword(user.getPass()))
-                .bind(4, user.getEmail())
-                .bind(5, user.getPhoneNum())
-                .bind(6, user.getStatusUser())
-                .bind(7, user.getAvatar())
-                .bind(8, user.getRoleID())
-                .bind(9, user.getId())
-                .execute();
+        int c = 0;
+        if (user.getPass().equals("")){
+            c = handle.createUpdate("UPDATE users SET " +
+                                        "username = ?, fullName = ?, gender = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                    .bind(0, user.getUsername())
+                    .bind(1, user.getFullName())
+                    .bind(2, user.getGender())
+                    .bind(3, user.getEmail())
+                    .bind(4, user.getPhoneNum())
+                    .bind(5, user.getStatusUser())
+                    .bind(6, user.getAvatar())
+                    .bind(7, user.getRoleID())
+                    .bind(8, user.getId())
+                    .execute();
+        }
+        else {
+            c = handle.createUpdate("UPDATE users SET " +
+                                    "username = ?, fullName = ?, gender = ?, pass = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                    .bind(0, user.getUsername())
+                    .bind(1, user.getFullName())
+                    .bind(2, user.getGender())
+                    .bind(3, InsertData.hashPassword(user.getPass()))
+                    .bind(4, user.getEmail())
+                    .bind(5, user.getPhoneNum())
+                    .bind(6, user.getStatusUser())
+                    .bind(7, user.getAvatar())
+                    .bind(8, user.getRoleID())
+                    .bind(9, user.getId())
+                    .execute();
+        }
 
         return c > 0;
     }

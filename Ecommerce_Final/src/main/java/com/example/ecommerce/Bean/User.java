@@ -169,16 +169,16 @@ public class User implements Serializable {
     }
 
     public static void main(String[] args) {
-        String username = "empty";
+        String username = "4";
         String fullname = "the empty";
         String gender = "male";
         String email = "empty@gmail.com";
         String phone = "0933718070";
-        String pass = "empty";
+        String pass = "4";
         String statusUser = "enable";
         String createDate = "2025-12-11 10:00:00";
         String avatar = "avatar1.png";
-        int role = 2;
+        int role = 4;
 
         String url = "jdbc:mysql://127.0.0.1:3306/ltw?useUnicode=true&characterEncoding=utf-8";
         String user = "root";

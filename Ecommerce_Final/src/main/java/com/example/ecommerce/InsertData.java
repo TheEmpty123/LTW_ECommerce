@@ -10,13 +10,14 @@ import java.sql.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 
 public class InsertData {
-    static String p = "D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
+    static String p = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
 
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        String jsonFilePath = "D:\\DangTranTanLuc\\WebProgramming\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
+        String jsonFilePath = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
 
         try {
             // Read the JSON file
@@ -199,9 +200,10 @@ public class InsertData {
                     int productID = rating.getInt("productID");
                     int stars = rating.getInt("stars");
                     String commentRate  = rating.getString("commentRate");
+                    String dateRate = rating.getString("dateRate");
 
-                    InsertRating(conn, userID,productID, stars, commentRate);
-                    System.out.println("Inserted rating: " + userID + " " + productID + " " + stars + " " + commentRate);
+                    InsertRating(conn, userID,productID, stars, commentRate,dateRate);
+                    System.out.println("Inserted rating: " + userID + " " + productID + " " + stars + " " + commentRate + " " + dateRate);
                 }
 
                 // promotion
@@ -379,14 +381,15 @@ public class InsertData {
         }
     }
 
-    private static void InsertRating(Connection conn, int userID, int productID, int stars, String commentRate) {
-        String sql = "insert into ratings values(?,?,?,?)";
+    private static void InsertRating(Connection conn, int userID, int productID, int stars, String commentRate, String dateRate) {
+        String sql = "insert into ratings values(?,?,?,?,?)";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, userID);
             ps.setInt(2, productID);
             ps.setInt(3, stars);
             ps.setString(4, commentRate);
+            ps.setString(5, dateRate);
             ps.executeUpdate();
         }
         catch (SQLException e) {
