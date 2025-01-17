@@ -26,7 +26,7 @@ $(document).ready(function () {
                             <h5>${product.totalReviews} reviews</h5>
                         </td>
                         <td>
-                                                                <a href="#" class="openIframePopup">
+                                        <a href="add-stock?id=${product.id}" class="openIframePopup">
                                             <span class="ti-plus"></span>
                                         </a>
                                         <a href="/admin/edit-product?id=${product.id}">
@@ -35,7 +35,7 @@ $(document).ready(function () {
                                         <a href="#">
                                             <span class="ti-trash"></span>
                                         </a>
-</td>
+                        </td>
                     </tr>
                 `;
                 tbody.append(row);

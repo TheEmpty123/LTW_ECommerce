@@ -11,7 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(urlPatterns = {"/admin/edit-user", "/admin/add-user"})
+@WebServlet(urlPatterns = {"/admin/edit-user", "/admin/add-user", "/admin/delete-user"})
 public class UserHandler extends HttpServlet implements ControllerBase {
     public void init() {
         initialize();
@@ -46,6 +46,13 @@ public class UserHandler extends HttpServlet implements ControllerBase {
 
         String uri = request.getRequestURI();
         boolean flag = false;
+
+        if (uri.endsWith("/delete-user")) {
+            int id = Integer.parseInt(request.getParameter("id"));
+            MC.instance.userService.disableUser(id);
+            response.sendRedirect("/admin/users");
+            return;
+        }
 
         if (uri.endsWith("add-user")) {
             request.setAttribute("method", "add");

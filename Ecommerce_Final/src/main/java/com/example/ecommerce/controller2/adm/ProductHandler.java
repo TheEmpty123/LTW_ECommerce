@@ -2,10 +2,12 @@ package com.example.ecommerce.controller2.adm;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Bean.ProductAttribute;
 import com.example.ecommerce.Bean.User;
+import com.example.ecommerce.Bean.Warehouse;
 import com.example.ecommerce.Common.Enum.Gender;
 import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.Common.Enum.StatusUser;
@@ -14,7 +16,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
 import jakarta.servlet.annotation.*;
 
-@WebServlet(urlPatterns = {"/admin/edit-product", "/admin/add-product"})
+@WebServlet(urlPatterns = {"/admin/edit-product", "/admin/add-product", "/admin/add-stock"})
 public class ProductHandler extends HttpServlet implements ControllerBase {
     public void init() {
         initialize();
@@ -49,6 +51,22 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
 
         String uri = request.getRequestURI();
         boolean flag = false;
+
+        log.info(uri);
+        log.info(uri.endsWith("add-stock"));
+
+        if(uri.endsWith("add-stock")) {
+            request.setAttribute("CMD", "add-stock");
+            int id = Integer.parseInt(request.getParameter("id"));
+            MC.instance.backupID = id;
+            Product product = MC.instance.productService.getProductById(id);
+            request.setAttribute("product", product);
+            var wh = MC.instance.warehouseService.getAllWarehouse();
+            wh.forEach(System.out::println);
+            request.setAttribute("wh", wh);
+            request.getRequestDispatcher("/views/admin/add-product.jsp").forward(request, response);
+            return;
+        }
 
         if (uri.endsWith("add-product")) {
             request.setAttribute("CMD", "add-product");
@@ -112,6 +130,23 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
 
         String uri = request.getRequestURI();
         boolean flag = false;
+
+        if (uri.endsWith("add-stock")){
+            try {
+                int stock = Integer.parseInt(request.getParameter("stock"));
+                int id = Integer.parseInt(request.getParameter("wh"));
+                int pId = MC.instance.backupID;
+
+                MC.instance.warehouseService.updateStock(id, pId, stock);
+            }
+            catch (NumberFormatException e) {
+                e.printStackTrace();
+                resp.sendRedirect("/admin/products");
+            }
+
+            resp.sendRedirect("/admin/products");
+            return;
+        }
 
         if (uri.endsWith("add-product")) {
             flag = false;
@@ -198,6 +233,8 @@ public class ProductHandler extends HttpServlet implements ControllerBase {
 
                 if (MC.instance.productService.getProductByName(productName) != null) {
                     request.setAttribute("errorMessage", "Product name already exists. Please choose a different one.");
+                    var cate = MC.instance.categoryService.getAllCategory();
+                    request.setAttribute("cate", cate);
                     request.setAttribute("CMD", "add-product");
                     request.getRequestDispatcher("/views/admin/add-product.jsp")
                             .forward(request, resp);

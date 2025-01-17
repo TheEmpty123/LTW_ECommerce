@@ -64,4 +64,14 @@ public class WarehouseService extends ServiceBase {
         var b = a.getAllWarehouse();
         b.forEach(System.out::println);
     }
+
+    public void updateStock(int id, int pId, int stock) {
+        log.info("WarehouseService updateStock...");
+        try {
+            warehouseDao.updateStock(id, pId, stock);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

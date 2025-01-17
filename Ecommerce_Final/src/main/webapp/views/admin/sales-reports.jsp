@@ -108,7 +108,6 @@
                             <tr>
                                 <th>Order ID</th>
                                 <th>Order Date</th>
-                                <th>Delivery Date</th>
                                 <th>Total</th>
                                 <th>Status</th>
                             </tr>

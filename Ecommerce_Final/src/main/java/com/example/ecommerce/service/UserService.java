@@ -4,6 +4,7 @@ import com.example.ecommerce.Bean.Role;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Common.Enum.Accessible;
 import com.example.ecommerce.Common.Enum.RolePermission;
+import com.example.ecommerce.Common.Enum.StatusUser;
 import com.example.ecommerce.DAO.iml.RoleDao;
 import com.example.ecommerce.DAO.iml.UserDao;
 
@@ -223,5 +224,12 @@ public class UserService extends ServiceBase {
     public boolean updateUser(User user) {
         log.info("UserService updateUser");
         return userDao.updateUser(user);
+    }
+
+    public void disableUser(int id) {
+        log.info("UserService disableUser");
+        User user = userDao.getUserById(id);
+        user.setStatusUser(StatusUser.DISABLE);
+        userDao.updateUser(user);
     }
 }
