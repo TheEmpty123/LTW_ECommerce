@@ -41,7 +41,25 @@ public class ProductDao extends ImplementBase implements IProductDAO {
                         .bind("create_at", product.getCreated_at())
                         .bind("cateID", product.getCateID())
                         .bind("attributeID", product.getAtributeID())
-                        .execute();
+                        .executeAndReturnGeneratedKeys("id").mapTo(Integer.class).one();
+    }
+
+    public void addProductToAllWarehouse(int productID){
+        handle.createUpdate("""
+                INSERT INTO having_product (productID, warehouseID, amount)
+                        SELECT
+                            :productID,
+                            w.id,
+                            0 AS amount
+                        FROM
+                            warehouse w
+                        WHERE
+                            NOT EXISTS (
+                                SELECT 1
+                                FROM having_product hp
+                                WHERE hp.productID = :productID AND hp.warehouseID = w.id
+                            )
+                """).bind("productID", productID).execute();
     }
 
     @Override
@@ -166,13 +184,9 @@ public class ProductDao extends ImplementBase implements IProductDAO {
         return result;
     }
 
-//    public static void main(String[] args) {
-//        ProductDao dao = new ProductDao();
-//        System.out.println("running");
-//        List<Product> list = dao.getProductByFilter("Thấp đến cao","Gỗ");
-////        List<Product> list = dao.getAllProducts();
-//        for(Product p : list) {
-//            System.out.println(p);
-//        }
-//    }
+    public static void main(String[] args) {
+        ProductDao dao = new ProductDao();
+        System.out.println("running");
+        dao.addProductToAllWarehouse(156);
+    }
 }
