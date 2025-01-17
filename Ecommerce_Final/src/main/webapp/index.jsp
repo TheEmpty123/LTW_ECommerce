@@ -60,11 +60,9 @@
                             </div>
                         </div>
                         <div class="close-orders center-items">
-                            <a href="del-cart?pid=${cp.id}" class="remove-to-cart" data-pid="${cp.id}">
-                                <button class="close-btn">
-                                    <i class="bi bi-x-circle"></i>
-                                </button>
-                            </a>
+                            <button class="remove-item" data-id="${cp.id}">
+                                <i class="bi bi-x-circle"></i>
+                            </button>
                         </div>
                     </div>
                 </div>

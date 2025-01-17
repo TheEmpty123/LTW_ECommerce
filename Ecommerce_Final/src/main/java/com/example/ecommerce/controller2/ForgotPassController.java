@@ -22,7 +22,6 @@ public class ForgotPassController extends HttpServlet {
             resp.getWriter().write("Email does not empty!");
         }
         userService.verifyAccount(email);
-//        resp.getWriter().write("An email has been sent to your email");
         req.getRequestDispatcher("/views/auth/Notification-password.jsp").forward(req, resp);
     }
 
