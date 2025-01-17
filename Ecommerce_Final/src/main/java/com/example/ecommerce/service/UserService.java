@@ -75,6 +75,10 @@ public class UserService extends ServiceBase {
         } else return Accessible.NOT_LOGGED_IN;
     }
 
+    public boolean updatePasswordById(int id, String pass) {
+        return userDao.updatePasswordById(id, pass);
+    }
+
     public Accessible isAccessible(User user) {
         if (user == null) {
             log.warn("User not logged in");
@@ -111,7 +115,7 @@ public class UserService extends ServiceBase {
     }
 
 
-    public void verifyAccount(String email) {
+    public boolean verifyAccount(String email) {
         IJavaMail emailService = new EmailService();
         boolean emailFound = false;
         var listUser = userDao.getAllUsers();
@@ -120,19 +124,24 @@ public class UserService extends ServiceBase {
                 emailFound = true;
                 try {
 //                    String to = String.valueOf(new InternetAddress(MailProperties.APP_EMAIL));
+                    User user = findIDUserByEmail(email);
+                    int userId = user.getId();
                     String subject = "Xac thuc tai khoan. Thoi han 30 phut.";
-                    String messageContent = "Chon vao day : " + "http://localhost:8080/views/auth/Change-password.jsp";
+                    String messageContent = "Chon vao day : " + "http://localhost:8080/changepass?id=" + userId + "&email=" + email;
                     log.info("Password reset email send to " + email);
                     emailService.send(email, subject, messageContent);
+                    return true;
                 } catch (Exception e) {
                     log.error("Error! Can not send email");
                     e.printStackTrace();
+                    return false;
                 }
             }
         }
-        if (emailFound) {
+        if (emailFound)
             log.warn("Email does not exist in the system!" + email);
-        }
+        return false;
+
     }
 
     // Get all user
@@ -159,6 +168,10 @@ public class UserService extends ServiceBase {
     public int getTotalAdmin(boolean forceUpdate) {
         log.info("UserService getTotalAdmin...");
         return userDao.getTotalAdmin(forceUpdate);
+    }
+
+    public User findIDUserByEmail(String email) {
+        return userDao.findIDByEmail(email);
     }
 
     public List<User> getAllAdmin(boolean forceUpdate) {

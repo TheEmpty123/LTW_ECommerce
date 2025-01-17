@@ -119,7 +119,7 @@ public class CartController extends HttpServlet {
                 }
             }
             total = cart.getTotal();
-
+            session.setAttribute("valueOfPromotion",cart.getTotal());
             session.setAttribute("cart", cart);
         }
         // Tạo JSON trả về

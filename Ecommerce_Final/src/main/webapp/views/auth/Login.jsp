@@ -60,7 +60,7 @@
                     mật
                     khẩu?</a></div>
                 <div class="col-md-6 mb-10"><span style="color: black;">Bạn chưa có tài khoản? <a
-                        href="${pageContext.request.contextPath}/views/auth/Register.jsp"
+                        href="${pageContext.request.contextPath}/register"
                         style="color: green !important;">Đăng ký</a></span>
                 </div>
                 <div class="col-md-6 mb-10"><a href="${pageContext.request.contextPath}/kenes"><i

@@ -202,7 +202,6 @@
             <div class="block"></div>
         </div>
 
-
         <div id="list-product-cart" class="scroll-cart">
             <c:forEach items="${sessionScope.cart.list}" var="cp">
                 <div class="row">
