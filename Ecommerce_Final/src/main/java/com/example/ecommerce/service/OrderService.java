@@ -5,7 +5,10 @@ import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.Common.Enum.Statuss;
 import com.example.ecommerce.DAO.iml.OrderDao;
 import com.example.ecommerce.DAO.interf.IOrderDto;
+import com.example.ecommerce.DAO.interf.IOrderItemDao;
+import com.example.ecommerce.DAO.interf.IProductItemDTO;
 import com.example.ecommerce.Dto.OrderDto;
+import com.example.ecommerce.Dto.OrderItemDto;
 import com.example.ecommerce.Dto.ProductDto;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
@@ -123,7 +126,7 @@ public class OrderService extends ServiceBase {
     public static void main(String[] args) {
         var a = OrderService.getInstance();
         a.init();
-        var b = a.getAllOrderDto();
+        var b = a.getAllOrderItemDtoFromOrder(1);
         b.forEach(System.out::println);
     }
 
@@ -157,5 +160,14 @@ public class OrderService extends ServiceBase {
         int b = orderDao.updatePayment(pId, statuss);
 
         return (a > 0) && (b > 0);
+    }
+
+    public List<OrderItemDto> getAllOrderItemDtoFromOrder(int id) {
+        orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
+        var j = orderDao.getJdbi();
+        var a = j.onDemand(IProductItemDTO.class);
+        var li = a.getOrderItemsFromOrder(id);
+
+        return li;
     }
 }

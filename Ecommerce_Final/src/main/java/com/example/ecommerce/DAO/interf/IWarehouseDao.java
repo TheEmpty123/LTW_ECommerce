@@ -28,4 +28,6 @@ public interface IWarehouseDao {
     int totalProductItems();
     int totalInStock();
     int totalOutOfStock();
+
+    void updateStock(int id, int pId, int stock);
 }

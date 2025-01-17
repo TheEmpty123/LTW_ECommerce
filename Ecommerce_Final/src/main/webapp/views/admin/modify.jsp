@@ -51,7 +51,6 @@
     <main>
         <section class="recent">
             <div class="activity-grid-alt3">
-
                 <div class="prof-card">
                     <div class="prof-flex">
                         <div class="prof-info">
@@ -75,6 +74,7 @@
                 <div class="activity-card">
                     <div class="form-container">
                         <div class="left-section">
+                            <h2>Chi tiết đơn hàng</h2>
                         </div>
                         <div class="right-section">
                             <h2>Order Information</h2>
@@ -122,7 +122,37 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            <br>
+            <br>
+            <div class="activity-grid-alt2">
+                <div class="activity-card">
+                    <div>
+                        <h3>All Order Item List</h3>
+                    </div>
 
+                    <div class="table-responsive">
+                        <table id="product-table">
+                            <thead>
+                            <tr>
+                                <th>Product Name</th>
+                                <th>Amount</th>
+                                <th>Total Price</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="oii" items="${oi}">
+                                <tr>
+                                    <td>${oii.productName}</td>
+                                    <td>${oii.amount}</td>
+                                    <td>${oii.priceF}</td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
             </div>
         </section>
 

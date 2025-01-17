@@ -276,4 +276,7 @@ target/
 
 # Uncomment this line if you wish to ignore the project description file.
 # Typically, this file would be tracked if it contains build/dependency configurations:
-#.project
+Ecommerce_Final/src/main/java/com/example/ecommerce/Location/*
+Ecommerce_Final/src/main/java/com/example/ecommerce/Location/
+/Location/
+Location/

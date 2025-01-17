@@ -91,8 +91,8 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
 
         // Use JDBI to execute the query and fetch the result
         return handle.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .one();
+                .mapTo(Integer.class)
+                .one();
     }
 
     public int getAmountProductInWarehouse(int productId) {
@@ -109,25 +109,35 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
         String sql = "SELECT COALESCE(SUM(amount), 0) FROM having_product WHERE amount > 0";
 
         return handle.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .one();
+                .mapTo(Integer.class)
+                .one();
     }
 
     @Override
     public int totalOutOfStock() {
         log.info("Querying total outOfStock");
         String sql = """
-        SELECT COUNT(DISTINCT p.id)
-        FROM products p
-        LEFT JOIN having_product hp ON p.id = hp.productID
-        GROUP BY p.id
-        HAVING COALESCE(SUM(hp.amount), 0) = 0
-    """;
+                    SELECT COUNT(DISTINCT p.id)
+                    FROM products p
+                    LEFT JOIN having_product hp ON p.id = hp.productID
+                    GROUP BY p.id
+                    HAVING COALESCE(SUM(hp.amount), 0) = 0
+                """;
 
         return handle.createQuery(sql)
-                        .mapTo(Integer.class)
-                        .list()
-                        .size();
+                .mapTo(Integer.class)
+                .list()
+                .size();
+    }
+
+    @Override
+    public void updateStock(int id, int pId, int stock) {
+        log.info("Updating warehouse " + id + " product " + pId + " with stock " + stock);
+        handle.createUpdate("UPDATE having_product SET amount = amount + ? WHERE warehouseID = ? AND productID =?")
+                .bind(0, stock)
+                .bind(1, id)
+                .bind(2, pId)
+                .execute();
     }
 
 }

@@ -180,7 +180,7 @@
                                             <a href="edit-user?id=<%=u.getId()%>">
                                                 <span class="ti-pencil-alt"></span>
                                             </a>
-                                            <a href="">
+                                            <a href="delete-user?id=<%=u.getId()%>">
                                                 <span class="ti-trash"></span>
                                             </a>
                                         </td>
