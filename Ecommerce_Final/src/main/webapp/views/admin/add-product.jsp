@@ -267,11 +267,89 @@
                 </c:if>
 
                 <c:if test="${CMD eq 'add-category'}">
+                    <div class="form-container">
+                        <!-- Left section: Image upload and button -->
+                        <div class="left-section">
+                            <div class="img-upload">
+                                <label for="productImg">Product Image</label>
+                                <div class="img-preview">No Image</div>
+                                <input type="file" id="productImg" name="productImg" accept="image/*">
+                            </div>
+                        </div>
 
+                        <!-- Right section: Product details -->
+                        <div class="right-section">
+
+                            <!-- Display error message -->
+                            <c:if test="${not empty errorMessage}">
+                                <div style="color: red;">
+                                        ${errorMessage}
+                                </div>
+                            </c:if>
+
+                            <!-- Display success message -->
+                            <c:if test="${not empty successMessage}">
+                                <div style="color: greenyellow;">
+                                        ${successMessage}
+                                </div>
+                            </c:if>
+
+                            <h2>Create new category</h2>
+                            <form method="post" action="/admin/add-category">
+                                <!-- Name and Category on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Category Name</label>
+                                        <input type="text" id="name" name="name" placeholder="Enter new category" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="create-btn">Update</button>
+                            </form>
+                        </div>
+                    </div>
                 </c:if>
 
                 <c:if test="${CMD eq 'edit-category'}">
+                    <div class="form-container">
+                        <!-- Left section: Image upload and button -->
+                        <div class="left-section">
+                            <div class="img-upload">
+                                <label for="productImg">Product Image</label>
+                                <div class="img-preview">No Image</div>
+                                <input type="file" id="productImg" name="productImg" accept="image/*">
+                            </div>
+                        </div>
 
+                        <!-- Right section: Product details -->
+                        <div class="right-section">
+
+                            <!-- Display error message -->
+                            <c:if test="${not empty errorMessage}">
+                                <div style="color: red;">
+                                        ${errorMessage}
+                                </div>
+                            </c:if>
+
+                            <!-- Display success message -->
+                            <c:if test="${not empty successMessage}">
+                                <div style="color: greenyellow;">
+                                        ${successMessage}
+                                </div>
+                            </c:if>
+
+                            <h2>Create new category</h2>
+                            <form method="post" action="/admin/edit-category">
+                                <!-- Name and Category on the same row -->
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="name">Category Name</label>
+                                        <input type="text" id="name" name="name" placeholder="${c.cateName}" required>
+                                    </div>
+                                </div>
+                                <button type="submit" class="create-btn">Update</button>
+                            </form>
+                        </div>
+                    </div>
                 </c:if>
 
             </div>

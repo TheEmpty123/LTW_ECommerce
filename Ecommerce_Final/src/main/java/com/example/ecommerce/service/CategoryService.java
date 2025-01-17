@@ -57,4 +57,16 @@ public class CategoryService extends ServiceBase{
         var b = a.getAllCategoryDto();
         b.forEach(System.out::println);
     }
+
+    public Category getCategoryByName(String name) {
+        Category c = null;
+        try {
+            c = categoryDao.getCategoryByName(name);
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            return null;
+        }
+        return c;
+    }
 }

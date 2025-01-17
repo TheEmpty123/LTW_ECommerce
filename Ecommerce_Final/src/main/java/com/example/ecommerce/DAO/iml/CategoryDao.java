@@ -39,8 +39,7 @@ public class CategoryDao extends ImplementBase implements ICategoryDao {
     @Override
     public boolean addCategory(int id, String cateName) {
         return conn.jdbi.withHandle(handle ->
-                handle.createUpdate("insert into category(id, cateName) values (:id, :cateName)")
-                    .bind("id", id)
+                handle.createUpdate("insert into category(cateName) values (:cateName)")
                     .bind("cateName", cateName)
                     .execute() > 0);
     }
@@ -63,9 +62,19 @@ public class CategoryDao extends ImplementBase implements ICategoryDao {
         );
     }
 
+    @Override
+    public Category getCategoryByName(String name) {
+        log.info("Get Category by name: " + name);
+        return handle.createQuery("SELECT * FROM category WHERE cateName = ?")
+                .bind(0, name)
+                .mapToBean(Category.class)
+                .findOne().orElse(null);
+    }
+
 
     public static void main(String[] args) {
         CategoryDao dao = new CategoryDao();
-        dao.log.info("test");
+        var a = dao.getCategoryById(1);
+        System.out.println(a);
     }
 }

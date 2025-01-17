@@ -46,8 +46,9 @@ public class ProductService extends ServiceBase {
 
     public boolean addNewProduct(Product p) {
         log.info("ProductService addNewProduct...");
-        boolean b = productDao.addNewProduct(p) > 0;
-        return b;
+        int pid = productDao.addNewProduct(p);
+        productDao.addProductToAllWarehouse(pid);
+        return true;
     }
 
     public Product getProductById(int id) {

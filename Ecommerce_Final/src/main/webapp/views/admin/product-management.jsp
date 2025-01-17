@@ -1052,7 +1052,7 @@
                             <div class="search-wrapper">
                                 <h3>All Category List</h3>
                                 <div class="pagination">
-                                    <a href="/admin/add-product" class="add-product-btn">Add product</a>
+                                    <a href="/admin/add-category" class="add-product-btn">Add New Category</a>
                                 </div>
                             </div>
                         </div>

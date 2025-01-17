@@ -16,4 +16,5 @@ public interface ICategoryDao {
     //Xóa một category
     boolean deleteCategory(int id);
 
+    Category getCategoryByName(String name);
 }
