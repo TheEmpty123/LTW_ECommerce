@@ -127,7 +127,8 @@
         <div id="background-trans" hidden class="mfp-bg mfp-ready"></div>
         <div class="header-bottom-hd">
             <div class="logo-hd">
-                <a href="${pageContext.request.contextPath}/kenes"><img src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
+                <a href="${pageContext.request.contextPath}/kenes"><img
+                        src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt="Logo">
                 </a>
             </div>
             <nav class="main-nav">
@@ -229,9 +230,20 @@
 
             <div class="summary-item">
                 <p>Thành tiền</p>
-                <p style="font-weight: bold; white-space: nowrap;">
-                    <fmt:formatNumber value="${sessionScope.cart.total}" type="number"
-                                      groupingUsed="true"/> đ
+                <%--                <p style="font-weight: bold; white-space: nowrap;">--%>
+                <%--                    <fmt:formatNumber value="${sessionScope.cart.total}" type="number"--%>
+                <%--                                      groupingUsed="true"/> đ--%>
+                <div class="col-sm-6 col-md-6 t-bold total-price">
+                    <p id="total-after-promotion" class="total-cart">
+                        <c:if test="${sessionScope.auth == null}">
+                            <f:formatNumber type="number" currencySymbol="đ" value="0.0"/>
+                        </c:if>
+                        <c:if test="${sessionScope.auth != null}">
+                            <f:formatNumber type="number" currencySymbol="đ"
+                                            value="${sessionScope.valueOfPromotion}"/>
+                        </c:if>
+                    </p>
+                </div>
             </div>
             <h3>THÔNG TIN THÊM</h3>
             <label>Lưu ý cho đơn hàng (tùy chọn)</label>
@@ -287,8 +299,8 @@
                 <p4><strong>Địa chỉ mới</strong></p4>
             </div>
             <label>Họ và tên *</label>
-            <input style="width: 400px;height: 50px" type="text" name="name" value="${address[0].user.fullName}"
-                   readonly required>
+            <input style="width: 400px;height: 50px" type="text" name="name" placeholder="Nhập họ tên của bạn"
+                   required>
 
             <label>Số điện thoại *</label>
             <input type="text" style="width: 400px;height: 50px" name="phone" placeholder="Nhập số điện thoại của bạn">
@@ -559,7 +571,8 @@
             <!-- Left Column -->
             <div class="footer-column">
                 <h3>KẾT NỐI VỚI KANE'S</h3>
-                <img href="${pageContext.request.contextPath}/kenes" src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
+                <img href="${pageContext.request.contextPath}/kenes"
+                     src="${pageContext.request.contextPath}/public/images/logos/logo3.png" alt=" Logo"
                      class="footer-logo">
                 <p>FOLLOW US</p>
                 <p>Instagram – Youtube – Facebook</p>

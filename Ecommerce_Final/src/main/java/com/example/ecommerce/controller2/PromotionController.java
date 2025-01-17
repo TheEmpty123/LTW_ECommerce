@@ -61,6 +61,8 @@ public class PromotionController extends HttpServlet {
         }
 
         double result = cart.getTotal() - value;
+        session.setAttribute("valueOfPromotion", result);
+        session.setAttribute("cart", cart);
 
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
