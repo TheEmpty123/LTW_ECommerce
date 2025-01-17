@@ -10,13 +10,14 @@ import java.sql.*;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.time.LocalDateTime;
 
 
 public class InsertData {
-    static String p = "E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
+    static String p = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\";
 
     public static void main(String[] args) throws SQLException, IOException, ClassNotFoundException {
-        String jsonFilePath = "E:\\Study\\LTW\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
+        String jsonFilePath = "D:\\LTW\\LTW_project\\Ecommerce_Final\\src\\main\\webapp\\public\\json\\product-details.json";
 
         try {
             // Read the JSON file
@@ -75,12 +76,16 @@ public class InsertData {
             content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
             JSONArray orderItems = new JSONArray(content);
 
+            jsonFilePath = p + "having-product.json";
+            content = new String(Files.readAllBytes(Paths.get(jsonFilePath)));
+            JSONArray havingProducts = new JSONArray(content);
+
             // Database connection
             String url = "jdbc:mysql://127.0.0.1:3306/ltw?useUnicode=true&characterEncoding=utf-8";
             String user = "root";
             String password = "";
 
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
 
             try (Connection conn = DriverManager.getConnection(url, user, password)) {
 
@@ -95,7 +100,7 @@ public class InsertData {
                     String title = product.getString("title");
                     double price = parsePrice(product.getString("price"));
                     String description = product.optString("description", "");
-                    String thumb = "Ecommerce_Final\\src\\main\\webapp\\public\\images\\all-products\\" + (i+1) + ".jpg"; // Add your logic for thumbnails
+                    String thumb = "public/images/all-products/" + (i+1) + ".jpg"; // Add your logic for thumbnails
                     String category = extractCategory(product.getString("category"));
                     String[] attributes = parseAttributes(product.getString("attribute"));
                     String material = attributes[0];
@@ -195,9 +200,10 @@ public class InsertData {
                     int productID = rating.getInt("productID");
                     int stars = rating.getInt("stars");
                     String commentRate  = rating.getString("commentRate");
+                    String dateRate = rating.getString("dateRate");
 
-                    InsertRating(conn, userID,productID, stars, commentRate);
-                    System.out.println("Inserted rating: " + userID + " " + productID + " " + stars + " " + commentRate);
+                    InsertRating(conn, userID,productID, stars, commentRate,dateRate);
+                    System.out.println("Inserted rating: " + userID + " " + productID + " " + stars + " " + commentRate + " " + dateRate);
                 }
 
                 // promotion
@@ -260,6 +266,16 @@ public class InsertData {
                     System.out.println("Inserted order item " + orderItem);
                 }
 
+                // having product
+                for (int i = 0; i < havingProducts.length(); i++){
+                    JSONObject havingProduct = havingProducts.getJSONObject(i);
+                    int productID = havingProduct.getInt("productID");
+                    int warehouseID = havingProduct.getInt("warehouseID");
+                    int amount = havingProduct.getInt("amount");
+
+                    insertHavingProduct(conn, warehouseID, productID, amount);
+                    System.out.println("Added having product " + productID + " with amount " + amount);
+                }
 
             } catch (SQLException e) {
                 System.out.println("Can not connect to database, please check your connection or url.");
@@ -271,6 +287,20 @@ public class InsertData {
 
         System.out.println("Disconnected from database");
 
+    }
+
+    private static void insertHavingProduct(Connection conn, int warehouseID, int productID, int amount) {
+        String sql = "insert into having_product values(?,?,?)";
+
+        try(PreparedStatement ps = conn.prepareStatement(sql)){
+            ps.setInt(1, warehouseID);
+            ps.setInt(2, productID);
+            ps.setInt(3, amount);
+            ps.executeUpdate();
+        }
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     private static void insertOrderItems(Connection conn, JSONObject orderItem, int productID, int amount) {
@@ -351,14 +381,15 @@ public class InsertData {
         }
     }
 
-    private static void InsertRating(Connection conn, int userID, int productID, int stars, String commentRate) {
-        String sql = "insert into ratings values(?,?,?,?)";
+    private static void InsertRating(Connection conn, int userID, int productID, int stars, String commentRate, String dateRate) {
+        String sql = "insert into ratings values(?,?,?,?,?)";
 
         try (PreparedStatement ps = conn.prepareStatement(sql)){
             ps.setInt(1, userID);
             ps.setInt(2, productID);
             ps.setInt(3, stars);
             ps.setString(4, commentRate);
+            ps.setString(5, dateRate);
             ps.executeUpdate();
         }
         catch (SQLException e) {
@@ -409,7 +440,7 @@ public class InsertData {
         }
     }
 
-    private static void insertUsers(Connection conn, String username, String fullname, String gender, String pass, String email, String phone, String statusUser, String createDate, String avatar, int role) {
+    public static void insertUsers(Connection conn, String username, String fullname, String gender, String pass, String email, String phone, String statusUser, String createDate, String avatar, int role) {
         pass = hashPassword(pass);
         String sql = "INSERT INTO users" +
                 "(username, fullName, gender, pass, email, phoneNum, statusUser, createUser, avatar, roleID) " +

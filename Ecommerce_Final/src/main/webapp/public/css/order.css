@@ -7,7 +7,7 @@ body,html {
 .container {
     display: flex;
     gap: 20px;
-    padding: 20px; 
+    padding: 20px;
 }
 
 .shipping-address, .order-summary {
@@ -32,12 +32,12 @@ label {
     margin-bottom: 5px;
 }
 
-.container input[type="text"], input[type="email"], select, textarea {
+.container textarea {
     width: 100%;
     padding: 10px;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    border-radius: 4px;  
+    border-radius: 4px;
 }
 
 .checkbox-label {
@@ -111,10 +111,15 @@ textarea {
     border: none;
 }
 .content-area{
-    width: 100%; 
-    height: 300px; 
+    width: 100%;
+    height: 300px;
     overflow-y: scroll;
 }
 .pay-bank{
     padding: 10px;
+}
+
+
+#abc{
+    width: 200px;
 }

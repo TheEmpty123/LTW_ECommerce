@@ -3,9 +3,11 @@ package com.example.ecommerce.Common;
 public abstract class ManagerBase implements IInitializable{
     protected final LogObj log = new LogObj();
     protected String logName = getClass().getName();
+    protected boolean initialized = false;
 
     @Override
     public void Initialize() {
+        if (initialized) return;
         log.setName(logName);
         log.info("Initialize commerce...");
 
@@ -14,6 +16,7 @@ public abstract class ManagerBase implements IInitializable{
 
     protected void endInitialize(boolean status) {
         log.info("Initialize completed with status:" + status);
+        initialized = status;
         endInitializeBehavior();
     }
 

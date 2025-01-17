@@ -1,40 +1,51 @@
-package com.example.ecommerce.DAO.db;
+package com.example.ecommerce.Database;
 
+import com.example.ecommerce.Bean.Order;
 import com.example.ecommerce.Common.IInitializable;
 import com.example.ecommerce.Common.ManagerBase;
+
 import com.mysql.cj.jdbc.MysqlDataSource;
 import org.jdbi.v3.core.Jdbi;
 
 import java.sql.SQLException;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 public class JDBIConnect extends ManagerBase {
-    private boolean status = false;
-    private String url;
-    private Jdbi jdbi;
+    private boolean status;
+    public Jdbi jdbi;
     private MysqlDataSource src;
 
-    private IInitializable[] primaryManager;
-    private DBProperties properties = new DBProperties();
+    private final IInitializable[] primaryManager;
+    private final DBProperties properties = new DBProperties();
+
+    public static JDBIConnect Instance;
 
     public static JDBIConnect getInstance() {
-        return new JDBIConnect();
+        if (Instance == null) {
+            return Instance = new JDBIConnect();
+        }
+        return Instance;
     }
 
-    JDBIConnect(){
-        primaryManager = new IInitializable[] {
+    public JDBIConnect() {
+        primaryManager = new IInitializable[]{
                 properties
         };
         Initialize();
     }
 
+    public Jdbi getJdbi() {
+        createConnect();
+        return jdbi;
+    }
+
     @Override
     protected void startInitializeBehavior() {
-        Arrays.stream(primaryManager).forEach(o -> o.Initialize());
+        status = false;
+        Arrays.stream(primaryManager).forEach(IInitializable::Initialize);
 
         log.info("Prepare for connection");
-        url = "jdbc:mysql://" +
+        String url = "jdbc:mysql://" +
                 properties.host + ":" +
                 properties.port + "/" +
                 properties.dbname + "?" +
@@ -50,38 +61,42 @@ public class JDBIConnect extends ManagerBase {
         try {
             src.setUseCompression(true);
             src.setAutoReconnect(true);
-        }
-        catch (SQLException e) {
+        } catch (SQLException e) {
             log.error("Error setting up database connection");
             log.error(new RuntimeException(e));
             status = false;
-            endInitialize(status);
+            endInitialize(false);
+            return;
         }
 
         status = true;
-        endInitialize(status);
+        endInitialize(true);
     }
 
     @Override
     protected void endInitializeBehavior() {
-        if(!status){
+        if (!status) {
             log.error("Unable to correctly initialize database connection");
             return;
         }
         log.info("Connecting to database");
+
         createConnect();
+
     }
 
     private void createConnect() {
-        jdbi = Jdbi.create(src);
+        jdbi = jdbi.create(src);
     }
 
     public static void main(String[] args) {
         JDBIConnect db = new JDBIConnect();
+        var a = db.jdbi.withHandle(handle -> handle
+                        .createQuery("SELECT * FROM orders")
+                        .mapToBean(Order.class)
+                        .list());
 
-        List<Object> products = db.jdbi.withHandle(handle -> {
-            return handle.createQuery("select * from products").mapToBean(Object.class).list();
-        });
-        System.out.println(products);
+        a.forEach(System.out::println);
+
     }
 }

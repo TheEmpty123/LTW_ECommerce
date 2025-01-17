@@ -8,10 +8,11 @@
 <%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix = "f" uri = "http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Quên mật khẩu</title>
-    <link rel="stylesheet" href="../../../../public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">

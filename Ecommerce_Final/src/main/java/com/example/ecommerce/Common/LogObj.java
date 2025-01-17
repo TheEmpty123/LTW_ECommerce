@@ -9,7 +9,7 @@ public class LogObj{
 
     private String _name;
 
-    LogObj(){
+    public LogObj(){
         this._name = null;
     }
 
@@ -52,7 +52,7 @@ public class LogObj{
                 , pad
                 , FormateDate(new Date())
                 , (_name != null ? "[" + _name + "]" : "")
-                , (extraName != "" ? "[" + extraName + "]" : "")
+                , (!extraName.equals("") ? "[" + extraName + "]" : "")
                 , msg);
     }
 

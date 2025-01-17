@@ -1,4 +1,4 @@
-package com.example.ecommerce.DAO.db;
+package com.example.ecommerce.Database;
 
 import com.example.ecommerce.Common.ManagerBase;
 
@@ -44,7 +44,7 @@ public class DBProperties extends ManagerBase {
             port = Integer.parseInt(prop.getProperty("db.port"));
         }catch (NumberFormatException e){
             port = 3306;
-            log.error("Error parsing port, using 3306");
+            log.warn("Error parsing port, using 3306");
         }
 
         endInitialize(true);
