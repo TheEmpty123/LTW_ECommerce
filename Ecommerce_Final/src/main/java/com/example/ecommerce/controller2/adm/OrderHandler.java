@@ -64,6 +64,9 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
             request.setAttribute("ord", order);
             request.setAttribute("u", u);
 
+            var oi = MC.instance.orderService.getAllOrderItemDtoFromOrder(id);
+            request.setAttribute("oi", oi);
+
             String code = "";
             if (order.getPromotion_id() != null && (!order.getPromotion_id().equals(""))) {
                 var pro = MC.instance.promotionService.getPromotionById(Integer.parseInt(order.getPromotion_id()));
@@ -176,6 +179,9 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
             User u = MC.instance.userService.getUserByID(orderr.getUserID());
             request.setAttribute("u", u);
             request.setAttribute("ord", orderr);
+
+            var oi = MC.instance.orderService.getAllOrderItemDtoFromOrder(id);
+            request.setAttribute("oi", oi);
 
             String code = "";
             if (order.getPromotion_id() != null && (!order.getPromotion_id().equals(""))) {
