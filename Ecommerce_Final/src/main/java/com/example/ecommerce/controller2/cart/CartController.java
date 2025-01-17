@@ -8,6 +8,7 @@ import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.service.CategoryService;
 import com.example.ecommerce.service.ProductService;
 import com.example.ecommerce.service.PromotionService;
+import com.example.ecommerce.service.WarehouseService;
 import com.google.gson.Gson;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -68,6 +69,7 @@ public class CartController extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        WarehouseService warehouseService = WarehouseService.getInstance();
         HttpSession session = req.getSession(true);
         Cart cart = (Cart) session.getAttribute("cart");
         if (cart == null) {
@@ -91,7 +93,7 @@ public class CartController extends HttpServlet {
             String action = req.getParameter("action");
             if ("remove".equals(action)) {
                 cart.remove(newItem.getId());
-            }else if ("plus".equals(action)) {
+            } else if ("plus".equals(action)) {
                 // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
                 for (CartProduct item : cart.getList()) {
                     if (item.getId() == (newItem.getId())) {
@@ -100,13 +102,19 @@ public class CartController extends HttpServlet {
                     }
                 }
 
-            }else {
+            } else {
                 // Kiểm tra sản phẩm có tồn tại trong giỏ chưa
                 boolean exists = false;
                 for (CartProduct item : cart.getList()) {
                     if (item.getId() == (newItem.getId())) {
-                        cart.update(item.getId(), item.getQuantity() + 1);
-                        System.out.println(newItem.getId());
+                        int t = warehouseService.getAmountProductInWarehouse(item.getId());
+                        int h = item.getQuantity() + 1;
+                        System.out.println(h + "<"+t);
+                        if (h<=t) {
+                            cart.update(item.getId(), item.getQuantity() + 1);
+                        }else{
+                            cart.update(item.getId(), item.getQuantity());
+                        }
                         exists = true;
                         break;
                     }
@@ -119,7 +127,7 @@ public class CartController extends HttpServlet {
                 }
             }
             total = cart.getTotal();
-            session.setAttribute("valueOfPromotion",cart.getTotal());
+            session.setAttribute("valueOfPromotion", cart.getTotal());
             session.setAttribute("cart", cart);
         }
         // Tạo JSON trả về
@@ -138,12 +146,15 @@ public class CartController extends HttpServlet {
             this.totalPrice = totalPrice;
             this.userName = userName;
         }
+
         public List<CartProduct> getLists() {
             return lists;
         }
+
         public double getTotalPrice() {
             return totalPrice;
         }
+
         public String getUserName() {
             return userName;
         }

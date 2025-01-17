@@ -2,6 +2,7 @@ package com.example.ecommerce.DAO.iml;
 
 import com.example.ecommerce.Bean.Warehouse;
 import com.example.ecommerce.DAO.interf.IWarehouseDao;
+import com.example.ecommerce.service.WarehouseService;
 import org.jdbi.v3.core.Jdbi;
 
 import java.util.ArrayList;
@@ -94,6 +95,14 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
                 .one();
     }
 
+    public int getAmountProductInWarehouse(int productId) {
+            return handle.createQuery("select sum(hp.amount) from having_product hp join warehouse w on hp.warehouseID = w.id where hp.productID = ? group by hp.productID")
+                    .bind(0, productId)
+                    .mapTo(Integer.class)
+                    .findOne()
+                    .orElse(0);
+    }
+
     @Override
     public int totalInStock() {
         log.info("Querying total inStock");
@@ -130,4 +139,5 @@ public class WarehouseDao extends ImplementBase implements IWarehouseDao {
                 .bind(2, pId)
                 .execute();
     }
+
 }
