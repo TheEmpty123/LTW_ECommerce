@@ -32,7 +32,7 @@ $(document).ready(function () {
                                         <a href="/admin/edit-product?id=${product.id}">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
-                                        <a href="#">
+                                        <a href="sub-stock?id=${product.id}">
                                             <span class="ti-trash"></span>
                                         </a>
                         </td>

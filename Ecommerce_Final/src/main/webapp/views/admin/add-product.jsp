@@ -240,7 +240,7 @@
                             </c:if>
 
                             <h2>Update #${product.id} ${product.proName}</h2>
-                            <form method="post" action="/admin/add-stock">
+                            <form method="post" action="${action}">
                                 <!-- Name and Category on the same row -->
                                 <div class="form-row">
                                     <div class="form-group">

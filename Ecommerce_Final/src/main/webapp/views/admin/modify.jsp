@@ -75,6 +75,7 @@
                 <div class="activity-card">
                     <div class="form-container">
                         <div class="left-section">
+                            <h2>Chi tiết đơn hàng</h2>
                         </div>
                         <div class="right-section">
                             <h2>Order Information</h2>
