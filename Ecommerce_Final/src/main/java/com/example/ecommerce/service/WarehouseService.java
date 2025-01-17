@@ -17,6 +17,7 @@ public class WarehouseService extends ServiceBase {
     public static WarehouseService getInstance() {
         if (instance == null) {
             instance = new WarehouseService();
+            instance.warehouseDao = new WarehouseDao();
         }
         return instance;
     }
@@ -56,6 +57,9 @@ public class WarehouseService extends ServiceBase {
 
     public int totalOutOfStock() {
         return warehouseDao.totalOutOfStock();
+    }
+    public int getAmountProductInWarehouse(int productId){
+        return warehouseDao.getAmountProductInWarehouse(productId);
     }
 
     public static void main(String[] args) {
