@@ -3,7 +3,8 @@
 <%@ page import="com.example.ecommerce.Bean.Promotion" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.Locale" %><%--
+<%@ page import="java.util.Locale" %>
+<%@ page import="com.example.ecommerce.Common.Enum.PromotionStatus" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -18,7 +19,7 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
-    <title>Product Management</title>
+    <title>Management</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lykmapipo/themify-icons@0.1.2/css/themify-icons.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/admin/style.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/admin/popup.css">
@@ -43,10 +44,10 @@
     <c:if test="${CMD eq 'products'}">
         <!-- Pop up -->
 
-        <div id="iframePopup" class="modal">
+        <div id="iframePopup" class="modal" style="display: none">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <iframe src="add-stock.jsp" frameborder="0"></iframe>
+                <iframe src="${pageContext.request.contextPath}/views/admin/add-stock.jsp" frameborder="0"></iframe>
             </div>
         </div>
 
@@ -251,7 +252,7 @@
                                 <span class="ti-search"></span>
                                 <input type="search" placeholder="Search content here...">
                                 <div class="pagination">
-                                    <a href="add-product.jsp" class="add-product-btn">Add product</a>
+                                    <a href="/admin/add-product" class="add-product-btn">Add product</a>
                                 </div>
 
                             </div>
@@ -819,7 +820,7 @@
                                             <%
                                                 var status = u.getStatusOfPro();
                                                 switch (status) {
-                                                    case "available": {
+                                                    case AVAILABLE: {
                                             %>
                                             <span class="badge success">
                                                     <span class="ti-check"></span>
@@ -828,7 +829,7 @@
                                             <%
                                                     break;
                                                 }
-                                                case "expired": {
+                                                case EXPIRED: {
 
                                             %>
                                             <span class="badge warning">
@@ -992,7 +993,7 @@
                                             %>
                                         </td>
                                         <td>
-                                            <a href="edit-payment?id=<%=u.getId()%>">
+                                            <a href="edit-order?id=<%=u.getId()%>">
                                                 <span class="ti-pencil-alt"></span>
                                             </a>
                                         </td>
@@ -1098,9 +1099,9 @@
 
 </div>
 <script src="${pageContext.request.contextPath}/public/js/admin/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/public/js/admin/popup.js"></script>
 <c:if test="${CMD eq 'products'}">
     <script src="${pageContext.request.contextPath}/public/js/admin/product.js"></script>
 </c:if>
+<%--<script src="${pageContext.request.contextPath}/public/js/admin/popup.js"></script>--%>
 </body>
 </html>

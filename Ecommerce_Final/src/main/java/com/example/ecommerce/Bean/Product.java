@@ -117,4 +117,11 @@ public class Product implements Serializable {
                 ", atributeID=" + atributeID +
                 "}";
     }
+
+    public static void main(String[] args) {
+        String input = "1,000,000,000";
+        input = input.replace(",", ""); // Remove commas
+        long number = Long.parseLong(input); // Parse the string to a long
+        System.out.println(number); // Output: 1000000000
+    }
 }

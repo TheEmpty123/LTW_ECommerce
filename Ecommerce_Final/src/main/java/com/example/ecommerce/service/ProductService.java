@@ -1,6 +1,9 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.Bean.Product;
+import com.example.ecommerce.Bean.ProductAttribute;
+import com.example.ecommerce.Common.Exception.ProductNotFoundException;
+import com.example.ecommerce.DAO.iml.ProductAttributeDao;
 import com.example.ecommerce.DAO.iml.ProductDao;
 import com.example.ecommerce.DAO.interf.IProductDTO;
 import com.example.ecommerce.Dto.ProductDto;
@@ -15,6 +18,7 @@ public class ProductService extends ServiceBase {
     private static ProductService instance;
     static Map<String, String> data = new HashMap<>();
     private ProductDao productDao = new ProductDao();
+    private ProductAttributeDao paDao;
 
     public ProductService() {
         super();
@@ -25,12 +29,7 @@ public class ProductService extends ServiceBase {
     public void init() {
         log.info("ProductService init...");
         productDao = new ProductDao();
-        try {
-            var j = productDao.getJdbi();
-            j.installPlugin(new SqlObjectPlugin());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        paDao = new ProductAttributeDao();
     }
 
     public List<Product> getAllProducts() {
@@ -45,8 +44,10 @@ public class ProductService extends ServiceBase {
         return instance;
     }
 
-    public void addNewProduct(int id, String name, int price, String description, String thumb, LocalDateTime create_at, int cateID, int attributeID) {
-        productDao.addNewProduct(id, name, price, description, thumb, create_at, cateID, attributeID);
+    public boolean addNewProduct(Product p) {
+        log.info("ProductService addNewProduct...");
+        boolean b = productDao.addNewProduct(p) > 0;
+        return b;
     }
 
     public Product getProductById(int id) {
@@ -74,6 +75,12 @@ public class ProductService extends ServiceBase {
     }
 
     public List<ProductDto> getAllProductsDto() {
+        try {
+            var j = productDao.getJdbi();
+            j.installPlugin(new SqlObjectPlugin());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return productDao.getJdbi().withExtension(IProductDTO.class, IProductDTO::getAllProducts);
     }
 
@@ -101,6 +108,29 @@ public class ProductService extends ServiceBase {
         return li;
     }
 
+    public List<Product> getProductByFilter(String sort, String material) {
+        return productDao.getProductByFilter(sort, material);
+    }
+
+    public Product getProductByName(String productName) {
+        log.info("ProductService getProductByName...");
+
+        Product p = null;
+        try {
+            p = productDao.getProductByName(productName);
+        }
+        catch (ProductNotFoundException e){
+            return null;
+        }
+
+        return p;
+    }
+
+    public ProductAttribute addProductAttribute(ProductAttribute pa){
+        log.info("ProductService addProductAttribute...");
+        return paDao.addAttribute(pa);
+    }
+
     public static void main(String[] args) {
         var a = new ProductService();
         a.init();
@@ -111,8 +141,19 @@ public class ProductService extends ServiceBase {
         c.forEach(System.out::println);
     }
 
-    public List<Product> getProductByFilter(String sort, String material) {
-        return productDao.getProductByFilter(sort, material);
+    public ProductAttribute getProductAttributeByID(int atributeID) {
+        log.info("ProductService getProductAttributeByID...");
+        return paDao.getById(atributeID);
+    }
+
+    public boolean updateProduct(Product p) {
+        log.info("ProductService updateProduct...");
+        return productDao.updateProduct(p);
+    }
+
+    public boolean updateAttribute(ProductAttribute a) {
+        log.info("ProductService updateAttribute...");
+        return paDao.updateMaterial(a.getId(), a.getMaterial()) && paDao.updateSize(a.getId(),a.getSize());
     }
 }
 

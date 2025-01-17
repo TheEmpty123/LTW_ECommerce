@@ -2,6 +2,9 @@ package com.example.ecommerce.DAO.interf;
 
 import com.example.ecommerce.Bean.Product;
 import com.example.ecommerce.Common.Enum.ProductFilter;
+import com.example.ecommerce.Common.Exception.ProductNotFoundException;
+import org.jdbi.v3.sqlobject.config.RegisterBeanMapper;
+import org.jdbi.v3.sqlobject.statement.SqlQuery;
 
 import java.time.LocalDateTime;
 import java.util.*;
@@ -10,7 +13,7 @@ public interface IProductDAO {
     // Total records size in database
     int recordSize();
 
-    public Product addNewProduct(int id, String name, int price, String description, String thumb, LocalDateTime create_at, int cateID, int attributeID);
+    public int addNewProduct(Product product);
 
     // Get product by id
     Product getProductById(int id);
@@ -37,4 +40,8 @@ public interface IProductDAO {
     List<Product> getProductByFilter(ProductFilter filter);
 
     List<Product> getProductByFilter(String sort, String material);
+
+    Product getProductByName(String productName) throws ProductNotFoundException;
+
+    boolean updateProduct(Product p);
 }

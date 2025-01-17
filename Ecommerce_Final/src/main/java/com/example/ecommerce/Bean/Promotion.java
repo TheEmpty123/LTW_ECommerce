@@ -1,19 +1,20 @@
 package com.example.ecommerce.Bean;
 
+import com.example.ecommerce.Common.Enum.DiscountType;
+import com.example.ecommerce.Common.Enum.PromotionStatus;
+
 import java.io.Serializable;
 import java.text.NumberFormat;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.Locale;
 
 public class Promotion implements Serializable {
     private int id;
     private String codes;
-    private String type;
+    private DiscountType type;
     private int limitPro;
     private double valueOfPro;
-    private String statusOfPro;
+    private PromotionStatus statusOfPro;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
     private String fullValueOfPro;
@@ -21,7 +22,7 @@ public class Promotion implements Serializable {
     public Promotion() {
     }
 
-    public Promotion(int id, String codes, String type, int limitePro, double valueOfPro, String statusOfPro, LocalDateTime startDate, LocalDateTime endDate) {
+    public Promotion(int id, String codes, DiscountType type, int limitePro, double valueOfPro, PromotionStatus statusOfPro, LocalDateTime startDate, LocalDateTime endDate) {
         this.id = id;
         this.codes = codes;
         this.type = type;
@@ -51,11 +52,11 @@ public class Promotion implements Serializable {
         this.codes = codes;
     }
 
-    public String getType() {
+    public DiscountType getType() {
         return type;
     }
 
-    public void setType(String type) {
+    public void setType(DiscountType type) {
         this.type = type;
     }
 
@@ -75,11 +76,11 @@ public class Promotion implements Serializable {
         this.valueOfPro = valueOfPro;
     }
 
-    public String getStatusOfPro() {
+    public PromotionStatus getStatusOfPro() {
         return statusOfPro;
     }
 
-    public void setStatusOfPro(String statusOfPro) {
+    public void setStatusOfPro(PromotionStatus statusOfPro) {
         this.statusOfPro = statusOfPro;
     }
 

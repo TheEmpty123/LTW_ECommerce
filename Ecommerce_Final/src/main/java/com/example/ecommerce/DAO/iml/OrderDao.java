@@ -104,7 +104,7 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     @Override
     public Order getOrderById(int id) {
         return db.getJdbi().withHandle(handle ->
-                handle.createQuery("SELECT * FROM orderItem WHERE id = ?")
+                handle.createQuery("SELECT * FROM orders WHERE id = ?")
                         .bind(0, id)
                         .mapToBean(Order.class).one()
         );
@@ -215,6 +215,25 @@ public class OrderDao extends ImplementBase implements IOrderDao {
                 .mapToBean(Order.class).list();
 
         return o.size();
+    }
+
+    @Override
+    public int updateOrder(int id, String phone, ShippingStatus status) {
+        log.info("Updating order...");
+        return handle.createUpdate("UPDATE orders SET sdt = ?, shippingStatus = ? WHERE id = ?")
+                .bind(0, phone)
+                .bind(1, status)
+                .bind(2, id)
+                .execute();
+    }
+
+    @Override
+    public int updatePayment(int id, Statuss statuss) {
+        log.info("Updating payment of order...");
+        return handle.createUpdate("UPDATE payment SET statuss = ? WHERE id = ?")
+                .bind(0, statuss)
+                .bind(1, id)
+                .execute();
     }
 
     public static void main(String[] args) {

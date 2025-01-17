@@ -29,7 +29,7 @@ $(document).ready(function () {
                                                                 <a href="#" class="openIframePopup">
                                             <span class="ti-plus"></span>
                                         </a>
-                                        <a href="edit-product.jsp">
+                                        <a href="/admin/edit-product?id=${product.id}">
                                             <span class="ti-pencil-alt"></span>
                                         </a>
                                         <a href="#">
@@ -45,4 +45,33 @@ $(document).ready(function () {
             console.error("Failed to fetch product data");
         },
     });
+});
+
+// Get Modal Elements
+const iframeModal = document.getElementById('iframePopup');
+// const openIframeButton = document.getElementById('openIframePopup');
+const closeIframeModal = document.querySelector('.close');
+
+const allIframeLinks = document.querySelectorAll('a[class="openIframePopup"]');
+allIframeLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        iframeModal.style.display = 'block';
+    });
+});
+
+// Open Modal
+// openIframeButton.addEventListener('click', () => {
+//   iframeModal.style.display = 'block';
+// });
+
+// Close Modal
+closeIframeModal.addEventListener('click', () => {
+    iframeModal.style.display = 'none';
+});
+
+// Close Modal on Click Outside
+window.addEventListener('click', (event) => {
+    if (event.target === iframeModal) {
+        iframeModal.style.display = 'none';
+    }
 });
