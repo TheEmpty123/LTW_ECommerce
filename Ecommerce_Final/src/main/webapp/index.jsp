@@ -272,7 +272,7 @@
         </section>
         <section class="new-product-header">
             <h3 href="#">Sản phẩm mới</h3>
-            <a href="#" style="width: 100px;">Xem tất cả</a>
+            <a href="${pageContext.request.contextPath}/list-product" style="width: 100px;">Xem tất cả</a>
         </section>
         <section style="margin-left: 5%; margin-right: 5%; padding-top: 50px;">
             <div class="card-group">
@@ -297,10 +297,17 @@
                             <button style="width: 120px;margin-right:20px;height: 50px; " class="add-to-cart">Thêm vào
                                 giỏ
                             </button>
-                            <button style="width: 100px;height: 50px;background: black;" class="see-more">
-                                <a href="javascript:void(0);"
-                                   onclick="showProductDetails(${product.id}, ${product.atributeID}, ${product.cateID})">
-                                    <p>XEM THÊM</p></a></button>
+<%--                            <button style="text-decoration:none ;color:white;width: 100px;height: 50px;background: black;"--%>
+<%--                                    class="see-more">--%>
+<%--                                <a  href="javascript:void(0);"--%>
+<%--                                   onclick="showProductDetails(${product.id}, ${product.atributeID}, ${product.cateID})">--%>
+<%--                                    <p>XEM THÊM</p></a></button>--%>
+                            <button style="text-decoration:none ;color:white;width: 100px;height: 50px;background: black;"
+                                    class="see-more"
+                                    onclick="showProductDetails(${product.id}, ${product.atributeID}, ${product.cateID})">
+                                XEM THÊM
+                            </button>
+
                         </div>
                     </div>
                 </c:forEach>
