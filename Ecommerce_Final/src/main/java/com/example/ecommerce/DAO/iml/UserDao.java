@@ -40,6 +40,11 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
     }
 
+    public User findIDByEmail(String email) {
+        var u = handle.createQuery("select * from users where users.email = email").mapToBean(User.class).first();
+        return u;
+    }
+
     @Override
     public User getUserById(int id) {
         var a = handle.createQuery("select * from users where id = " + id)
@@ -96,7 +101,8 @@ public class UserDao extends ImplementBase implements IUsersDao {
     public boolean updatePasswordById(int id, String password) {
         return db.getJdbi().withHandle(
                         handle -> handle.createUpdate("update users set password :password where id :id"))
-                .bind(0, id).execute() > 0;
+                .bind(0, id)
+                .bind(1, InsertData.hashPassword(password)).execute() > 0;
     }
 
     @Override
@@ -180,9 +186,9 @@ public class UserDao extends ImplementBase implements IUsersDao {
     public boolean updateUser(User user) {
         log.info("Updating user: " + user);
         int c = 0;
-        if (user.getPass().equals("")){
+        if (user.getPass().equals("")) {
             c = handle.createUpdate("UPDATE users SET " +
-                                        "username = ?, fullName = ?, gender = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                            "username = ?, fullName = ?, gender = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
                     .bind(0, user.getUsername())
                     .bind(1, user.getFullName())
                     .bind(2, user.getGender())
@@ -193,10 +199,9 @@ public class UserDao extends ImplementBase implements IUsersDao {
                     .bind(7, user.getRoleID())
                     .bind(8, user.getId())
                     .execute();
-        }
-        else {
+        } else {
             c = handle.createUpdate("UPDATE users SET " +
-                                    "username = ?, fullName = ?, gender = ?, pass = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                            "username = ?, fullName = ?, gender = ?, pass = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
                     .bind(0, user.getUsername())
                     .bind(1, user.getFullName())
                     .bind(2, user.getGender())
