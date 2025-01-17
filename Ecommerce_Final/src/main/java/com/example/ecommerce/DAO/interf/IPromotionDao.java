@@ -14,7 +14,7 @@ public interface IPromotionDao {
     //lay promotion theo code
     Promotion getByCode(String code);
     //Them mot promotion moi
-    Promotion add(Promotion promotion);
+    int add(Promotion promotion);
     // cap nhat gioi han su dung cua promotion
     boolean updateLimit(int newLimit);
     //Cap nhat gia tri cua promotion

@@ -3,7 +3,8 @@
 <%@ page import="com.example.ecommerce.Bean.Promotion" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.text.NumberFormat" %>
-<%@ page import="java.util.Locale" %><%--
+<%@ page import="java.util.Locale" %>
+<%@ page import="com.example.ecommerce.Common.Enum.PromotionStatus" %><%--
   Created by IntelliJ IDEA.
   User: KhanhDuy
   Date: 12/19/2024
@@ -819,7 +820,7 @@
                                             <%
                                                 var status = u.getStatusOfPro();
                                                 switch (status) {
-                                                    case "available": {
+                                                    case AVAILABLE: {
                                             %>
                                             <span class="badge success">
                                                     <span class="ti-check"></span>
@@ -828,7 +829,7 @@
                                             <%
                                                     break;
                                                 }
-                                                case "expired": {
+                                                case EXPIRED: {
 
                                             %>
                                             <span class="badge warning">

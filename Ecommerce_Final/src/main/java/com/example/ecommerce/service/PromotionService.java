@@ -1,8 +1,10 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.Bean.Promotion;
+import com.example.ecommerce.Common.Enum.DiscountType;
 import com.example.ecommerce.DAO.iml.PromotionDao;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 public class PromotionService extends ServiceBase {
@@ -36,4 +38,24 @@ public class PromotionService extends ServiceBase {
         return promotionDao.getByCode(code);
     }
 
+    public boolean createPromotion(Promotion promotion) {
+        log.info("PromotionService createPromotion...");
+
+        if (promotion.getType() == DiscountType.PERCENTAGE && promotion.getValueOfPro() > 100)
+            return false;
+        if (promotion.getEndDate().isBefore(LocalDateTime.now()))
+            return false;
+
+        int c = 0;
+
+        try {
+            c = promotionDao.add(promotion);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
+
+        return c > 0;
+    }
 }

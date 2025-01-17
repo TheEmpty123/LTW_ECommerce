@@ -68,10 +68,19 @@ public class PromotionDao extends ImplementBase implements IPromotionDao {
         return null;
     }
 
-
     @Override
-    public Promotion add(Promotion promotion) {
-        return null;
+    public int add(Promotion promotion) {
+        log.info("Adding promotion: " + promotion);
+        return handle.createUpdate("INSERT INTO promotions(codes, type, limitPro, valueOfPro, statusOfPro, startDate, endDate) VALUES " +
+                                   "(?,?,?,?,?,?,?)")
+                .bind(0, promotion.getCodes())
+                .bind(1, promotion.getType())
+                .bind(2, promotion.getLimitPro())
+                .bind(3, promotion.getValueOfPro())
+                .bind(4, promotion.getStatusOfPro())
+                .bind(5, promotion.getStartDate())
+                .bind(6, promotion.getEndDate())
+                .execute();
     }
 
     @Override
