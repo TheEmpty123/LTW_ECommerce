@@ -377,8 +377,9 @@ document.addEventListener("DOMContentLoaded", function () {
                             </div>
                             <div class="col-sm-5 col-md-5">
                                 <div class="use-button fake-btn">
-                                    <a href="product?id=${item.id}&atributeID=${item.atributeID}&cateID=${item.cateID}">
-                                        <p>XEM THÊM</p></a>
+                                    <a href="javascript:void(0);"
+                                               onclick="showProductDetails(${item.id}, ${item.atributeID}, ${item.cateID})">
+                                                <p>XEM THÊM</p></a>
                                 </div>
                             </div>
                         </div>
