@@ -49,6 +49,15 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
+        .order-list-box{
+            border: solid 1px black;
+            width: 90%;
+            max-height: 400px;
+            height: auto;
+            margin-top: 30px;
+            overflow-x: hidden;
+            overflow-y: auto;
+        }
     </style>
 </head>
 <body>
@@ -286,6 +295,14 @@
                         <div class="nav-box">Đang giao</div>
                         <div class="nav-box">Đã hoàn thành</div>
                         <div class="nav-box">Trả lại</div>
+                    </div>
+
+                    <div class="order-list-box">
+                        <div class="row">
+                            <div class="col-12 col-md-12">
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
