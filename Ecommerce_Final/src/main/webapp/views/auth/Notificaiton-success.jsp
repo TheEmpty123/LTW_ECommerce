@@ -8,10 +8,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
     <title>Đặt lại mật khẩu thành công</title>
-    <link rel="stylesheet" href="../../../../public/css/password.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/password.css">
 </head>
 <body>
 <div id="container">
@@ -26,7 +27,7 @@
                 <p>Bạn đã đặt lại mật khẩu thành công. Hãy tiếp tục quá trình đăng nhập.</p>
             </div>
             <div class="next submit2">
-                <a href="login.html" class="btn">Đăng nhập</a>
+                <a href="${pageContext.request.contextPath}/login" class="btn">Đăng nhập</a>
             </div>
         </div>
     </div>

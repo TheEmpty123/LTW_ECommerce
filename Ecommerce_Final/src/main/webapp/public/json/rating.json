@@ -3,120 +3,140 @@
     "userID": 1,
     "productID": 101,
     "stars": 5,
-    "commentRate": "Excellent product! Highly recommended."
+    "commentRate": "Excellent product! Highly recommended.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 2,
     "productID": 102,
     "stars": 4,
-    "commentRate": "Good product, but the packaging could be better."
+    "commentRate": "Good product, but the packaging could be better.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 3,
     "productID": 103,
     "stars": 3,
-    "commentRate": "Decent, but it did not meet my expectations."
+    "commentRate": "Decent, but it did not meet my expectations.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 4,
     "productID": 104,
     "stars": 2,
-    "commentRate": "The quality is not as advertised, disappointed."
+    "commentRate": "The quality is not as advertised, disappointed.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 5,
     "productID": 105,
     "stars": 5,
-    "commentRate": "Perfect! Exactly what I needed. Will buy again."
+    "commentRate": "Perfect! Exactly what I needed. Will buy again.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 6,
     "productID": 106,
     "stars": 4,
-    "commentRate": "Very good, but the delivery was delayed."
+    "commentRate": "Very good, but the delivery was delayed.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 7,
     "productID": 107,
     "stars": 1,
-    "commentRate": "Horrible experience. The product broke after one use."
+    "commentRate": "Horrible experience. The product broke after one use.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 8,
     "productID": 108,
     "stars": 5,
-    "commentRate": "Fantastic! I'm extremely satisfied with this purchase."
+    "commentRate": "Fantastic! I'm extremely satisfied with this purchase.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 9,
     "productID": 109,
     "stars": 3,
-    "commentRate": "Okay, but nothing special about it."
+    "commentRate": "Okay, but nothing special about it.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 10,
     "productID": 110,
     "stars": 4,
-    "commentRate": "Good overall, just a bit more expensive than expected."
+    "commentRate": "Good overall, just a bit more expensive than expected.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 1,
     "productID": 111,
     "stars": 5,
-    "commentRate": "Very reliable and works as advertised."
+    "commentRate": "Very reliable and works as advertised.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 2,
     "productID": 112,
     "stars": 2,
-    "commentRate": "The color was not as expected and quality is poor."
+    "commentRate": "The color was not as expected and quality is poor.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 3,
     "productID": 113,
     "stars": 3,
-    "commentRate": "It’s alright, but it could be improved."
+    "commentRate": "It’s alright, but it could be improved.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 4,
     "productID": 114,
     "stars": 4,
-    "commentRate": "Very good, but I expected better performance."
+    "commentRate": "Very good, but I expected better performance.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 5,
     "productID": 115,
     "stars": 5,
-    "commentRate": "Excellent quality, fast shipping, highly recommended!"
+    "commentRate": "Excellent quality, fast shipping, highly recommended!",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 6,
     "productID": 116,
     "stars": 4,
-    "commentRate": "Good product, but the instructions were unclear."
+    "commentRate": "Good product, but the instructions were unclear.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 7,
     "productID": 117,
     "stars": 1,
-    "commentRate": "Terrible, it arrived broken and the customer service was unhelpful."
+    "commentRate": "Terrible, it arrived broken and the customer service was unhelpful.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 8,
     "productID": 118,
     "stars": 5,
-    "commentRate": "I love it! Will definitely buy more."
+    "commentRate": "I love it! Will definitely buy more.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 9,
     "productID": 119,
     "stars": 3,
-    "commentRate": "Not bad, but expected better quality for the price."
+    "commentRate": "Not bad, but expected better quality for the price.",
+    "dateRate": "2024-03-15 23:59:59"
   },
   {
     "userID": 10,
     "productID": 120,
     "stars": 4,
-    "commentRate": "Satisfactory, but a little noisy when in use."
+    "commentRate": "Satisfactory, but a little noisy when in use.",
+    "dateRate": "2024-03-15 23:59:59"
   }
 ]

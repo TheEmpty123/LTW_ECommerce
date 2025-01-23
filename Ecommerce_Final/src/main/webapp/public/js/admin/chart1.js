@@ -6,7 +6,7 @@ new Chart(ctx, {
     labels: ['Packaging', 'Delivering', 'Processed'],
     datasets: [{
       label: ' #% total order',
-      data: [30, 33, 37],
+      data: data1,
       backgroundColor: [
         'rgb(255, 178, 102)',
         'rgb(54, 162, 235)',
