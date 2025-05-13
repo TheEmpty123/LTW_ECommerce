@@ -111,6 +111,26 @@ public class OrderDao extends ImplementBase implements IOrderDao {
     }
 
     @Override
+    public List<Order> getOrderOfUser(int userId) {
+        log.info("Query all orders with userID : " + userId);
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE userID = ?")
+                        .bind(0, userId)
+                        .mapToBean(Order.class).list()
+        );
+    }
+
+    public List<Order> getOrderOfUserByStatus(int userId, String status) {
+        log.info("Query all orders with userID: " + userId+ "with status : " + status);
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM orders WHERE userID = ? and shippingStatus = ?")
+                        .bind(0, userId)
+                        .bind(1, status)
+                        .mapToBean(Order.class).list()
+        );
+    }
+
+    @Override
     public Promotion addPromotion(int id) {
         PromotionDao promotionDao = new PromotionDao();
         return promotionDao.getById(id);
@@ -150,6 +170,19 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         }
 
         return a;
+    }
+
+    @Override
+    public double getTotalOfOrder(int orderId) {
+        log.info("Query total with orderId: " + orderId);
+
+        Double totalRevenue = handle
+                .createQuery("SELECT SUM(p.price * oi.amount) FROM orders AS o JOIN order_item AS oi ON o.id = oi.orderID JOIN products AS p ON p.id = oi.productID where o.id = ?; ")
+                .bind(0, orderId)
+                .mapTo(Double.class)
+                .first();
+
+        return totalRevenue == null ? 0 : totalRevenue;
     }
 
     @Override

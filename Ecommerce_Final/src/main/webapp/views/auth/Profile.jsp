@@ -25,6 +25,11 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Profile.js"></script>
+
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.4/js/jquery.dataTables.min.js"></script>
     <title>Tài khoản của tôi</title>
     <style>
         .scroll-cart {
@@ -49,8 +54,8 @@
             padding: 5px 20px;
             margin-bottom: 10px;
         }
-        .order-list-box{
-            border: solid 1px black;
+
+        .order-list-box {
             width: 90%;
             max-height: 400px;
             height: auto;
@@ -58,6 +63,21 @@
             overflow-x: hidden;
             overflow-y: auto;
         }
+
+        .wishlist-button {
+            background-color: #dfc2c4;
+            color: black;
+            padding: 10px;
+            margin: 15px 3px 3px 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .detail:hover {
+            cursor: pointer;
+        }
+
     </style>
 </head>
 <body>
@@ -291,21 +311,68 @@
                     <h3>Đơn hàng của tôi</h3>
                     <div class="nav-order">
                         <div class="nav-box fchild">Tất cả đơn hàng</div>
-                        <div class="nav-box">Đang xử lí</div>
-                        <div class="nav-box">Đang giao</div>
-                        <div class="nav-box">Đã hoàn thành</div>
-                        <div class="nav-box">Trả lại</div>
+                        <div class="nav-box" onclick="updateOrderUser('packaging')">Đang xử lí</div>
+                        <div class="nav-box" onclick="updateOrderUser('delivering')">Đang giao</div>
+                        <div class="nav-box" onclick="updateOrderUser('completed')">Đã hoàn thành</div>
+                        <div class="nav-box" onclick="updateOrderUser('cancel')">Trả lại</div>
                     </div>
 
-                    <div class="order-list-box">
-                        <div class="row">
-                            <div class="col-12 col-md-12">
+                    <div id="all-order-list" class="order-list-box">
+                        <table id="table-order" class="display"
+                               style="height: 100%; width: 90%; text-align: center; margin-left: 30px">
+                            <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Sản phẩm</th>
+                                <th>Tổng tiền</th>
+                                <th>Thanh toán</th>
+                                <th>Trạng thái</th>
+                                <th>Xác thực</th>
+                                <th>Chi tiết</th>
+                            </tr>
+                            </thead>
+                            <tbody id="list-oder-status" style="line-height: 50px">
+                            <c:forEach var="o" items="${ordersOfUser}">
+                                <%
+                                    int padding = 5;
+                                %>
+                                <tr>
+                                    <td>${o.id}</td>
+                                    <td>
+                                        <div style="height: 60px; max-width: 60px; position: relative">
+                                            <c:forEach var="thumb" items="${thumbOfOrders.get(o.id)}">
+                                                <div style="position: absolute; left: <%=padding%>px">
+                                                    <img src="${pageContext.request.contextPath}${thumb}"
+                                                         style="height: 50px; width: 50px">
+                                                </div>
+                                                <% padding += 20;%>
+                                            </c:forEach>
+                                        </div>
+                                    </td>
+                                    <td><f:formatNumber type="currency" currencySymbol="đ"
+                                                        value="${o.total}"/></td>
+                                    <td>${o.paymentID}</td>
+                                    <td>${o.shippingStatus}</td>
+                                    <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
+                                    <td><i class="bi bi-three-dots-vertical detail"></i></td>
+                                </tr>
 
-                            </div>
-                        </div>
+                            </c:forEach>
+
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
             </div>
+
+            <script>
+                $(document).ready(function () {
+                    $('#myTable').DataTable();
+                });
+            </script>
+
+
             <div id="wish-list" class="hidden">
                 <div class="box">
                     <h3>Danh sách yêu thích</h3>

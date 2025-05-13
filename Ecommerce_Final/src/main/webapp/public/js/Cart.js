@@ -84,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
             currency: 'VND',
         });
         totalCart.forEach(item => {
-            item.textContent = formatter.format(cart.totalPrice)
+                    item.textContent = formatter.format(cart.totalPrice)
         })
 
         // Duyệt qua từng sản phẩm trong giỏ hàng (cart là một mảng JSON)
