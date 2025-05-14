@@ -310,7 +310,7 @@
                 <div class="box">
                     <h3>Đơn hàng của tôi</h3>
                     <div class="nav-order">
-                        <div class="nav-box fchild">Tất cả đơn hàng</div>
+                        <div class="nav-box fchild" onclick="updateOrderUser('all')">Tất cả đơn hàng</div>
                         <div class="nav-box" onclick="updateOrderUser('packaging')">Đang xử lí</div>
                         <div class="nav-box" onclick="updateOrderUser('delivering')">Đang giao</div>
                         <div class="nav-box" onclick="updateOrderUser('completed')">Đã hoàn thành</div>

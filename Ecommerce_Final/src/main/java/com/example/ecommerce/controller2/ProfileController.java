@@ -160,7 +160,11 @@ public class ProfileController extends HttpServlet {
         if (u != null) {
             try {
                 data = service.getAllProducts();
-                orderWithStatus = orderService.getOrderOfUserByStatus(u.getId(), status);
+                if(!status.equals("all")){
+                    orderWithStatus = orderService.getOrderOfUserByStatus(u.getId(), status);
+                }else{
+                    orderWithStatus = orderService.getOrderOfUser(u.getId());
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
