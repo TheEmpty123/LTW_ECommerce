@@ -277,7 +277,7 @@
     <!-- PRODUCTS -->
     <div id="p-product">
         <div class="container mt-5">
-            <div class="row">
+            <div class="product-area row">
                 <c:forEach var="p" items="${products}">
                     <div class="col-md-3">
                         <div class="card product-card product" data-id="${p.id}" data-name="${p.proName}"

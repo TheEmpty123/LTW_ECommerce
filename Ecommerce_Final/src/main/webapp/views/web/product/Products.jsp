@@ -27,7 +27,7 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
-    <%--    <script src="${pageContext.request.contextPath}/public/js/FilterProduct.js"></script>--%>
+        <script src="${pageContext.request.contextPath}/public/js/ProductDetail.js"></script>
     <%--    <script src="${pageContext.request.contextPath}/public/js/FavouriteProducts.js"></script>--%>
 
     <style>

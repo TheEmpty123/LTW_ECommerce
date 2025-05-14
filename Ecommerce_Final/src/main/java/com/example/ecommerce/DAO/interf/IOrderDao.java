@@ -5,6 +5,7 @@ import com.example.ecommerce.Bean.Payment;
 import com.example.ecommerce.Bean.Promotion;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.Common.Enum.Statuss;
+import org.jdbi.v3.core.inlined.org.antlr.v4.runtime.atn.$SemanticContext;
 
 import java.util.List;
 
@@ -22,12 +23,15 @@ public interface IOrderDao {
     //    public ShippingStatus getShippingStatus(int id);
     public Order getOrderById(int id);
 
+    public List<Order> getOrderOfUser(int userId);
+
     public Promotion addPromotion(int id);
 
     public Payment getMethodPayment(int id);
 
     public List<Order> get5Order(boolean force);
 
+    public double getTotalOfOrder(int orderId);
     public double getTotalRevenue(boolean force);
 
     public double getTotalProcessing(boolean force);

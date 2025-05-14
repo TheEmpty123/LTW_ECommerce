@@ -230,9 +230,6 @@
 
             <div class="summary-item">
                 <p>Thành tiền</p>
-                <%--                <p style="font-weight: bold; white-space: nowrap;">--%>
-                <%--                    <fmt:formatNumber value="${sessionScope.cart.total}" type="number"--%>
-                <%--                                      groupingUsed="true"/> đ--%>
                 <div class="col-sm-6 col-md-6 t-bold total-price">
                     <p id="total-after-promotion" class="total-cart">
                         <c:if test="${sessionScope.auth == null}">
@@ -344,7 +341,7 @@
                         <div id="content" class="content-area" role="main">
                             <p><strong>CHÍNH SÁCH BÁN HÀNG</strong></p>
                             <p><strong>1<span style="font-size: 14.4px">.</span> Thanh toán</strong></p>
-                            <p>Nhà Xinh chỉ áp dụng duy nhất một hình thức thanh toán online qua thẻ tín dụng,
+                            <p>Kanes chỉ áp dụng duy nhất một hình thức thanh toán online qua thẻ tín dụng,
                                 chuyển khoản, cụ thể:</p>
                             <ul>
                                 <li>Bước 1: Khách hàng tìm hiểu thông tin về sản phẩm.</li>
@@ -352,7 +349,7 @@
                                 <li>Bước 3: Khách hàng đồng ý các điều khoản mua hàng, chi phí giao hàng và lắp đặt.
                                 </li>
                                 <li>Bước 4: Khách hàng thanh toán qua các thẻ ATM/VISA/CREDIT CARD.</li>
-                                <li>Bước 5: Hệ thống Nhà Xinh xác nhận thông tin khách hàng và giao hàng.</li>
+                                <li>Bước 5: Hệ thống Kanes xác nhận thông tin khách hàng và giao hàng.</li>
                                 <li>Bước 6: Khách hàng nhận hàng, kiểm tra và xác nhận với nhân viên.</li>
                             </ul>
                             <p><strong>2. Chính sách lưu kho (Bên mua gửi/ lưu giữ hàng hóa tại kho của bên
@@ -361,12 +358,12 @@
                                 nhu cầu kí gửi hàng hóa.</p>
                             <p>3<strong>. ĐƠN HÀNG CÓ HIỆU LỰC.</strong></p>
                             <p>Đơn hàng có hiệu lực là đơn hàng sau khi Quý khách đã thanh toán và nhận được xác
-                                nhận của nhân viên bán hàng Nhà Xinh.</p>
+                                nhận của nhân viên bán hàng Kanes.</p>
                             <p>Quý khách không được hủy đơn hàng sau khi đã thanh toán và nhận được xác nhận của
-                                nhân viên bán hàng Nhà Xinh.</p>
+                                nhân viên bán hàng Kanes.</p>
                             <p>4<strong>. QUY ĐỊNH ĐỔI TRẢ HÀNG HÓA.</strong></p>
                             <p>4.1. Các trường hợp h<strong>ợp được đổi hàng:</strong></p>
-                            <p>Nhà Xinh sẽ thực hiện việc đổi, trả hàng hóa theo các điều kiện sau:</p>
+                            <p>Kanes sẽ thực hiện việc đổi, trả hàng hóa theo các điều kiện sau:</p>
                             <ul>
                                 <li>Hàng không đủ số lượng, đủ bộ, hoặc không đúng chủng loại theo như trong đơn đặt
                                     hàng của Quý khách.
@@ -383,7 +380,7 @@
                             <p><strong>CHÍNH SÁCH GIAO HÀNG</strong></p>
                             <p>1.<strong> PHẠM VI ÁP DỤNG</strong></p>
                             <p>Tất cả các đơn hàng có nhu cầu giao hàng và lắp đặt tại nhà được đặt mua theo hình
-                                thức mua online (qua website nhaxinh.com, điện thoại, fanpage…).</p>
+                                thức mua online (qua website Kanes.com, điện thoại, fanpage…).</p>
                             <p><strong>2. THỜI GIAN GIAO HÀNG.</strong></p>
                             <p>– Chính sách giao hàng được áp dụng trong giờ hành chính từ thứ 2 đến hết thứ 7 (trừ
                                 chủ nhật, ngày lễ, tết).</p>
@@ -410,7 +407,7 @@
                             <p>• Đơn hàng từ 10 triệu đồng trở lên: miễn phí vận chuyển và lắp đặt trong nội thành
                                 Hà Nội và Hồ Chí Minh.</p>
                             <p>• Đơn hàng đi tỉnh hoặc khu vực ngoại thành Hà Nội, Hồ Chí Minh sẽ được thông báo mức
-                                phí cụ thể tới Quý khách sau khi Nhà Xinh tiếp nhận thông tin đơn hàng.</p>
+                                phí cụ thể tới Quý khách sau khi Kanes tiếp nhận thông tin đơn hàng.</p>
                             <p>– Lưu ý: Các loại phụ phí khác như lưu kho, phí khoan tường, phí tháo dỡ, phí giao
                                 tới địa điểm không thuận lợi như trên tầng/ lầu cao không có hoặc không sử dụng được
                                 thang máy; hoặc khu vực lắp đặt phải thuê xe cẩu đưa hàng hóa lên cao; hoặc mặt bằng
@@ -423,7 +420,7 @@
                             <p>– Trường hợp công ty đã vận chuyển đến địa điểm giao nhận như thỏa thuận, nhưng vì
                                 một lý do khách hàng thay đổi địa điểm nhận hàng; khách hàng phải chịu chi phí vận
                                 chuyển cho việc đổi địa điểm giao hàng theo biểu phí của công ty. Mức phí này sẽ
-                                được nhân viên Nhà Xinh thông báo đến Quý khách.</p>
+                                được nhân viên Kanes thông báo đến Quý khách.</p>
                             <p>– Trong trường hợp khách hàng có thay đổi về thời gian nhận hàng so với thỏa thuận
                                 khi mua hàng, cần báo trước cho chúng tôi ít nhất trước 24h với khách hàng nội thành
                                 và ít nhất 48h đối với khách hàng có khoảng cách trên 30km từ showroom mua hàng.</p>
@@ -446,7 +443,7 @@
                             <p><strong>CHÍNH SÁCH BẢO HÀNH</strong></p>
                             <p><strong>1. ĐIỀU KHOẢN CHUNG VỀ THỜI HẠN BẢO HÀNH.</strong></p>
                             <p>– Thời gian bảo hành các sản phẩm: 01 năm, kể từ khi nhận hàng. Nếu có trường hợp đặc
-                                biệt, nhân viên Nhà Xinh sẽ thông báo đến Quý khách.</p>
+                                biệt, nhân viên Kanes sẽ thông báo đến Quý khách.</p>
                             <p>– Các sản phẩm hàng trang trí không áp dụng bảo hành nhưng áp dụng theo chính sách
                                 đổi trả hàng hoá.</p>
                             <p>– Chính sách bảo hành có hiệu lực từ thời điểm bên mua nhận sản phẩm (Căn cứ theo
@@ -466,10 +463,10 @@
                             <p>– Bên bán kiểm tra sản phẩm trong vòng 48h, hoàn tất bảo hành trong vòng 48h tiếp
                                 theo. Với trường hợp đặc biệt bên mua và bên bán thống nhất thời gian bảo hành.</p>
                             <p>4.<strong> PHẠM VI BẢO HÀNH.</strong></p>
-                            <p>Nhà Xinh bảo hành cho các sản phẩm đáp ứng đủ hai điều kiện sau:</p>
+                            <p>Kanes bảo hành cho các sản phẩm đáp ứng đủ hai điều kiện sau:</p>
                             <p>• Sản phẩm hư hỏng do lỗi kỹ thuật của nhà sản xuất và;</p>
                             <p>• Sản phẩm còn trong thời hạn bảo hành.</p>
-                            <p>Nhà Xinh không bảo hành trong các trường hợp sau:</p>
+                            <p>Kanes không bảo hành trong các trường hợp sau:</p>
                             <p>• Khách hàng tự ý sửa chữa khi sản phẩm gặp trục trặc.</p>
                             <p>• Sản phẩm trầy xước, hư hỏng do khách hàng không sử dụng theo đúng hướng dẫn.</p>
                             <p>• Sản phẩm được xử lý chống mọt từ bên trong, mọi tác động do môi trường bên ngoài
@@ -491,7 +488,7 @@
                             <p><strong>1. CAM KẾT BẢO MẬT.</strong></p>
                             <p>Hệ thống thanh toán thẻ được cung cấp bởi các đối tác cổng thanh toán (“Đối Tác Cổng
                                 Thanh Toán”) đã được cấp phép hoạt động hợp pháp tại Việt Nam. Theo đó, các tiêu
-                                chuẩn bảo mật thanh toán thẻ tại Nhà Xinh đảm bảo tuân thủ theo các tiêu chuẩn bảo
+                                chuẩn bảo mật thanh toán thẻ tại Kanes đảm bảo tuân thủ theo các tiêu chuẩn bảo
                                 mật ngành.</p>
                             <p><strong>2. QUY ĐỊNH BẢO MẬT.</strong></p>
                             <p>– Chính sách giao dịch thanh toán bằng thẻ quốc tế và thẻ nội địa (internet banking)
@@ -511,11 +508,11 @@
                                     theo quy định của Ngân hàng nhà nước Việt Nam.
                                 </li>
                             </ul>
-                            <p>– Chính sách bảo mật giao dịch trong thanh toán của Nhà Xinh áp dụng với Khách hàng:
+                            <p>– Chính sách bảo mật giao dịch trong thanh toán của Kanes áp dụng với Khách hàng:
                             </p>
                             <ul>
-                                <li>Nhà Xinh cung cấp tiện ích lưu giữ token – chỉ lưu chuỗi đã được mã hóa bởi Đối
-                                    Tác Cổng Thanh Toán cung cấp. Nhà Xinh không trực tiếp lưu trữ thông tin thẻ
+                                <li>Kanes cung cấp tiện ích lưu giữ token – chỉ lưu chuỗi đã được mã hóa bởi Đối
+                                    Tác Cổng Thanh Toán cung cấp. Kanes không trực tiếp lưu trữ thông tin thẻ
                                     khách hàng. Việc bảo mật thông tin thẻ thanh toán Khách hàng được thực hiện bởi
                                     Đối Tác Cổng Thanh Toán đã được cấp phép.
                                 </li>
@@ -523,11 +520,11 @@
                                     dụng để xác lập giao dịch không được lưu trên hệ thống của www.nhaxinh.com . Đối
                                     Tác Cổng Thanh Toán sẽ lưu trữ và bảo mật.
                                 </li>
-                                <li>Đối với thẻ nội địa (internet banking), Nhà Xinh chỉ lưu trữ mã đơn hàng, mã
+                                <li>Đối với thẻ nội địa (internet banking), Kanes chỉ lưu trữ mã đơn hàng, mã
                                     giao dịch và tên ngân hàng.
                                 </li>
                             </ul>
-                            <p>Nhà Xinh cam kết đảm bảo thực hiện nghiêm túc các biện pháp bảo mật cần thiết cho mọi
+                            <p>Kanes cam kết đảm bảo thực hiện nghiêm túc các biện pháp bảo mật cần thiết cho mọi
                                 hoạt động thanh toán thực hiện trên website www.nhaxinh.com.</p>
                             <p>Tôi đã đọc và đồng ý điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều
                                 khoản dịch vụ mua hàng online.</p>

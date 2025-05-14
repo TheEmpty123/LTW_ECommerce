@@ -10,6 +10,7 @@ import com.example.ecommerce.DAO.interf.IProductItemDTO;
 import com.example.ecommerce.Dto.OrderDto;
 import com.example.ecommerce.Dto.OrderItemDto;
 import com.example.ecommerce.Dto.ProductDto;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
 import java.util.ArrayList;
@@ -55,6 +56,11 @@ public class OrderService extends ServiceBase {
     public List<Order> getAllOrder(boolean forceUpdate) {
         log.info("User Service getAllOrder...");
         return orderDao.getAllOrders(forceUpdate);
+    }
+
+    public double getTotalOfOrder(int userId){
+        log.info("User Service getTotalOfOrder...");
+        return orderDao.getTotalOfOrder(userId);
     }
 
 
@@ -140,6 +146,29 @@ public class OrderService extends ServiceBase {
             return null;
         }
         return o;
+    }
+    public List<Order> getOrderOfUser(int userId) {
+        List<Order> os = null;
+        try {
+            os = orderDao.getOrderOfUser(userId);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return os;
+    }
+
+    public List<Order> getOrderOfUserByStatus(int userId, String status) {
+        List<Order> os = null;
+        try {
+            os = orderDao.getOrderOfUserByStatus(userId, status);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+        return os;
     }
 
     public boolean updateOrder(int id, int pId, String phone, ShippingStatus status, Statuss statuss) {
