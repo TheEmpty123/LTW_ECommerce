@@ -30,8 +30,6 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Promotion.js"></script>
-
-
 </head>
 <body>
 <div id="mask-container">
@@ -233,11 +231,11 @@
                 <div class="col-sm-6 col-md-6 t-bold total-price">
                     <p id="total-after-promotion" class="total-cart">
                         <c:if test="${sessionScope.auth == null}">
-                            <f:formatNumber type="number" currencySymbol="đ" value="0.0"/>
+                            <fmt:formatNumber type="number" currencySymbol="đ" value="0.0"/> đ
                         </c:if>
                         <c:if test="${sessionScope.auth != null}">
-                            <f:formatNumber type="number" currencySymbol="đ"
-                                            value="${sessionScope.valueOfPromotion}"/>
+                            <fmt:formatNumber type="number" currencySymbol="đ"
+                                            value="${sessionScope.valueOfPromotion}"/> đ
                         </c:if>
                     </p>
                 </div>
@@ -282,7 +280,7 @@
         </form>
     </div>
 
-    <div class="order-summary" ; style="border: none;">
+    <div class="order-summary" style="border: none;">
         <h2>Địa chỉ giao hàng</h2>
         <div class="shipping-address-container">
             <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
@@ -291,7 +289,7 @@
         </div>
 
 
-        <form id="abc" method="POST" style="margin-top: 20px;padding:10px" action="/order">
+        <form id="order-form" method="POST" style="width:200px; margin-top: 20px;padding:10px" action="/order">
             <div class="actions">
                 <p4><strong>Địa chỉ mới</strong></p4>
             </div>
@@ -328,6 +326,9 @@
                 </button>
             </div>
         </form>
+
+        <!-- Thêm nơi hiển thị thông báo -->
+        <div id="result-message" style="margin-top: 10px; font-weight: bold;"></div>
 
 
         <h3>CHÍNH SÁCH BÁN HÀNG</h3>
@@ -537,12 +538,11 @@
                             Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
                             dịch vụ mua hàng online *
                         </label>
-                        <%--                        <button type="submit">Xác nhận</button>--%>
-
+                        <button type="submit" class="order-button">Xác nhận</button>
+                    </form>
                 </div>
 
-                <button type="submit" class="order-button">ĐẶT MUA</button>
-                </form>
+                <%--                <button type="submit" class="order-button">ĐẶT MUA</button>--%>
                 <script>
                     document.getElementById('orderForm').addEventListener('submit', function (event) {
                         const checkbox = document.getElementById('terms');
@@ -617,6 +617,39 @@
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 <script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("order-form");
+        const resultMessage = document.getElementById("result-message");
+
+        form.addEventListener("submit", function (e) {
+            e.preventDefault(); // ❌ Ngăn form gửi mặc định
+
+            const formData = new FormData(form); // 📦 Tạo FormData để gửi
+            for (const [key, value] of formData.entries()) {
+                console.log(key + ": " + value);
+            }
+            fetch("/order", {
+                method: "POST",
+                body: formData
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Có lỗi xảy ra khi gửi đơn hàng.");
+                    }
+                    return response.json(); // 👈 Server cần trả JSON
+                })
+                .then(data => {
+                    resultMessage.style.color = "green";
+                    resultMessage.innerText = "✅ Cập nhật thành công!";
+                    form.reset(); // 👉 Nếu muốn reset form
+                })
+                .catch(error => {
+                    resultMessage.style.color = "red";
+                    resultMessage.innerText = "❌ Cập nhật thất bại!";
+                });
+        });
+    });
     fetch('/locations')
         .then(response => response.json())
         .then(data => {
