@@ -117,6 +117,26 @@ public class OrderService extends ServiceBase {
         orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
         var j = orderDao.getJdbi();
         var li = j.withExtension(IOrderDto.class, IOrderDto::getAllOrders);
+
+        var orders = getAllOrder(false);
+
+        if (orders.size() != li.size()) {
+            log.warn("OrderService getAllOrderDto: size of orders and li are not equal");
+            log.warn("OrderService getAllOrderDto: orders size: " + orders.size() + " li size: " + li.size());
+        }
+
+        for (Order o : orders) {
+            var u = UserService.getInstance().getUserByID(o.getUserID());
+            o.updateVerifyStatus(u);
+            for (OrderDto od : li) {
+                if (o.getId() == od.getId()) {
+                    od.setVerify(o.getSign());
+                    log.info("Order: " + o.getId() + " verify: " + od.isVerify());
+                    break;
+                }
+            }
+        }
+
         return li;
     }
 

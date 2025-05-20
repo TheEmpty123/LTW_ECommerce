@@ -163,6 +163,7 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
                 order.setSdt(phone);
                 order.setShippingStatus(status);
                 order.setSignature(signature);
+                order.updateVerifyStatus(user);
             }
 
             boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss);

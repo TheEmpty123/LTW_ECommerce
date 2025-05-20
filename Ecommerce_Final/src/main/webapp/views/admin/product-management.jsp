@@ -704,7 +704,17 @@
                                             %>
                                         </td>
                                         <td>
-                                            verified
+                                            <%if(u.isVerify()){%>
+                                            <span class="badge success">
+                                                    <span class="ti-check"></span>
+                                                    Verified
+                                                </span>
+                                            <%} else {%>
+                                            <span class="badge alert">
+                                                    <span class="ti-close"></span>
+                                                    Not verified
+                                                </span>
+                                            <%}%>
                                         </td>
                                         <td>
                                             <a href="edit-order?id=<%=u.getId()%>">

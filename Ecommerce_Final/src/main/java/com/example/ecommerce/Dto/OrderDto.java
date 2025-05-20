@@ -19,6 +19,7 @@ public class OrderDto {
     private LocalDateTime createDate;
     private Timestamp timestamp;
     private Method method;
+    private boolean verify;
 
     public Statuss getStatuss() {
         return statuss;
@@ -68,6 +69,14 @@ public class OrderDto {
 
     public void setTimestamp(Timestamp timestamp) {
         this.timestamp = timestamp;
+    }
+
+    public boolean isVerify() {
+        return verify;
+    }
+
+    public void setVerify(boolean verify) {
+        this.verify = verify;
     }
 
     public String getTotalF() {
