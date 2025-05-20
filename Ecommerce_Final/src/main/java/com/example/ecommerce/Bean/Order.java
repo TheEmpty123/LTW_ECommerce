@@ -2,6 +2,7 @@ package com.example.ecommerce.Bean;
 
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.DAO.interf.IOrderDao;
+import com.example.ecommerce.Utils.CipherUtils;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
@@ -21,7 +22,8 @@ public class Order implements Serializable {
     private Timestamp timeStamp;
     private String promotion_id;
     private String sdt;
-    private String sign;
+    private boolean sign;
+    private String signature;
     private double total;
     private String totalS;
     private List<OrderItem> listOrderItem;
@@ -99,12 +101,20 @@ public class Order implements Serializable {
         this.timeStamp = Timestamp.valueOf(createDate);
     }
 
-    public String getSign() {
+    public boolean getSign() {
         return sign;
     }
 
-    public void setSign(String sign) {
+    public void setSign(boolean sign) {
         this.sign = sign;
+    }
+
+    public String getSignature() {
+        return signature;
+    }
+
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     public List<OrderItem> getListOrderItem() {
@@ -145,6 +155,47 @@ public class Order implements Serializable {
 
     public void setTotalS(String totalS) {
         this.totalS = totalS;
+    }
+
+    public void updateVerifyStatus(User user) {
+        if (signature == null || signature.isEmpty() || user == null) {
+            sign = false;
+        } else {
+            String publicKey = user.getPublic_key();
+            String hash = hashOrder();
+            String sign = this.signature;
+
+            this.sign = CipherUtils.verify(hash, sign, publicKey);
+        }
+    }
+
+    public String hashOrder(){
+        StringBuilder sb = new StringBuilder();
+        sb.append(id);
+        sb.append(userID);
+        sb.append(paymentID);
+        sb.append(createDate);
+        sb.append(promotion_id);
+        sb.append(sdt);
+
+        for(OrderItem item : listOrderItem) {
+            sb.append(item.getProductID());
+            sb.append(item.getAmount());
+            var p = item.getProduct();
+            sb.append(p.getProName());
+            sb.append(p.getPrice());
+            sb.append(p.getDescription());
+        }
+
+        String hash = "";
+
+        try {
+            hash = CipherUtils.hashText(sb.toString());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return hash;
     }
 
     @Override
