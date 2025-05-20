@@ -98,6 +98,10 @@
                                     <label for="phone">Phone Number</label>
                                     <input type="text" id="phone" name="phone" placeholder="${ord.sdt}">
                                 </div>
+                                <div class="form-group">
+                                    <label for="phone">Signature</label>
+                                    <input type="text" id="signature" name="signature" placeholder="${ord.sign}">
+                                </div>
                                 <div class="form-row">
                                     <div class="form-group">
                                         <label for="ship">Shipping Status</label>

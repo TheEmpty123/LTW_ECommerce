@@ -241,6 +241,7 @@
                                     <th>Priority</th>
                                     <th>Total</th>
                                     <th>Status</th>
+                                    <th>Verify</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>

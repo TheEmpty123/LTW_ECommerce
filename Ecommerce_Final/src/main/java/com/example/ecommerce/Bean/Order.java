@@ -21,6 +21,7 @@ public class Order implements Serializable {
     private Timestamp timeStamp;
     private String promotion_id;
     private String sdt;
+    private String sign;
     private double total;
     private String totalS;
     private List<OrderItem> listOrderItem;
@@ -96,6 +97,14 @@ public class Order implements Serializable {
     public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
         this.timeStamp = Timestamp.valueOf(createDate);
+    }
+
+    public String getSign() {
+        return sign;
+    }
+
+    public void setSign(String sign) {
+        this.sign = sign;
     }
 
     public List<OrderItem> getListOrderItem() {

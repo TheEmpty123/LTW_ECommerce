@@ -639,6 +639,7 @@
                                     <th>Customer</th>
                                     <th>Total</th>
                                     <th>Status</th>
+                                    <th>Verify</th>
                                     <th>Action</th>
                                 </tr>
                                 </thead>
@@ -701,6 +702,9 @@
                                                     }
                                                 }
                                             %>
+                                        </td>
+                                        <td>
+                                            verified
                                         </td>
                                         <td>
                                             <a href="edit-order?id=<%=u.getId()%>">

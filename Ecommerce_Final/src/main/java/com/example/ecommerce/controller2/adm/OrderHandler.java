@@ -116,6 +116,7 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
             log.info("Performing update orders");
 
             String phone = request.getParameter("phone");
+            String signature = request.getParameter("signature");
             int pay = Integer.parseInt(request.getParameter("pay"));
             int ship = Integer.parseInt(request.getParameter("ship"));
             int id = MC.instance.backupID;
@@ -161,6 +162,7 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
                 phone = phone.equals("") ? order.getSdt() : phone;
                 order.setSdt(phone);
                 order.setShippingStatus(status);
+                order.setSign(signature);
             }
 
             boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss);

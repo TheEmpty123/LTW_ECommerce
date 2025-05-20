@@ -1,0 +1,256 @@
+[33mcommit 693ab2d34a74faa879413f7457270cd8e986e4eb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Merge: 96ddc0b 214eec4
+Author: PKhanhDuy <124644501+PKhanhDuy@users.noreply.github.com>
+Date:   Wed May 14 17:51:52 2025 +0700
+
+    Merge pull request #76 from TheEmpty123/Duy
+    
+    Thêm quản lý đơn hàng cho bên phía người dùng
+
+[33mcommit 214eec458515c0a5f17178d54d082e4b75234ed4[m[33m ([m[1;31morigin/Duy[m[33m)[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Wed May 14 17:42:25 2025 +0700
+
+    fix: sửa sự kiện khi người dùng chọn xem tất cả order
+
+[33mcommit ebed0c8ad4803f8526558e278bab4833d4fe8a70[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Tue May 13 23:17:02 2025 +0700
+
+    feat: thêm phần quản lý đơn hàng cho người dùng,
+
+[33mcommit 880b606d643247040679ec7d9af65049d5bc7398[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 23 22:29:14 2025 +0700
+
+    Chỉnh sửa quản lý đơn hàng bên client
+
+[33mcommit 007e296dec80d0a3f09ac465dd0010fc7ad5198b[m
+Merge: c62774a 759eb5e
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 23 21:18:59 2025 +0700
+
+    Resolve conflict
+
+[33mcommit 759eb5e29d96682765a35c052848953759efde8c[m[33m ([m[1;31morigin/Controller[m[33m)[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 23 21:17:40 2025 +0700
+
+    Cập nhật code
+
+[33mcommit 96ddc0bb5968fa2c2e9066fbfa21c482d28be9da[m[33m ([m[1;33mtag: [m[1;33mFINISH[m[33m)[m
+Merge: 987d5fc ddae601
+Author: PKhanhDuy <124644501+PKhanhDuy@users.noreply.github.com>
+Date:   Fri Jan 17 13:04:13 2025 +0700
+
+    Merge pull request #75 from TheEmpty123/Controller
+    
+    Sửa lỗi người dùng mua quá số lượng còn trong kho
+
+[33mcommit ddae601aa4822608ed002175552823f2d8d993ea[m
+Merge: cb2efaa bc3f899
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 13:01:26 2025 +0700
+
+    NGăn không cho người dùng mua quá số lượng sản phẩm còn lại trong kho
+
+[33mcommit cb2efaac9d844213f26e70ac6334e731a4a3a8ff[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 13:00:32 2025 +0700
+
+    Ngăn người dùng mua quá số lượng còn lại trong kho
+
+[33mcommit 987d5fc8138288286dfeb9d71dd3bedb8ab58f91[m
+Merge: 8383c48 bc3f899
+Author: The Empty <nttoan.3004@gmail.com>
+Date:   Fri Jan 17 12:54:33 2025 +0700
+
+    Merge pull request #74 from TheEmpty123/Controller
+    
+    category modify
+
+[33mcommit bc3f8996c86afa46913583ded0352aa67d187eef[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 12:39:18 2025 +0700
+
+    feat: update gitignore
+
+[33mcommit 09a6244e578333323a671ae2092f3d4789f55b1f[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 12:35:50 2025 +0700
+
+    feat: finish add/edit category, fix newly added product can not add stock
+
+[33mcommit 8383c48f87b83ce80d29b6e6e5c263f283ddc8aa[m
+Merge: 0506b32 62e084e
+Author: The Empty <nttoan.3004@gmail.com>
+Date:   Fri Jan 17 11:12:25 2025 +0700
+
+    Merge pull request #73 from TheEmpty123/Controller
+    
+    Dynamic web
+
+[33mcommit 62e084e435f091c63f304607243f197c4bc69d6a[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 11:11:11 2025 +0700
+
+    feat: finish order item listing
+
+[33mcommit 0cfa1b882786fe43042ccd27cff1b9c67b9298b8[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 10:26:33 2025 +0700
+
+    feat: finish subtract stock
+
+[33mcommit 0fbb7f371f21f7380bae01010d4734254c715577[m
+Merge: f4ca0fc a215fe5
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 10:10:57 2025 +0700
+
+    Merge branch 'Controller' of https://github.com/TheEmpty123/LTW_ECommerce into Controller
+
+[33mcommit a215fe58d22246f6ac0cca08745f150dabb054a0[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 10:10:10 2025 +0700
+
+    Chỉnh sửa trang 404
+
+[33mcommit f4ca0fcf459b3a16cdd5538f29ed157bfe037c77[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 10:08:56 2025 +0700
+
+    feat: finish add stock to product
+
+[33mcommit 8018ca326fd46cac311d56071706643a1f26c68b[m
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 09:58:39 2025 +0700
+
+    fix file path of login page
+
+[33mcommit b2215e36fd4adbcf8482727e7b9ca6273bbeec34[m
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 09:49:20 2025 +0700
+
+    update change pass
+
+[33mcommit 1bc5f645fa87a1558d7079c6f060666d011b06bb[m
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 09:48:56 2025 +0700
+
+    update change pass
+
+[33mcommit f043ecd91cdb0801fdf8ed8d252676a71c9da046[m
+Merge: 7bd2c0d ab05baf
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 08:36:39 2025 +0700
+
+    update code
+
+[33mcommit ab05baf211231c6005286259534f664c85615172[m
+Merge: 18a5cfd 592c9e7
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 08:17:56 2025 +0700
+
+    Merge branch 'Controller' of https://github.com/TheEmpty123/LTW_ECommerce into Controller
+
+[33mcommit 18a5cfd5f5a21de5e19f85bb855a10c5edf8aace[m
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 08:16:32 2025 +0700
+
+    fix add price discount
+
+[33mcommit 7bd2c0db8f3547e71b6e0be1a0e775d923e52fc1[m
+Merge: c2381f6 592c9e7
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 08:05:41 2025 +0700
+
+    Pull code
+
+[33mcommit 592c9e75df9459f2cd2db60ade15ea199364a870[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 07:30:59 2025 +0700
+
+    feat: finish add promotion
+
+[33mcommit 71254cd789ba42183fba4f5f0c236814feed68fe[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 06:08:04 2025 +0700
+
+    feat: finish update/order
+
+[33mcommit 14b5043582c7715464ae350b533913ccb8d18ae8[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 02:53:12 2025 +0700
+
+    feat: finish update product
+
+[33mcommit 3876b197f950e54c2cece76bbaedbe46c92aa72c[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Fri Jan 17 01:39:21 2025 +0700
+
+    feat: finish add product
+
+[33mcommit c2381f60800781b791c2f2fdb7f09278268db966[m
+Merge: e15382d 03ce354
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 00:38:21 2025 +0700
+
+    Cập nhật code
+
+[33mcommit e15382d209f93f9aa2c183ea17441f3d96ff7d0c[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Fri Jan 17 00:37:40 2025 +0700
+
+    Fix Hoàn chỉnh phần đánh giá sản phẩm
+
+[33mcommit 03ce354994e1fd5b37136504578709e16cf6a537[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Thu Jan 16 23:15:02 2025 +0700
+
+    feat: finish category management 90%
+
+[33mcommit dae1a8901e6bb2aa842fbca1bb8f9d89a82ce51e[m
+Merge: 9e8a903 29d97fe
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Thu Jan 16 22:43:42 2025 +0700
+
+    feat: finish inventory-management 80%
+
+[33mcommit 9ffcc26ba9b0742beeab0c8610e478c23c8cede7[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 16 22:39:48 2025 +0700
+
+    fix không nhận sự kiện từ js của trang product
+
+[33mcommit 9e8a90346a812045e61325b49bfeed09cc45588b[m
+Author: TheEmpty123 <toangaming.203@gmail.com>
+Date:   Thu Jan 16 22:33:47 2025 +0700
+
+    feat: finish inventory-management 80%
+
+[33mcommit 29d97fef4646c5de0e7b45c0cdd5bcb644e3fc61[m
+Merge: 35eae0f 34e28c4
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Thu Jan 16 22:23:41 2025 +0700
+
+    Merge remote-tracking branch 'origin/Controller' into Controller
+
+[33mcommit 35eae0fe2ddd9703703532394c1caca64f3bdcb2[m
+Author: harvey <22130158@st.hcmuaf.edu.vn>
+Date:   Thu Jan 16 22:23:01 2025 +0700
+
+    add link for about cart contact order allproduct
+
+[33mcommit 34e28c41fed32a37a9c5394cf17ed72e3e09ef17[m
+Merge: 5490e4e cb4aa16
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 16 21:54:42 2025 +0700
+
+    resolve conflict
+
+[33mcommit 5490e4e2c72edf14b9df7d9ac38604a6fa4a105a[m
+Author: Phung Khanh Duy <22130062@st.hcmuaf.edu.vn>
+Date:   Thu Jan 16 21:48:58 2025 +0700
+
+    Sửa category trong trang home
+
