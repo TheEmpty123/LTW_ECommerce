@@ -10,6 +10,13 @@ public class OrderItemService extends ServiceBase {
     private OrderItemDao dao = new OrderItemDao();
     private static OrderItemService instance;
 
+    public static OrderItemService getInstance() {
+        if (instance == null) {
+            instance = new OrderItemService();
+        }
+        return instance;
+    }
+
     @Override
     public void init() {
         log.info("UserService init...");
@@ -36,5 +43,16 @@ public class OrderItemService extends ServiceBase {
     public OrderItem findOrderItemByProductId(OrderItem orderItem) {
         log.info("find orderitem...");
         return this.dao.findByOrderAndProduct(orderItem);
+    }
+
+    public List<OrderItem> getAllOrderItemByOrderId(int orderId){
+        log.info("get all orderitem by orderId...");
+        var listOrderItem = this.dao.getAllOrderItemByOrderId(orderId);
+
+        for(OrderItem orderItem : listOrderItem){
+            orderItem.setProduct(ProductService.getInstance().getProductById(orderItem.getProductID()));
+        }
+
+        return listOrderItem;
     }
 }

@@ -1,6 +1,7 @@
 package com.example.ecommerce.service;
 
 import com.example.ecommerce.Bean.Order;
+import com.example.ecommerce.Bean.OrderItem;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.Common.Enum.Statuss;
 import com.example.ecommerce.DAO.iml.OrderDao;
@@ -10,6 +11,7 @@ import com.example.ecommerce.DAO.interf.IProductItemDTO;
 import com.example.ecommerce.Dto.OrderDto;
 import com.example.ecommerce.Dto.OrderItemDto;
 import com.example.ecommerce.Dto.ProductDto;
+import com.example.ecommerce.controller2.MC;
 import org.eclipse.tags.shaded.org.apache.xpath.operations.Or;
 import org.jdbi.v3.sqlobject.SqlObjectPlugin;
 
@@ -126,10 +128,20 @@ public class OrderService extends ServiceBase {
         }
 
         for (Order o : orders) {
+            var loi = MC.instance.orderItemService.getAllOrderItemByOrderId(o.getId());
+            o.setListOrderItem(loi);
+
+            for (OrderItem oi : loi) {
+                oi.setProduct(MC.instance.productService.getProductById(oi.getProductID()));
+            }
+        }
+
+        for (Order o : orders) {
             var u = UserService.getInstance().getUserByID(o.getUserID());
             o.updateVerifyStatus(u);
             for (OrderDto od : li) {
                 if (o.getId() == od.getId()) {
+                    od.setHash(o.hashOrder());
                     od.setVerify(o.getSign());
                     log.info("Order: " + o.getId() + " verify: " + od.isVerify());
                     break;
@@ -191,7 +203,7 @@ public class OrderService extends ServiceBase {
         return os;
     }
 
-    public boolean updateOrder(int id, int pId, String phone, ShippingStatus status, Statuss statuss) {
+    public boolean updateOrder(int id, int pId, String phone, ShippingStatus status, Statuss statuss, String signature) {
         log.info("UserService updateOrder...");
 
         if (status == ShippingStatus.Completed && statuss == Statuss.CANCELLED) {
@@ -207,8 +219,9 @@ public class OrderService extends ServiceBase {
 
         int a = orderDao.updateOrder(id, phone, status);
         int b = orderDao.updatePayment(pId, statuss);
+        int c = orderDao.updateSignature(id, signature);
 
-        return (a > 0) && (b > 0);
+        return (a > 0) && (b > 0) && (c > 0);
     }
 
     public List<OrderItemDto> getAllOrderItemDtoFromOrder(int id) {

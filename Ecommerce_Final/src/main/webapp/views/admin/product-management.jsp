@@ -720,6 +720,9 @@
                                             <a href="edit-order?id=<%=u.getId()%>">
                                                 <span class="ti-pencil-alt"></span>
                                             </a>
+                                            <a href="#" class="copy-to-clipboard" data-id="<%=u.getHash()%>">
+                                                <span class="ti-clipboard"></span>
+                                            </a>
                                         </td>
                                     </tr>
                                     <%
@@ -1116,6 +1119,30 @@
 <c:if test="${CMD eq 'products'}">
     <script src="${pageContext.request.contextPath}/public/js/admin/product.js"></script>
 </c:if>
+<script>
+    // Add clipboard functionality
+    document.addEventListener('DOMContentLoaded', function() {
+        const clipboardElements = document.querySelectorAll('.copy-to-clipboard');
+
+        clipboardElements.forEach(element => {
+            element.addEventListener('click', function() {
+                const textToCopy = this.getAttribute('data-id');
+                navigator.clipboard.writeText(textToCopy)
+                    .then(() => {
+                        // Show temporary success message
+                        const originalTitle = this.title;
+                        this.title = 'Copied!';
+                        setTimeout(() => {
+                            this.title = originalTitle;
+                        }, 1500);
+                    })
+                    .catch(err => {
+                        console.error('Failed to copy: ', err);
+                    });
+            });
+        });
+    });
+</script>
 <%--<script src="${pageContext.request.contextPath}/public/js/admin/popup.js"></script>--%>
 </body>
 </html>

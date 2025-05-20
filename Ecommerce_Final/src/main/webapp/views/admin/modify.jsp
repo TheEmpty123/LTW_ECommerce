@@ -100,7 +100,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="phone">Signature</label>
-                                    <input type="text" id="signature" name="signature" placeholder="${ord.sign}">
+                                    <input type="text" id="signature" name="signature" placeholder="${ord.signature}">
                                 </div>
                                 <div class="form-row">
                                     <div class="form-group">

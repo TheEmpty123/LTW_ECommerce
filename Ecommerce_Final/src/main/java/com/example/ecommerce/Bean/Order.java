@@ -158,7 +158,7 @@ public class Order implements Serializable {
     }
 
     public void updateVerifyStatus(User user) {
-        if (signature == null || signature.isEmpty() || user == null) {
+        if (signature == null || signature.isEmpty() || user == null || user.getPublic_key() == null || user.getPublic_key().isEmpty()) {
             sign = false;
         } else {
             String publicKey = user.getPublic_key();

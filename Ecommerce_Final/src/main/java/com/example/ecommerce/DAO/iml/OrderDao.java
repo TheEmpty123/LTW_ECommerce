@@ -277,4 +277,13 @@ public class OrderDao extends ImplementBase implements IOrderDao {
 
         System.out.println(li);
     }
+
+    @Override
+    public int updateSignature(int id, String signature) {
+        log.info("Updating signature of order...");
+        return handle.createUpdate("UPDATE orders SET signature = ? WHERE id = ?")
+                .bind(0, signature)
+                .bind(1, id)
+                .execute();
+    }
 }

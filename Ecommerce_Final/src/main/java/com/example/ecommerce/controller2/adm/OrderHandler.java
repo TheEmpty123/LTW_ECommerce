@@ -163,13 +163,15 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
                 order.setSdt(phone);
                 order.setShippingStatus(status);
                 order.setSignature(signature);
-                order.updateVerifyStatus(user);
+                var li = MC.instance.orderItemService.getAllOrderItemByOrderId(order.getId());
+                order.setListOrderItem(li);
             }
 
-            boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss);
+            boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss, signature);
 
             if (success){
                 request.setAttribute("successMessage", "Updated order successfully");
+                order.updateVerifyStatus(user);
             }
             else {
                 request.setAttribute("errorMessage", "Failed to update, update request may violate payment & shipment rules, please try again");
