@@ -127,6 +127,7 @@ public class UserHandler extends HttpServlet implements ControllerBase {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String phoneNo = request.getParameter("phone");
+                String key = request.getParameter("key");
                 int roleID = Integer.parseInt(request.getParameter("role"));
                 StatusUser status = request.getParameter("status").equalsIgnoreCase("enable") ? StatusUser.ENABLE : StatusUser.DISABLE;
                 int id = MC.instance.backupID;
@@ -149,6 +150,7 @@ public class UserHandler extends HttpServlet implements ControllerBase {
                     user.setPhoneNum(phoneNo.equals("") ? user.getPhoneNum() : phoneNo);
                     user.setRoleID(roleID);
                     user.setStatusUser(status);
+                    user.setPublic_key(key);
                 }
 
                 boolean success = MC.instance.userService.updateUser(user);

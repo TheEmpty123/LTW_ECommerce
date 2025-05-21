@@ -44,4 +44,6 @@ public interface IOrderDao {
 
     int updateOrder(int id, String phone, ShippingStatus status);
     int updatePayment(int id, Statuss statuss);
+
+    int updateSignature(int id, String signature);
 }

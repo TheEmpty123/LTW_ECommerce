@@ -88,6 +88,16 @@ public class OrderItemDao extends ImplementBase implements IOrderItemDao {
     }
 
     @Override
+    public List<OrderItem> getAllOrderItemByOrderId(int orderId) {
+        return db.getJdbi().withHandle(handle ->
+                handle.createQuery("SELECT * FROM order_item WHERE orderID = :orderId")
+                        .bind("orderId", orderId)
+                        .mapToBean(OrderItem.class)
+                        .list()
+        );
+    }
+
+    @Override
     public int countAmount(Order order) {
         return db.getJdbi().withHandle(handle -> handle.createQuery("select sum(*) from orderItem"))
                 .mapTo(Integer.class).one();

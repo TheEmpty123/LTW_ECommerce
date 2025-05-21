@@ -13,7 +13,7 @@ public class LogObj{
         this._name = null;
     }
 
-    LogObj(String name){
+    public LogObj(String name){
         this._name = name;
     }
 
