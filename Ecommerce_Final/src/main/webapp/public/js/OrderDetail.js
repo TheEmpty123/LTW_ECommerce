@@ -14,13 +14,17 @@ document.addEventListener("DOMContentLoaded", function (){
 
     formVerify.addEventListener("submit", function (e){
         e.preventDefault();
-
+        const publicKey = document.getElementById('public-key-input').innerText
+        const signature = document.getElementById('signature-input').innerText
         const  formData = new FormData(formVerify)
         for (const [key, value] of formData.entries()) {
             console.log(key + ": " + value);
         }
+        formData.append('public-key', publicKey)
+        formData.append('signature', signature)
 
-        fetch("/verify",{
+
+        fetch(`/verify`,{
             method: "POST",
             body: formData
         }).then(response =>{
