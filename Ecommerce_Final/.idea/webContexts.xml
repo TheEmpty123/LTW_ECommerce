@@ -9,6 +9,7 @@
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/auth/Profile.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/auth" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/about.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/contact.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/order/order.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web/order" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/product/All-products.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web/product" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/product/Product-detail.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web/product" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/web/product/Products.jsp" value="file://$PROJECT_DIR$/src/main/webapp/views/web/product" />

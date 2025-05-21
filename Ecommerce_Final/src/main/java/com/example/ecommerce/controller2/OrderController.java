@@ -11,6 +11,7 @@ import com.example.ecommerce.service.OrderItemService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.OwnAddressService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
@@ -19,8 +20,11 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import javax.mail.internet.AddressException;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,6 +50,7 @@ public class OrderController extends HttpServlet {
                 int idUser = user.getId();
                 List<OrderItem> orderitems = orderItemService.getOrderItem(idUser);
                 List<OwnAddress> address = ownAddressService.getOwnAddress(idUser);
+                Cart cart = (Cart) session.getAttribute("cart");
 
                 System.out.println("Fetched order items: " + orderitems);
 
@@ -70,7 +75,7 @@ public class OrderController extends HttpServlet {
                         }
                     }
                 }
-                
+                req.setAttribute("totalCart", cart.getTotal());
                 req.setAttribute("mapCate", mapCate);
                 req.setAttribute("orderitems", orderitems);
                 req.setAttribute("total", totalMoney);
@@ -92,6 +97,7 @@ public class OrderController extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
+        OwnAddressService ownAddressService = new OwnAddressService();
 
         try {
             HttpSession session = req.getSession(true);
@@ -115,15 +121,45 @@ public class OrderController extends HttpServlet {
 
                 handleShippingInfo(req, resp, idUser);
 
+                List<OwnAddress> oa = ownAddressService.getOwnAddress(idUser);
+                String status = "{\"status\":\"success\"}";
 
-                PrintWriter out = resp.getWriter();
-                out.print("{\"status\":\"success\"}");
-                out.flush();
-
+                AddressResponse adRe = new AddressResponse(oa.get(0), status);
+                System.out.println(adRe.getAddress());
+                System.out.println(adRe.getStatus());
+                Gson gson = new GsonBuilder()
+                        .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                        .registerTypeAdapter(Timestamp.class, new TimestampAdapter())
+                        .create();
+//                PrintWriter out = resp.getWriter();
+//                out.print(gson.toJson(adRe));
+//                out.flush();
+                resp.getWriter().write(gson.toJson(adRe));
+                System.out.println("Đã trả json về client");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static class AddressResponse {
+        private final OwnAddress address;
+        private final String status;
+
+        public AddressResponse(OwnAddress address, String status) {
+            this.address = address;
+            this.status = status;
+        }
+
+        public OwnAddress getAddress() {
+            return address;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
+
     }
 
     private void processCartItems(Cart cart, Order order) {
