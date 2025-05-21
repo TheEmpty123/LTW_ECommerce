@@ -46,7 +46,7 @@ public class OrderItemService extends ServiceBase {
     }
 
     public List<OrderItem> getAllOrderItemByOrderId(int orderId){
-        log.info("get all orderitem by orderId...");
+//        log.info("get all orderitem by orderId...");
         var listOrderItem = this.dao.getAllOrderItemByOrderId(orderId);
 
         for(OrderItem orderItem : listOrderItem){

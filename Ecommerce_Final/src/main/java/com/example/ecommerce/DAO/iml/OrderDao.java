@@ -45,8 +45,10 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         log.info("Query all orders with force: " + force);
 
         if (!force) allOrders = getAllOrders();
-        else
+        else {
             allOrders.clear();
+            allOrders = getAllOrders();
+        }
 
         return allOrders;
     }

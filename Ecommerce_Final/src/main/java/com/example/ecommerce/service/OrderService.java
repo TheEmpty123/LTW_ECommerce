@@ -137,8 +137,10 @@ public class OrderService extends ServiceBase {
         }
 
         for (Order o : orders) {
+            log.info("===============================");
             var u = UserService.getInstance().getUserByID(o.getUserID());
             o.updateVerifyStatus(u);
+
             for (OrderDto od : li) {
                 if (o.getId() == od.getId()) {
                     od.setHash(o.hashOrder());
@@ -220,6 +222,8 @@ public class OrderService extends ServiceBase {
         int a = orderDao.updateOrder(id, phone, status);
         int b = orderDao.updatePayment(pId, statuss);
         int c = orderDao.updateSignature(id, signature);
+
+        getAllOrder(true);
 
         return (a > 0) && (b > 0) && (c > 0);
     }

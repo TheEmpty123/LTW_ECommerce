@@ -34,20 +34,16 @@ public class Order implements Serializable {
     public Order(int id, int userID, int paymentID, ShippingStatus shippingStatus, LocalDateTime createDate, String promotion_id, String sdt) {
         this.id = id;
         this.userID = userID;
-        this.paymentID = 0;
-        this.shippingStatus = ShippingStatus.Packaging;
-        this.createDate = LocalDateTime.now();
-        this.promotion_id = "";
-        this.sdt = "";
-    }
-
-    public Order(int userID) {
-        this.userID = userID;
         this.paymentID = paymentID;
         this.shippingStatus = shippingStatus;
         this.createDate = createDate;
         this.promotion_id = promotion_id;
         this.sdt = sdt;
+        this.listOrderItem = new ArrayList<>();
+    }
+
+    public Order(int userID) {
+        this.userID = userID;
         this.listOrderItem = new ArrayList<>();
     }
 
@@ -159,7 +155,7 @@ public class Order implements Serializable {
 
     public void updateVerifyStatus(User user) {
         if (signature == null || signature.isEmpty() || user == null || user.getPublic_key() == null || user.getPublic_key().isEmpty()) {
-            sign = false;
+            this.sign = false;
         } else {
             String publicKey = user.getPublic_key();
             String hash = hashOrder();
