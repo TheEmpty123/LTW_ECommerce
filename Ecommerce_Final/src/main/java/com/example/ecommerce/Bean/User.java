@@ -20,6 +20,7 @@ public class User implements Serializable {
     private StatusUser statusUser;
     private LocalDateTime createUser;
     private String avatar;
+    private String public_key;
     private int roleID;
 
     public User() {
@@ -151,6 +152,14 @@ public class User implements Serializable {
 
     public void setRoleID(int roleID) {
         this.roleID = roleID;
+    }
+
+    public String getPublic_key() {
+        return public_key;
+    }
+
+    public void setPublic_key(String public_key) {
+        this.public_key = public_key;
     }
 
     @Override

@@ -188,7 +188,7 @@ public class UserDao extends ImplementBase implements IUsersDao {
         int c = 0;
         if (user.getPass().equals("")) {
             c = handle.createUpdate("UPDATE users SET " +
-                            "username = ?, fullName = ?, gender = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ? WHERE id = ?")
+                            "username = ?, fullName = ?, gender = ?, email = ?, phoneNum = ?, statusUser = ?, avatar = ?, roleID = ?, public_key = ? WHERE id = ?")
                     .bind(0, user.getUsername())
                     .bind(1, user.getFullName())
                     .bind(2, user.getGender())
@@ -197,7 +197,8 @@ public class UserDao extends ImplementBase implements IUsersDao {
                     .bind(5, user.getStatusUser())
                     .bind(6, user.getAvatar())
                     .bind(7, user.getRoleID())
-                    .bind(8, user.getId())
+                    .bind(8, user.getPublic_key())
+                    .bind(9, user.getId())
                     .execute();
         } else {
             c = handle.createUpdate("UPDATE users SET " +

@@ -45,8 +45,10 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         log.info("Query all orders with force: " + force);
 
         if (!force) allOrders = getAllOrders();
-        else
+        else {
             allOrders.clear();
+            allOrders = getAllOrders();
+        }
 
         return allOrders;
     }
@@ -276,5 +278,14 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         var li = orderDao.getTotalOrdersWithPaymentStatus(false, Statuss.CANCELLED);
 
         System.out.println(li);
+    }
+
+    @Override
+    public int updateSignature(int id, String signature) {
+        log.info("Updating signature of order...");
+        return handle.createUpdate("UPDATE orders SET signature = ? WHERE id = ?")
+                .bind(0, signature)
+                .bind(1, id)
+                .execute();
     }
 }

@@ -10,6 +10,7 @@ import com.example.ecommerce.Common.Enum.RolePermission;
 import com.example.ecommerce.Common.Enum.ShippingStatus;
 import com.example.ecommerce.Common.Enum.Statuss;
 import com.example.ecommerce.Dto.OrderDto;
+import com.example.ecommerce.Utils.CipherUtils;
 import com.example.ecommerce.controller2.MC;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.*;
@@ -116,6 +117,7 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
             log.info("Performing update orders");
 
             String phone = request.getParameter("phone");
+            String signature = request.getParameter("signature");
             int pay = Integer.parseInt(request.getParameter("pay"));
             int ship = Integer.parseInt(request.getParameter("ship"));
             int id = MC.instance.backupID;
@@ -161,12 +163,17 @@ public class OrderHandler extends HttpServlet implements ControllerBase {
                 phone = phone.equals("") ? order.getSdt() : phone;
                 order.setSdt(phone);
                 order.setShippingStatus(status);
+                order.setSignature(signature);
+                var li = MC.instance.orderItemService.getAllOrderItemByOrderId(order.getId());
+                order.setListOrderItem(li);
+                order.getListOrderItem().forEach(x -> x.setProduct(MC.instance.productService.getProductById(x.getProductID())));
             }
 
-            boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss);
+            boolean success = MC.instance.orderService.updateOrder(id, order.getPaymentID(), phone, status, statuss, signature);
 
             if (success){
                 request.setAttribute("successMessage", "Updated order successfully");
+                CipherUtils.createSignature(order.hashOrder());
             }
             else {
                 request.setAttribute("errorMessage", "Failed to update, update request may violate payment & shipment rules, please try again");
