@@ -32,6 +32,10 @@ public class Cart {
         data.put(id, p);
         return true;
     }
+    //làm trống giỏ hàng sao khi đã đặt hàng
+    public void clearCart(){
+        data.clear();
+    }
 
     //xoa mot san pham khoi gio hang
     public boolean remove(int id){

@@ -2,36 +2,46 @@ function copyText() {
     const text = document.getElementById("hash-code").innerText;
     navigator.clipboard.writeText(text)
         .then(() => {
-            alert("Đã sao chép vào clipboard!");
         })
         .catch(err => {
             alert("Lỗi khi sao chép: " + err);
         });
 }
 
-document.addEventListener("DOMContentLoaded", function (){
-    const formVerify = document.getElementById('form-verify')
+function cancelVerify() {
+    const formFrame = document.getElementById('verify-frame')
+    const form = document.getElementById('form-verify')
+    formFrame.style.display = 'None'
+    form.reset()
+    // Reset reCAPTCHA khi mở lại
+    if (typeof grecaptcha !== "undefined") {
+        grecaptcha.reset();
+    }
+}
 
-    formVerify.addEventListener("submit", function (e){
+document.addEventListener("DOMContentLoaded", function () {
+    const formVerify = document.getElementById('form-verify')
+    const verifyFrame = document.getElementById('verify-frame')
+
+    formVerify.addEventListener("submit", function (e) {
+
         e.preventDefault();
-        const publicKey = document.getElementById('public-key-input').innerText
-        const signature = document.getElementById('signature-input').innerText
-        const  formData = new FormData(formVerify)
+        const formData = new FormData(formVerify)
         for (const [key, value] of formData.entries()) {
             console.log(key + ": " + value);
         }
-        formData.append('public-key', publicKey)
-        formData.append('signature', signature)
 
-
-        fetch(`/verify`,{
+        fetch(`/verify`, {
             method: "POST",
             body: formData
-        }).then(response =>{
-
-        }).then(data =>{
-
-        }).catch(error =>{
+        }).then(response => response.json()
+        ).then(data => {
+            verifyFrame.style.display = "None"
+            //Reset reCaptchaZ
+            if (typeof grecaptcha !== "undefined") {
+                grecaptcha.reset();
+            }
+        }).catch(error => {
 
         })
     });

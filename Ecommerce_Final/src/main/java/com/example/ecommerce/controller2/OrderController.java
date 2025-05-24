@@ -114,10 +114,10 @@ public class OrderController extends HttpServlet {
                 int idUser = user.getId();
                 System.out.println("id " + idUser);
 
-                Order order = new Order(idUser);
-                this.service.addOrder(order);
+//                Order order = new Order(idUser);
+//                this.service.addOrder(order);
 
-                processCartItems(cart, order);
+//                processCartItems(cart, order);
 
                 handleShippingInfo(req, resp, idUser);
 
@@ -125,8 +125,6 @@ public class OrderController extends HttpServlet {
                 String status = "{\"status\":\"success\"}";
 
                 AddressResponse adRe = new AddressResponse(oa.get(0), status);
-                System.out.println(adRe.getAddress());
-                System.out.println(adRe.getStatus());
                 Gson gson = new GsonBuilder()
                         .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                         .registerTypeAdapter(Timestamp.class, new TimestampAdapter())

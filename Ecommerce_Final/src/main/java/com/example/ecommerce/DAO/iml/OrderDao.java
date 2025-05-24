@@ -68,8 +68,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
                     .bind("paymentID", 1)
                     .bind("shippingStatus", ShippingStatus.Packaging)
                     .bind("createDate", LocalDateTime.now())
-                    .bind("sdt", Optional.ofNullable(null))
-                    .bind("promotion_id", Optional.ofNullable(null))
+                    .bind("sdt", order.getSdt())
+                    .bind("promotion_id", Optional.ofNullable(order.getPromotion_id()))
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
@@ -77,7 +77,6 @@ public class OrderDao extends ImplementBase implements IOrderDao {
             return order;
         });
     }
-
 
     @Override
     public Order updateOrderByID(int id, int orderID, int productID, int amount) {

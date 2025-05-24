@@ -44,9 +44,9 @@ p {
 .signature-area {
     width: 90%;
     height: 40%;
-    margin-top: 10px;
     position: relative;
     display: flex;
+    justify-content: center;
     flex-direction: column;
 }
 
@@ -66,6 +66,17 @@ p {
     background-color: rgb(29, 178, 8);
     color: white;
     font-weight: bold;
+}
+
+.cancel{
+    width: 100px;
+    padding: 0;
+    border-radius: 15px;
+    border-color: rgb(245, 10, 10);
+    background-color: rgb(245, 10, 10);
+    color: white;
+    font-weight: bold;
+    margin-right: 10px;
 }
 
 .authentic {
@@ -108,9 +119,18 @@ p {
     margin-top: 7px;
     margin-bottom: 7px;
 }
-
+.hash-code{
+    max-width: 460px;
+    display: flex;
+    align-items: center;
+}
 #hash-code {
-    display: inline;
+    display: inline-block;
+    max-width: 340px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0;
 }
 
 .signature-box {
