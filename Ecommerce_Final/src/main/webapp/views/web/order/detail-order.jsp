@@ -21,43 +21,34 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
-
+    <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
 </head>
 <body>
 <div id="mask">
-    <div id="order-detail-box">
-        <strong style="font-size: 30px; margin-top: 20px; margin-bottom: 20px">Chi tiết đơn hàng</strong>
+    <div id="order-detail-box" style="width: 730px">
+        <div id="title-pop-up">
+            <strong style="font-size: 30px; margin-bottom: 20px">Chi tiết đơn hàng</strong>
+            <i class="bi bi-x-circle" id="close-pop-up" onclick="closePopUp('order-details')"></i>
+        </div>
         <div id="details">
             <div class="row" id="title-detail">
-                <div class="col-3">
+                <div class="col-2">
                     <strong>Ảnh</strong>
                 </div>
-                <div class="col-3">
+                <div class="col-5">
                     <strong>Tên sản phẩm</strong>
                 </div>
                 <div class="col-3">
-                    <strong>Giá (VND)</strong>
+                    <strong>Giá</strong>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <strong>Số lượng</strong>
                 </div>
             </div>
             <div id="item-details">
                 <div class="row">
-                    <div class="col-3">
-                        <img src="${pageContext.request.contextPath}/public/images/logos/vi.png" alt="Logo">
-                    </div>
-                    <div class="col-3">
-                        <p> Kệ sach</p>
-                    </div>
-                    <div class="col-3">
-                        3.000.000
-                    </div>
-                    <div class="col-3">
-                        2
-                    </div>
+
                 </div>
             </div>
         </div>

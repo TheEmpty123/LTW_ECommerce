@@ -624,9 +624,6 @@
 <div id="verify-frame">
    <jsp:include page="order-detail.jsp"/>
 </div>
-<div id="signature-frame">
-    <jsp:include page="signature-frame.jsp"/>
-</div>
 <div>
     <footer class="footer">
         <div class="footer-container">

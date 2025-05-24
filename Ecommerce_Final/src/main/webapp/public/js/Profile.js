@@ -60,7 +60,7 @@ function updateOrderManagerUI(orders) {
         <td>${item.paymentID}</td>
         <td>${item.shippingStatus}</td>
         <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
-        <td><i class="bi bi-three-dots-vertical detail"></i></td>
+        <td><i class="bi bi-three-dots-vertical detail"  onclick="getOrderDetails(this)"></i></td>
     `;
 
         // Thêm vào bảng

@@ -26,6 +26,7 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Profile.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -354,7 +355,7 @@
                                     <td>${o.paymentID}</td>
                                     <td>${o.shippingStatus}</td>
                                     <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
-                                    <td><i class="bi bi-three-dots-vertical detail"></i></td>
+                                    <td><i class="bi bi-three-dots-vertical detail" onclick="getOrderDetails(this)"></i></td>
                                 </tr>
 
                             </c:forEach>
@@ -449,6 +450,12 @@
         </div>
 
     </div>
+</div>
+<div id="order-details">
+    <jsp:include page="/views/web/order/detail-order.jsp"/>
+</div>
+<div id="signature-frame">
+    <jsp:include page="/views/web/order/signature-frame.jsp"/>
 </div>
 <%--<!-- <iframe src="../common/footer.jsp" frameborder="0" id="footer"></iframe> -->--%>
 <footer class="footer">
