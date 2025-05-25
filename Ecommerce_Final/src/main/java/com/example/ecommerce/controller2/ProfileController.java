@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import org.eclipse.tags.shaded.org.apache.xpath.operations.Bool;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
@@ -50,58 +51,72 @@ public class ProfileController extends HttpServlet {
         List<OrderItem> orderItemsOfUser = new ArrayList<>();
         Map<ShippingStatus, List<Order>> orderByShippingStatus = new HashMap<>();
         Map<Integer, List<String>> thumbOfOrders = new HashMap<>();
+        Map<Integer, Boolean> signsOfOrder = new HashMap<>();
         List<Product> data;
         List<Category> categories;
-        try {
-            data = service.getAllProducts();
-            categories = cateService.getAllCategory();
-            orders = orderService.getOrderOfUser(u.getId());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        Address address = null;
 
-        if (!orders.isEmpty()) {
-            for (Order order : orders) {
-                order.setTotal(orderService.getTotalOfOrder(order.getId()));
-                if (orderByShippingStatus.containsKey(order.getShippingStatus())) {
-                    orderByShippingStatus.get(order.getShippingStatus()).add(order);
-                } else {
-                    List<Order> temp = new ArrayList<>();
-                    temp.add(order);
-                    orderByShippingStatus.put(order.getShippingStatus(), temp);
+        categories = cateService.getAllCategory();
+        if (u != null) {
+            try {
+                data = service.getAllProducts();
+                orders = orderService.getOrderOfUser(u.getId());
+            } catch (Exception e) {
+                throw new RuntimeException(e);
+            }
+
+            if (!orders.isEmpty()) {
+                for (Order order : orders) {
+                    order.setTotal(orderService.getTotalOfOrder(order.getId()));
+                    if (orderByShippingStatus.containsKey(order.getShippingStatus())) {
+                        orderByShippingStatus.get(order.getShippingStatus()).add(order);
+                    } else {
+                        List<Order> temp = new ArrayList<>();
+                        temp.add(order);
+                        orderByShippingStatus.put(order.getShippingStatus(), temp);
+                    }
+                    try {
+                        order.setListOrderItem(orderItemService.getAllOrderItemByOrderId(order.getId()));
+                        order.updateVerifyStatus(u);
+                        signsOfOrder.put(order.getId(), order.getSign());
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+                orderItemsOfUser = orderItemService.getOrderItem(u.getId());
+
+                for (OrderItem orderItem : orderItemsOfUser) {
+                    String thumb = "";
+                    for (Product d : data) {
+                        if (d.getId() == orderItem.getProductID()) thumb = d.getThumb();
+                    }
+                    if (thumbOfOrders.containsKey(orderItem.getOrderID())) {
+                        thumbOfOrders.get(orderItem.getOrderID()).add(thumb);
+                    } else {
+                        List<String> temp = new ArrayList<>();
+                        temp.add(thumb);
+                        thumbOfOrders.put(orderItem.getOrderID(), temp);
+                    }
                 }
             }
-            orderItemsOfUser = orderItemService.getOrderItem(u.getId());
+            req.setAttribute("thumbOfOrders", thumbOfOrders);
+            req.setAttribute("signsOfOrder", signsOfOrder);
+            req.setAttribute("allProducts", data);
+            req.setAttribute("ordersOfUser", orders);
+            req.setAttribute("orderByShippingStatus", orderByShippingStatus);
 
-            for (OrderItem orderItem : orderItemsOfUser) {
-                String thumb = "";
-                for (Product d : data) {
-                    if (d.getId() == orderItem.getProductID()) thumb = d.getThumb();
-                }
-                if (thumbOfOrders.containsKey(orderItem.getOrderID())) {
-                    thumbOfOrders.get(orderItem.getOrderID()).add(thumb);
-                } else {
-                    List<String> temp = new ArrayList<>();
-                    temp.add(thumb);
-                    thumbOfOrders.put(orderItem.getOrderID(), temp);
+            List<Product> favoriteProducts = new ArrayList<>();
+            List<Integer> favoriteProductIds = favouriteProductService.getFavouriteProductByUserId(u.getId());
+
+            for (Product pro : data) {
+                if (favoriteProductIds.contains(pro.getId())) {
+                    favoriteProducts.add(pro);
                 }
             }
+            req.setAttribute("favoriteProducts", favoriteProducts);
+
+            address = addService.getAddressById(u.getId());
         }
-        req.setAttribute("thumbOfOrders", thumbOfOrders);
-        req.setAttribute("allProducts", data);
-        req.setAttribute("ordersOfUser", orders);
-        req.setAttribute("orderByShippingStatus", orderByShippingStatus);
-
-        List<Product> favoriteProducts = new ArrayList<>();
-        List<Integer> favoriteProductIds = favouriteProductService.getFavouriteProductByUserId(u.getId());
-
-        for (Product pro : data) {
-            if (favoriteProductIds.contains(pro.getId())) {
-                favoriteProducts.add(pro);
-            }
-        }
-        req.setAttribute("favoriteProducts", favoriteProducts);
-
         //Lay du lieu category de hien thi len giao dien
         int catePerCol = 5;
         HashMap<Integer, List<Category>> mapCate = new HashMap<>();
@@ -122,9 +137,6 @@ public class ProfileController extends HttpServlet {
             }
         }
 
-        Address address = addService.getAddressById(u.getId());
-        System.out.println(u.getId() + "hahahaa");
-
         req.setAttribute("address", address);
         req.setAttribute("mapCate", mapCate);
         req.getRequestDispatcher("/views/auth/Profile.jsp").forward(req, resp);
@@ -141,6 +153,7 @@ public class ProfileController extends HttpServlet {
         OrderService orderService = new OrderService();
         Map<ShippingStatus, List<Order>> orderByShippingStatus = new HashMap<>();
         Map<Integer, List<String>> thumbOfOrders = new HashMap<>();
+        Map<Integer, Boolean> signsOfOrder = new HashMap<>();
 
         // Đọc JSON từ request
         StringBuilder sb = new StringBuilder();
@@ -160,41 +173,48 @@ public class ProfileController extends HttpServlet {
         if (u != null) {
             try {
                 data = service.getAllProducts();
-                if(!status.equals("all")){
+                if (!status.equals("all")) {
                     orderWithStatus = orderService.getOrderOfUserByStatus(u.getId(), status);
-                }else{
+                } else {
                     orderWithStatus = orderService.getOrderOfUser(u.getId());
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+            try {
+                if (!orderWithStatus.isEmpty()) {
+                    for (Order order : orderWithStatus) {
+                        order.setTotal(orderService.getTotalOfOrder(order.getId()));
+                        if (orderByShippingStatus.containsKey(order.getShippingStatus())) {
+                            orderByShippingStatus.get(order.getShippingStatus()).add(order);
+                        } else {
+                            List<Order> temp = new ArrayList<>();
+                            temp.add(order);
+                            orderByShippingStatus.put(order.getShippingStatus(), temp);
+                        }
 
-            if (!orderWithStatus.isEmpty()) {
-                for (Order order : orderWithStatus) {
-                    order.setTotal(orderService.getTotalOfOrder(order.getId()));
-                    if (orderByShippingStatus.containsKey(order.getShippingStatus())) {
-                        orderByShippingStatus.get(order.getShippingStatus()).add(order);
-                    } else {
-                        List<Order> temp = new ArrayList<>();
-                        temp.add(order);
-                        orderByShippingStatus.put(order.getShippingStatus(), temp);
+                        order.setListOrderItem(orderItemService.getOrderItem(order.getId()));
+                        order.updateVerifyStatus(u);
+                        signsOfOrder.put(order.getId(), order.getSign());
+                    }
+                    orderItemsOfUser = orderItemService.getOrderItem(u.getId());
+
+                    for (OrderItem orderItem : orderItemsOfUser) {
+                        String thumb = "";
+                        for (Product d : data) {
+                            if (d.getId() == orderItem.getProductID()) thumb = d.getThumb();
+                        }
+                        if (thumbOfOrders.containsKey(orderItem.getOrderID())) {
+                            thumbOfOrders.get(orderItem.getOrderID()).add(thumb);
+                        } else {
+                            List<String> temp = new ArrayList<>();
+                            temp.add(thumb);
+                            thumbOfOrders.put(orderItem.getOrderID(), temp);
+                        }
                     }
                 }
-                orderItemsOfUser = orderItemService.getOrderItem(u.getId());
-
-                for (OrderItem orderItem : orderItemsOfUser) {
-                    String thumb = "";
-                    for (Product d : data) {
-                        if (d.getId() == orderItem.getProductID()) thumb = d.getThumb();
-                    }
-                    if (thumbOfOrders.containsKey(orderItem.getOrderID())) {
-                        thumbOfOrders.get(orderItem.getOrderID()).add(thumb);
-                    } else {
-                        List<String> temp = new ArrayList<>();
-                        temp.add(thumb);
-                        thumbOfOrders.put(orderItem.getOrderID(), temp);
-                    }
-                }
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         }
         // Tạo JSON trả về
@@ -205,31 +225,33 @@ public class ProfileController extends HttpServlet {
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .registerTypeAdapter(Timestamp.class, new TimestampAdapter())
                 .create();
-        OrdersResponse response = new OrdersResponse(orderWithStatus, thumbOfOrders);
+        OrdersResponse response = new OrdersResponse(orderWithStatus, thumbOfOrders, signsOfOrder);
         resp.getWriter().write(gson.toJson(response));
-//        System.out.println(response.toString());
-//        String jsonResponse = gson.toJson(response); // Hoặc gson.toJson(orderList);
-//        System.out.println("jsonResponse: " + jsonResponse);
-//        PrintWriter out = resp.getWriter();
-//        out.print(jsonResponse);
-//        out.flush();
     }
 
     private static class OrdersResponse {
         private final List<Order> lists;
-        private final  Map<Integer, List<String>> thumbs;
+        private final Map<Integer, List<String>> thumbs;
+        private final Map<Integer, Boolean> signsOfOrder;
 
-        public OrdersResponse(List<Order> lists, Map<Integer, List<String>> thumbs) {
+        public OrdersResponse(List<Order> lists, Map<Integer, List<String>> thumbs, Map<Integer, Boolean> signsOfOrder) {
             this.lists = lists;
             this.thumbs = thumbs;
+            this.signsOfOrder = signsOfOrder;
         }
 
         public List<Order> getLists() {
             return lists;
         }
+
         public Map<Integer, List<String>> getThumbs() {
             return thumbs;
         }
+
+        public Map<Integer, Boolean> getSignsOfOrder() {
+            return signsOfOrder;
+        }
+
         @Override
         public String toString() {
             return lists.toString();

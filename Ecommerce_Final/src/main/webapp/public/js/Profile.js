@@ -36,7 +36,14 @@ function updateOrderManagerUI(orders) {
 
         // Lấy danh sách ảnh từ thumbs
         const thumbs = orders.thumbs[item.id] || [];
+        const signed = orders.signsOfOrder[item.id] || [];
 
+        let iconVerify = null
+        if (!signed) {
+            iconVerify = `<i class="bi bi-shield-fill-check" style="color: #00f004"></i>`
+        } else {
+            iconVerify = `<i class="bi bi-x-octagon-fill" style="color: red"></i>`
+        }
         // Tạo HTML cho ảnh thumb
         let thumbHtml = '';
         let padding = 5;
@@ -59,8 +66,11 @@ function updateOrderManagerUI(orders) {
         <td>${formattedPrice}</td>
         <td>${item.paymentID}</td>
         <td>${item.shippingStatus}</td>
-        <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
+        <td>${iconVerify}</td>
         <td><i class="bi bi-three-dots-vertical detail"  onclick="getOrderDetails(this)"></i></td>
+        <td><i class="bi bi-pencil-square sign"
+            onclick="getOrderDetails(this)"></i>
+            </td>
     `;
 
         // Thêm vào bảng

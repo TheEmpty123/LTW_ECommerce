@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
@@ -65,21 +66,50 @@
             overflow-y: auto;
         }
 
-        .wishlist-button {
-            background-color: #dfc2c4;
-            color: black;
-            padding: 10px;
-            margin: 15px 3px 3px 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #table-order {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
         }
 
-        .detail:hover {
+        #table-order thead th {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1;
+        }
+
+        #table-order th, #table-order td {
+            padding: 2px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .detail:hover, .sign:hover {
             cursor: pointer;
         }
 
+
+
     </style>
+
+    <script>
+        // Đồng bộ chiều rộng cột giữa header và body
+        window.addEventListener("load", function () {
+            const headerTable = document.querySelector("table.display thead tr");
+            const bodyTableRow = document.querySelector("#table-order tbody tr");
+
+            if (bodyTableRow) {
+                const headerCols = headerTable.children;
+                const bodyCols = bodyTableRow.children;
+
+                for (let i = 0; i < headerCols.length; i++) {
+                    const width = headerCols[i].offsetWidth;
+                    bodyCols[i].style.width = `${width}px`;
+                }
+            }
+        });
+    </script>
 </head>
 <body>
 <div id="mask-container">
@@ -330,6 +360,7 @@
                                 <th>Trạng thái</th>
                                 <th>Xác thực</th>
                                 <th>Chi tiết</th>
+                                <th>Ký</th>
                             </tr>
                             </thead>
                             <tbody id="list-oder-status" style="line-height: 50px">
@@ -354,8 +385,18 @@
                                                         value="${o.total}"/></td>
                                     <td>${o.paymentID}</td>
                                     <td>${o.shippingStatus}</td>
-                                    <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
-                                    <td><i class="bi bi-three-dots-vertical detail" onclick="getOrderDetails(this)"></i></td>
+                                    <c:if test="${signsOfOrder.get(o.id) == true}">
+                                        <td><i class="bi bi-shield-fill-check" style="color: #00f004"></i></td>
+                                    </c:if>
+                                    <c:if test="${signsOfOrder.get(o.id) == false}">
+                                        <td><i class="bi bi-x-octagon-fill" style="color: red"></i></td>
+                                    </c:if>
+                                    <td><i class="bi bi-three-dots-vertical detail"
+                                           onclick="getOrderDetails(this)"></i>
+                                    </td>
+                                    <td><i class="bi bi-pencil-square sign"
+                                           onclick="getOrderDetails(this)"></i>
+                                    </td>
                                 </tr>
 
                             </c:forEach>

@@ -64,12 +64,13 @@ public class VerifyReCaptcha extends HttpServlet {
                 try {
                     // Xử lý tiếp theo
                     Cart cart = (Cart) session.getAttribute("cart");
-                    String idPromotion = (String) session.getAttribute("idPromotion");
+                    Integer idPromotion = (Integer) session.getAttribute("idPromotion");
+                    String promotionId = idPromotion.toString();
                     double valueOfPromotion = (Double) session.getAttribute("valueOfPromotion");
                     Order o = null;
                     try {
                         if (idPromotion != null) {
-                            o = new Order(u.getId(), 1, idPromotion, u.getPhoneNum());
+                            o = new Order(u.getId(), 1, promotionId, u.getPhoneNum());
                         } else {
                             o = new Order(u.getId(), 1, u.getPhoneNum());
                         }
