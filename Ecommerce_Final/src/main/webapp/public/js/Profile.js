@@ -31,15 +31,17 @@ function updateOrderManagerUI(orders) {
     });
     console.log("Dang update giao dien.");
     orders.lists.forEach((item) => {
+        console.log("Giao dien ----------")
         const formattedPrice = formatter.format(item.total);
         const orderItem = document.createElement('tr');
 
         // Lấy danh sách ảnh từ thumbs
         const thumbs = orders.thumbs[item.id] || [];
         const signed = orders.signsOfOrder[item.id] || [];
+        console.log(signed)
 
-        let iconVerify = null
-        if (!signed) {
+        let iconVerify
+        if (item.sign === true) {
             iconVerify = `<i class="bi bi-shield-fill-check" style="color: #00f004"></i>`
         } else {
             iconVerify = `<i class="bi bi-x-octagon-fill" style="color: red"></i>`
@@ -66,11 +68,11 @@ function updateOrderManagerUI(orders) {
         <td>${formattedPrice}</td>
         <td>${item.paymentID}</td>
         <td>${item.shippingStatus}</td>
-        <td>${iconVerify}</td>
+        <td id="verify-icon-${item.id}">${iconVerify}</td>
         <td><i class="bi bi-three-dots-vertical detail"  onclick="getOrderDetails(this)"></i></td>
         <td><i class="bi bi-pencil-square sign"
-            onclick="getOrderDetails(this)"></i>
-            </td>
+            onclick="signOrderPopUp(this)"></i>
+        </td>
     `;
 
         // Thêm vào bảng

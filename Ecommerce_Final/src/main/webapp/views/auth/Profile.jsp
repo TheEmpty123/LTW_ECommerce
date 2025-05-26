@@ -28,6 +28,8 @@
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Profile.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/sign.js"></script>
+
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -88,8 +90,28 @@
         .detail:hover, .sign:hover {
             cursor: pointer;
         }
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
-
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
 
     </style>
 
@@ -168,6 +190,7 @@
 </div>
 <%-- HEADER --%>
 <div class="container-hd">
+    <div id="notification" class="notification hidden"></div>
     <header>
         <div class="header-top-hd">
             <div class="language-switcher-hd">
@@ -386,16 +409,16 @@
                                     <td>${o.paymentID}</td>
                                     <td>${o.shippingStatus}</td>
                                     <c:if test="${signsOfOrder.get(o.id) == true}">
-                                        <td><i class="bi bi-shield-fill-check" style="color: #00f004"></i></td>
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-shield-fill-check" style="color: #00f004"></i></td>
                                     </c:if>
                                     <c:if test="${signsOfOrder.get(o.id) == false}">
-                                        <td><i class="bi bi-x-octagon-fill" style="color: red"></i></td>
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-x-octagon-fill" style="color: red"></i></td>
                                     </c:if>
                                     <td><i class="bi bi-three-dots-vertical detail"
                                            onclick="getOrderDetails(this)"></i>
                                     </td>
                                     <td><i class="bi bi-pencil-square sign"
-                                           onclick="getOrderDetails(this)"></i>
+                                           onclick="signOrderPopUp(this)"></i>
                                     </td>
                                 </tr>
 
@@ -498,7 +521,8 @@
 <div id="signature-frame">
     <jsp:include page="/views/web/order/signature-frame.jsp"/>
 </div>
-<%--<!-- <iframe src="../common/footer.jsp" frameborder="0" id="footer"></iframe> -->--%>
+
+<div></div>
 <footer class="footer">
     <div class="footer-container">
         <%--        <!-- Left Column -->--%>

@@ -25,20 +25,21 @@ function getOrderDetails(order) {
     }).catch(error => {
         console.error('Lỗi:', error);
     })
+}
 
-    function updateUI(list) {
-        const orderDetailFrame = document.getElementById('order-details')
-        orderDetailFrame.style.display = 'block'
-        const detailContainer = document.getElementById('item-details');
-        const formatter = new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-        });
-        detailContainer.innerHTML = ''
-        list.forEach((item) => {
-            const detailItem = document.createElement('div')
-            detailItem.classList.add('row')
-            detailItem.innerHTML = `
+function updateUI(list) {
+    const orderDetailFrame = document.getElementById('order-details')
+    orderDetailFrame.style.display = 'block'
+    const detailContainer = document.getElementById('item-details');
+    const formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND',
+    });
+    detailContainer.innerHTML = ''
+    list.forEach((item) => {
+        const detailItem = document.createElement('div')
+        detailItem.classList.add('row')
+        detailItem.innerHTML = `
                      <div class="col-2">
                         <img src="${item.product.thumb}" alt="Logo" style="height: 50px; width: 50px">
                     </div>
@@ -52,8 +53,7 @@ function getOrderDetails(order) {
                         ${item.amount}
                     </div>
             `
-            detailContainer.appendChild(detailItem)
+        detailContainer.appendChild(detailItem)
 
-        })
-    }
+    })
 }

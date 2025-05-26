@@ -22,6 +22,7 @@ p {
 }
 
 #mask {
+    position: relative;
     width: 100vw;
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.5);
@@ -141,4 +142,21 @@ p {
 
 #public-key-input, #signature-input {
     width: 100%;
+}
+
+#title-pop-up{
+    width: 96%;
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    position: relative;
+}
+#close-pop-up{
+    position: absolute;
+    font-size: 30px;
+    display: flex;
+    cursor: pointer;
+    align-items: center;
+    right: 0;
+    top: 10px;
 }

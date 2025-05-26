@@ -83,6 +83,7 @@ public class ProfileController extends HttpServlet {
                         e.printStackTrace();
                     }
                 }
+                System.out.println(signsOfOrder);
                 orderItemsOfUser = orderItemService.getOrderItem(u.getId());
 
                 for (OrderItem orderItem : orderItemsOfUser) {
@@ -168,6 +169,7 @@ public class ProfileController extends HttpServlet {
         String status = jsonObject.getString("status");
 
         List<Product> data;
+        List<Order> orderAfterCheckSignature = new ArrayList<>();
         List<Order> orderWithStatus = new ArrayList<>();
         List<OrderItem> orderItemsOfUser = new ArrayList<>();
         if (u != null) {
@@ -181,6 +183,8 @@ public class ProfileController extends HttpServlet {
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
+
+
             try {
                 if (!orderWithStatus.isEmpty()) {
                     for (Order order : orderWithStatus) {
@@ -192,10 +196,14 @@ public class ProfileController extends HttpServlet {
                             temp.add(order);
                             orderByShippingStatus.put(order.getShippingStatus(), temp);
                         }
-
-                        order.setListOrderItem(orderItemService.getOrderItem(order.getId()));
-                        order.updateVerifyStatus(u);
-                        signsOfOrder.put(order.getId(), order.getSign());
+                        try {
+                            order.setListOrderItem(orderItemService.getAllOrderItemByOrderId(order.getId()));
+                            order.updateVerifyStatus(u);
+                            signsOfOrder.put(order.getId(), order.getSign());
+                            orderAfterCheckSignature.add(order);
+                        }catch (Exception e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
                     orderItemsOfUser = orderItemService.getOrderItem(u.getId());
 
@@ -225,7 +233,7 @@ public class ProfileController extends HttpServlet {
                 .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
                 .registerTypeAdapter(Timestamp.class, new TimestampAdapter())
                 .create();
-        OrdersResponse response = new OrdersResponse(orderWithStatus, thumbOfOrders, signsOfOrder);
+        OrdersResponse response = new OrdersResponse(orderAfterCheckSignature, thumbOfOrders, signsOfOrder);
         resp.getWriter().write(gson.toJson(response));
     }
 

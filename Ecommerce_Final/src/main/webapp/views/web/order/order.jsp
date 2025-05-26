@@ -622,7 +622,7 @@
 </div>
 
 <div id="verify-frame">
-   <jsp:include page="order-detail.jsp"/>
+   <jsp:include page="verify-recaptcha.jsp"/>
 </div>
 <div>
     <footer class="footer">

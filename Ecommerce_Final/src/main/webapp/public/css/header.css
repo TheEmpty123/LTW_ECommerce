@@ -4,12 +4,13 @@
     box-sizing: border-box;
 }
 .container-hd{
+    position: relative;
     height: 130px;
     width: 100%;
     display: flex;
     z-index: 1000;
     margin: 0;
-    padding: 0;
+    padding: 0
 }
 body {
     font-family: Arial, sans-serif;

@@ -21,19 +21,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <script src="${pageContext.request.contextPath}/public/js/sign.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/OrderDetail.js"></script>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
+    <style>
+        .tooltip-container {
+            position: relative;
+            display: inline-block;
+        }
+        .tooltip-text {
+            visibility: hidden;
+            background-color: black;
+            color: #fff;
+            text-align: center;
+            padding: 5px 10px;
+            border-radius: 5px;
+
+            position: absolute;
+            bottom: 125%; /* Vị trí tooltip */
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 1;
+            white-space: nowrap;
+        }
+        .show-tooltip {
+            visibility: visible;
+        }
+    </style>
 </head>
 <body>
 <div id="mask">
     <div id="order-detail-box">
-        <strong style="font-size: 30px; margin-top: 20px; margin-bottom: 20px">Xác thực đơn hàng</strong>
-        <form id="signature-form" action="${pageContext.request.contextPath}/verify" method="post"
-              enctype="multipart/form-data" class="signature-area">
+        <div id="title-pop-up">
+            <strong style="font-size: 30px; margin-bottom: 20px">Chi tiết đơn hàng</strong>
+            <i class="bi bi-x-circle" id="close-pop-up"  onclick="cancelSign()"></i>
+        </div>
+        <div id="signature-form" class="signature-area">
             <div class="hash-code">
                 <p style="display: inline; padding-right: 10px; margin-bottom: 0">Mã hash: </p>
-                <p id="hash-code">0x034g35h3i352bjfsusdfadfsadasdfasdfasfx2425325</p>
+                <p id="hash-code"></p>
                 <button type="button" style="width: 25px; height: 25px; padding: 1px; border: none"
                         onclick="copyText()">
                     <i class="bi bi-copy"></i>
@@ -44,18 +71,19 @@
                     <div class="col-3">
                         <p>Signature: </p>
                     </div>
-                    <div class="col-9">
+                    <div class="col-9 tooltip-container ">
                         <input id="signature-input" name="signature-input" type="text">
+                        <span id="tooltipText" class="tooltip-text">Vui lòng nhập chữ ký!</span>
                     </div>
                 </div>
             </div>
             <p>Tải tool<a href="#"> tại đây</a> và dùng mã hash bên trên để phát sinh public key và signature.</p>
             <%--            <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lc4L0ErAAAAAHLirMncOYQv2pUs4wtiPKfd2aKB" style="display: flex; justify-content: center; margin-bottom: 10px"></div>--%>
             <div class="submit-div">
-                <button type="button" id="cancel-btn" class="cancel" onclick="">Hủy</button>
-                <button type="submit" id="submit-order">Xác nhận</button>
+                <button type="button" id="cancel-btn" class="cancel" onclick="cancelSign()">Hủy</button>
+                <button type="button" id="submit-order" onclick="sign()">Xác nhận</button>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 </body>

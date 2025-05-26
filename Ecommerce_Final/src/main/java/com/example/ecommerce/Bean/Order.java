@@ -169,6 +169,7 @@ public class Order implements Serializable {
             String publicKey = user.getPublic_key();
             String hash = hashOrder();
             String sign = this.signature;
+
             this.sign = CipherUtils.verify(hash, sign, publicKey);
         }
     }
@@ -181,6 +182,7 @@ public class Order implements Serializable {
         sb.append(createDate);
         sb.append(promotion_id);
         sb.append(sdt);
+
         for(OrderItem item : listOrderItem) {
             sb.append(item.getProductID());
             sb.append(item.getAmount());

@@ -1,10 +1,7 @@
 package com.example.ecommerce.controller2;
 
-import com.example.ecommerce.Bean.Cart.CartProduct;
 import com.example.ecommerce.Bean.OrderItem;
-import com.example.ecommerce.controller2.cart.CartController;
 import com.example.ecommerce.service.OrderItemService;
-import com.example.ecommerce.service.OrderService;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;

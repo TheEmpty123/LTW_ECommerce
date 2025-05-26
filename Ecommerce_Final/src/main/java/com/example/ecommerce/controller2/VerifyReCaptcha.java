@@ -30,7 +30,7 @@ public class VerifyReCaptcha extends HttpServlet {
 
 //    @Override
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-////        resp.sendRedirect("/views/web/order/order-detail.jsp"); // sửa đường dẫn phù hợp
+////        resp.sendRedirect("/views/web/order/verify-recaptcha.jsp"); // sửa đường dẫn phù hợp
 ////        resp.setHeader("Content-Security-Policy",
 ////                "script-src 'self' https://www.google.com https://www.gstatic.com; " +
 ////                        "frame-src https://www.google.com https://www.gstatic.com; " +
