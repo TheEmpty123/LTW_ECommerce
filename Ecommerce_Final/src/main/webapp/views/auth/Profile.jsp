@@ -29,6 +29,7 @@
     <script src="${pageContext.request.contextPath}/public/js/Profile.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/sign.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/updatePublicKey.js"></script>
 
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -80,6 +81,14 @@
             background-color: white;
             z-index: 1;
         }
+        #update-public-key{
+            display: none;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            z-index: 2000
+        }
 
         #table-order th, #table-order td {
             padding: 2px;
@@ -90,6 +99,7 @@
         .detail:hover, .sign:hover {
             cursor: pointer;
         }
+
         /* Kiểu thông báo */
         .notification {
             position: fixed;
@@ -358,6 +368,9 @@
                     <div class="col-sm-3 col-md-3 flex-column">
                         <button class="b-w-b p-2-1">Cập nhật</button>
                     </div>
+                    <div class="col-sm-3 col-md-3 flex-column" style="width: auto">
+                        <button class="b-w-b p-2-1" style="background-color: #0dcaf0" onclick="showUpdateFrame(${sessionScope.auth.id})">Cập nhật Public key</button>
+                    </div>
                 </div>
             </div>
             <div id="order" class="hidden">
@@ -409,10 +422,12 @@
                                     <td>${o.paymentID}</td>
                                     <td>${o.shippingStatus}</td>
                                     <c:if test="${signsOfOrder.get(o.id) == true}">
-                                        <td id="verify-icon-${o.id}"><i class="bi bi-shield-fill-check" style="color: #00f004"></i></td>
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-shield-fill-check"
+                                                                        style="color: #00f004"></i></td>
                                     </c:if>
                                     <c:if test="${signsOfOrder.get(o.id) == false}">
-                                        <td id="verify-icon-${o.id}"><i class="bi bi-x-octagon-fill" style="color: red"></i></td>
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-x-octagon-fill"
+                                                                        style="color: red"></i></td>
                                     </c:if>
                                     <td><i class="bi bi-three-dots-vertical detail"
                                            onclick="getOrderDetails(this)"></i>
@@ -514,6 +529,9 @@
         </div>
 
     </div>
+</div>
+<div id="update-public-key">
+    <jsp:include page="UpdatePublicKey.jsp"/>
 </div>
 <div id="order-details">
     <jsp:include page="/views/web/order/detail-order.jsp"/>

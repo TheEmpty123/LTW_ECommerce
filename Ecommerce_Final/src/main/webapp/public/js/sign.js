@@ -75,9 +75,11 @@ function updateUI(data) {
 function showNotification(status, message) {
     const notification = document.getElementById('notification');
     if (status === "Fail") {
-        notification.style.zIndex = "10"
         notification.style.backgroundColor = "red"
+    }else{
+        notification.style.backgroundColor= "#4caf50"
     }
+
     // Thay đổi nội dung thông báo nếu cần
     notification.textContent = message;
 

@@ -13,7 +13,7 @@ public class Test {
         UserService userService = UserService.getInstance();
         User user = userService.getUserByID(1);
 
-        Order o1 = orderService.getOrderById(34);
+        Order o1 = orderService.getOrderById(38);
         o1.setListOrderItem(orderItemService.getAllOrderItemByOrderId(o1.getId()));
 
         String hashCode  = o1.hashOrder();

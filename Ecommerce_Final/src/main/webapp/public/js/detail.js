@@ -21,13 +21,13 @@ function getOrderDetails(order) {
         body: JSON.stringify({ids: idOrder})
     }).then(response => response.json()
     ).then(data => {
-        updateUI(data.lists)
+        updateUIDetail(data.lists)
     }).catch(error => {
         console.error('Lỗi:', error);
     })
 }
 
-function updateUI(list) {
+function updateUIDetail(list) {
     const orderDetailFrame = document.getElementById('order-details')
     orderDetailFrame.style.display = 'block'
     const detailContainer = document.getElementById('item-details');

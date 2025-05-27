@@ -218,6 +218,13 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
         return c > 0;
     }
+    public boolean updatePublicKey(int userID, String publicKey) {
+        return db.getJdbi().withHandle(
+                        handle -> handle.createUpdate("update users set public_key = :public_key where id = :id"))
+                .bind(0, publicKey)
+                .bind(1, userID)
+                .execute() > 0;
+    }
 
     public static void main(String[] args) {
         UserDao dao = new UserDao();
