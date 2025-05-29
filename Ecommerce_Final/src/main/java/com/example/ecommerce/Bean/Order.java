@@ -42,8 +42,17 @@ public class Order implements Serializable {
         this.listOrderItem = new ArrayList<>();
     }
 
-    public Order(int userID) {
+    public Order(int userID, int paymentID, String promotion_id, String sdt) {
         this.userID = userID;
+        this.paymentID = paymentID;
+        this.promotion_id = promotion_id;
+        this.sdt = sdt;
+        this.listOrderItem = new ArrayList<>();
+    }
+    public Order(int userID, int paymentID, String sdt) {
+        this.userID = userID;
+        this.paymentID = paymentID;
+        this.sdt = sdt;
         this.listOrderItem = new ArrayList<>();
     }
 
@@ -178,9 +187,7 @@ public class Order implements Serializable {
             sb.append(item.getProductID());
             sb.append(item.getAmount());
             var p = item.getProduct();
-            sb.append(p.getProName());
             sb.append(p.getPrice());
-            sb.append(p.getDescription());
         }
 
         String hash = "";

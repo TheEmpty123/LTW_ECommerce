@@ -38,11 +38,12 @@ public class PromotionController extends HttpServlet {
         double value = 0;
         String notification = "";
         System.out.println(u);
-
+        int idPromotion = -1;
         if (u != null) {
             if (!cart.getList().isEmpty()) {
                 if (!code.getCode().equals("null")) {
                     Promotion promotion = service.getPromotionByCode(code.getCode());
+                    idPromotion = promotion.getId();
                     if (promotion != null) {
                         value = promotion.getValueOfPro();
                         notification = "Đã áp dụng mã giảm giá.";
@@ -61,6 +62,7 @@ public class PromotionController extends HttpServlet {
         }
 
         double result = cart.getTotal() - value;
+        session.setAttribute("idPromotion", idPromotion);
         session.setAttribute("valueOfPromotion", result);
         session.setAttribute("cart", cart);
 

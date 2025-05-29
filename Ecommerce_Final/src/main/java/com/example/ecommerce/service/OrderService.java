@@ -228,6 +228,16 @@ public class OrderService extends ServiceBase {
         return (a > 0) && (b > 0) && (c > 0);
     }
 
+    public boolean updateSignature(int id, String signature){
+        try{
+            int r = orderDao.updateSignature(id, signature);
+            if(r > 0) return true;
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return false;
+    }
+
     public List<OrderItemDto> getAllOrderItemDtoFromOrder(int id) {
         orderDao.getJdbi().installPlugin(new SqlObjectPlugin());
         var j = orderDao.getJdbi();

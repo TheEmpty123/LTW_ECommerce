@@ -218,9 +218,17 @@ public class UserDao extends ImplementBase implements IUsersDao {
 
         return c > 0;
     }
-
-    public static void main(String[] args) {
-        UserDao dao = new UserDao();
-        dao.log.info("test");
+    public boolean updatePublicKey(int userID, String publicKey) {
+        log.info("Updating public key user: " + userID);
+         int c = handle.createUpdate("update users set public_key = :public_key where id = :id")
+                .bind("public_key", publicKey)
+                .bind("id", userID)
+                .execute();
+         return c> 0;
     }
+
+//    public static void main(String[] args) {
+//        UserDao dao = new UserDao();
+//        dao.log.info("test");
+//    }
 }

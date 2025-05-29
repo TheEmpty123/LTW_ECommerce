@@ -20,12 +20,17 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
           crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Profile.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/detail.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/sign.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/updatePublicKey.js"></script>
+
 
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -64,21 +69,79 @@
             overflow-y: auto;
         }
 
-        .wishlist-button {
-            background-color: #dfc2c4;
-            color: black;
-            padding: 10px;
-            margin: 15px 3px 3px 5px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        #table-order {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
         }
 
-        .detail:hover {
+        #table-order thead th {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            z-index: 1;
+        }
+        #update-public-key{
+            display: none;
+            position: fixed;
+            width: 100vw;
+            height: 100vh;
+            top: 0;
+            z-index: 2000
+        }
+
+        #table-order th, #table-order td {
+            padding: 2px;
+            border: 1px solid #ccc;
+            text-align: center;
+        }
+
+        .detail:hover, .sign:hover {
             cursor: pointer;
         }
 
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            background-color: #4caf50; /* Màu xanh lá biểu thị thành công */
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
+
     </style>
+
+    <script>
+        // Đồng bộ chiều rộng cột giữa header và body
+        window.addEventListener("load", function () {
+            const headerTable = document.querySelector("table.display thead tr");
+            const bodyTableRow = document.querySelector("#table-order tbody tr");
+
+            if (bodyTableRow) {
+                const headerCols = headerTable.children;
+                const bodyCols = bodyTableRow.children;
+
+                for (let i = 0; i < headerCols.length; i++) {
+                    const width = headerCols[i].offsetWidth;
+                    bodyCols[i].style.width = `${width}px`;
+                }
+            }
+        });
+    </script>
 </head>
 <body>
 <div id="mask-container">
@@ -127,16 +190,17 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="${pageContext.request.contextPath}/views/web/order/order.jsp">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
         </div>
     </div>
 </div>
 <%-- HEADER --%>
 <div class="container-hd">
+    <div id="notification" class="notification hidden"></div>
     <header>
         <div class="header-top-hd">
             <div class="language-switcher-hd">
@@ -204,10 +268,14 @@
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
             </nav>
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </header>
 </div>
@@ -221,7 +289,7 @@
             </div>
             <div class="sub-menu">
                 <h6 id="sub-menu-info" class="text-menu clicked">Thông tin của tôi</h6>
-                <h6 id="sub-menu-order" class="text-menu">Đơn hàng</h6>
+                <h6 id="sub-menu-order" class="text-menu" onclick="updateOrderUser('all')">Đơn hàng</h6>
                 <!-- <h6 id="sub-menu-product-viewed" class="text-menu">Sản phẩm vừa xem</h6> -->
                 <h6 id="sub-menu-wish-list" class="text-menu">Danh sách ưa thích</h6>
                 <h6 id="sub-menu-logout" class="text-menu">Đăng xuất</h6>
@@ -304,13 +372,16 @@
                     <div class="col-sm-3 col-md-3 flex-column">
                         <button class="b-w-b p-2-1">Cập nhật</button>
                     </div>
+                    <div class="col-sm-3 col-md-3 flex-column" style="width: auto">
+                        <button class="b-w-b p-2-1" style="background-color: #0dcaf0" onclick="showUpdateFrame(${sessionScope.auth.id})">Cập nhật Public key</button>
+                    </div>
                 </div>
             </div>
             <div id="order" class="hidden">
                 <div class="box">
                     <h3>Đơn hàng của tôi</h3>
                     <div class="nav-order">
-                        <div class="nav-box fchild" onclick="updateOrderUser('all')">Tất cả đơn hàng</div>
+                        <div id="first-child" class="nav-box fchild" onclick="updateOrderUser('all')">Tất cả đơn hàng</div>
                         <div class="nav-box" onclick="updateOrderUser('packaging')">Đang xử lí</div>
                         <div class="nav-box" onclick="updateOrderUser('delivering')">Đang giao</div>
                         <div class="nav-box" onclick="updateOrderUser('completed')">Đã hoàn thành</div>
@@ -329,12 +400,13 @@
                                 <th>Trạng thái</th>
                                 <th>Xác thực</th>
                                 <th>Chi tiết</th>
+                                <th>Ký</th>
                             </tr>
                             </thead>
                             <tbody id="list-oder-status" style="line-height: 50px">
                             <c:forEach var="o" items="${ordersOfUser}">
                                 <%
-                                    int padding = 5;
+                                    int padding = 0;
                                 %>
                                 <tr>
                                     <td>${o.id}</td>
@@ -345,16 +417,28 @@
                                                     <img src="${pageContext.request.contextPath}${thumb}"
                                                          style="height: 50px; width: 50px">
                                                 </div>
-                                                <% padding += 20;%>
+                                                <% padding += 5;%>
                                             </c:forEach>
                                         </div>
                                     </td>
                                     <td><f:formatNumber type="currency" currencySymbol="đ"
                                                         value="${o.total}"/></td>
-                                    <td>${o.paymentID}</td>
+                                    <td>Cash</td>
                                     <td>${o.shippingStatus}</td>
-                                    <td><i class="fa-solid fa-circle-check" style="color: #00f004;"></i></td>
-                                    <td><i class="bi bi-three-dots-vertical detail"></i></td>
+                                    <c:if test="${signsOfOrder.get(o.id) == true}">
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-shield-fill-check"
+                                                                        style="color: #00f004"></i></td>
+                                    </c:if>
+                                    <c:if test="${signsOfOrder.get(o.id) == false}">
+                                        <td id="verify-icon-${o.id}"><i class="bi bi-x-octagon-fill"
+                                                                        style="color: red"></i></td>
+                                    </c:if>
+                                    <td><i class="bi bi-three-dots-vertical detail"
+                                           onclick="getOrderDetails(this)"></i>
+                                    </td>
+                                    <td><i class="bi bi-pencil-square sign"
+                                           onclick="signOrderPopUp(this)"></i>
+                                    </td>
                                 </tr>
 
                             </c:forEach>
@@ -371,7 +455,6 @@
                     $('#myTable').DataTable();
                 });
             </script>
-
 
             <div id="wish-list" class="hidden">
                 <div class="box">
@@ -450,7 +533,17 @@
 
     </div>
 </div>
-<%--<!-- <iframe src="../common/footer.jsp" frameborder="0" id="footer"></iframe> -->--%>
+<div id="update-public-key">
+    <jsp:include page="UpdatePublicKey.jsp"/>
+</div>
+<div id="order-details">
+    <jsp:include page="/views/web/order/detail-order.jsp"/>
+</div>
+<div id="signature-frame">
+    <jsp:include page="/views/web/order/signature-frame.jsp"/>
+</div>
+
+<div></div>
 <footer class="footer">
     <div class="footer-container">
         <%--        <!-- Left Column -->--%>

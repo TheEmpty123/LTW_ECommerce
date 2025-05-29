@@ -11,23 +11,32 @@ import com.example.ecommerce.service.OrderItemService;
 import com.example.ecommerce.service.OrderService;
 import com.example.ecommerce.service.OwnAddressService;
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.MultipartConfig;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
+import javax.mail.internet.AddressException;
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+@MultipartConfig
 @WebServlet(name = "Order", value = "/order")
 public class OrderController extends HttpServlet {
     OrderItemService orderItemService = new OrderItemService();
     OwnAddressService ownAddressService = new OwnAddressService();
     OrderService service = new OrderService();
+    CategoryService cateService = new CategoryService();
+    List<Category> categories;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,16 +44,39 @@ public class OrderController extends HttpServlet {
         try {
             HttpSession session = req.getSession(true);
             User user = (User) session.getAttribute("auth");
+            categories = cateService.getAllCategory();
 
             if (user != null) {
                 int idUser = user.getId();
                 List<OrderItem> orderitems = orderItemService.getOrderItem(idUser);
                 List<OwnAddress> address = ownAddressService.getOwnAddress(idUser);
+                Cart cart = (Cart) session.getAttribute("cart");
 
                 System.out.println("Fetched order items: " + orderitems);
 
                 double totalMoney = service.getTotalRevenue(true);
 
+                //Lay du lieu category de hien thi len giao dien
+                int catePerCol = 5;
+                HashMap<Integer, List<Category>> mapCate = new HashMap<>();
+
+                int countCol = categories.size() % catePerCol == 0 ? categories.size() / catePerCol : categories.size() / catePerCol + 1;
+
+                for (int i = 0; i < countCol; i++) {
+                    int index = i * catePerCol;
+                    for (int j = index; j < index + catePerCol; j++) {
+                        if (!mapCate.containsKey(i)) {
+                            List<Category> list = new ArrayList<>();
+                            list.add(categories.get(j));
+                            mapCate.put(i, list);
+                        } else {
+                            if (j < categories.size()) mapCate.get(i).add(categories.get(j));
+                            else break;
+                        }
+                    }
+                }
+                req.setAttribute("totalCart", cart.getTotal());
+                req.setAttribute("mapCate", mapCate);
                 req.setAttribute("orderitems", orderitems);
                 req.setAttribute("total", totalMoney);
                 req.setAttribute("address", address);
@@ -58,12 +90,14 @@ public class OrderController extends HttpServlet {
             req.setAttribute("error", "An error occurred while processing the order.");
             req.getRequestDispatcher("/views/web/error.jsp").forward(req, resp);
         }
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         resp.setContentType("application/json");
         resp.setCharacterEncoding("UTF-8");
+        OwnAddressService ownAddressService = new OwnAddressService();
 
         try {
             HttpSession session = req.getSession(true);
@@ -80,19 +114,49 @@ public class OrderController extends HttpServlet {
                 int idUser = user.getId();
                 System.out.println("id " + idUser);
 
-                Order order = new Order(idUser);
-                this.service.addOrder(order);
+//                Order order = new Order(idUser);
+//                this.service.addOrder(order);
 
-                processCartItems(cart, order);
+//                processCartItems(cart, order);
 
                 handleShippingInfo(req, resp, idUser);
 
-                resp.sendRedirect(req.getContextPath() + "/order");
+                List<OwnAddress> oa = ownAddressService.getOwnAddress(idUser);
+                String status = "{\"status\":\"success\"}";
 
+                AddressResponse adRe = new AddressResponse(oa.get(0), status);
+                Gson gson = new GsonBuilder()
+                        .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+                        .registerTypeAdapter(Timestamp.class, new TimestampAdapter())
+                        .create();
+//                PrintWriter out = resp.getWriter();
+//                out.print(gson.toJson(adRe));
+//                out.flush();
+                resp.getWriter().write(gson.toJson(adRe));
+                System.out.println("Đã trả json về client");
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static class AddressResponse {
+        private final OwnAddress address;
+        private final String status;
+
+        public AddressResponse(OwnAddress address, String status) {
+            this.address = address;
+            this.status = status;
+        }
+
+        public OwnAddress getAddress() {
+            return address;
+        }
+
+        public String getStatus() {
+            return status;
+        }
+
     }
 
     private void processCartItems(Cart cart, Order order) {
@@ -115,6 +179,7 @@ public class OrderController extends HttpServlet {
     }
 
     private void handleShippingInfo(HttpServletRequest req, HttpServletResponse resp, int idUser) throws IOException {
+        req.getParameterMap().forEach((k, v) -> System.out.println(k + " = " + String.join(",", v)));
 
         String name = req.getParameter("name");
         String phone = req.getParameter("phone");
