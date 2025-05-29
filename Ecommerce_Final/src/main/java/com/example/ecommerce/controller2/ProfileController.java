@@ -39,7 +39,7 @@ public class ProfileController extends HttpServlet {
         }
         session.setAttribute("cart", c);
 
-
+        UserService userService = UserService.getInstance();
         ProductService service = new ProductService();
         AddressService addService = new AddressService();
         CategoryService cateService = new CategoryService();
@@ -76,8 +76,9 @@ public class ProfileController extends HttpServlet {
                         orderByShippingStatus.put(order.getShippingStatus(), temp);
                     }
                     try {
+                        User updatedUser = userService.getUserByID(u.getId());
                         order.setListOrderItem(orderItemService.getAllOrderItemByOrderId(order.getId()));
-                        order.updateVerifyStatus(u);
+                        order.updateVerifyStatus(updatedUser);
                         signsOfOrder.put(order.getId(), order.getSign());
                     } catch (Exception e) {
                         e.printStackTrace();
@@ -149,6 +150,7 @@ public class ProfileController extends HttpServlet {
         HttpSession session = req.getSession(true);
         User u = (User) session.getAttribute("auth");
 
+        UserService userService = UserService.getInstance();
         ProductService service = new ProductService();
         OrderItemService orderItemService = new OrderItemService();
         OrderService orderService = new OrderService();
@@ -197,8 +199,9 @@ public class ProfileController extends HttpServlet {
                             orderByShippingStatus.put(order.getShippingStatus(), temp);
                         }
                         try {
+                            User updatedUser = userService.getUserByID(u.getId());
                             order.setListOrderItem(orderItemService.getAllOrderItemByOrderId(order.getId()));
-                            order.updateVerifyStatus(u);
+                            order.updateVerifyStatus(updatedUser);
                             signsOfOrder.put(order.getId(), order.getSign());
                             orderAfterCheckSignature.add(order);
                         }catch (Exception e) {

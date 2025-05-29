@@ -61,6 +61,14 @@
         .pr-10 {
             padding-right: 10px;
         }
+        .selected{
+            background: black !important;
+            color: white;
+        }
+        #pay-bank{
+            background: lightgray;
+            color: white;
+        }
 
     </style>
 </head>
@@ -210,11 +218,12 @@
 </div>
 
 <div class="container" style="margin-top: 2%;">
-    <div class="shipping-address" , style="border: none;">
+    <div id="notification" class="notification hidden"></div>
+    <div class="shipping-address" style="border: none;">
         <h2>Tóm tắt đơn hàng</h2>
         <form>
             <h3>Sản phẩm</h3>
-            <div class="product-list"
+            <div id="list-product" class="product-list"
                  style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
                 <c:forEach var="cp" items="${sessionScope.cart.list}">
                     <div class="product" style="margin-bottom: 20px;">
@@ -259,7 +268,7 @@
             <div class="summary-item">
                 <div class="col-sm-6 col-md-6 t-bold total-price">
                     <p class="pr-10">Thành tiền:</p>
-                    <p id="total-before-promotion" class="total-cart">
+                    <p id="total-before-promotion" class="total-cart" style="text-decoration: line-through">
                         <c:if test="${sessionScope.auth == null}">
                             <fmt:formatNumber type="number" currencySymbol="đ" value="0.0"/> đ
                         </c:if>
@@ -301,35 +310,35 @@
                     placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."></textarea>
 
             <h3>PHƯƠNG THỨC THANH TOÁN</h3>
-            <form id="payment">
+            <div id="payment">
                 <div class="payment-method">
-                    <button type="submit" class="pay-bank">Chuyển khoản ngân hàng</button>
-                    <button type="submit" class="cod">Thanh toán khi nhận hàng</button>
+                    <button id="pay-bank" type="button" class="pay-bank">Chuyển khoản ngân hàng</button>
+                    <button id="pay-cash" type="button" class="cod selected">Thanh toán khi nhận hàng</button>
                 </div>
-            </form>
+            </div>
             <script>
-                document.getElementById('payment').addEventListener('submit', function (event) {
-                    const selectedButton = document.querySelector('.payment-method button.selected');
+                // document.getElementById('payment').addEventListener('submit', function (event) {
+                //     const selectedButton = document.querySelector('.payment-method button.selected');
+                //
+                //     if (!selectedButton) {
+                //         event.preventDefault();
+                //         alert('Bạn cần chọn phương thức thanh toán');
+                //     } else if (!checkbox.checked) {
+                //         event.preventDefault();
+                //     } else {
+                //         alert("Thanh toán thành công!");
+                //     }
+                // });
 
-                    if (!selectedButton) {
-                        event.preventDefault();
-                        alert('Bạn cần chọn phương thức thanh toán');
-                    } else if (!checkbox.checked) {
-                        event.preventDefault();
-                    } else {
-                        alert("Thanh toán thành công!");
-                    }
-                });
-
-                document.querySelector('.pay-bank').addEventListener('click', function () {
-                    this.classList.add('selected');
-                    document.querySelector('.cod').classList.remove('selected');
-                });
-
-                document.querySelector('.cod').addEventListener('click', function () {
-                    this.classList.add('selected');
-                    document.querySelector('.pay-bank').classList.remove('selected');
-                });
+                // document.getElementById('pay-bank').addEventListener('click', function () {
+                //     this.classList.add('selected');
+                //     document.getElementById('pay-cash').classList.remove('selected');
+                // })
+                //
+                // document.getElementById('pay-cash').addEventListener('click', function () {
+                //     this.classList.add('selected');
+                //     document.getElementById('pay-bank').classList.remove('selected');
+                // });
 
             </script>
         </form>
@@ -622,7 +631,7 @@
 </div>
 
 <div id="verify-frame">
-   <jsp:include page="verify-recaptcha.jsp"/>
+    <jsp:include page="verify-recaptcha.jsp"/>
 </div>
 <div>
     <footer class="footer">

@@ -157,7 +157,6 @@ public class OrderController extends HttpServlet {
             return status;
         }
 
-
     }
 
     private void processCartItems(Cart cart, Order order) {

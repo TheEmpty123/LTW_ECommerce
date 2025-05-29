@@ -65,7 +65,12 @@ public class VerifyReCaptcha extends HttpServlet {
                     // Xử lý tiếp theo
                     Cart cart = (Cart) session.getAttribute("cart");
                     Integer idPromotion = (Integer) session.getAttribute("idPromotion");
-                    String promotionId = idPromotion.toString();
+                    String promotionId;
+                    if(idPromotion != null) {
+                        promotionId = idPromotion.toString();
+                    }else{
+                        promotionId = null;
+                    }
                     double valueOfPromotion = (Double) session.getAttribute("valueOfPromotion");
                     Order o = null;
                     try {

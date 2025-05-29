@@ -48,14 +48,14 @@ function updateOrderManagerUI(orders) {
         }
         // Tạo HTML cho ảnh thumb
         let thumbHtml = '';
-        let padding = 5;
+        let padding = 0;
         thumbs.forEach((thumb) => {
             thumbHtml += `
             <div style="position: absolute; left: ${padding}px">
                 <img src="${thumb}" style="height: 50px; width: 50px">
             </div>
         `;
-            padding += 20;
+            padding += 5;
         });
 
         orderItem.innerHTML = `
@@ -66,7 +66,7 @@ function updateOrderManagerUI(orders) {
             </div>
         </td>
         <td>${formattedPrice}</td>
-        <td>${item.paymentID}</td>
+        <td>Cash</td>
         <td>${item.shippingStatus}</td>
         <td id="verify-icon-${item.id}">${iconVerify}</td>
         <td><i class="bi bi-three-dots-vertical detail"  onclick="getOrderDetails(this)"></i></td>

@@ -190,10 +190,10 @@
                 </div>
             </div>
             <div class="watch-cart center-items">
-                <a href="${pageContext.request.contextPath}/showCart">XEM GIỎ HÀNG</a>
+                <a href="${pageContext.request.contextPath}/CartController">XEM GIỎ HÀNG</a>
             </div>
             <div class="check-out center-items">
-                <a href="${pageContext.request.contextPath}/views/web/order/order.jsp">THANH TOÁN</a>
+                <a href="${pageContext.request.contextPath}/order">THANH TOÁN</a>
             </div>
         </div>
     </div>
@@ -268,10 +268,14 @@
                 <a style="margin-top: 5px;" href="#">PHÒNG</a>
                 <a style="margin-top: 5px;" href="#">BỘ SƯU TẬP</a>
             </nav>
-            <div class="search-bar-hd">
-                <input type="text" placeholder="Tìm sản phẩm">
-                <button><i class="fa-solid fa-magnifying-glass"></i></button>
-            </div>
+            <form action="/search" method="get">
+                <div class="search-bar-hd">
+                    <input id="search-input" name="search-input" type="text" placeholder="Tìm sản phẩm">
+                    <button type="submit">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+            </form>
         </div>
     </header>
 </div>
@@ -285,7 +289,7 @@
             </div>
             <div class="sub-menu">
                 <h6 id="sub-menu-info" class="text-menu clicked">Thông tin của tôi</h6>
-                <h6 id="sub-menu-order" class="text-menu">Đơn hàng</h6>
+                <h6 id="sub-menu-order" class="text-menu" onclick="updateOrderUser('all')">Đơn hàng</h6>
                 <!-- <h6 id="sub-menu-product-viewed" class="text-menu">Sản phẩm vừa xem</h6> -->
                 <h6 id="sub-menu-wish-list" class="text-menu">Danh sách ưa thích</h6>
                 <h6 id="sub-menu-logout" class="text-menu">Đăng xuất</h6>
@@ -377,7 +381,7 @@
                 <div class="box">
                     <h3>Đơn hàng của tôi</h3>
                     <div class="nav-order">
-                        <div class="nav-box fchild" onclick="updateOrderUser('all')">Tất cả đơn hàng</div>
+                        <div id="first-child" class="nav-box fchild" onclick="updateOrderUser('all')">Tất cả đơn hàng</div>
                         <div class="nav-box" onclick="updateOrderUser('packaging')">Đang xử lí</div>
                         <div class="nav-box" onclick="updateOrderUser('delivering')">Đang giao</div>
                         <div class="nav-box" onclick="updateOrderUser('completed')">Đã hoàn thành</div>
@@ -402,7 +406,7 @@
                             <tbody id="list-oder-status" style="line-height: 50px">
                             <c:forEach var="o" items="${ordersOfUser}">
                                 <%
-                                    int padding = 5;
+                                    int padding = 0;
                                 %>
                                 <tr>
                                     <td>${o.id}</td>
@@ -413,13 +417,13 @@
                                                     <img src="${pageContext.request.contextPath}${thumb}"
                                                          style="height: 50px; width: 50px">
                                                 </div>
-                                                <% padding += 20;%>
+                                                <% padding += 5;%>
                                             </c:forEach>
                                         </div>
                                     </td>
                                     <td><f:formatNumber type="currency" currencySymbol="đ"
                                                         value="${o.total}"/></td>
-                                    <td>${o.paymentID}</td>
+                                    <td>Cash</td>
                                     <td>${o.shippingStatus}</td>
                                     <c:if test="${signsOfOrder.get(o.id) == true}">
                                         <td id="verify-icon-${o.id}"><i class="bi bi-shield-fill-check"
@@ -451,7 +455,6 @@
                     $('#myTable').DataTable();
                 });
             </script>
-
 
             <div id="wish-list" class="hidden">
                 <div class="box">
