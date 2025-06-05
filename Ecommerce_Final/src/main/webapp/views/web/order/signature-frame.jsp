@@ -77,8 +77,7 @@
                     </div>
                 </div>
             </div>
-            <p>Tải tool<a href="#"> tại đây</a> và dùng mã hash bên trên để phát sinh public key và signature.</p>
-            <%--            <div id="recaptcha" class="g-recaptcha" data-sitekey="6Lc4L0ErAAAAAHLirMncOYQv2pUs4wtiPKfd2aKB" style="display: flex; justify-content: center; margin-bottom: 10px"></div>--%>
+            <p>Tải tool <a href="${pageContext.request.contextPath}/public/EncryptTool.zip" download> tại đây</a> và dùng mã hash bên trên để phát sinh public key và signature.</p>
             <div class="submit-div">
                 <button type="button" id="cancel-btn" class="cancel" onclick="cancelSign()">Hủy</button>
                 <button type="button" id="submit-order" onclick="sign()">Xác nhận</button>
