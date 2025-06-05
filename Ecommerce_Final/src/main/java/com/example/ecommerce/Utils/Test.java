@@ -11,9 +11,9 @@ public class Test {
         OrderService orderService = OrderService.getInstance();
         OrderItemService orderItemService = OrderItemService.getInstance();
         UserService userService = UserService.getInstance();
-        User user = userService.getUserByID(121);
+        User user = userService.getUserByID(1);
 
-        Order o1 = orderService.getOrderById(64);
+        Order o1 = orderService.getOrderById(67);
         o1.setListOrderItem(orderItemService.getAllOrderItemByOrderId(o1.getId()));
 
         String hashCode  = o1.hashOrder();
