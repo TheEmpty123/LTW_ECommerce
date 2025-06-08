@@ -239,6 +239,11 @@ public class UserService extends ServiceBase {
         return userDao.updateUser(user);
     }
 
+    public boolean updatePublicKey(int userID, String publicKey) {
+        log.info("UserService updatePublicKey");
+        return userDao.updatePublicKey(userID, publicKey);
+    }
+
     public void disableUser(int id) {
         log.info("UserService disableUser");
         User user = userDao.getUserById(id);

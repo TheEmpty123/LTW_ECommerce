@@ -105,6 +105,10 @@
                                     <input type="tel" id="phone" name="phone" placeholder="${user.phoneNum}">
                                 </div>
                                 <div class="form-group">
+                                    <label for="key">Public Key</label>
+                                    <input type="text" id="key" name="key" placeholder="${user.public_key}">
+                                </div>
+                                <div class="form-group">
                                     <label for="gender">Gender</label>
                                     <select type="role" id="gender" name="gender">
                                         <option value="0">Male</option>

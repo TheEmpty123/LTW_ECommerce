@@ -95,7 +95,6 @@ public class ListProductController extends HttpServlet {
             if (productId != null) {
                 try {
                     Product product = service.getProductById(productId);
-                    System.out.println("dcm");
                     System.out.println(product);
                     if (product != null) {
                         updateRecentlyViewedProducts(session, product);
@@ -104,9 +103,8 @@ public class ListProductController extends HttpServlet {
                     log("Invalid product ID format", e);
                 }
             }
-
-            req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
         }
+        req.getRequestDispatcher("/views/web/product/All-products.jsp").forward(req, resp);
     }
 
     private void updateRecentlyViewedProducts(HttpSession session, Product product) {

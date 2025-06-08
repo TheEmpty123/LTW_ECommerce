@@ -15,6 +15,7 @@ public class MC {
     public ProductService productService;
     public UserService userService;
     public OrderService orderService;
+    public OrderItemService orderItemService;
     public WarehouseService warehouseService;
     public PermissionService permissionService;
     public PromotionService promotionService;
@@ -46,6 +47,7 @@ public class MC {
         serviceList.add(permissionService = PermissionService.getInstance());
         serviceList.add(promotionService = PromotionService.getInstance());
         serviceList.add(categoryService = CategoryService.getInstance());
+        serviceList.add(orderItemService = OrderItemService.getInstance());
     }
 
     private void init() {

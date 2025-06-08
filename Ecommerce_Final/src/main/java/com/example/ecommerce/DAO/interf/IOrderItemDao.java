@@ -19,4 +19,5 @@ public interface IOrderItemDao {
 
     OrderItem findByOrderAndProduct(OrderItem orderItem);
 
+    List<OrderItem> getAllOrderItemByOrderId(int orderId);
 }

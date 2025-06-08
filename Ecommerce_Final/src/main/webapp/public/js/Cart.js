@@ -254,7 +254,7 @@ document.addEventListener("DOMContentLoaded", function () {
         // Tự động ẩn thông báo sau 3 giây
         setTimeout(() => {
             notification.classList.add('hidden');
-        }, 500); // 3000ms = 3 giây
+        }, 1000); // 3000ms = 3 giây
     }
 
     function loginNotification(message) {

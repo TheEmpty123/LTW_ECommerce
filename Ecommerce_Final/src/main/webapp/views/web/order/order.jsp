@@ -11,7 +11,6 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,6 +18,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/header.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/order.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/footer.css">
+    <link rel="stylesheet" type="text/css"
+          href="${pageContext.request.contextPath}/public/css/order-detail.css?v=${System.currentTimeMillis()}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
           integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
@@ -30,8 +31,46 @@
             crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/public/js/Cart.js"></script>
     <script src="${pageContext.request.contextPath}/public/js/Promotion.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/Order.js"></script>
+    <script src="${pageContext.request.contextPath}/public/js/OrderDetail.js"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <style>
+        /* Kiểu thông báo */
+        .notification {
+            position: fixed;
+            top: 140px;
+            right: 20px;
+            padding: 10px 20px;
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            font-weight: bold;
+            z-index: 1000;
+            opacity: 1;
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
 
+        /* Ẩn thông báo */
+        .hidden {
+            opacity: 0;
+            transform: translateY(-20px);
+            pointer-events: none;
+        }
 
+        .pr-10 {
+            padding-right: 10px;
+        }
+        .selected{
+            background: black !important;
+            color: white;
+        }
+        #pay-bank{
+            background: lightgray;
+            color: white;
+        }
+
+    </style>
 </head>
 <body>
 <div id="mask-container">
@@ -178,15 +217,13 @@
     </header>
 </div>
 
-
 <div class="container" style="margin-top: 2%;">
-    <div class="shipping-address" , style="border: none;">
+    <div id="notification" class="notification hidden"></div>
+    <div class="shipping-address" style="border: none;">
         <h2>Tóm tắt đơn hàng</h2>
         <form>
-
-
             <h3>Sản phẩm</h3>
-            <div class="product-list"
+            <div id="list-product" class="product-list"
                  style="max-height: 400px; overflow-y: auto; border: 1px solid #ddd; padding: 10px;">
                 <c:forEach var="cp" items="${sessionScope.cart.list}">
                     <div class="product" style="margin-bottom: 20px;">
@@ -199,7 +236,7 @@
                                 <p><strong style="width: 150px">${cp.name}</strong></p>
                                 <p>Số lượng ${cp.quantity}</p>
                                 <p style="font-weight: bold; white-space: nowrap;">
-                                    Giá gốc: <fmt:formatNumber value="${cp.price  *cp.quantity}"
+                                    Giá gốc: <fmt:formatNumber value="${cp.price}"
                                                                type="number"
                                                                groupingUsed="true"/> đ
                                 </p>
@@ -229,15 +266,40 @@
             </div>
 
             <div class="summary-item">
-                <p>Thành tiền</p>
                 <div class="col-sm-6 col-md-6 t-bold total-price">
-                    <p id="total-after-promotion" class="total-cart">
+                    <p class="pr-10">Thành tiền:</p>
+                    <p id="total-before-promotion" class="total-cart" style="text-decoration: line-through">
                         <c:if test="${sessionScope.auth == null}">
-                            <f:formatNumber type="number" currencySymbol="đ" value="0.0"/>
+                            <fmt:formatNumber type="number" currencySymbol="đ" value="0.0"/> đ
                         </c:if>
                         <c:if test="${sessionScope.auth != null}">
-                            <f:formatNumber type="number" currencySymbol="đ"
-                                            value="${sessionScope.valueOfPromotion}"/>
+                            <fmt:formatNumber type="number" currencySymbol="đ"
+                                              value="${totalCart}"/> đ
+                        </c:if>
+                    </p>
+                </div>
+                <div class="col-sm-6 col-md-6 t-bold total-price">
+                    <p class="pr-10">Giảm giá: </p>
+                    <p id="value-of-promotion" class="total-cart">
+                        <c:if test="${sessionScope.auth == null}">
+                            <fmt:formatNumber type="number" currencySymbol="đ" value="0.0"/> đ
+                        </c:if>
+                        <c:if test="${sessionScope.auth != null}">
+                            <fmt:formatNumber type="number" currencySymbol="đ"
+                                              value="${sessionScope.cart.total - sessionScope.valueOfPromotion}"/> đ
+                        </c:if>
+                    </p>
+                </div>
+
+                <div class="col-sm-6 col-md-6 t-bold total-price">
+                    <p class="pr-10">Tổng tiền: </p>
+                    <p id="total-after-promotion" class="total-cart">
+                        <c:if test="${sessionScope.auth == null}">
+                            <fmt:formatNumber type="number" currencySymbol="đ" value="0.0"/> đ
+                        </c:if>
+                        <c:if test="${sessionScope.auth != null}">
+                            <fmt:formatNumber type="number" currencySymbol="đ"
+                                              value="${sessionScope.valueOfPromotion}"/> đ
                         </c:if>
                     </p>
                 </div>
@@ -248,59 +310,62 @@
                     placeholder="Viết các lưu ý cho đơn hàng của bạn, ví dụ: lưu ý đặc biệt khi vận chuyển."></textarea>
 
             <h3>PHƯƠNG THỨC THANH TOÁN</h3>
-            <form id="payment">
+            <div id="payment">
                 <div class="payment-method">
-                    <button type="submit" class="pay-bank">Chuyển khoản ngân hàng</button>
-                    <button type="submit" class="cod">Thanh toán khi nhận hàng</button>
+                    <button id="pay-bank" type="button" class="pay-bank">Chuyển khoản ngân hàng</button>
+                    <button id="pay-cash" type="button" class="cod selected">Thanh toán khi nhận hàng</button>
                 </div>
-            </form>
+            </div>
             <script>
-                document.getElementById('payment').addEventListener('submit', function (event) {
-                    const selectedButton = document.querySelector('.payment-method button.selected');
+                // document.getElementById('payment').addEventListener('submit', function (event) {
+                //     const selectedButton = document.querySelector('.payment-method button.selected');
+                //
+                //     if (!selectedButton) {
+                //         event.preventDefault();
+                //         alert('Bạn cần chọn phương thức thanh toán');
+                //     } else if (!checkbox.checked) {
+                //         event.preventDefault();
+                //     } else {
+                //         alert("Thanh toán thành công!");
+                //     }
+                // });
 
-                    if (!selectedButton) {
-                        event.preventDefault();
-                        alert('Bạn cần chọn phương thức thanh toán');
-                    } else if (!checkbox.checked) {
-                        event.preventDefault();
-                    } else {
-                        alert("Thanh toán thành công!");
-                    }
-                });
-
-                document.querySelector('.pay-bank').addEventListener('click', function () {
-                    this.classList.add('selected');
-                    document.querySelector('.cod').classList.remove('selected');
-                });
-
-                document.querySelector('.cod').addEventListener('click', function () {
-                    this.classList.add('selected');
-                    document.querySelector('.pay-bank').classList.remove('selected');
-                });
+                // document.getElementById('pay-bank').addEventListener('click', function () {
+                //     this.classList.add('selected');
+                //     document.getElementById('pay-cash').classList.remove('selected');
+                // })
+                //
+                // document.getElementById('pay-cash').addEventListener('click', function () {
+                //     this.classList.add('selected');
+                //     document.getElementById('pay-bank').classList.remove('selected');
+                // });
 
             </script>
         </form>
     </div>
 
-    <div class="order-summary" ; style="border: none;">
+    <div class="order-summary" style="border: none; position: relative">
         <h2>Địa chỉ giao hàng</h2>
-        <div class="shipping-address-container">
-            <div>${address[0].user.fullName} (+84) ${address[0].user.phoneNum}</div>
-            <div>${address[0].address.fullAddress}</div>
-
+        <div id="address-receive">
+            <div class="shipping-address-container">
+                <p id="full-name" style="display: inline">${address[0].user.fullName}</p>
+                <p style="display: inline">(+84)</p>
+                <p style="display: inline">${address[0].user.phoneNum}</p>
+                <p id="full-address">${address[0].address.fullAddress}</p>
+            </div>
         </div>
 
-
-        <form id="abc" method="POST" style="margin-top: 20px;padding:10px" action="/order">
+        <form id="order-form" method="POST" style="width:200px; margin-top: 20px;padding:10px" action="/order">
             <div class="actions">
                 <p4><strong>Địa chỉ mới</strong></p4>
             </div>
             <label>Họ và tên *</label>
-            <input style="width: 400px;height: 50px" type="text" name="name" placeholder="Nhập họ tên của bạn"
+            <input id="name" style="width: 400px;height: 50px" type="text" name="name" placeholder="Nhập họ tên của bạn"
                    required>
 
             <label>Số điện thoại *</label>
-            <input type="text" style="width: 400px;height: 50px" name="phone" placeholder="Nhập số điện thoại của bạn">
+            <input id="sdt" type="text" style="width: 400px;height: 50px" name="phone"
+                   placeholder="Nhập số điện thoại của bạn">
 
             <label for="province-select">Tỉnh / Thành phố *</label>
             <select name="city" id="province-select" style="width: 400px;height: 50px" required>
@@ -322,12 +387,15 @@
 
             <div class="modal-footer" style="padding: 5px;margin: auto">
                 <button type="button" style="background: orangered; color: white; margin-right: 10px"
-                        class="btn btn-cancel">Hủy
+                        class="btn btn-cancel" onclick="clearForm()">Hủy
                 </button>
                 <button type="submit" style="background: orangered; color: white" class="btn btn-confirm">Xác nhận
                 </button>
             </div>
         </form>
+
+        <!-- Thêm nơi hiển thị thông báo -->
+        <div id="result-message" class="notification hidden"></div>
 
 
         <h3>CHÍNH SÁCH BÁN HÀNG</h3>
@@ -537,31 +605,34 @@
                             Tôi đã đọc và đồng ý với điều kiện đổi trả hàng, giao hàng, chính sách bảo mật, điều khoản
                             dịch vụ mua hàng online *
                         </label>
-                        <%--                        <button type="submit">Xác nhận</button>--%>
-
+                        <button type="submit" class="order-button">Xác nhận</button>
+                    </form>
                 </div>
 
-                <button type="submit" class="order-button">ĐẶT MUA</button>
-                </form>
+                <%--                <button type="submit" class="order-button">ĐẶT MUA</button>--%>
                 <script>
                     document.getElementById('orderForm').addEventListener('submit', function (event) {
                         const checkbox = document.getElementById('terms');
+                        const verifyFrame = document.getElementById('verify-frame')
                         if (!checkbox.checked) {
                             event.preventDefault();
                             alert('Bạn cần đồng ý với các điều khoản để tiếp tục.');
                         }
+                        event.preventDefault()
+                        verifyFrame.style.display = "block"
+                        // alert("Đặt hàng thành công!")
 
-                        alert("Đặt hàng thành công!")
-                        this.submit();
+                        // this.submit();
                     });
-
                 </script>
             </div>
         </div>
     </div>
 </div>
 
-
+<div id="verify-frame">
+    <jsp:include page="verify-recaptcha.jsp"/>
+</div>
 <div>
     <footer class="footer">
         <div class="footer-container">
@@ -617,6 +688,11 @@
 <script src="${pageContext.request.contextPath}/public/js/curtainmenu.js"></script>
 <script src="${pageContext.request.contextPath}/public/js/popup.js"></script>
 <script>
+
+    function clearForm() {
+        document.getElementById("order-form").reset()
+    }
+
     fetch('/locations')
         .then(response => response.json())
         .then(data => {

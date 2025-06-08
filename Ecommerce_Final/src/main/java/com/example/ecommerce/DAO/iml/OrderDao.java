@@ -45,8 +45,10 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         log.info("Query all orders with force: " + force);
 
         if (!force) allOrders = getAllOrders();
-        else
+        else {
             allOrders.clear();
+            allOrders = getAllOrders();
+        }
 
         return allOrders;
     }
@@ -66,8 +68,8 @@ public class OrderDao extends ImplementBase implements IOrderDao {
                     .bind("paymentID", 1)
                     .bind("shippingStatus", ShippingStatus.Packaging)
                     .bind("createDate", LocalDateTime.now())
-                    .bind("sdt", Optional.ofNullable(null))
-                    .bind("promotion_id", Optional.ofNullable(null))
+                    .bind("sdt", order.getSdt())
+                    .bind("promotion_id", Optional.ofNullable(order.getPromotion_id()))
                     .executeAndReturnGeneratedKeys("id")
                     .mapTo(Integer.class)
                     .one();
@@ -75,7 +77,6 @@ public class OrderDao extends ImplementBase implements IOrderDao {
             return order;
         });
     }
-
 
     @Override
     public Order updateOrderByID(int id, int orderID, int productID, int amount) {
@@ -276,5 +277,14 @@ public class OrderDao extends ImplementBase implements IOrderDao {
         var li = orderDao.getTotalOrdersWithPaymentStatus(false, Statuss.CANCELLED);
 
         System.out.println(li);
+    }
+
+    @Override
+    public int updateSignature(int id, String signature) {
+        log.info("Updating signature of order...");
+        return handle.createUpdate("UPDATE orders SET signature = ? WHERE id = ?")
+                .bind(0, signature)
+                .bind(1, id)
+                .execute();
     }
 }
