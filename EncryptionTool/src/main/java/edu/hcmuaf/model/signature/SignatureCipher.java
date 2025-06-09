@@ -4,6 +4,7 @@ import java.io.*;
 import java.math.BigInteger;
 import java.security.*;
 import java.security.spec.InvalidKeySpecException;
+import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
 import java.util.Base64;
 
@@ -28,10 +29,18 @@ public class SignatureCipher {
         return Base64.getEncoder().encodeToString(key.getEncoded());
     }
 
-    //    public PrivateKey decodePrivateKey(String key) {
-//        byte[] decodedKey = Base64.getDecoder().decode(key);
-//
-//    }
+    public PublicKey decodePublicKey(String key) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] decodedKey = Base64.getDecoder().decode(key);
+        KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
+        return keyFactory.generatePublic(new PKCS8EncodedKeySpec(decodedKey));
+    }
+
+    public PrivateKey decodePrivateKey(String key) throws NoSuchAlgorithmException, InvalidKeySpecException {
+        byte[] decodedKey = Base64.getDecoder().decode(key);
+        KeyFactory keyFactory = KeyFactory.getInstance(RSA_ALGORITHM);
+        return keyFactory.generatePrivate(new PKCS8EncodedKeySpec(decodedKey));
+    }
+
     public void saveKey(String encrypted, String file) throws Exception {
         try {
             DataOutputStream out = new DataOutputStream(new FileOutputStream(file));

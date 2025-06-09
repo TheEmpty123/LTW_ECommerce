@@ -10,6 +10,7 @@ import java.io.*;
 import java.security.KeyPair;
 import java.security.NoSuchAlgorithmException;
 import java.security.PrivateKey;
+import java.security.spec.InvalidKeySpecException;
 
 public class SignatureController {
     private SignatureCipher signatureCipher;
@@ -35,7 +36,15 @@ public class SignatureController {
         signatureUI.setSaveKeyButtonListener(e -> saveKeyListener());
         signatureUI.setSavePrivateKeyButtonListener(e -> savePrivateListener());
         signatureUI.setLoadKeyButtonListener(e -> loadKeyListener());
-        signatureUI.setSignButtonListener(e -> signatureListener());
+        signatureUI.setSignButtonListener(e -> {
+            try {
+                signatureListener();
+            } catch (NoSuchAlgorithmException ex) {
+                throw new RuntimeException(ex);
+            } catch (InvalidKeySpecException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         signatureUI.setVerifyKeyButtonListener(e -> verifyListener());
         signatureUI.setResetButtonListener(e -> resetListener());
         listAsymAlgorithmComboBox.addItemListener(new ItemListener() {
@@ -58,7 +67,7 @@ public class SignatureController {
 
         switch (algoAsymSelected) {
             case "RSA":
-                this.addItems(listSignAlgorithmComboBox,  "SHA256withRSA");
+                this.addItems(listSignAlgorithmComboBox, "SHA256withRSA");
                 this.addItems(listSizeComboBox, 512, 1024, 2048, 3072, 4096);
                 break;
             default:
@@ -77,40 +86,6 @@ public class SignatureController {
             comboBox.addItem(item);
         }
     }
-//    private void updateComboBoxes() {
-//        String algoAsymSelected = listAsymAlgorithmComboBox.getSelectedItem().toString();
-//        listSizeComboBox.removeAllItems();
-//        listSignAlgorithmComboBox.removeAllItems();
-//
-//        switch (algoAsymSelected) {
-//            case "RSA":
-//                this.addItems(listSignAlgorithmComboBox, "SHA1withRSA", "SHA256withRSA", "SHA384withRSA", "SHA512withRSA");
-//                this.addItems(listSizeComboBox, 512, 1024, 2048, 3072, 4096);
-//                break;
-//            case "DSA":
-//                this.addItems(listSignAlgorithmComboBox, "SHA1withDSA", "SHA256withDSA", "SHA384withDSA", "SHA512withDSA");
-//                this.addItems(listSizeComboBox, 1024, 2048, 3072);
-//                break;
-//            case "ECDSA":
-//                this.addItems(listSignAlgorithmComboBox, "SHA1withECDSA", "SHA256withECDSA", "SHA384withECDSA", "SHA512withECDSA");
-//                this.addItems(listSizeComboBox, 256, 384, 521);
-//                break;
-//            default:
-//                JOptionPane.showMessageDialog(signatureUI, "Invalid Algo Selected");
-//        }
-//    }
-//
-//    private void addItems(JComboBox<String> comboBox, String... items) {
-//        for (String item : items) {
-//            comboBox.addItem(item);
-//        }
-//    }
-//
-//    private void addItems(JComboBox<Integer> comboBox, Integer... items) {
-//        for (Integer item : items) {
-//            comboBox.addItem(item);
-//        }
-//    }
 
     private void createKeyListener() {
         System.out.println("Creating key...");
@@ -138,24 +113,6 @@ public class SignatureController {
                     System.out.println("Private Key: " + privateKey);
                     JOptionPane.showMessageDialog(signatureUI, "Keys generated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
                     break;
-                case "DSA":
-                    signatureCipher.generateKeyPair(size, algoAsymSelected);
-                    this.keyPair = signatureCipher.generateKeyPair(size, algoAsymSelected);
-                    publicKey = signatureCipher.encodeKey(keyPair.getPublic());
-                    privateKey = signatureCipher.encodeKey(keyPair.getPrivate());
-                    signatureUI.getPublicKeyArea().setText(publicKey);
-                    signatureUI.getPrivateKeyArea().setText(privateKey);
-                    JOptionPane.showMessageDialog(signatureUI, "Keys generated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    break;
-                case "ECDSA":
-                    signatureCipher.generateKeyPair(size, algoAsymSelected);
-                    this.keyPair = signatureCipher.generateKeyPair(size, algoAsymSelected);
-                    publicKey = signatureCipher.encodeKey(keyPair.getPublic());
-                    privateKey = signatureCipher.encodeKey(keyPair.getPrivate());
-                    signatureUI.getPublicKeyArea().setText(publicKey);
-                    signatureUI.getPrivateKeyArea().setText(privateKey);
-                    JOptionPane.showMessageDialog(signatureUI, "Keys generated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    break;
                 default:
                     JOptionPane.showMessageDialog(signatureUI, "Invalid Algo Selected");
             }
@@ -167,7 +124,7 @@ public class SignatureController {
 
     private void saveKeyListener() {
         String puclicKey = signatureUI.getPublicKeyArea().getText();
-        if (puclicKey == null ) {
+        if (puclicKey == null) {
             JOptionPane.showMessageDialog(signatureUI, "Invalid Key Selected");
             return;
         }
@@ -186,7 +143,7 @@ public class SignatureController {
 
     private void savePrivateListener() {
         String privateKey = signatureUI.getPrivateKeyArea().getText();
-        if (privateKey == null ) {
+        if (privateKey == null) {
             JOptionPane.showMessageDialog(signatureUI, "Invalid Key Selected");
             return;
         }
@@ -220,19 +177,21 @@ public class SignatureController {
                 JOptionPane.showMessageDialog(signatureUI, "Key loaded successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
             } catch (IOException e) {
                 e.printStackTrace();
-                JOptionPane.showMessageDialog(signatureUI, "Error saving key!", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(signatureUI, "Error loading key!", "Error", JOptionPane.ERROR_MESSAGE);
             }
         }
     }
 
 
-    private void signatureListener() {
+    private void signatureListener() throws NoSuchAlgorithmException, InvalidKeySpecException {
         String data = signatureUI.getSignatureBeforeText().getText();
         String algoSignSelected = listSignAlgorithmComboBox.getSelectedItem().toString();
         String algoAsymSelected = listAsymAlgorithmComboBox.getSelectedItem().toString();
         String privateKey = signatureUI.getPrivateKeyArea().getText();
+        System.out.println("Private Key: " + privateKey);
         String publicKey = signatureUI.getPublicKeyArea().getText();
-//        PrivateKey privateKey1 = signatureCipher.decodeKey(privateKey);
+
+        PrivateKey privateKeyObj = signatureCipher.decodePrivateKey(privateKey);
         if (algoSignSelected == null) {
             JOptionPane.showMessageDialog(signatureUI, "Invalid Algo Selected");
             return;
@@ -242,7 +201,7 @@ public class SignatureController {
             return;
         }
         try {
-            String signature = signatureCipher.signData(data, keyPair.getPrivate(), algoSignSelected);
+            String signature = signatureCipher.signData(data, signatureCipher.decodePrivateKey(privateKey), algoSignSelected);
             System.out.println("Private kasyasdasd" + privateKey);
             signatureUI.getSignatureAfterText().setText(signature);
             JOptionPane.showMessageDialog(signatureUI, "Signature generated successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -273,7 +232,7 @@ public class SignatureController {
             return;
         }
         try {
-            boolean isVerified = signatureCipher.verifySignature(data, signature, keyPair.getPublic(), algoSignSelected);
+            boolean isVerified = signatureCipher.verifySignature(data, signature,signatureCipher.decodePublicKey(publicKey), algoSignSelected);
             System.out.println("publickeyyyyyyyy" + keyPair.getPublic());
             if (isVerified) {
                 JOptionPane.showMessageDialog(signatureUI, "Signature verified successfully!", "Success", JOptionPane.INFORMATION_MESSAGE);

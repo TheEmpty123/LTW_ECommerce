@@ -15,7 +15,7 @@ public class MainView extends JFrame {
         setLocationRelativeTo(null);
 
         JTabbedPane tabbedPane = new JTabbedPane();
-        tabbedPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Thêm viền cho tabbedPane
+        tabbedPane.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         try {
             BasicUI basicUI = new BasicUI();
@@ -25,13 +25,12 @@ public class MainView extends JFrame {
             SignatureUI signatureUI = new SignatureUI();
 
             try {
-//                new edu.hcmuaf.controller.BasicUIController(basicUI);
-//                new edu.hcmuaf.controller.RSAUIController(asymmetricUI);
-//                new edu.hcmuaf.controller.SymmetricController(symmetricUI);
-//                new edu.hcmuaf.controller.HashController(hashUI);
+                new edu.hcmuaf.controller.BasicUIController(basicUI);
+                new edu.hcmuaf.controller.RSAUIController(asymmetricUI);
+                new edu.hcmuaf.controller.SymmetricController(symmetricUI);
+                new edu.hcmuaf.controller.HashController(hashUI);
                 new edu.hcmuaf.controller.SignatureController(signatureUI);
 
-//                if (src.getType)
             } catch (Exception e) {
                 System.err.println("Lỗi khi gắn Controller: " + e.getMessage());
             }
@@ -51,7 +50,7 @@ public class MainView extends JFrame {
 
         add(tabbedPane, BorderLayout.CENTER);
         pack();
-        setMinimumSize(new Dimension(800, 600));
+        this.setSize(800, 740);
         setVisible(true);
     }
 
@@ -66,4 +65,3 @@ public class MainView extends JFrame {
         });
     }
 }
-//
