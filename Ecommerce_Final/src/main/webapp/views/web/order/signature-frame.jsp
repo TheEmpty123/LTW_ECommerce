@@ -77,7 +77,7 @@
                     </div>
                 </div>
             </div>
-            <p>Tải tool <a href="${pageContext.request.contextPath}/public/EncryptTool.zip" download> tại đây</a> và dùng mã hash bên trên để phát sinh public key và signature.</p>
+            <p>Tải tool <a href="${pageContext.request.contextPath}/public/EncryptTool_Setup.exe" download> tại đây</a> và dùng mã hash bên trên để phát sinh public key và signature.</p>
             <div class="submit-div">
                 <button type="button" id="cancel-btn" class="cancel" onclick="cancelSign()">Hủy</button>
                 <button type="button" id="submit-order" onclick="sign()">Xác nhận</button>
