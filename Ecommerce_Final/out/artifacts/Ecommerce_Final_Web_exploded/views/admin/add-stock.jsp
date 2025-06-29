@@ -1,0 +1,61 @@
+<%--
+  Created by IntelliJ IDEA.
+  User: KhanhDuy
+  Date: 12/19/2024
+  Time: 3:47 PM
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="f" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<!DOCTYPE html>
+<html>
+  <head>
+      <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+      <title>Add Stock</title>
+      <link rel="stylesheet" href="${pageContext.request.contextPath}/public/css/admin/add-product.css">
+  </head>
+  <body>
+  <div class="form-container">
+      <h2>Product ID: #001</h2>
+      <!-- Left section: Image upload and button -->
+      <div class="left-section">
+          <div class="img-upload">
+              <label for="productImg">Add More Product Image</label>
+              <div class="img-preview">No Image</div>
+              <input type="file" id="productImg" name="productImg" accept="image/*" multiple>
+          </div>
+
+      </div>
+
+      <!-- Right section: Product details -->
+      <div class="right-section">
+          <form>
+              <!-- Name and Category on the same row -->
+              <div class="form-row">
+                  <div class="form-group">
+                      <label for="stock">Stock</label>
+                      <input type="number" id="stock" name="stock" placeholder="Enter stock quantity" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="inventory">Product Categories</label>
+                      <select id="inventory" name="inventory" required>
+                          <option value="">Select inventory</option>
+                          <option value="WH-001">Hợp Tiến Logistics</option>
+                          <option value="WH-002">Noi Bai Cargo Terminal Service JSC</option>
+                          <option value="WH-003">SPX Châu Phú</option>
+                          <option value="WH-004">SPX Thống Nhất</option>
+                          <option value="WH-005">SPX Biên Hòa 01</option>
+                          <!-- Add more categories as needed -->
+                      </select>
+                  </div>
+              </div>
+
+              <button type="submit" class="create-btn">Add Stock</button>
+          </form>
+      </div>
+  </div>
+
+  </body>
+</html>
