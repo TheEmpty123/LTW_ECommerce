@@ -1,7 +1,7 @@
 function copyText() {
     const text = document.getElementById("hash-code").innerText;
     navigator.clipboard.writeText(text)
-        .then(() => {
+        .then(() => { alert("Đã sao chép thành công!");
         })
         .catch(err => {
             alert("Lỗi khi sao chép: " + err);

@@ -3,6 +3,7 @@ package com.example.ecommerce.controller2;
 import com.example.ecommerce.Bean.User;
 import com.example.ecommerce.Utils.CipherUtils;
 import com.example.ecommerce.service.OrderService;
+import com.example.ecommerce.service.UserService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -21,12 +22,14 @@ public class SignatureController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         OrderService orderService = OrderService.getInstance();
+        UserService userService = UserService.getInstance();
         HttpSession session = req.getSession();
         BufferedReader reader = req.getReader();
         StringBuilder json = new StringBuilder();
         String line;
 
-        User u = (User) session.getAttribute("auth");
+        User u0 = (User) session.getAttribute("auth");
+        User u = userService.getUserByID(u0.getId());
 
         while ((line = reader.readLine()) != null) {
             json.append(line);
